@@ -1,0 +1,74 @@
+{
+	"login.html": {
+		"resources": [
+			"js/weshare.js",
+			"js/mui.min.js",
+			"css/weshare.css",
+			"fonts/mui.ttf",
+			"css/mui.min.css",
+			"images/logonew.png"
+		],
+		"refer": [
+			"index.html"
+		]
+	},
+	"index.html": {
+		"resources": [
+			"js/openwin.js",
+			"images/pay.png",
+			"images/location.png"
+		],
+		"refer": [
+			"task.html"
+		]
+	},
+	"task.html": {
+		"resources": [
+			"images/default_head.jpg",
+			"images/Eye.png"
+		],
+		"refer": [
+			"index.html",
+			"needpublish.html",
+			"taskaction.html"
+		]
+	},
+	"needpublish.html": {
+		"resources": [
+			"images/down.png",
+			"images/addnote.png",
+			"images/needlabel.png",
+			"js/openwin.js",
+			"js/weshare.js",
+			"js/mui.min.js",
+			"css/weshare.css",
+			"fonts/mui.ttf",
+			"css/mui.min.css",
+			"images/pay.png",
+			"images/logonew.png"
+		],
+		"refer": [
+			"index.html",
+			"message.html"
+		]
+	},
+	"taskaction.html": {
+		"resources": [
+			"images/shan.png",
+			"js/mui.zoom.js",
+			"js/mui.previewimage.js",
+			"js/mui.view.js"
+		]
+	},
+	"message.html": {
+		"refer": [
+			"exchangemall.html",
+			"needpublish.html"
+		]
+	},
+	"exchangemall.html": {
+		"resources": [
+			"images/model.png"
+		]
+	}
+}

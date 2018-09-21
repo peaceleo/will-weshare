@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" href="css/weshare.css" />
+	 <script src="js/weshare.js"></script>
+    <title>checkneedaction</title>
+   
+    <link href="css/mui.min.css" rel="stylesheet"/>
+     <style type="text/css">
+     	 body{
+     	 	background: white;
+     	 }
+     	 p{
+     	 	font-size: 12px;
+     	 	margin: 0px;
+     	 	padding: 0px;
+     	 }
+     	 .mui-content{
+     	 	background: white;
+     	 	padding-bottom: 44px;
+     	 	height: 100%;
+     	 
+     	 }
+     	 .mui-bar-tab .mui-tab-item.mui-active{
+     	 	color: #929292;
+     	 }
+     	 .needactionlist{
+     	 	float: left;
+     	 	width: 100%;
+     	 }
+   		.checkneedaction{
+   			width:50%;
+    			text-align: center;
+    			font-size: 13px;
+    			font-weight: bolder;
+    			color: black;
+    			border-top: 1px solid #E4E4E4;
+    			border-bottom: 5px solid #E4E4E4;
+    			padding-top: 5px;
+    			padding-bottom: 5px;
+    			border-left:2px solid #E4E4E4 ;
+   		}
+   		.checkneedaction .mui-icon{
+   			font-size: 20px;
+   			font-weight: bolder;
+   		}	
+     	 
+     	 .actioninfo{
+     	 	width: 100%;
+     	 	height: 25px;
+     	 	padding-bottom: 3px;
+     	 }
+     	 .actioninfo div{
+     	 	float: left;
+     	 }
+     	 .publishtime{
+     	 	width: 50%;
+		font-size: 12px;
+		color: #A1A1A1;
+		font-weight: bold;
+		padding-left: 10px;
+		text-align: right;
+     	 }
+     	 .actioncontent{
+		width:95%;
+		font-size:13px;
+		padding-top: 10px;
+		padding-bottom: 10px;
+		padding-left: 80px;
+		font-weight: bold;
+		position: relative;	
+	}
+	.actioncontent img{
+		float: left;
+	}
+	.mui-input-row label{
+		width: 25%;
+	}
+	.mui-input-row label~input{
+		width: 75%;
+	}
+
+	/*.taskcommentfooter {
+		float: left;
+		height: 44px;
+		position: fixed;
+    bottom: 0;
+    width: 100%;
+    z-index: 10000;
+	}
+	.taskcommentfooter div{
+		float: left;
+	}*/
+	
+	.commentblack{
+		clear: both;
+		width: 100%;
+	}
+	.shan{
+		height: 50px;
+		width:50px;
+		border-radius: 40%;
+		background: url(images/shan.png) no-repeat;
+		background-size: 50px;
+		position: absolute;
+		right:0;
+		opacity: .6;
+	}
+	.commentreply{
+		position: absolute;
+		right: 10%;
+		text-align:center;
+		color:#3f88b0;
+	}
+     </style>
+</head>
+<body> 
+	<header class="mui-bar mui-bar-nav">
+		<div class='header index-header'>
+			<div class='logo' id='logo' style="display: none;"></div>
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class='title' id='title'></h1>
+			<a id="menu" href="#topPopover" class="mui-action-menu mui-icon mui-icon-bars mui-pull-right" style="display: none;"></a>
+		</div>
+	</header>
+	
+     <div id="needwarp" class="mui-content ">
+     	
+		<div class='singleneedcontainer' id='singleneedcontainer'>
+			
+		 </div>
+		<div class="needactionlist" id='needactionlist'>
+			
+		</div>
+        
+     </div>
+     
+     
+      <footer class="sendfooter" id='needmsgfooter' style="display: none;">
+      	
+	      	<div class="valuecontent" id='replymsgcontainer'>
+	      		<textarea type="text" name='helpvalue' id="needmsgvalue"></textarea>
+	      	</div>
+	     	<div class="btncontent">
+	     		<button id='msgsendbtn' class='valuebtn' onclick='sendmsg()'>发送</button>
+	     	</div>
+     </footer>
+     
+       <footer class="sendfooter" id='needcommentfooter' style="display: none;">
+      	
+	      	<div class="valuecontent" id='replycommentcontainer'>
+	      		<textarea type="text" name='helpvalue' id="needcommentvalue"></textarea>
+	      	</div>
+	     	<div class="btncontent">
+	     		<button id='commentsendbtn' class='valuebtn' onclick='sendcomment()'>发送</button>
+	     	</div>
+     </footer>
+    
+	   <script src="js/mui.min.js"></script>
+	   <!--<script src="js/openwin.js"></script>-->
+	    <script type="text/javascript" charset="utf-8">
+     mui.plusReady(function(){
+     
+//    		 quitapp();
+      		var page=1;
+      		  server=plus.storage.getItem('server');
+      		  username=plus.storage.getItem('username');
+      		  active=plus.storage.getItem('active');
+      		  reward=plus.storage.getItem('rewardpoints');
+      		 
+ 			var pager=plus.webview.currentWebview();
+ 			 needid=pager.needid;
+ 			 towho=pager.towho;
+ 			 type=pager.type;
+ 			
+ 			  mui.ajax(server+'getneedlist.php',{
+			      			data:{
+			      				action:'singleneed',
+			      				needid:needid
+			      			},
+			      			type:'post',
+			      			success:function(data){
+//			      				alert(data);
+			      				var singleneed=document.getElementById('singleneedcontainer');
+			      				var jsondata=eval("["+data+"]");
+			      				var needlist=jsondata[0];
+			                    var publishtime=timeFormat(needlist[0].publishtime);
+			                     if(needlist[0].sex=='男'){
+			      						var status1='block';
+			      						var status2='none';
+			      					}else{
+			      						var status1='none';
+			      						var status2='block';
+			      					}
+			      				 html="<div class='needcontainer'>"+
+								  	   	    "<div class='userhead' data-user="+needlist[0].useremail+">"+
+								  	   	    "<div class='headinfo'>"+
+								  	   	    "<img src='"+server+"uploads/"+needlist[0].head+"'/>"+
+								  	   	     "<span  class='male sexshow' style='display:"+status1+";'></span>"+
+				 							 "<span  class='female sexshow' style='display:"+status2+";'></span>"+
+								  	   	    "</div>"+
+								  	   	    "<div class='needid'>"+needlist[0].id+"</div></div>"+
+								  	   	    "<div class='needlistlabel'>#"+needlist[0].label+"#</div>"+
+								  	   	    "<div class='needstatus'>"+needlist[0].status+"</div>"+
+								  	   	    "<div class='needcontent'>"+needlist[0].remark+"</div>"+
+								  	   	    	"<div class='needpay'>"+needlist[0].needpay+"享豆</div>"+
+								  	   	    "<div class='needlocation'>"+needlist[0].needlocation+"</div>"+
+								  	   	    "<div class='needlisttime'>"+publishtime+"</div>"+
+								  	   		"<div class='checkneedaction' id='needmsg'><span class='mui-icon mui-icon-navigate'></span>&nbsp;&nbsp;帮忙("+needlist[0].msgNum+")</div>"+
+								  	   		"<div class='checkneedaction' id='needcomment'><span class='mui-icon mui-icon-email'></span>&nbsp;&nbsp;评论("+needlist[0].cmtNum+")</div>"+
+			
+								  	   "</div> ";
+								  singleneed.innerHTML=html;	  
+								  
+								     window.needmsg=document.getElementById("needmsg");
+							      	 window.needcomment=document.getElementById("needcomment");
+							      	 window.needcall=document.getElementById("needcall");
+							      	 window.needmsgfooter=document.getElementById("needmsgfooter");
+							      	 window.needcommentfooter=document.getElementById("needcommentfooter");
+							     
+								              if(type=='comment'){
+								 			 	 getneedcomment();
+								 			 	 needcomment.style.background='#E4E4E4';
+											    needcommentfooter.style.display='block';
+								 			 }else{
+								 		
+								 			 	getneedmsg();
+								 			 	needmsg.style.background='#E4E4E4';
+											    needmsgfooter.style.display='block';
+								 			 	
+								 			 }
+							      	 	needmsg.addEventListener('tap',function(){
+								      		needmsg.style.background='#e4e4e4';
+								      		needmsgfooter.style.display='block';
+								      		needcomment.style.background='white';
+								      		needcommentfooter.style.display='none';
+								      		getneedmsg();
+								      	})
+				      	
+								      	needcomment.addEventListener('tap',function(){
+								      		needcomment.style.background='#e4e4e4';
+								      		needcommentfooter.style.display='block';
+								      		needmsg.style.background='white';
+								      		needmsgfooter.style.display='none';
+								      		
+											getneedcomment();
+								      	})
+								      	
+								       
+			      			}
+					})
+ 			
+ 			 
+   			 
+   		 mui('#needactionlist').on('tap','.headinfo',function(){
+      	var user=this.getAttribute('data-user');
+     		mui.openWindow({
+     			url:'othercenter.html',
+     			id:'othercenter',
+     			extras:{
+     				user:user
+     			},
+     			show:{
+     				anishow:'slide-in-left',
+     				duration:300
+     			}
+     		})
+     	})	
+     	
+     	 mui('#needwarp').on('tap','.userhead',function(){
+      	var user=this.getAttribute('data-user');
+//    	alert(user);
+     		mui.openWindow({
+     			url:'othercenter.html',
+     			id:'othercenter',
+     			extras:{
+     				user:user
+     			},
+     			show:{
+     				anishow:'slide-in-left',
+     				duration:300
+     			}
+     		})
+     	})	
+ 			
+ 			
+ 			
+ 		
+ 		 mui('#needactionlist').on('tap','.msgreply',function(){
+     	 //打开蒙板
+     	 var mask=mui.createMask(function(){
+     	 	document.getElementById("replyto").innerHTML='';
+     	 });
+//   	 mask.show();
+     	 //填充收件人昵称
+     	 var replycontainer=document.getElementById("replymsgcontainer");
+     	 towhonickname=this.getAttribute('data-towho');
+     	 towho=this.getAttribute('data-towhoemail');
+     	 
+     	 html="<div class='replyto' id='replyto'>@"+towhonickname+"</div>";
+     	 replycontainer.insertAdjacentHTML('afterBegin',html);
+     	 sendmsg();
+     	 
+     	
+               	 	 
+         });
+         
+   	    mui('#needactionlist').on('tap','.commentreply',function(){
+     	 //打开蒙板
+     	 var mask=mui.createMask(function(){
+     	 	document.getElementById("replyto").innerHTML='';
+     	 });
+//   	 mask.show();
+     	 //填充收件人昵称
+     	 var replycontainer=document.getElementById("replycommentcontainer");
+     	 towhonickname=this.getAttribute('data-towho');
+     	 towho=this.getAttribute('data-towhoemail');
+     	 
+     	 html="<div class='replyto' id='replyto'>@"+towhonickname+"</div>";
+     	 replycontainer.insertAdjacentHTML('afterBegin',html);
+     	 sendcomment();
+     	             	 	 
+         });
+ 			 
+ 	
+    	}); 
+  //获取私信列表
+  function getneedmsg(){
+  	 console.log(needid);
+  	 console.log(towho);
+  	 document.getElementById('needactionlist').innerHTML='';
+  	   mui.ajax(server+'getcheckmsglist.php',{
+     	  	  	data:{
+     	  	  		needid:needid,
+     	  	  		bywho:username,
+     	  	  		towho:towho
+     	  	  	},
+     	  	  	type:'post',
+     	  	  	success:function(data){
+//   	  	  		alert(data);
+     	  	  		var msgcontainer=document.getElementById("needactionlist");
+     	  	  		var jsondata=eval("["+data+"]");
+     	  	  		var msglist=jsondata[0];
+     	  	  		
+     	  	  		if(msglist.length==0){
+     	  	  			html="<div class=\'commentblack\'>还没有私信哎</div>";
+     	  	  			msgcontainer.insertAdjacentHTML('afterBegin',html);
+     	  	  		}
+     	  	  		for(var i=0;i<=msglist.length;i++){
+     	  	  			bywhoemail=msglist[i].bywhoemail;
+     	  	  			bywhohead=msglist[i].bywhohead;
+     	  	  			bywho=msglist[i].bywhonickname;
+     	  	  			towho=msglist[i].towho;
+     	  	  			publishtime=timeFormat(msglist[i].publishtime);
+     	  	  			message=msglist[i].message;
+     	  	  			needid=msglist[i].needid;
+     	  	  			if(msglist[i].bywhosex=='男'){
+			      						var status1='block';
+			      						var status2='none';
+			      					}else{
+			      						var status1='none';
+			      						var status2='block';
+			      					}
+     	  	  			html="<div class='singlemsg'>"+"<div class='hchead headinfo' data-user='"+bywhoemail+"'>"+
+     	  	  					"<img src='"+server+"uploads/"+bywhohead+"'/>"+
+     	  	  					 	 "<span  class='smale sexshowSmall' style='display:"+status1+";'></span>"+
+				 					 "<span  class='sfemale sexshowSmall' style='display:"+status2+";'></span>"+
+     	  	  					"</div>"	+
+      							"<div class='msginfo'>"+
+      							 "<div class='msgfrom'>By&nbsp;&nbsp;<a data-user='"+bywho+"'>"+bywho+"</a></div>"+
+      							 "<div class='msgto'>@&nbsp;&nbsp;<a data-user='"+towho+"'>"+towho+"</a></div>"+
+      							 "<div class='msgtime'>"+publishtime+"</div>"+
+      			               "</div>"+
+				      		   "<div class='msgcontent'>"+message+"<span class='msgreply' data-id='"+needid+"' data-towho='"+bywho+"' data-towhoemail='"+bywhoemail+"'>回复</span>"+	
+				      			"</div>"+
+				      		"</div>";
+				       		
+				       msgcontainer.insertAdjacentHTML('beforeEnd',html);
+     	  	  		}
+     	  	  		
+     	  	  	}
+     	  	  })
+  }
+  
+ //获取需求评论
+ function getneedcomment(){
+ 	document.getElementById('needactionlist').innerHTML='';
+ 		 mui.ajax(server+'getcommentlist.php',{
+     	  	  	data:{
+     	  	  		needid:needid,
+     	  	  		bywho:username,
+     	  	  		towho:towho
+     	  	  	},
+     	  	  	type:'post',
+     	  	  	success:function(data){
+//   	  	  		alert(data);
+     	  	  		var msgcontainer=document.getElementById("needactionlist");
+     	  	  		var jsondata=eval("["+data+"]");
+     	  	  		var msglist=jsondata[0];
+     	  	  		if(msglist.length==0){
+     	  	  			html="<div class=\'commentblack\'>还没有评论哎</div>";
+     	  	  			msgcontainer.insertAdjacentHTML('afterBegin',html);
+     	  	  		}
+     	  	  		for(var i=0;i<=msglist.length;i++){
+     	  	  			bywho=msglist[i].bywho;
+     	  	  			bywhohead=msglist[i].bywhohead;
+     	  	  			bywhoemail=msglist[i].bywhoemail;
+     	  	  			towho=msglist[i].towho;
+     	  	  			publishtime=timeFormat(msglist[i].publishtime);
+     	  	  			message=msglist[i].comment;
+     	  	  			needid=msglist[i].needid;
+     	  	  			 if(msglist[i].bywhosex=='男'){
+			      						var status1='block';
+			      						var status2='none';
+			      					}else{
+			      						var status1='none';
+			      						var status2='block';
+			      					}
+     	  	  			html="<div class='singlemsg'>"+
+     	  	  					"<div class='hchead headinfo' data-user='"+bywhoemail+"'>"+
+     	  	  					"<img src='"+server+"uploads/"+bywhohead+"'/>"+
+     	  	  					 	 "<span  class='smale sexshowSmall' style='display:"+status1+";'></span>"+
+				 					 "<span  class='sfemale sexshowSmall' style='display:"+status2+";'></span>"+
+     	  	  					"</div>"	+
+      							"<div class='msginfo'>"+
+      							 "<div class='msgfrom'>By&nbsp;&nbsp;<a data-user='"+bywho+"'>"+bywho+"</a></div>"+
+      							 "<div class='msgto'>@&nbsp;&nbsp;<a data-user='"+towho+"'>"+towho+"</a></div>"+
+      							 "<div class='msgtime'>"+publishtime+"</div>"+
+      			               "</div>"+
+				      		   "<div class='msgcontent'>"+message+"<span class='commentreply' data-id='"+needid+"' data-towho='"+bywho+"' data-towhoemail='"+bywhoemail+"'>回复</span>"+	
+				      			"</div>"+
+				      		"</div>";
+				       		 msgcontainer.insertAdjacentHTML('beforeEnd',html);
+				      
+     	  	  		}
+     	  	  	}
+     	  	  })
+             }
+ //发送私信
+ function sendmsg(){
+ 	
+ 	  	var message=document.getElementById("needmsgvalue");
+     	 	if(message.value==''){
+     	 		plus.ui.toast('可不能空着吧！');
+     	 		return;
+     	 	}
+			mui.ajax(server+'needmessage.php',{
+				data:{
+					needid:needid,
+					bywho:username,
+					towho:towho,
+					message:message.value
+				},
+				type:'post',
+				success:function(data){
+					if(data=1){
+						plus.ui.toast('发送成功');
+						document.getElementsByTagName('input').value='';
+						document.getElementById('needmsgvalue').value='';
+						getneedmsg();
+					}else{
+					    plus.ui.toast('好像失败了');
+					}
+			}
+     	  })
+ }
+// //填充回复内容
+// function showreply(){
+// 	 var mask=mui.createMask(function(){
+//   	 	document.getElementById("replyto").innerHTML='';
+//   	 });
+////   	 mask.show();
+//   	 //填充收件人昵称
+//   	 var replycontainer=document.getElementById("replycommentcontainer");
+//   	 towhonickname=this.getAttribute('data-towho');
+//   	 towho=this.getAttribute('data-towhoemail');
+//   	 html="<div class='replyto' id='replyto'>@"+towhonickname+"</div>";
+//   	 replycontainer.insertAdjacentHTML('afterBegin',html);
+//   	 sendcomment();
+// }
+//发送评论 以及回复
+function sendcomment(){
+  console.log(username);
+  console.log(towho);
+	 var needcomment=document.getElementById("needcommentvalue").value;
+     	 	 if(needcomment==''){
+     	 	 	plus.ui.toast('可不能空着吧！')
+     	 	 	return;
+     	 	 }
+     	  	mui.ajax(server+'needcomment.php',{
+				data:{
+					needid:needid,
+					bywho:username,
+					towho:towho,
+					needcomment:needcomment
+				},
+				type:'post',
+				success:function(data){
+					if(data=1){
+						plus.ui.toast('发送成功,2享豆Got');
+						document.getElementsByTagName('input').value='';
+						document.getElementById('needcommentvalue').value='';
+						getneedcomment();
+					}else{
+					plus.ui.toast('好像失败了');
+				}
+			}
+     	  })
+}
+    </script>
+</body>
+</html>

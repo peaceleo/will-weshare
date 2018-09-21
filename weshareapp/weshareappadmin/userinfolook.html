@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<link rel="stylesheet" href="css/weshare.css" />
+	 <script src="js/mui.min.js"></script>
+	  <script src="js/weshare.js"></script>
+    <title></title>
+   
+    <link href="css/mui.min.css" rel="stylesheet"/>
+     <style type="text/css">
+     body{
+     	background: white;
+     }
+     .mui-content{
+     	background: white;
+     }
+     table {
+     	border: 2px solid #E4E4E4;
+     	text-align: center;
+     	width: 100%;
+     	font-size: 15px;
+     	font-weight: bolder;
+     }
+     table img{
+     	height: 300px;
+     	border-radius: 1px;
+     	
+     }
+     tr, th,td{
+     	border: 1px solid #E4E4E4;
+     	padding: 5px;
+     }
+     th{
+     	font-weight: border;
+     }
+     #givensendbtn{
+     	font-size: 15px;
+     	padding: 10px;
+     	margin-top: 10px;
+     }
+     .mui-title{
+     	font-size: 15px;
+     	font-weight: bolder;
+     }
+      textarea[placeholder],
+    input[placeholder]{
+    	font-size: 12px;
+    }
+    .mui-input-row{
+    	margin-top: 5px;
+    	margin-bottom: 5px;
+    }
+     </style>
+</head>
+<body> 
+	<header class="mui-bar mui-bar-nav">
+	    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+	    <h1 class="mui-title">用户信息查询</h1>
+	</header>
+	<div class="mui-content">
+		<form class="mui-input-group">
+			 <div class="mui-input-row">
+	    			<label for="">
+	    			</label>
+	    			<input type="text"  id='usertel' placeholder="请输入用户手机号码"/>
+	    		</div>
+	    		
+	    		 <div class="mui-input-row">
+	    			<label for="">
+	    			</label>
+	    			<input type="text"  id='usernickname' placeholder="请输入用户昵称"/>
+	    		</div>
+	    		 <div class="mui-input-row">
+	    			<label for="">
+	    			</label>
+	    			<input type="text"  id='userstunum' placeholder="请输入用户学号	"/>
+	    		</div>
+	    		
+			
+		</form>
+			<button id='givensendbtn' class="mui-btn-block mybtncenter" >确认查询</button>
+	     <div id='userinfo'>
+	    		
+	     </div> 
+	</div>
+	
+	<script type="text/javascript">
+		mui.init();
+		mui.plusReady(function(){
+			server=plus.storage.getItem('server');
+			//获取转赠方信息
+		
+			//发送转赠请求
+			document.getElementById('givensendbtn').addEventListener('tap',function(){
+				var usertel=document.getElementById('usertel').value;
+				var usernickname=document.getElementById('usernickname').value;
+				var userstunum=document.getElementById('userstunum').value;
+				if(usertel==='' && usernickname==='' && userstunum===''){
+					plus.ui.toast('不能都是空的');
+					return;
+				}
+				mui.ajax(server+'admin.php',{
+					data:{
+						action:'userinfolook',
+						usertel:usertel,
+						usernickname:usernickname,
+						userstunum:userstunum
+					},
+					type:'post',
+					success:function(data){
+						var jsondata=eval('['+data+']');
+						var info=jsondata[0];
+						var addtime=getLocalTime(info.addtime);
+						var lastlogintime=timeFormat(info.lastlogintime);
+						var html="<table>"+
+					    				"<tr><td>头像</td><td><img src='"+server+"uploads/"+info.head+"' /></td></tr>"+
+					    				"<tr><td>昵称</td><td>"+info.nickname+"</td></tr>"+
+					    				"<tr><td>学校</td><td>"+info.school+"</td></tr>"+
+					    				"<tr><td>享豆</td><td>"+info.rewardpoints+"</td></tr>"+
+					    				"<tr><td>学号</td><td>"+info.email+"</td></tr>"+
+					    				"<tr><td>性别</td><td>"+info.sex+"</td></tr>"+
+					    				"<tr><td>电话</td><td>"+info.telphone+"</td></tr>"+
+					    				"<tr><td>签名</td><td>"+info.note+"</td></tr>"+
+					    				"<tr><td>注册时间</td><td>"+addtime+"</td></tr>"+
+					    				"<tr><td>认证照片</td><td><img src='"+server+"uploads/"+info.ident+"' /></td></tr>"+
+					    				"<tr><td>认证状态</td><td>"+info.active+"</td></tr>"+
+					    				"<tr><td>等级</td><td>"+info.rank+"</td></tr>"+
+					    				"<tr><td>上次登陆时间</td><td>"+lastlogintime+"</td></tr>"+
+					    				"<tr><td>使用版本</td><td>"+info.version+"</td></tr>"+
+					    			"</table>";
+					    document.getElementById('userinfo').innerHTML=html;			
+					}
+				})
+			})
+
+		})
+	</script>
+</body>
+</html>

@@ -1,0 +1,1112 @@
+{
+	"login.html": {
+		"resources": [
+			"js/weshare.js",
+			"js/mui.min.js",
+			"css/weshare.css",
+			"fonts/mui.ttf",
+			"css/mui.min.css",
+			"images/logonew.png"
+		],
+		"refer": [
+			"index.html",
+			"reg.html",
+			"resetpass.html"
+		]
+	},
+	"message.html": {
+		"refer": [
+			"needpublish.html",
+			"personcenter.html",
+			"login.html",
+			"exchangemall.html",
+			"index.html",
+			"bookstore.html",
+			"checkneedaction.html",
+			"message_child.html",
+			"needaction.html",
+			"mefromothers.html",
+			"uploadpro.html",
+			"topicpublish.html",
+			"bestusers.html",
+			"exchange.html",
+			"myshareorder.html",
+			"rewardrecord.html"
+		],
+		"resources": [
+			"images/black.jpg",
+			"fonts/mui.ttf",
+			"images/logonew.png",
+			"js/openwin.js",
+			"js/weshare.js",
+			"js/mui.min.js",
+			"css/weshare.css",
+			"css/mui.min.css",
+			"images/female.png",
+			"images/male.png",
+			"message_child.html",
+			"images/comment.png",
+			"images/pay.png",
+			"images/heart.png",
+			"uploadpro.html",
+			"topicpublish.html",
+			"needpublish.html",
+			"bestusers.html",
+			"exchange.html"
+		]
+	},
+	"index.html": {
+		"resources": [
+			"js/openwin.js",
+			"images/pay.png",
+			"images/location.png",
+			"js/mui.min.js",
+			"js/weshare.js",
+			"css/weshare.css",
+			"fonts/mui.ttf",
+			"css/mui.min.css",
+			"images/logonew.png",
+			"message.html",
+			"needpublish.html",
+			"images/default_head.jpg",
+			"images/female.png",
+			"images/male.png",
+			"images/comment.png",
+			"images/heart.png",
+			"topicpublish.html",
+			"images/loading4.gif",
+			"uploadpro.html",
+			"exchange.html",
+			"bestusers.html",
+			"personcenter.html"
+		],
+		"refer": [
+			"personcenter.html",
+			"task.html",
+			"needpublish.html",
+			"message.html",
+			"needaction.html",
+			"othercenter.html",
+			"message_child.html",
+			"topic.html",
+			"topicpublish.html",
+			"uploadpro.html",
+			"exchange.html",
+			"bestusers.html",
+			"acti.html"
+		]
+	},
+	"personcenter.html": {
+		"resources": [
+			"images/perback.jpg",
+			"images/default_head.jpg",
+			"images/arrow_right.png",
+			"js/openwin.js",
+			"images/black.jpg",
+			"js/weshare.js",
+			"js/mui.min.js",
+			"css/weshare.css",
+			"fonts/mui.ttf",
+			"css/mui.min.css",
+			"images/logonew.png",
+			"images/pay.png",
+			"images/location.png",
+			"images/male.png",
+			"images/female.png",
+			"images/coltopic.png",
+			"images/rewardrecord.png",
+			"images/myhelped.png",
+			"images/myneed.png",
+			"images/rewardgiven.png",
+			"images/exchangeorder.png",
+			"images/mefromothers.png",
+			"images/heart.png",
+			"images/comment.png",
+			"needpublish.html",
+			"topicpublish.html",
+			"uploadpro.html",
+			"personset.html",
+			"images/name.png",
+			"exchange.html",
+			"bestusers.html",
+			"images/share.png"
+		],
+		"refer": [
+			"message.html",
+			"exchangemall.html",
+			"personset.html",
+			"login.html",
+			"index.html",
+			"needpublish.html",
+			"bookstore.html",
+			"checkneedaction.html",
+			"markfinish.html",
+			"myneed.html",
+			"mycoltopic.html",
+			"myhelped.html",
+			"mefromothers.html",
+			"rewardgiven.html",
+			"rewardrecord.html",
+			"exchangeorder.html",
+			"topicpublish.html",
+			"exchange.html",
+			"uploadpro.html",
+			"mypubpro.html",
+			"bestusers.html",
+			"myexchangeorder.html",
+			"myshareorder.html"
+		]
+	},
+	"needpublish.html": {
+		"resources": [
+			"images/down.png",
+			"images/addnote.png",
+			"images/needlabel.png",
+			"js/openwin.js",
+			"js/weshare.js",
+			"js/mui.min.js",
+			"css/weshare.css",
+			"fonts/mui.ttf",
+			"css/mui.min.css",
+			"images/pay.png",
+			"images/logonew.png",
+			"index.html",
+			"topicpublish.html",
+			"uploadpro.html",
+			"task.html",
+			"topic.html",
+			"personcenter.html",
+			"message.html"
+		],
+		"refer": [
+			"index.html",
+			"exchangemall.html",
+			"login.html",
+			"onekeyask.html",
+			"message.html",
+			"personcenter.html",
+			"bookstore.html",
+			"ridestore.html",
+			"topicpublish.html",
+			"uploadpro.html",
+			"task.html",
+			"topic.html"
+		]
+	},
+	"taskaction.html": {
+		"resources": [
+			"images/shan.png",
+			"js/mui.zoom.js",
+			"js/mui.previewimage.js",
+			"js/mui.view.js",
+			"js/weshare.js",
+			"js/mui.min.js",
+			"css/weshare.css",
+			"fonts/mui.ttf",
+			"css/mui.min.css",
+			"images/default_head.jpg",
+			"images/pay.png",
+			"images/location.png",
+			"images/Eye.png",
+			"images/black.jpg",
+			"images/female.png",
+			"images/male.png"
+		],
+		"refer": [
+			"uploadresult.html",
+			"othercenter.html"
+		]
+	},
+	"task.html": {
+		"resources": [
+			"images/Eye.png",
+			"images/default_head.jpg",
+			"images/location.png",
+			"js/openwin.js",
+			"js/mui.min.js",
+			"js/weshare.js",
+			"css/weshare.css",
+			"fonts/mui.ttf",
+			"css/mui.min.css",
+			"images/pay.png",
+			"images/logonew.png",
+			"needpublish.html",
+			"images/loading4.gif",
+			"images/comment.png",
+			"images/heart.png",
+			"bestusers.html"
+		],
+		"refer": [
+			"taskaction.html",
+			"index.html",
+			"message.html",
+			"needpublish.html",
+			"personcenter.html",
+			"topic.html",
+			"bestusers.html",
+			"acti.html"
+		]
+	},
+	"exchangemall.html": {
+		"resources": [
+			"images/down.png",
+			"images/model.png",
+			"js/openwin.js",
+			"js/weshare.js",
+			"js/mui.min.js",
+			"css/weshare.css",
+			"fonts/mui.ttf",
+			"css/mui.min.css",
+			"images/logonew.png",
+			"rank.html",
+			"images/loading4.gif",
+			"images/add.png",
+			"images/search.png"
+		],
+		"refer": [
+			"product.html",
+			"uploadpro.html"
+		]
+	},
+	"product.html": {
+		"resources": [
+			"images/note.png",
+			"js/openwin.js",
+			"js/weshare.js",
+			"js/mui.min.js",
+			"css/weshare.css",
+			"fonts/mui.ttf",
+			"css/mui.min.css",
+			"images/logonew.png",
+			"images/message2.png",
+			"images/comment.png",
+			"images/pay.png",
+			"images/heart.png",
+			"images/telphone.png"
+		],
+		"refer": [
+			"personcenter.html",
+			"myexchangeorder.html"
+		]
+	},
+	"personset.html": {
+		"resources": [
+			"images/note.png",
+			"images/arrow_right.png",
+			"js/openwin.js",
+			"js/weshare.js",
+			"css/weshare.css",
+			"images/logonew.png",
+			"js/mui.min.js",
+			"fonts/mui.ttf",
+			"css/mui.min.css",
+			"personcenter.html",
+			"bestusers.html"
+		],
+		"refer": [
+			"rewardrecord.html",
+			"personcenter.html",
+			"setnickname.html",
+			"sethead.html",
+			"ident.html",
+			"setsex.html",
+			"setnote.html",
+			"rewardgiven.html",
+			"rank.html",
+			"bestusers.html",
+			"login.html",
+			"admin.html"
+		]
+	},
+	"onekeyask.html": {
+		"resources": [
+			"js/openwin.js",
+			"js/weshare.js",
+			"js/mui.min.js",
+			"images/bike.jpg",
+			"css/weshare.css",
+			"fonts/mui.ttf",
+			"css/mui.min.css",
+			"images/default_head.jpg",
+			"images/logonew.png"
+		],
+		"refer": []
+	},
+	"reg.html": {
+		"resources": [
+			"images/down.png",
+			"js/mui.min.js",
+			"css/weshare.css",
+			"fonts/mui.ttf",
+			"css/mui.min.css"
+		],
+		"refer": [
+			"ident.html"
+		]
+	},
+	"ident.html": {
+		"resources": [
+			"js/jquery.Jcrop.min.js",
+			"js/common.js",
+			"js/jquery-1.11.3.js",
+			"css/jquery.Jcrop.min.css",
+			"images/success.png",
+			"js/immersed.js",
+			"js/mui.min.js",
+			"fonts/mui.ttf",
+			"css/mui.min.css"
+		],
+		"refer": [
+			"login.html"
+		]
+	},
+	"rewardrecord.html": {
+		"resources": [
+			"js/weshare.js",
+			"js/mui.min.js",
+			"css/weshare.css",
+			"fonts/mui.ttf",
+			"css/mui.min.css"
+		],
+		"refer": []
+	},
+	"bookstore.html": {
+		"resources": [
+			"images/model.png",
+			"images/down.png",
+			"js/openwin.js",
+			"js/weshare.js",
+			"js/mui.min.js",
+			"css/weshare.css",
+			"css/mui.min.css",
+			"fonts/mui.ttf",
+			"images/logonew.png",
+			"rank.html"
+		],
+		"refer": [
+			"product.html",
+			"bookproduct.html"
+		]
+	},
+	"uploadpro.html": {
+		"resources": [
+			"images/comment.png",
+			"images/uploadpic.jpg",
+			"images/addnote.png",
+			"images/needlabel.png",
+			"images/pay.png",
+			"images/note.png",
+			"images/down.png",
+			"js/weshare.js",
+			"js/mui.min.js",
+			"css/weshare.css",
+			"fonts/mui.ttf",
+			"css/mui.min.css",
+			"message.html",
+			"index.html",
+			"images/university.png",
+			"images/teacher.png",
+			"images/mefromothers.png",
+			"exchange.html",
+			"personcenter.html",
+			"needpublish.html",
+			"topic.html"
+		],
+		"refer": [
+			"message.html",
+			"index.html",
+			"exchangemall.html",
+			"exchange.html",
+			"personcenter.html",
+			"needpublish.html",
+			"topic.html"
+		]
+	},
+	"setnickname.html": {
+		"refer": [
+			"personset.html"
+		],
+		"resources": [
+			"js/openwin.js",
+			"js/weshare.js",
+			"js/mui.min.js",
+			"css/weshare.css",
+			"fonts/mui.ttf",
+			"css/mui.min.css"
+		]
+	},
+	"bookproduct.html": {
+		"resources": [
+			"images/note.png",
+			"js/openwin.js",
+			"js/weshare.js",
+			"js/mui.min.js",
+			"css/weshare.css",
+			"fonts/mui.ttf",
+			"css/mui.min.css",
+			"images/logonew.png"
+		],
+		"refer": [
+			"personcenter.html",
+			"bookstore.html"
+		]
+	},
+	"needaction.html": {
+		"resources": [
+			"images/black.jpg",
+			"js/mui.min.js",
+			"js/weshare.js",
+			"css/weshare.css",
+			"fonts/mui.ttf",
+			"css/mui.min.css",
+			"images/pay.png",
+			"images/location.png",
+			"images/logonew.png",
+			"images/female.png",
+			"images/male.png"
+		],
+		"refer": [
+			"othercenter.html"
+		]
+	},
+	"checkneedaction.html": {
+		"resources": [
+			"images/black.jpg",
+			"js/mui.min.js",
+			"js/weshare.js",
+			"css/weshare.css",
+			"fonts/mui.ttf",
+			"css/mui.min.css",
+			"images/pay.png",
+			"images/logonew.png",
+			"images/location.png",
+			"images/female.png",
+			"images/male.png"
+		],
+		"refer": [
+			"othercenter.html"
+		]
+	},
+	"uploadresult.html": {
+		"resources": [
+			"js/jquery.Jcrop.min.js",
+			"js/common.js",
+			"images/perback.jpg",
+			"js/jquery-1.11.3.js",
+			"css/jquery.Jcrop.min.css",
+			"images/success.png",
+			"js/immersed.js",
+			"js/mui.min.js",
+			"fonts/mui.ttf",
+			"css/mui.min.css"
+		],
+		"refer": [
+			"taskaction.html"
+		]
+	},
+	"sethead.html": {
+		"resources": [
+			"js/jquery.Jcrop.min.js",
+			"js/common.js",
+			"images/perback.jpg",
+			"js/mui.min.js",
+			"js/jquery-1.11.3.js",
+			"fonts/mui.ttf",
+			"css/mui.min.css",
+			"css/jquery.Jcrop.min.css",
+			"images/success.png",
+			"images/cut.png",
+			"js/immersed.js"
+		],
+		"refer": [
+			"personset.html"
+		]
+	},
+	"othercenter.html": {
+		"resources": [
+			"images/perback.jpg",
+			"js/openwin.js",
+			"js/weshare.js",
+			"js/mui.min.js",
+			"css/weshare.css",
+			"fonts/mui.ttf",
+			"css/mui.min.css",
+			"images/logonew.png",
+			"images/pay.png",
+			"images/location.png",
+			"images/female.png",
+			"images/male.png",
+			"images/black.jpg"
+		],
+		"refer": [
+			"needaction.html"
+		]
+	},
+	"setnote.html": {
+		"resources": [
+			"js/openwin.js",
+			"js/weshare.js",
+			"js/mui.min.js",
+			"css/weshare.css",
+			"fonts/mui.ttf",
+			"css/mui.min.css"
+		],
+		"refer": [
+			"personset.html"
+		]
+	},
+	"setsex.html": {
+		"refer": [
+			"personset.html"
+		],
+		"resources": [
+			"js/openwin.js",
+			"js/weshare.js",
+			"js/mui.min.js",
+			"css/weshare.css",
+			"fonts/mui.ttf",
+			"css/mui.min.css"
+		]
+	},
+	"markfinish.html": {
+		"resources": [
+			"images/down.png",
+			"images/select_person.png",
+			"images/backcc.jpg",
+			"js/openwin.js",
+			"js/weshare.js",
+			"js/mui.min.js",
+			"css/weshare.css",
+			"fonts/mui.ttf",
+			"css/mui.min.css",
+			"images/pay.png",
+			"images/logonew.png"
+		],
+		"refer": [
+			"personcenter.html"
+		]
+	},
+	"rewardgiven.html": {
+		"resources": [
+			"js/weshare.js",
+			"js/mui.min.js",
+			"css/weshare.css",
+			"fonts/mui.ttf",
+			"css/mui.min.css",
+			"images/select_person.png",
+			"images/Eye.png",
+			"images/pay.png",
+			"images/male.png",
+			"images/addnote.png"
+		],
+		"refer": [
+			"rewardrecord.html"
+		]
+	},
+	"ridestore.html": {
+		"resources": [
+			"js/openwin.js",
+			"js/weshare.js",
+			"js/mui.min.js",
+			"css/weshare.css",
+			"fonts/mui.ttf",
+			"css/mui.min.css",
+			"images/logonew.png",
+			"rank.html"
+		],
+		"refer": [
+			"product.html"
+		]
+	},
+	"rank.html": {
+		"resources": [
+			"images/add.png",
+			"js/mui.min.js",
+			"css/weshare.css",
+			"fonts/mui.ttf",
+			"css/mui.min.css",
+			"images/reduce.png",
+			"bookstore.html",
+			"ridestore.html",
+			"exchangemall.html"
+		],
+		"refer": []
+	},
+	"message_child.html": {
+		"resources": [
+			"js/mui.js",
+			"css/mui.css",
+			"fonts/mui.ttf",
+			"js/openwin.js",
+			"js/weshare.js",
+			"js/mui.min.js"
+		],
+		"refer": []
+	},
+	"resetpass.html": {
+		"resources": [
+			"fonts/mui.ttf"
+		],
+		"refer": []
+	},
+	"topic.html": {
+		"resources": [
+			"images/life.png",
+			"images/new.png",
+			"images/smeil.png",
+			"images/hot.png",
+			"images/book.png",
+			"images/search.png",
+			"images/unhappy.png",
+			"images/comment.png",
+			"images/pay.png",
+			"images/heart.png",
+			"js/openwin.js",
+			"js/weshare.js",
+			"css/weshare.css",
+			"fonts/mui.ttf",
+			"js/mui.min.js",
+			"css/mui.min.css",
+			"images/logonew.png",
+			"needpublish.html",
+			"topicpublish.html",
+			"exchange.html",
+			"bestusers.html",
+			"uploadpro.html"
+		],
+		"refer": [
+			"personcenter.html",
+			"topicdetail.html",
+			"topiclist.html",
+			"index.html",
+			"task.html",
+			"needpublish.html",
+			"topicpublish.html",
+			"message.html",
+			"exchange.html",
+			"bestusers.html",
+			"uploadpro.html",
+			"acti.html"
+		]
+	},
+	"myneed.html": {
+		"resources": [
+			"images/black.jpg",
+			"images/pay.png",
+			"images/location.png",
+			"js/openwin.js",
+			"js/weshare.js",
+			"js/mui.min.js",
+			"css/weshare.css",
+			"images/female.png",
+			"fonts/mui.ttf",
+			"css/mui.min.css",
+			"images/male.png",
+			"images/loading4.gif"
+		],
+		"refer": [
+			"markfinish.html",
+			"checkneedaction.html"
+		]
+	},
+	"mycoltopic.html": {
+		"resources": [
+			"js/openwin.js",
+			"js/weshare.js",
+			"js/mui.min.js",
+			"css/weshare.css",
+			"fonts/mui.ttf",
+			"css/mui.min.css",
+			"images/smeil.png"
+		],
+		"refer": [
+			"topicdetail.html"
+		]
+	},
+	"topicdetail.html": {
+		"resources": [
+			"images/linklist.png",
+			"images/like.png",
+			"images/backcc.jpg",
+			"images/black.jpg",
+			"js/openwin.js",
+			"js/mui.min.js",
+			"js/weshare.js",
+			"css/weshare.css",
+			"fonts/mui.ttf",
+			"css/mui.min.css",
+			"images/mine.png",
+			"images/wifi.png",
+			"images/location2.png",
+			"images/detail.png",
+			"images/loading4.gif"
+		],
+		"refer": [
+			"saysome.html"
+		]
+	},
+	"topiclist.html": {
+		"resources": [
+			"js/openwin.js",
+			"js/mui.min.js",
+			"js/weshare.js",
+			"css/weshare.css",
+			"fonts/mui.ttf",
+			"css/mui.min.css",
+			"images/search.png",
+			"images/loading.gif",
+			"images/loading2.gif",
+			"images/loading3.jpg",
+			"images/myhelped.png",
+			"images/loading4.gif",
+			"images/smeil.png"
+		],
+		"refer": [
+			"topicdetail.html"
+		]
+	},
+	"topicpublish.html": {
+		"resources": [
+			"images/down.png",
+			"images/addnote.png",
+			"images/needlabel.png",
+			"images/Eye.png",
+			"js/weshare.js",
+			"js/mui.min.js",
+			"css/weshare.css",
+			"fonts/mui.ttf",
+			"css/mui.min.css",
+			"index.html",
+			"images/rewardgiven.png",
+			"images/comment.png",
+			"topic.html",
+			"images/myneed.png",
+			"images/name.png",
+			"images/detail.png",
+			"images/careful.png",
+			"images/coltopic.png",
+			"images/mefromothers.png",
+			"needpublish.html",
+			"message.html"
+		],
+		"refer": [
+			"topic.html",
+			"index.html",
+			"needpublish.html",
+			"message.html"
+		]
+	},
+	"myhelped.html": {
+		"resources": [
+			"images/black.jpg",
+			"js/openwin.js",
+			"js/weshare.js",
+			"js/mui.min.js",
+			"css/weshare.css",
+			"fonts/mui.ttf",
+			"css/mui.min.css",
+			"images/female.png",
+			"images/pay.png",
+			"images/location.png",
+			"images/male.png",
+			"images/loading4.gif"
+		]
+	},
+	"saysome.html": {
+		"refer": [
+			"topicdetail.html"
+		]
+	},
+	"mefromothers.html": {
+		"resources": [
+			"js/openwin.js",
+			"images/black.jpg",
+			"js/weshare.js",
+			"js/mui.min.js",
+			"css/weshare.css",
+			"fonts/mui.ttf",
+			"css/mui.min.css",
+			"images/female.png",
+			"images/male.png",
+			"images/loading4.gif"
+		]
+	},
+	"exchangeorder.html": {
+		"resources": [
+			"js/openwin.js",
+			"js/weshare.js",
+			"js/mui.min.js",
+			"css/weshare.css",
+			"fonts/mui.ttf",
+			"css/mui.min.css",
+			"images/default_head.jpg"
+		]
+	},
+	"bestusers.html": {
+		"resources": [
+			"images/success.png",
+			"images/pay.png",
+			"images/message2.png",
+			"images/question.png",
+			"personset.html",
+			"personcenter.html",
+			"message.html",
+			"images/arrow_right.png",
+			"task.html",
+			"topic.html",
+			"images/wifi.png",
+			"images/name.png",
+			"images/myhelped.png",
+			"images/myneed.png",
+			"index.html",
+			"acti.html"
+		],
+		"refer": [
+			"spbestusers.html",
+			"personset.html",
+			"personcenter.html",
+			"message.html",
+			"task.html",
+			"topic.html",
+			"index.html",
+			"acti.html"
+		]
+	},
+	"spbestusers.html": {
+		"resources": [
+			"js/mui.min.js",
+			"css/weshare.css",
+			"fonts/mui.ttf",
+			"css/mui.min.css"
+		],
+		"refer": [
+			"othercenter.html"
+		]
+	},
+	"exchange.html": {
+		"resources": [
+			"images/life.png",
+			"images/new.png",
+			"images/smeil.png",
+			"images/hot.png",
+			"images/book.png",
+			"images/search.png",
+			"images/unhappy.png",
+			"js/openwin.js",
+			"js/weshare.js",
+			"css/weshare.css",
+			"fonts/mui.ttf",
+			"js/mui.min.js",
+			"css/mui.min.css",
+			"images/default_head.jpg",
+			"images/back2.png",
+			"images/backcc.jpg",
+			"images/comment.png",
+			"uploadpro.html",
+			"images/heart.png",
+			"images/pay.png",
+			"personcenter.html",
+			"message.html",
+			"topic.html",
+			"index.html",
+			"images/logonew.png",
+			"images/bookblue.png",
+			"images/lifering.png",
+			"images/food.png",
+			"images/football.png",
+			"images/mobile.png",
+			"images/location2.png",
+			"images/acti.png"
+		],
+		"refer": [
+			"index.html",
+			"uploadpro.html",
+			"personcenter.html",
+			"topiclist.html",
+			"exchangemall.html",
+			"product.html",
+			"message.html",
+			"topic.html"
+		]
+	},
+	"mypubpro.html": {
+		"resources": [
+			"images/book.png",
+			"js/openwin.js",
+			"js/weshare.js",
+			"js/mui.min.js",
+			"css/weshare.css",
+			"fonts/mui.ttf",
+			"css/mui.min.css",
+			"images/loading4.gif",
+			"images/reduce.png"
+		],
+		"refer": [
+			"repubpro.html",
+			"personcenter.html"
+		]
+	},
+	"repubpro.html": {
+		"resources": [
+			"images/down.png",
+			"images/comment.png",
+			"images/university.png",
+			"images/addnote.png",
+			"images/needlabel.png",
+			"images/pay.png",
+			"images/teacher.png",
+			"images/note.png",
+			"js/weshare.js",
+			"css/weshare.css",
+			"fonts/mui.ttf",
+			"js/mui.min.js",
+			"css/mui.min.css",
+			"images/uploadpic.jpg"
+		],
+		"refer": [
+			"exchange.html",
+			"mypubpro.html"
+		]
+	},
+	"myexchangeorder.html": {
+		"resources": [
+			"js/openwin.js",
+			"js/weshare.js",
+			"js/mui.min.js",
+			"css/weshare.css",
+			"fonts/mui.ttf",
+			"css/mui.min.css",
+			"images/default_head.jpg",
+			"images/black.jpg",
+			"images/telphone.png",
+			"images/message2.png"
+		],
+		"refer": [
+			"orderdetail.html"
+		]
+	},
+	"myshareorder.html": {
+		"resources": [
+			"images/black.jpg",
+			"js/openwin.js",
+			"js/weshare.js",
+			"js/mui.min.js",
+			"css/weshare.css",
+			"fonts/mui.ttf",
+			"css/mui.min.css",
+			"images/telphone.png",
+			"images/message2.png"
+		],
+		"refer": [
+			"orderdetail.html"
+		]
+	},
+	"orderdetail.html": {
+		"resources": [
+			"images/detail.png",
+			"js/openwin.js",
+			"js/weshare.js",
+			"js/mui.min.js",
+			"css/weshare.css",
+			"fonts/mui.ttf",
+			"css/mui.min.css",
+			"images/comment.png",
+			"images/pay.png",
+			"images/heart.png",
+			"images/telphone.png",
+			"images/message2.png"
+		]
+	},
+	"taskpub.html": {
+		"resources": [
+			"images/down.png",
+			"images/comment.png",
+			"images/university.png",
+			"images/uploadpic.jpg",
+			"images/addnote.png",
+			"images/needlabel.png",
+			"images/pay.png",
+			"images/teacher.png",
+			"js/weshare.js",
+			"css/weshare.css",
+			"fonts/mui.ttf",
+			"images/note.png",
+			"js/mui.min.js",
+			"css/mui.min.css",
+			"images/time.png",
+			"images/heart.png",
+			"images/location.png"
+		],
+		"refer": [
+			"exchange.html",
+			"admin.html",
+			"acti.html"
+		]
+	},
+	"admin.html": {
+		"resources": [
+			"js/openwin.js",
+			"js/weshare.js",
+			"js/mui.min.js",
+			"css/weshare.css",
+			"fonts/mui.ttf",
+			"css/mui.min.css",
+			"images/arrow_right.png",
+			"images/note.png"
+		],
+		"refer": [
+			"taskpub.html"
+		]
+	},
+	"acti.html": {
+		"refer": [
+			"topic.html",
+			"index.html",
+			"task.html",
+			"taskaction.html",
+			"actiaction.html",
+			"personcenter.html",
+			"bestusers.html"
+		],
+		"resources": [
+			"images/pay.png",
+			"images/default_head.jpg",
+			"images/location.png",
+			"images/Eye.png",
+			"js/openwin.js",
+			"js/mui.min.js",
+			"js/weshare.js",
+			"css/weshare.css",
+			"fonts/mui.ttf",
+			"css/mui.min.css",
+			"images/logonew.png",
+			"images/loading4.gif",
+			"bestusers.html",
+			"images/comment.png",
+			"images/heart.png"
+		]
+	},
+	"actiaction.html": {
+		"resources": [
+			"js/mui.zoom.js",
+			"js/mui.previewimage.js",
+			"js/mui.view.js",
+			"images/black.jpg",
+			"images/shan.png",
+			"js/weshare.js",
+			"js/mui.min.js",
+			"css/weshare.css",
+			"images/female.png",
+			"fonts/mui.ttf",
+			"css/mui.min.css",
+			"images/default_head.jpg",
+			"images/pay.png",
+			"images/location.png",
+			"images/Eye.png",
+			"images/male.png"
+		],
+		"refer": [
+			"uploadresult.html"
+		]
+	}
+}

@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" href="css/weshare.css" />
+	 <script src="js/weshare.js"></script>
+    <title>needlist</title>
+   
+    <link href="css/mui.min.css" rel="stylesheet"/>
+     <style type="text/css">
+     	 body{
+     	 	background: white;
+     	 }
+     	 .mui-content{
+     	 	background: white;
+     	 	height: 100%;
+     	 }
+     	 .mui-bar-tab .mui-tab-item.mui-active{
+     	 	color: #929292;
+     	 }
+     	   .tab{
+     	 	font-size: 13px;
+     	 	line-height: 36px;
+     	 	height: 36px;
+     	 	margin-top: 4px;
+     	 	width: 75%;
+     	 	display: block;
+     	 	margin-left: auto;
+     	 	margin-right: auto;     	 	
+     	 }
+     	 .tab div{
+     	 	float: left;
+     	 }
+     	 #task{
+     	 	/*padding: 5px;*/
+     	 	/*border-top-right-radius: 5px;
+     	 	border-bottom-right-radius: 5px;*/
+     	 	border-right: 1px solid #E4E4E4;
+     	 	color: black;
+     	 	text-align: center;
+     	 	background: white;
+     	 	/*width: 35px;*/
+     	 	font-weight: bolder;
+     	 }
+     	  #needlist{
+     	 	border-radius: 5px;
+     	 	/*border-right: 1px solid #E4E4E4;*/
+     	 	color: black;
+     	 	text-align: center;
+     	 	background: white;
+     	 	/*width: 35px;*/
+     	 	font-weight: bolder;
+     	 }
+     	  #topic{
+     	 	/*padding: 5px;*/
+     	 	border-radius: 5px;
+     	 	color: white;
+     	 	text-align: center;
+     	 	background: #3F88B0;
+     	 	/*width: 35px;*/
+     	 	font-weight: bolder;
+     	 }
+     	
+     	 .searchwarpper{
+     	 	width: 92%;
+     	 	margin-left: 4%;
+     	 	margin-right: 4%;
+ 			border:2px solid #E4E4E4;
+ 			border-radius: 10px;
+ 			height: 40px;
+ 			margin-top: 5px;
+     	 }
+     	 .searchwarpper select{
+     	 	margin: 0;
+     	 	padding: 0;
+     	 	width: 81%;
+     	 	border: none;
+     	 	height: 33px;
+     	 	font-size: 14px;
+     	 	color: black;
+     	 	font-weight: bold;
+     	 	margin-left: 10px;
+     	 	margin-top: 2px;
+     	 }
+     	  .searchwarpper input{
+     	 	margin: 0;
+     	 	padding: 0;
+     	 	width: 81%;
+     	 	border: none;
+     	 	height: 33px;
+     	 	font-size: 14px;
+     	 	color: black;
+     	 	font-weight: bold;
+     	 	margin-left: 10px;
+     	 	margin-top: 2px;
+     	 }
+     	 .searchwarpper button{
+     	 	background: url(images/search.png) no-repeat center;
+     	 	background-size:18px ;
+     	 	/*background-posit;*/
+     	 	border: none;
+     	 	margin: 0;
+     	 	padding: 0;
+     	 	/*padding-top:10px;*/
+     	 	height: 33px;
+     	 	width: 13%;
+     	 	margin-top: 2px;
+     	 	opacity: 0.4;
+     	 }
+     	 .topicpart{
+     	 	width: 92%;
+     	 	margin-left:4%;
+     	 	margin-right: 4%;
+     	 	border: 2px solid #E4E4E4;
+     	 	border-radius:5px;
+     	 	margin-top: 8px;
+     	 }
+     	 .topicpart div.topictitle{
+     	 	padding: 5px;
+     	 }
+     	  .topicpart div.topictitle span{
+     	  	
+     	 	padding-left: 25px;
+     	 	font-weight: bolder;
+     	 	font-size: 15px;
+     	 	height: 15px;
+     	 }
+     	
+     	  .topicpart div.topictitle a{
+     	 text-decoration: none;
+     	 display: block;
+     	 float: right;
+     	 color: #3F88B0;
+     	 font-weight: bolder;
+     	 font-size: 13px;
+     	 }
+     	 .topicpart ul li{
+     	 	font-size: 14px;
+     	 	font-weight: bold;
+     	 }
+     	  .topiccomnum{
+     	 	color: #A1A1A1;
+     	 }
+     	  .status{
+     	 	float: right;
+			font-size: 12px;
+			color: #A1A1A1;
+     	 }
+     	 .nodata{
+     	 	border: none;
+     	 	text-align: center;
+     	 	padding-top: 50px;
+     	 	background: url(images/smeil.png) no-repeat;
+     	 	background-size:40px ;
+     	 	background-position-y:5px ;
+     	 	background-position-x: 50%;
+     	 	font-size: 14px;
+     	 	font-weight: bolder;
+     	 }
+     	 .topictitle{
+     	 	font-weight: bolder;
+     	 	font-size: 15px;
+     	 }
+     	 #moredata{
+     	 	text-align: center;
+     	 	
+     	 	font-size: 14px;
+     	 	font-weight: bolder;
+     	 	color:#0c9ed4;
+     	 }
+ 
+     	 .loading{
+     	 	background: url(images/loading4.gif) no-repeat center;
+     	 	background-size:30px ;
+     	 	padding-top: 60px;
+     	 	/*padding-top: 10px;
+     	 	padding-bottom: 10px;*/
+     	 }
+     	 .finish{
+     	 	padding: 30px;
+     	 }
+   </style>
+</head>
+<body id='body'> 
+	<header class="mui-bar mui-bar-nav">
+	    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+	    <h1 class="mui-title topictitle">讨论区</h1>
+	</header>	
+	
+     <div  class="mui-content" id='content'>
+     	 <section id='search' class='searchwarpper' style="display: none;">
+	    			<input type="text" id='searchcontent' placeholder="请输入话题关键词"/>
+	    			<button id='searchbtn'></button>
+	    </section>
+	    <section id='typesearch' class='searchwarpper'>
+	    			<select name="" id="topictype">
+	    				<option value="全部" id='topictypetext'>全部</option>
+	    			</select>
+	    			<button id='searchbtn'></button>
+	    </section>
+	    <section id='alltopic' class='topicpart'>
+	    		<ul class='mui-table-view' id='topiccontainer'>
+	    			
+	    		</ul>
+	    		
+	    </section> 
+	    <div id='moredata'></div>
+     </div>
+    
+     <!--<nav class="mui-bar mui-bar-tab">
+			<a id="indextab" class="mui-tab-item" href="index.html" style="color:#3F88B0;">
+				<span class="mui-icon mui-icon-home-filled"></span>
+				<span class="mui-tab-label">首页</span>
+			</a>
+			<a  id='needpublishtab' class="mui-tab-item" href="needpublish.html">
+				<span class="mui-icon mui-icon-plus-filled"></span>
+				<span class="mui-tab-label">发布</span>
+			</a>
+			<a  id='messagetab'class="mui-tab-item" href="message.html" >
+				<span class="mui-icon mui-icon-email-filled"><span class="mui-badge" id='remindnum' style="display: none;"></span></span>
+				<span class="mui-tab-label">消息</span>
+			</a>
+			<a  id='personcentertab' class="mui-tab-item" href="personcenter.html">
+				<span class="mui-icon mui-icon-contact-filled"></span>
+				<span class="mui-tab-label">我的</span>
+			</a>
+		</nav>-->
+    
+	   <script src="js/mui.min.js"></script>
+	   <script src="js/openwin.js"></script>
+	    <script type="text/javascript" charset="utf-8">
+      	mui.plusReady(function(){
+      		var page=1;
+      		 server=plus.storage.getItem('server');
+      		 username=plus.storage.getItem('username');
+      		  active=plus.storage.getItem('active');
+      		  school=plus.storage.getItem('school');	 
+      		  var webpage=plus.webview.currentWebview();
+      		  var type=webpage.type;
+      		  var keywords=webpage.keywords;
+      		  var selectcontainer=document.getElementById('topictype');
+      		  var topictext=document.getElementById('topictypetext');
+      		  var topiclistcontainer=document.getElementById('topiccontainer');
+      		  
+      		  switch(type){
+      		  	case 'search':
+      		  	 document.getElementById('search').style.display='block';
+      		  	 document.getElementById('searchcontent').value=keywords;
+      		  	 document.getElementById('typesearch').style.display='none';
+      		  	 console.log(keywords);
+      		  	 topiclistcontainer.innerHTML='';
+      		  	 gettopiclist(type,page,keywords);
+      		  	break;
+      		  	case 'newest':
+      		  		
+					 topictext.innerText='最新';
+					 gettopiclist(type,page,'');
+					
+
+      		  	break;
+      		  	case 'hottest':
+					 topictext.innerText='最热';
+					 gettopiclist(type,page,'');
+      		  	break;
+      		  	case 'lesson':
+					  topictext.innerText='学习';
+					  gettopiclist(type,page,'');
+      		  	break;
+      		  	case 'life':
+					 topictext.innerText='生活';
+					 gettopiclist(type,page,'');
+					
+      		  	break;
+      		  	case 'emotion':
+					  topictext.innerText='情感';
+					  gettopiclist(type,page,'');
+      		  	break;
+      		  	case 'havefun':
+					  topictext.innerText='娱乐';
+					  gettopiclist(type,page,'');
+      		  	break;
+      		  	
+      		  }		
+      		 gettopictypelist();
+      		 selectcontainer.onchange=function(){
+      		 	var type=selectcontainer.value;
+      		 	topictext.innerText='全部';
+      		 	if(type==='学习'){
+      		 		typecode='lesson';
+      		 	}
+      		 	if(type==='全部'){
+      		 		typecode='hottest';
+      		 	}
+      		 	if(type==='生活'){
+					typecode='life';      		 		
+      		 	}
+      		 	if(type==='情感'){
+      		 		typecode='emotion';
+      		 	}
+      		 	if(type==='娱乐'){
+      		 		typecode='havefun';
+      		 	}
+      		     console.log(typecode);
+      		 	topiclistcontainer.innerHTML='';
+      		 	gettopiclist(typecode,page); 
+      		 	
+      		 }
+      		 
+      		 //本页搜索
+      		 document.getElementById('searchbtn').addEventListener('tap',function(){
+      		 	var keywords=document.getElementById('searchcontent').value;
+      		 	 topiclistcontainer.innerHTML='';
+      		 	gettopiclist('search',page,keywords);
+      		 })
+      		 // to detail
+      		 mui('section').on('tap','.totopicdetail',function(){
+      		 	var tid=this.getAttribute('data-tid');
+      		 	mui.openWindow({
+      		 		url:'topicdetail.html',
+      		 		id:'topicdetail',
+      		 		extras:{
+      		 			tid:tid
+      		 		}
+      		 	})
+      		 })    
+      	//moredata
+      	 document.addEventListener('plusscrollbottom',function(){
+      	 		        page++;
+					 	 var wt=plus.nativeUI.showWaiting();
+					 	 document.getElementById('moredata').innerText='加载中...';
+					 	 document.getElementById('moredata').className='loading';
+					 	 console.log("gettopiclist("+"\'"+action+"\'"+","+page+","+keywords+")");
+					 	 setTimeout("gettopiclist("+"\'"+action+"\'"+","+page+","+"\'"+keywords+"\'"+")",600);
+					 	 wt.close();
+      	 },false);
+      	 //end
+      })
+   //获取topiclist
+     
+     
+     function gettopiclist(action,page,keywords){
+
+     	 window.action=action;
+     	mui.ajax(server+'gettopiclist.php',{
+     		data:{
+     			action:action,
+     			page:page,
+     			school:school,
+     			keywords:keywords
+     		},
+     		type:'post',
+     		success:function(data){
+     			console.log(data);
+     			var topiclistcontainer=document.getElementById('topiccontainer');
+     			var jsondata=eval('['+data+']');
+     			var topiclist=jsondata[0];
+     			var maxPages=topiclist[0].maxPages;
+     			
+				console.log(page);
+     			console.log(maxPages);
+     			 if(page>maxPages){
+				 	document.getElementById('moredata').innerText='这就是全部了....';
+				 	document.getElementById('moredata').className='finish';
+				 	return;
+				 }
+     			if(topiclist.length==0){
+     				html="<div class='nodata'>没有找到，换一个词试试吧</div>";
+     				topiclistcontainer.insertAdjacentHTML('beforeend',html);
+   					maxPages=0;
+     			}else{
+     				for(var i=0;i<=topiclist.length;i++){
+     					html="<li class='mui-table-view-cell totopicdetail' data-tid='"+topiclist[i].tid+"'><div>"+topiclist[i].topictitle+"<span class='topiccomnum'>("+topiclist[i].commentnum+")</span><span class='status'>"+timeFormat(topiclist[i].publishtime)+"</span></div></li>";
+	     				topiclistcontainer.insertAdjacentHTML('beforeend',html);
+	     				
+     				}
+     			}
+     			
+     			
+     		}
+        });
+        
+     }
+     //获取话题类型
+     function gettopictypelist(){
+      		mui.ajax(server+'getselectlist.php',{
+      			data:{
+      				action:'topictypelist'
+      			},
+      			type:'post',
+      			success:function(data){
+      				var topictype=document.getElementById("topictype");
+      				var jsondata=eval("["+data+"]");
+      				var topictypelist=jsondata[0];
+      				for(var i=topictypelist.length-1;i>=0;i--){
+      					html="<option value='"+topictypelist[i]+"' class='optiones'>"+topictypelist[i]+"</option>";
+      					topictype.insertAdjacentHTML('beforeend',html);
+      				}
+      			}
+      		})
+      	}
+    
+    </script>
+</body>
+</html>

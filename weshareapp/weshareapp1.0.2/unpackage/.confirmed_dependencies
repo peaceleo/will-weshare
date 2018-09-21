@@ -1,0 +1,90 @@
+{
+  "login.html": {
+    "resources": [
+      "js/weshare.js",
+      "js/mui.min.js",
+      "css/weshare.css",
+      "fonts/mui.ttf",
+      "css/mui.min.css",
+      "images/logonew.png"
+    ],
+    "refer": [
+      "index.html"
+    ]
+  },
+  "message.html": {
+    "refer": [
+      "needpublish.html"
+    ],
+    "resources": []
+  },
+  "index.html": {
+    "resources": [
+      "js/openwin.js",
+      "images/pay.png",
+      "images/location.png",
+      "js/mui.min.js",
+      "js/weshare.js",
+      "css/weshare.css",
+      "fonts/mui.ttf",
+      "css/mui.min.css",
+      "images/logonew.png"
+    ],
+    "refer": [
+      "personcenter.html",
+      "task.html"
+    ]
+  },
+  "personcenter.html": {
+    "resources": [
+      "images/perback.jpg",
+      "images/default_head.jpg",
+      "images/arrow_right.png"
+    ],
+    "refer": [
+      "message.html",
+      "exchangemall.html"
+    ]
+  },
+  "needpublish.html": {
+    "resources": [
+      "images/down.png",
+      "images/addnote.png",
+      "images/needlabel.png"
+    ],
+    "refer": [
+      "index.html"
+    ]
+  },
+  "taskaction.html": {
+    "resources": [
+      "images/shan.png",
+      "js/mui.zoom.js",
+      "js/mui.previewimage.js",
+      "js/mui.view.js"
+    ]
+  },
+  "task.html": {
+    "resources": [
+      "images/Eye.png"
+    ],
+    "refer": [
+      "taskaction.html",
+      "index.html"
+    ]
+  },
+  "exchangemall.html": {
+    "resources": [
+      "images/down.png",
+      "images/model.png"
+    ],
+    "refer": [
+      "product.html"
+    ]
+  },
+  "product.html": {
+    "resources": [
+      "images/note.png"
+    ]
+  }
+}

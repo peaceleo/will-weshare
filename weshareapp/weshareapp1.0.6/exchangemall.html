@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title>personcenter</title>
+    <script src="js/mui.min.js"></script>
+     <script src="js/openwin.js"></script>
+      <script src="js/weshare.js"></script>
+    <link href="css/mui.min.css" rel="stylesheet"/>
+     <link rel="stylesheet" href="css/weshare.css" />
+      
+    
+    <style type="text/css">
+    			
+     	 body{
+     	 	background: white;
+     	 }
+     	 .mui-content{
+     	 	padding-bottom: 0px;
+     	 }
+     	 .protypestyle{
+     	    background: url(images/down.png) no-repeat;
+    	  	    background-size: 11px;
+    	  	   background-position:90% ;
+     	 }
+     	 .selectcondition{
+     	 	border-bottom: 1px solid #E4E4E4;
+     	 }
+     	 .rewardpoint{
+     	 	background: #3F88B0;
+     	 	font-size: 13px;
+     	 	text-align: center;
+     	 	color: white;
+     	 }
+     	 .singlepro{
+     	 	float: left;
+     	 	border-bottom: 3px solid #E4E4E4;
+     	 }
+     	 .singlepro div{
+     	 	float: left;
+     	 }
+     	 .proimg{
+     	 	text-align: left;
+     	 	padding: 5px;
+     	 	padding-left: 20px;
+     	 }
+     	 .proimg img{
+     	 	width: 80px;
+     	 	
+     	 }
+     	 .proinfo h5{
+     	 	font-weight: bolder;
+     	 	color: black;
+     	 	padding-top: 5px;
+     	 	padding-bottom: 5px;
+     	 }
+     	 .proinfo div.proprice{
+     	 	/*display: inline;*/
+     	 	text-align: center;
+     	 	font-size: 14px;
+		    color: white;
+		    font-weight: bolder;
+		    background: #66cccc;
+		    width: 90px;
+		    padding: 5px;
+		    border-radius: 3px
+     	 }
+     	 .proinfo div.prodescription{
+     	 	width: 180px;
+     	 	height: 30px;
+     	 	clear: both;
+     	 	font-size: 12px;
+     	 	color: #A1A1A1;
+     	 	padding: 5px;
+     	 	overflow: hidden;
+     	 	text-overflow: ellipsis;
+     	 	 white-space:nowrap;
+     	 }
+     </style>
+</head>
+<body>
+	 <header class="mui-bar mui-bar-nav">
+		<div class='header index-header'>
+			<div class='logo' id='logo' style="display: none;"></div>
+			 <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class='title' id='title'></h1>
+			<!--<a id="menu" href="#topPopover" class="mui-action-menu mui-icon mui-icon-bars mui-pull-right"></a>-->
+		</div>
+	</header>
+	<div id="topPopover" class="mui-popover">
+			<div class="mui-popover-arrow"></div>
+			<div class="mui-scroll-wrapper">
+				<div class="mui-scroll">
+					<ul class="mui-table-view">
+						<li class="mui-table-view-cell" id='uploadpro'>发布产品</li>
+						<li class="mui-table-view-cell" id='logout'>退出</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	 
+	 <div class="mui-content">
+	 	<div class='rewardpoint'>您还有<span id='reward'></span>享豆可以进行兑换</div>
+		 	<div class="selectcondition mui-input-row">
+		 		<label for="">
+	    			<img src="images/model.png" style="height: 20px;" />
+	    			</label>
+		 		<select name="type" id="protypelist" class="protypestyle">
+		 			<option value="all">所有宝宝</option>
+		 		</select>
+		 	</div>
+		 	
+		 	<div id="contentwarp" class="mui-content">
+			 	  	<div id='productwarp'></div>
+			 	     <div  id='moreneed' class="moreneed"></div>  
+			</div>
+	 </div>
+</body>
+<script type="text/javascript" charset="utf-8">
+      	mui.init();
+      	mui.plusReady(function(){
+      		server=plus.storage.getItem('server');
+      		school=plus.storage.getItem('school');
+      		username=plus.storage.getItem('username');
+      		page=1;
+      		getexchangetypelist();
+      		var selectcontainer=document.getElementById("protypelist");
+			getproductlist('all',page,school);
+			var reward=plus.storage.getItem('rewardpoints');
+			document.getElementById("reward").innerText=reward;
+			selectcontainer.onchange=function(){
+				type=selectcontainer.value;
+				var prolistcontain=document.getElementById("productwarp");
+      		     prolistcontain.innerHTML='';
+				getproductlist(type,page,school);
+			 
+			}
+			document.getElementById('logout').addEventListener('tap',function(){
+				plus.storage.clear();
+				mui.openWindow({
+					url:'login.html',
+					id:'login',
+					createNew:true,
+					show:{
+						aniShow:'slide-in-left',
+						duration:300
+					}
+				})
+			})
+			//发布集市产品
+			document.getElementById("uploadpro").addEventListener('tap',function(){
+				if(username!='11307100199'){
+					plus.ui.toast('您还没有发布集市产品的权限,请联系管理员了解详情');
+					return;
+				}
+				mui.openWindow({
+					url:'uploadpro.html',
+					id:'uploadpro',
+					createNew:true
+					
+					
+				})
+			})
+			//tap进入宝贝详情
+			mui('#contentwarp').on('tap','.singlepro',function(){
+				var proprice=this.getAttribute('data-price');
+				var pid=this.getAttribute('data-pid');
+				if(parseFloat(proprice)>parseFloat(reward)){
+					plus.ui.toast('您还没有那么多的享豆!')
+				}
+				mui.openWindow({
+					url:'product.html',
+					id:'product',
+					extras:{
+						pid:pid
+					},
+					createNew:true,
+					show:{
+						aniShow:'slide-in-right',
+						duration:300
+					}
+				})
+			})
+      	})
+      	//获取productlist
+      	function getproductlist(type,page,school){
+      		
+      		mui.ajax(server+'getexchangelist.php',{
+			 	data:{
+			 		action:'allpro',
+			 		type:type,
+			 		school:school,
+			 		page:page
+			 	},
+			 	type:'post',
+			 	success:function(data){
+//			 	    alert(data);
+			 		 prolistcontainer=document.getElementById("productwarp");
+			 		var jsondata=eval("["+data+"]");
+			 		var prolist=jsondata[0];
+			 		var maxrows=prolist[0].maxrows;
+			 		var pagesize=prolist[0].pageSize;
+			 		if(prolist==''){
+			 			maxpages=0;
+			 		}else{
+			 			maxpages=prolist[0].maxpages;
+			 		}
+			 		page++;
+			 		add="<button class='moreneedbtn' onclick='getproductlist(\""+type+"\","+page+",\""+school+"\")'>点击加载更多</button>";
+						document.getElementById("moreneed").innerHTML=add;
+			 		if(maxrows<=pagesize){
+			 			 document.getElementById("moreneed").innerHTML='';
+			 		}else if(page>maxpages){
+			 			add="<button class='moreneedbtn'>这就是全部了</button>";
+					    document.getElementById("moreneed").innerHTML=add;
+			 		}
+			 		for(var i=0;i<=prolist.length;i++){
+			 			html="<div class='singlepro mui-col-xs-12' data-pid='"+prolist[i].pid+"' data-price='"+prolist[i].price+"'>"+
+			 	   				"<div class='proimg mui-col-xs-5'>"+
+			 	   			    "<img src='"+server+"uploads/"+prolist[i].pic+"'/>"+
+			 	   		        "</div>"+
+			 	   		        "<div class='proinfo mui-col-xs-7'>"+
+			 	   			       "<h5>"+prolist[i].name+"</h5>"+
+			 	   			       "<div class='proprice'>"+prolist[i].price+"享豆</div>"+
+			 	   			       "<div	 class='prodescription'>"+prolist[i].description+"</div>"+
+			 	          	"</div>";
+			 	          prolistcontainer.insertAdjacentHTML('beforeEnd',html);	
+			 		}
+			 	}
+			 })
+      	}
+      	//获取typelist
+      	function getexchangetypelist(){
+      		
+      		mui.ajax(server+'getselectlist.php',{
+      			data:{
+      				action:'exchangetypelist'
+      			},
+      			type:'post',
+      			success:function(data){
+      				var selectlistcontainer=document.getElementById("protypelist");
+      				var jsondata=eval("["+data+"]");
+      				var protypelist=jsondata[0];
+      				for(var i=protypelist.length-1;i>=0;i--){
+      					html="<option value='"+protypelist[i]+"'>"+protypelist[i]+"</option>";
+      					selectlistcontainer.insertAdjacentHTML('beforeEnd',html);
+      				}
+      			}
+      		})
+      	}
+    </script>
+</html>

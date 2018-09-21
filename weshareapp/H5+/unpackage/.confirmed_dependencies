@@ -1,0 +1,20 @@
+{
+	"index.html": {
+		"resources": [
+			"css/common.css",
+			"js/update.js",
+			"js/shortcut.js",
+			"js/immersed.js"
+		],
+		"refer": [
+			"plus/audio.html"
+		]
+	},
+	"plus/audio.html": {
+		"resources": [
+			"img/astop.png",
+			"js/common.js",
+			"img/arecord.png"
+		]
+	}
+}

@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title>personcenter</title>
+    <script src="js/mui.min.js"></script>
+     <script src="js/openwin.js"></script>
+      <script src="js/weshare.js"></script>
+    <link href="css/mui.min.css" rel="stylesheet"/>
+     <link rel="stylesheet" href="css/weshare.css" />
+      
+    <script type="text/javascript" charset="utf-8">
+      	mui.init();
+      	mui.plusReady(function(){
+      		server=plus.storage.getItem('server');
+      		active=plus.storage.getItem('active');
+      		school=plus.storage.getItem('school');
+			var reward=plus.storage.getItem('rewardpoints');
+			var pageweb=plus.webview.currentWebview();
+			 pid=pageweb.pid;
+				var reward=plus.storage.getItem('rewardpoints');
+			
+      		mui.ajax(server+'getexchangelist.php',{
+			 	data:{
+			 		action:'singlepro',
+			 		pid:pid
+			 	},
+			 	type:'post',
+			 	success:function(data){
+//			 		alert(data);
+			 		var jsondata=eval("["+data+"]");
+			 		var prolist=jsondata[0];
+			 		proprice=prolist[0].price;
+			 		document.getElementById("productimg").src=server+"uploads/"+prolist[0].pic;
+			 		document.getElementById("productname").innerText=prolist[0].name;
+			 		document.getElementById("productprice").innerText=proprice+'享豆';
+			 		document.getElementById('prodescription').innerText=prolist[0].description;
+			 			
+			 		}
+			 	});
+      		document.getElementById("exchangebtn").addEventListener('tap',function(){
+      		    server=plus.storage.getItem('server');
+      			username=plus.storage.getItem('username');
+      		
+      			towhotel=document.getElementById('towhotel').value;
+      			orderremark=document.getElementById('orderremark').value;
+      			 if(active==='未认证'){
+      		  	plus.ui.toast('您还没有上传学生证件,请在个人信息中完善证件信息...');
+      		  	return;
+      		  }
+      		   if(active==='认证中'){
+      		  	plus.ui.toast('您的身份信息正在认证中，请耐心等待...');
+      		  	return;
+      		  }
+      		    if(towhotel.length==0){
+      		    	 plus.ui.toast('手机号码是必须的哦');
+      		    	 return;
+      		    }
+      		    if(parseFloat(proprice)>parseFloat(reward)){
+					plus.ui.toast('您还没有那么多的享豆!')
+					return;
+				}
+      		    
+      			mui.ajax(server+'exchangeorderaciton.php',{
+      				data:{
+      					action:'others',
+      					username:username,
+      					school:school,
+      					pid: pid,
+      					towhotel: towhotel,
+      					remark:orderremark
+      				},
+      				type:'post',
+      				success:function(data){
+      					console.log(data);
+      						plus.ui.toast('温暖正在向您狂奔而去...');
+      						mui.openWindow({
+      							url:'personcenter.html',
+      							id:'personcenter',
+      							extras:{
+      								type:'exchangeorder'
+      							},
+      						createNew:true,
+      							show:{
+      								aniShow:'slide-in-right',
+      								duration:300
+      							}
+      							
+      						})
+      				}
+      			})
+      		})
+      		
+      		})
+			
+      
+      
+    </script>
+    <style type="text/css">
+    			
+     	 body{
+     	 	background: white;
+     	 }
+     	.productimg{
+     		
+     		padding-top: 10px;
+     		text-align: center;
+     	}
+     	.productimg img{
+     		width: 90%;
+     	}
+     	.productname{
+     		padding-top:10px;
+     		font-size: 17px;
+     		font-weight: bolder;
+     		text-align: center;
+     	}
+     	.productprice{
+     	 	font-size: 14px;
+		    color: white;
+		    font-weight: bolder;
+		    background: #66cccc;
+		    width: 90px;
+		    padding: 5px;
+		    border-radius: 3px;
+		    margin-top: 5px;
+		    margin-left: auto;
+		    margin-right: auto;
+		    text-align: center;
+     	}
+     	.productdes{
+     		text-align: left;
+     		font-size: 14px;
+     		
+     	}
+     	.prodestitle{
+     		padding-left: 40px;
+		    background: url(images/note.png) no-repeat;
+		    background-size: 18px;
+		    background-position: 10px 0px;
+		    border-bottom: 1px solid #a1a1a1;
+		    padding-bottom: 5px;
+		    font-size: 15px;
+		    font-weight: bolder;
+     	}
+     	.prodescription{
+     		font-size: 13px;
+     		color: #A1A1A1;
+     		font-weight: bold;
+     		text-indent: 30px;
+     		padding: 10px;
+     		margin-bottom: 40px;
+     	}
+     </style>
+</head>
+<body>
+	 <header class="mui-bar mui-bar-nav">
+		<div class='header index-header'>
+			<div class='logo' id='logo' style="display: none;"></div>
+			    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class='title' id='title'></h1>
+			<!--<a id="menu" href="#topPopover" class="mui-action-menu mui-icon mui-icon-bars mui-pull-right"></a>-->
+		</div>
+	</header>
+	<!--<div id="topPopover" class="mui-popover">
+			<div class="mui-popover-arrow"></div>
+			<div class="mui-scroll-wrapper">
+				<div class="mui-scroll">
+					<ul class="mui-table-view">
+						<li class="mui-table-view-cell" id='exchangeMall'>漂流集市
+						</li>
+						<li class="mui-table-view-cell" id='logout'>注销
+						</li>
+						
+					</ul>
+				</div>
+			</div>
+		</div>-->
+	 
+	 <div class="mui-content">
+	 	    <div class='productimg'>
+	 	    		<img src="" alt=""  id='productimg'/>
+	 	    </div>
+	 	    <div class='productname' id='productname'></div>
+	 	    <div class='productprice'id='productprice'>100享豆</div>
+	 	    <div class='productdes'>
+	 	    		<div class='prodestitle'>宝贝描述</div>
+	 	    		<div class="prodescription" id='prodescription'></div>
+	 	    </div>
+	 	    <div class='proorder'>
+	 	   		 	<div class='prodestitle'>我要了</div>
+	 	    		<form>
+	 	    			<input type="text" id='towhotel' placeholder="您没看错，只需要收件人的手机号码"/>
+	 	    			<input type="text"  id="orderremark" placeholder="您还有其他要说的吗？"/>
+	 	    		</form>
+	 	    </div>
+	 	    <div class="productprice" id='exchangebtn'>提交订单</div>
+	 </div>	 
+</body>
+</html>

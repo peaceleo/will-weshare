@@ -1,0 +1,858 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" href="css/weshare.css" />
+	
+    <title>任务详情</title>
+   
+    <link href="css/mui.min.css" rel="stylesheet"/>
+     <style type="text/css">
+     	 body{
+     	 	background: white;
+     	 }
+     	 p{
+     	 	font-size: 12px;
+     	 	margin: 0px;
+     	 	padding: 0px;
+     	 }
+     	 header{
+     	 	z-index: 10000;
+     	 }
+     	 .mui-content{
+			width: 100%;
+			position: relative;
+			/*float: left;*/
+			background: white;
+			padding-bottom: 44px;
+			height: 100%;
+			width: 96%;
+			margin-left: 2%;
+			margin-right: 2%;
+     	 }
+     	 .mui-bar-tab .mui-tab-item.mui-active{
+     	 	color: #929292;
+     	 }
+     	 .taskcontainer{
+     	 	float: left;
+     	 	width: 100%;
+     	 }
+     	 .taskactionlist{
+     	 	margin: 0;
+     	 	padding: 0;
+     	 	float: left;
+     	 	width: 100%;
+     	 	margin-top: 10px;
+     	 }
+   		
+     	 
+     	 .actioninfo{
+     	 	width: 100%;
+     	 	height: 25px;
+     	 	padding-bottom: 3px;
+     	 	margin-top: 10px;
+     	 
+     	 }
+     	 .actioninfo div{
+     	 	float: left;
+     	 }
+     	 .publishtime{
+     	 	width: 50%;
+		font-size: 12px;
+		color: #A1A1A1;
+		font-weight: bold;
+		/*padding-left: 10px;*/
+		padding-right: 10px;
+		text-align: right;
+		padding-top: 3px;
+		padding-bottom: 3px;
+		border-bottom: 1px solid #E4E4E4;
+     	 }
+     	 .actioncontent{
+		width:95%;
+		font-size:13px;
+		padding-top: 10px;
+		padding-bottom: 10px;
+		padding-left: 80px;
+		font-weight: bold;
+		position: relative;	
+	}
+	.actioncontent img{
+		float: left;
+	}
+	.uploadpic{
+		background: #66CCCC;
+		text-align: center;
+		color: white;
+		display: block;
+		margin-left: auto;
+		margin-right: auto;
+		/*padding: 5px;*/
+		font-size: 16px;
+		position: fixed;
+		bottom: 0px;
+		width: 100%;
+		font-weight: bolder;
+		height: 44px;
+		line-height: 44px;
+	}
+	.sendtasksurport{
+		position: fixed;
+		bottom: 0px;
+		width: 100%;
+	}
+	.surportnum{
+		border-top: 1px solid #E4E4E4;
+		width: 80%;
+		float: left;
+		background: white;
+	}
+	.mui-input-row label{
+		width: 25%;
+	}
+	.mui-input-row label~input{
+		width: 75%;
+	}
+	.surportnum span{
+		font-size: 14px;
+	}
+	.surportbtn{
+		width: 20%;
+		position: absolute;
+		right: 0px;
+		float: left;
+		background: #66CCCC;
+		height: 44px;
+		text-align: center;
+		line-height: 44px;
+		border: none;
+		font-size: 20px;
+		color: white;
+		font-weight: bolder;
+	}
+	.taskcommentfooter {
+		float: left;
+		height: 44px;
+		position: fixed;
+    bottom: 0;
+    /*height: 50px;*/
+    /*width: 100%;*/
+    z-index: 10000000;
+	}
+	.taskcommentfooter div{
+		float: left;
+	}
+	.valuecontent{
+		width: 85%;
+		margin: 0px;
+		padding: 0px;
+	}
+	.valuecontent textarea[name=helpvalue]{
+		height: 44px;
+		margin: 0px;
+		/*padding-top: 20px;*/
+		/*padding-left: 5px;*/
+		padding: 10px;
+		font-size: 14px;
+	}
+	.btncontent{
+		width: 15%;
+	}
+	.valuebtn{
+		width: 100%;
+		height: 44px;
+		text-align: center;
+		padding: 10px;
+		background: #66cccc;
+		color: white;
+		font-size: 16px;
+		font-weight: bolder;
+	}	
+	.commentblack{
+		clear: both;
+		width: 100%;
+	}
+	.shan{
+		height: 50px;
+		width:50px;
+		border-radius: 40%;
+		background: url(images/shan.png) no-repeat;
+		background-size: 50px;
+		position: absolute;
+		right:0;
+		opacity: .6;
+	}
+	.viewed{
+   			background: url(images/Eye.png) no-repeat;
+   			background-size: 15px;
+   			background-position:85%;
+   			padding-left:25px;
+   			font-size: 11px;
+   		    opacity: .5;
+   		 
+   		  text-align: right;
+   		   display: block;
+   		}
+   		
+   		
+   		
+   	.mui-preview-image.mui-fullscreen {
+				position: fixed;
+				z-index: 20;
+				background-color: #000;
+			}
+			.mui-preview-header,
+			.mui-preview-footer {
+				position: absolute;
+				width: 100%;
+				left: 0;
+				z-index: 1000;
+			}
+			.mui-preview-header {
+				height: 44px;
+				top: 0;
+			}
+			.mui-preview-footer {
+				height: 50px;
+				bottom: 0px;
+			}
+			.mui-preview-header .mui-preview-indicator {
+				display: block;
+				line-height: 25px;
+				color: #fff;
+				text-align: center;
+				margin: 15px auto 4;
+				width: 70px;
+				background-color: rgba(0, 0, 0, 0.4);
+				border-radius: 12px;
+				font-size: 16px;
+			}
+			.mui-preview-image {
+				display: none;
+				-webkit-animation-duration: 0.5s;
+				animation-duration: 0.5s;
+				-webkit-animation-fill-mode: both;
+				animation-fill-mode: both;
+			}
+			.mui-preview-image.mui-preview-in {
+				-webkit-animation-name: fadeIn;
+				animation-name: fadeIn;
+			}
+			.mui-preview-image.mui-preview-out {
+				background: none;
+				-webkit-animation-name: fadeOut;
+				animation-name: fadeOut;
+			}
+			.mui-preview-image.mui-preview-out .mui-preview-header,
+			.mui-preview-image.mui-preview-out .mui-preview-footer {
+				display: none;
+			}
+			.mui-zoom-scroller {
+				position: absolute;
+				display: -webkit-box;
+				display: -webkit-flex;
+				display: flex;
+				-webkit-box-align: center;
+				-webkit-align-items: center;
+				align-items: center;
+				-webkit-box-pack: center;
+				-webkit-justify-content: center;
+				justify-content: center;
+				left: 0;
+				right: 0;
+				bottom: 0;
+				top: 0;
+				width: 100%;
+				height: 100%;
+				margin: 0;
+				-webkit-backface-visibility: hidden;
+			}
+			.mui-zoom {
+				-webkit-transform-style: preserve-3d;
+				transform-style: preserve-3d;
+			}
+			.mui-slider .mui-slider-group .mui-slider-item img {
+				width: auto;
+				height: auto;
+				max-width: 100%;
+				max-height: 100%;
+			}
+			.mui-android-4-1 .mui-slider .mui-slider-group .mui-slider-item img {
+				width: 100%;
+			}
+			.mui-android-4-1 .mui-slider.mui-preview-image .mui-slider-group .mui-slider-item {
+				display: inline-table;
+			}
+			.mui-android-4-1 .mui-slider.mui-preview-image .mui-zoom-scroller img {
+				display: table-cell;
+				vertical-align: middle;
+			}
+			.mui-preview-loading {
+				position: absolute;
+				width: 100%;
+				height: 100%;
+				top: 0;
+				left: 0;
+				display: none;
+			}
+			.mui-preview-loading.mui-active {
+				display: block;
+			}
+			.mui-preview-loading .mui-spinner-white {
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				margin-left: -25px;
+				margin-top: -25px;
+				height: 50px;
+				width: 50px;
+			}
+			.mui-preview-image img.mui-transitioning {
+				-webkit-transition: -webkit-transform 0.5s ease, opacity 0.5s ease;
+				transition: transform 0.5s ease, opacity 0.5s ease;
+			}
+			@-webkit-keyframes fadeIn {
+				0% {
+					opacity: 0;
+				}
+				100% {
+					opacity: 1;
+				}
+			}
+			@keyframes fadeIn {
+				0% {
+					opacity: 0;
+				}
+				100% {
+					opacity: 1;
+				}
+			}
+			@-webkit-keyframes fadeOut {
+				0% {
+					opacity: 1;
+				}
+				100% {
+					opacity: 0;
+				}
+			}
+			@keyframes fadeOut {
+				0% {
+					opacity: 1;
+				}
+				100% {
+					opacity: 0;
+				}
+			}
+			p img {
+				max-width: 100%;
+				height: auto;
+			}
+			.headinfo{
+				z-index: 0;
+			}
+			.downlink{
+				width: 100%;
+				height: 100%;
+				display: inline-block;
+				clear: both;
+				text-align: center;
+				background: #66CCCC;
+				font-size: 14px;
+				line-height: 44px;
+				z-index: 9999;
+				color: white;
+				font-weight: bolder;
+
+			}	
+			.videoStyle{
+				width: 100%;
+				height: 100%;
+			}
+			.videoStyle video{
+				width: 100%;
+	           
+			}
+			.commentpride {
+     		display: inline-block;
+     		position: relative;
+     		left: 65%;
+     		/*margin-right: 20px;*/
+     		font-size: 13px;
+     		font-weight: bolder;
+     		padding-left: 35px;
+     		background: url(images/like.png) no-repeat;
+     		background-position-x: 10px;
+     		background-size:18px ;
+     		color: #A1A1A1;
+     		/*border: 1px solid red;*/
+     	}
+     	.needconatainerfooter	{
+     		height: 33px;
+     	}
+     </style>
+</head>
+<body> 
+	<header class="mui-bar mui-bar-nav">
+		<div class='header index-header'>
+			<div id='logo' style="display: none;"></div>
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" href="task.html"></a>
+			<h1 class='title' id='title'></h1>
+			<a id="menu" href="#topPopover" class="mui-action-menu mui-icon mui-icon-bars mui-pull-right" style="display: none;"></a>
+		</div>
+	</header>
+	
+     <div id="needwarp" class="mui-content ">
+		<div class='taskcontainer ' id='taskcontainer'>
+			
+		 </div>
+		<div class="taskactionlist mui-content-padded"  id='taskactionlist'>
+			
+		</div>
+        
+     </div>
+     <!-- <div class='uploadpic' id='taskmovefooter' >上传成果</div> -->
+     
+      <footer class="taskcommentfooter" id='taskcommentfooter' >
+      	<div class='downlink' id='downlink'>下载乐分享WesShareAPP参与更多哦</div>
+      <!-- 	
+      	<div class="valuecontent" id='replycontainer'>
+      		<textarea type="text" name='helpvalue' id="commentvalue"></textarea>
+      	</div>
+     	<div class="btncontent">
+     		<button id='commentsendbtn' class='valuebtn'>发送</button>
+     	</div> -->
+     </footer> 
+     
+    <!--  <div class='sendtasksurport' id='tasksurportfooter' style="display: none;">
+     	 <div class="mui-input-row surportnum" >
+	    			<label for="">
+	    				<img src="images/pay.png" alt="" style="height:20px ;"/>
+	    			</label>
+	    			<input class="mui-input" type="text" name='needpay' id='tasksurportnum' placeholder="请输入支持数目"/>
+	    			<span class="paylabel">享豆</span>
+	    	</div>
+	    <div class='surportbtn' id='tasksurportbtn'>顶</div>
+     </div> -->
+    
+	   <script src="js/mui.min.js"></script>
+	  
+	    <script src="js/weshare.js"></script>
+	  <script src="js/mui.view.js"></script>
+	   <script src="js/mui.zoom.js"></script>
+	   <script src="js/mui.previewimage.js"></script>
+	     <script type="text/javascript" src='js/jquery-1.11.3.js'></script>
+	    <script type="text/javascript" charset="utf-8">
+	   
+     $(document).ready(function(){
+            mui.previewImage();
+//    		 quitapp();
+      		var page=1;
+      		 // server=plus.storage.getItem('server');
+      		 // username=plus.storage.getItem('username');
+      		 //  active=plus.storage.getItem('active');
+      		 //  reward=plus.storage.getItem('rewardpoints');
+      		 server='http://fudan.weshare.so:8000/';
+ 			// var pager=plus.webview.currentWebview();
+ 			//  tid=pager.tid;
+ 			//  taskpay=pager.taskpay;
+ 			tid=GetQueryString('tid');
+
+ 			 getsingleTask(tid);
+ 			toAction();
+			//进入他人个人中心 
+			
+//       	mui('#taskactionlist').on('tap','.headinfo',function(){
+// //    		alert('nihao');
+//       	var user=this.getAttribute('data-user');
+      	
+//      		mui.openWindow({
+//      			url:'othercenter.html',
+//      			id:'othercenter',
+//      			extras:{
+//      				user:user
+//      			},
+//      			show:{
+//      				anishow:'slide-in-left',
+//      				duration:300
+//      			}
+//      	     })
+//      		})
+ 		 $('#downlink').click(function(){
+ 			 	location.href='download.html';
+ 			 })
+ 			
+ 			
+      	 //   var uploadresultbtn=document.getElementById("taskmovefooter");
+      	 //   uploadresultbtn.addEventListener('tap',function(){
+      	 //   	openuploadResult();
+      	 //   })
+      	 //   var taskcommentbtn=document.getElementById("commentsendbtn");
+      	 //   taskcommentbtn.addEventListener('tap',function(){
+      	 //   	 taskComment();
+      	 //   })
+      	 // var tasksurportbtn=document.getElementById("tasksurportbtn");
+      	 // tasksurportbtn.addEventListener('tap',function(){
+      	 // 	taskSurport();
+      	 // });
+      	
+   	   
+    	}); 
+    //获取单个task的数据
+    function getsingleTask(tid){ 
+    		mui.ajax(server+'gettask.php',{
+    			data:{
+    				action:'singletask',
+    				tid:tid
+    			},
+    			type:'post',
+    			success:function(data){
+    				var taskcontainer=document.getElementById("taskcontainer");
+    				var jsondata=eval('['+data+']');
+    				var tasklist=jsondata[0];
+    				var publishtime=timeFormat(tasklist[0].publishtime);
+    			  if(tasklist[0].status==0){
+						status='进行中';
+					}else{
+						status='完成啦';
+					}
+					
+					html="<div class='needcontainer' data-tid='"+tasklist[0].tid+"'>"+
+					             "<div class='needcontainerleft'>"+
+									"<img src='images/default_head.jpg'/>"+
+									"<div class='needid'>"+tasklist[0].tid+"</div>"+
+								"</div>"+
+								"<div class='needcontainerright'>"+
+								"<div class='needlistlabel'><span>#"+tasklist[0].title+"#</span></div>"+
+								"<div class='needstatus'>"+status+"</div>"+
+								"<div class='needcontent'>"+
+									"<img src='"+server+"uploads/"+tasklist[0].taskpic+"'/>"+
+									"<p>任务简介："+tasklist[0].taskintro+"</p>"+
+									"<p>任务要求："+tasklist[0].taskdemond+"</p>"+
+									"<p>温馨提示："+tasklist[0].tasktips+"</p>"+
+									"<p>任务发起："+tasklist[0].sponsor+"</p>"+
+									"<div class='viewed'>"+tasklist[0].viewnum+"</div>"+
+								"</div>"+
+								"<div class='needpay'>"+tasklist[0].taskpayper+"享豆/per</div>"+
+								"<div class='needlocation'>"+tasklist[0].school+"</div>"+
+								"<div class='needlisttime'>"+publishtime+"</div>"+
+								"</div>"+
+								"<div class='needconatainerfooter'>"+
+								"<div class='taskaction' id='taskmove'><span class='mui-icon mui-icon-navigate'></span>&nbsp;&nbsp;行动("+tasklist[0].resultnum+")</div>"+
+								"<div class='taskaction' id='taskcomment'><span class='mui-icon mui-icon-email'></span>&nbsp;&nbsp;评论("+tasklist[0].commentnum+")</div>"+
+								"<div class='taskaction' id='tasksurport'><span class='mui-icon mui-icon-star'></span>&nbsp;&nbsp;支持("+tasklist[0].surportnum+")</div>"+
+					  			"</div>"+
+					  "</div>";
+					 taskcontainer.innerHTML=html;
+				 	taskmove=document.getElementById("taskmove");
+			      	taskcomment=document.getElementById("taskcomment");
+			      	tasksurport=document.getElementById("tasksurport");
+			      	taskmovefooter=document.getElementById("taskmovefooter");
+			      	taskcommentfooter=document.getElementById("taskcommentfooter");
+			      	tasksurportfooter=document.getElementById("tasksurportfooter");
+			      	taskmove.style.background='#E4E4E4';
+			      	 	$('#taskmove').click(function(){
+				      		taskmove.style.background='#e4e4e4';
+				      		// taskmovefooter.style.display='block';
+				      		taskcomment.style.background='white';
+				      		// taskcommentfooter.style.display='none';
+				      		tasksurport.style.background='white';
+				      		// tasksurportfooter.style.display='none';
+				      		toAction();
+				      	})
+      	
+				      	$('#taskcomment').click(function(){
+				      		taskcomment.style.background='#e4e4e4';
+				      		// taskcommentfooter.style.display='block';
+				      		taskmove.style.background='white';
+				      		// taskmovefooter.style.display='none';
+				      		tasksurport.style.background='white';
+				      		// tasksurportfooter.style.display='none';
+				      		toComment();
+				      	})
+				         $('#tasksurport').click(function(){
+				      		tasksurport.style.background='#e4e4e4';
+				      		// tasksurportfooter.style.display='block';
+							taskcomment.style.background='white';
+							// taskcommentfooter.style.display='none';
+				      		taskmove.style.background='white';
+				      		// taskmovefooter.style.display='none';
+				      		toSurport();
+				      	})
+      
+    			}
+    		})
+    }
+    //切换至action
+    function  toAction(){
+				
+    	taskactionlist=document.getElementById("taskactionlist");
+    	taskactionlist.innerHTML=" ";
+       mui.ajax(server+'taskaction.php',{
+       	data:{
+       		action:'getvideoresult',
+       		tid:tid
+       	},
+       	type:'post',
+       	success:function(data){
+    		// alert(data);
+       		var jsondata=eval('['+data+']');
+       		var list=jsondata[0];
+       		if(list==''){
+     	  	  			html0="<div class=\'commentblack\'>还没有成果展示哎</div>";
+     	  	  			taskactionlist.innerHTML=html0;
+     	  	  }
+       		for(var i=0;i<=list.length;i++){
+       			var publishtime=timeFormat(list[i].sendtime);
+       			if(list[i].status==0){
+       				status='none';
+       			}else if(list[i].status==1){
+       				status="display";
+       			}
+
+       			 if(list[i].bywhosex=='男'){
+  						var status1='block';
+  						var status2='none';
+  					}else{
+  						var status1='none';
+  						var status2='block';
+  					}
+
+  				 if(list[i].videoPic==''){
+			      	 videoPic=server+'/uploads/videotrans.jpg';
+			      }else{
+			      	videoPic=list[i].videoPic;
+			      }
+			      if(list[i].type=='img'){
+			      	imgshow='block';
+			      	videoshow='none';
+			      }else{
+			      	imgshow='none';
+			      	videoshow='block';
+			      }	
+       			html="<div class='singlemsg'>"+
+     	  	  			"<div class='headinfo hchead' data-user='"+list[i].bywho+"'>"+
+     	  	  			"<img src='"+server+"uploads/"+list[i].bywhohead+"'/>"+
+     	  	  			 "<span  class='smale sexshowSmall' style='display:"+status1+";'></span>"+
+				 		 "<span  class='sfemale sexshowSmall' style='display:"+status2+";'></span>"+
+     	  	  			"</div>"+
+      					"<div class='actioninfo'>"+
+      					  " <div class='msgfrom'>By&nbsp;&nbsp;<a data-user='"+list[i].bywhonickname+"'>"+list[i].bywhonickname+"</a></div>"+
+      					   "<div class='publishtime'>"+publishtime+"</div>"+
+      			        "</div>"+
+				      	"<div class='actioncontent'>	"+
+				      			"<div class='shan' style='display:"+status+"'></div>"+	
+				      		   	 "<img src='"+server+"uploads/"+list[i].result+"' style='width: 100%; display:"+imgshow+"' data-preview-src='' data-preview-group='1'/>"+
+				      		   	  "<div class='videoStyle' style='display:"+videoshow+"'>"+
+												"<video  src='"+list[i].videoUrl+"' poster='"+videoPic+"' autoplay controls onclick='play(this)'></video>"+
+									" </div>"+
+				      		   	 "<p>"+list[i].resultintro+"</p>"+
+				      		   	 "<div class='commentpride' data-aid='"+list[i].aid+"' data-towho='"+list[i].bywho+"' data-pridenum='"+list[i].pridenum+"'>点赞("+list[i].pridenum+")</div>"+ 
+
+				      	"</div>"+
+				    "</div>";
+				 taskactionlist.insertAdjacentHTML('afterBegin',html);   
+       		}
+       		
+       	}
+       })
+       
+    }
+    //切换至comment
+    function toComment(){
+    							
+    		 	taskactionlist=document.getElementById("taskactionlist");
+		    	taskactionlist.innerHTML=" ";
+		       mui.ajax(server+'taskaction.php',{
+		       	data:{
+		       		action:'getcomment',
+		       		tid:tid
+		       	},
+		       	type:'post',
+		       	success:function(data){
+//		       		alert(data);
+		       		var jsondata=eval('['+data+']');
+		       		var list=jsondata[0];
+		       		if(list==''){
+		     	  	  			html0="<div class=\'commentblack\'>还没有评论哎</div>";
+		     	  	  			taskactionlist.innerHTML=html0;
+		     	  	  }
+		       		
+		       		for(var i=0;i<=list.length;i++){
+		       			var publishtime=timeFormat(list[i].sendtime);
+		       			 if(list[i].bywhosex=='男'){
+			      						var status1='block';
+			      						var status2='none';
+			      					}else{
+			      						var status1='none';
+			      						var status2='block';
+			      					}
+		       			html="<div class='singlemsg'>"+
+		     	  	  			"<div class='hchead headinfo' data-user='"+list[i].bywho+"'>"+
+			     	  	  			"<img src='"+server+"uploads/"+list[i].bywhohead+"'/>"+
+			     	  	  			 "<span  class='smale sexshowSmall' style='display:"+status1+";'></span>"+
+							 		 "<span  class='sfemale sexshowSmall' style='display:"+status2+";'></span>"+
+			     	  	  		"</div>"+
+		      					"<div class='actioninfo'>"+
+		      					  " <div class='msgfrom'>By&nbsp;&nbsp;<a data-user='"+list[i].bywhonickname+"'>"+list[i].bywhonickname+"</a></div>"+
+		      					   "<div class='publishtime'>"+publishtime+"</div>"+
+		      			        "</div>"+
+						      	"<div class='actioncontent'>	"+
+						      		   	 "<p>"+list[i].comment+"</p>"+
+						      	"</div>"+
+						    "</div>";
+						 taskactionlist.insertAdjacentHTML('afterBegin',html);   
+		       		}
+		       		
+		       	}
+		       })
+    }
+    //切换至surport
+    function toSurport(){
+    					
+    		 	taskactionlist=document.getElementById("taskactionlist");
+		    	taskactionlist.innerHTML=" ";
+		       mui.ajax(server+'taskaction.php',{
+		       	data:{
+		       		action:'getsurport',
+		       		tid:tid
+		       	},
+		       	type:'post',
+		       	success:function(data){
+//		       		alert(data);
+		       		var jsondata=eval('['+data+']');
+		       		var list=jsondata[0];
+		       		if(list==''){
+		     	  	  			html0="<div class=\'commentblack\'>还没有支持哎</div>";
+		     	  	  			taskactionlist.innerHTML=html0;
+		     	  	  }
+		       		for(var i=0;i<=list.length;i++){
+		       			var publishtime=timeFormat(list[i].sendtime);
+		       			 if(list[i].bywhosex=='男'){
+			      						var status1='block';
+			      						var status2='none';
+			      					}else{
+			      						var status1='none';
+			      						var status2='block';
+			      					}
+		       			html="<div class='singlemsg'>"+
+		     	  	  			"<div class='hchead headinfo' data-user='"+list[i].bywho+"'>"+
+			     	  	  			"<img src='"+server+"uploads/"+list[i].bywhohead+"'/>"+
+			     	  	  			 "<span  class='smale sexshowSmall' style='display:"+status1+";'></span>"+
+							 		 "<span  class='sfemale sexshowSmall' style='display:"+status2+";'></span>"+
+			     	  	  		"</div>"+
+		      					"<div class='actioninfo'>"+
+		      					  " <div class='msgfrom'>By&nbsp;&nbsp;<a data-user='"+list[i].bywhonickname+"'>"+list[i].bywhonickname+"</a></div>"+
+		      					   "<div class='publishtime'>"+publishtime+"</div>"+
+		      			        "</div>"+
+						      	"<div class='actioncontent'>	"+
+						      		   	 "<p>支持"+list[i].surport+"享豆</p>"+
+						      	"</div>"+
+						    "</div>";
+						 taskactionlist.insertAdjacentHTML('afterBegin',html);   
+		       		}
+		       		
+		       	}
+		       })
+    }
+    
+    //打开上传成果页面
+    function openuploadResult(){
+    	 if(active==='未认证'){
+      		  	plus.ui.toast('您还没有上传学生证件,请在个人信息中完善证件信息...');
+      		  	return;
+      		  }
+      		   if(active==='认证中'){
+      		  	plus.ui.toast('您的身份信息正在认证中，请耐心等待...');
+      		  	return;
+      		  }
+    	 	mui.openWindow({
+    	 		url:'uploadresult.html',
+    	 		id:'uploadresult',
+    	 		extras:{
+    	 			tid:tid,
+    	 			taskpay:taskpay
+    	 		}
+    	 	})
+    }
+    //任务评论
+   function taskComment(){
+   	 if(active==='未认证'){
+      		  	plus.ui.toast('您还没有上传学生证件,请在个人信息中完善证件信息...');
+      		  	return;
+      		  }
+      		   if(active==='认证中'){
+      		  	plus.ui.toast('您的身份信息正在认证中，请耐心等待...');
+      		  	return;
+      		  }
+   	var taskcommentcontent=document.getElementById("commentvalue").value;
+   	if(taskcommentcontent==''){
+   		plus.ui.toast('不能为空哦');
+   		return;
+   	}
+   	  mui.ajax(server+'taskaction.php',{
+   	  	data:{
+   	  		action:'taskcomment',
+   	  		tid:tid,
+   	  		bywho:username,
+   	  		taskcomment:taskcommentcontent
+   	  	},
+   	  	type:'post',
+   	  	success:function(data){
+   	  		if(data==1){
+   	  			plus.ui.toast('评论成功,2享豆Got');
+                 toComment();
+                 document.getElementById("commentvalue").value='';
+   	  		}else{
+   	  			plus.ui.toast('评论失败');
+   	  		}
+   	  		
+   	  	}
+   	  })
+   }
+   //任务支持
+   function taskSurport(){
+   	 if(active==='未认证'){
+      		  	plus.ui.toast('您还没有上传学生证件,请在个人信息中完善证件信息...');
+      		  	return;
+      		  }
+      		   if(active==='认证中'){
+      		  	plus.ui.toast('您的身份信息正在认证中，请耐心等待...');
+      		  	return;
+      		  }
+    var tasksurportnum=document.getElementById("tasksurportnum").value;
+    if(tasksurportnum==''){
+    		plus.ui.toast('不能为空哦');
+    		return;
+    }
+    if(parseFloat(tasksurportnum)>parseFloat(reward)){
+    		plus.ui.toast('您还没有那么多的资产，量力而行哈');
+    		return;
+    }
+     mui.ajax(server+'taskaction.php',{
+     	data:{
+     		action:'tasksurport',
+     		tid:tid,
+     		bywho:username,
+     		tasksurport:tasksurportnum
+     	},
+     	type:'post',
+     	success:function(data){
+			if(data==1){
+   	  			plus.ui.toast('支持成功');
+   	  			
+   	  			   document.getElementById("tasksurportnum").value='';
+   	  			toSurport();
+   	  		}else{
+   	  			plus.ui.toast('支持失败');
+   	  		}	
+     	}
+     })
+   }
+   
+</script>
+</body>
+</html>

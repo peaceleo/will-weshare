@@ -1,0 +1,1141 @@
+   /*通用样式*/
+   body{
+   	background: white;
+   }
+   input{
+   	font-size: 15px;
+   }
+  a{
+  	color: #3F88B0;
+  }
+   .mui-content{
+    	background: white;
+    	font-size: 15px;
+    	padding: 0px;
+    	padding-bottom: 55px;
+    	background: white;
+    width: 96%;;
+    margin-left: 2%;
+    margin-right: 2%;
+    }
+    .mui-bar-nav~.mui-content{
+    	   padding-top:50px ;
+    }
+    .mui-input-group .mui-input-row{
+    	height: auto;
+    font-size: 15px;
+    }
+    .mui-input-row select{
+    	font-size: 15px;
+    }
+    .mui-input-row label{
+    	width: 20%;
+    }
+    .mui-input-row label~input{
+    	width: 80%;
+    }
+     .mui-input-row label~select{
+    	width: 80%;
+    } .mui-input-row label~textarea{
+    	width: 80%;
+    }
+      .mui-bar-nav.mui-bar .mui-icon{
+             margin-right: 0px;
+     		margin-left: 0px;
+        }
+     .mui-scroll{
+   	/*background-color: white;*/
+   }
+    textarea[placeholder],
+    input[placeholder]{
+    	font-size: 14px;
+    }
+     .mui-input-group:before {
+    height: 0px;
+    }
+    .mui-input-group:after {
+    height: 0px;
+    }
+    .mui-input-group .mui-input-row:after{
+    	position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 15px;
+    height: 2px;
+    content: '';
+    -webkit-transform: scaleY(.5);
+    transform: scaleY(.5);
+    background-color: #FAF8F8;
+    }
+     .mui-table-view:before{
+     	 	height: 0px;
+     	 }
+     	 .mui-table-view:after{
+     	 	height: 0px;
+     	 }
+     	 
+   .mui-table-view-cell:after {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 15px;
+    height: 2px;
+    content: '';
+    -webkit-transform: scaleY(.5);
+    transform: scaleY(.5);
+    background-color: #FAF8F8;
+    }
+    	.mybtncenter{
+    	padding: 10px;
+    	font-size: 15px;
+    	margin-top: 5px;
+    	background: #3F88B0;
+    	color: white;
+    	font-weight: bolder;
+    }
+    .mybtncenterdanger{
+    	padding: 10px;
+    	font-size: 15px;
+    	margin-top: 5px;
+    	background: #dd524d;
+    	color: white;
+    	font-weight: bolder;
+    }
+     /*header nav style*/
+    .header{
+    	   height: 40px;
+    		display: -webkit-box;
+    		-webkit-box-pack: center;
+    		-webkit-box-align: center;
+    		padding: 0px;
+    		margin: 0px;
+    }
+     .mui-bar{
+     	 	background: white;
+     	 	border-top: 3px solid #faf8f8;
+     	 	border-bottom: 3px solid #faf8f8;
+     	 	box-shadow: none;
+     	 	box-shadow: 0 0 1 #faf8f8;
+     	 	padding-left: 0;
+     	 	padding-right:0 ;
+     	 	height: 50px;
+     	 }
+     .mui-bar-nav{
+     	border-top: 0px solid #faf8f8;
+     	padding-top:3px ;
+     }	 
+       .tab{
+     	 	font-size: 14px;
+     	 	line-height: 36px;
+     	 	height: 36px;
+     	 	margin-top: 3px;
+     	 	width: 74%;
+     	 	display: block;
+     	 	margin-left: auto;
+     	 	margin-right: auto;  
+     	 	float: left;  	 	
+     	 }
+     	 .tab div{
+     	 	float: left;
+     	 }	 
+    .logo{
+    	height: 44px;
+    	width: 90px;
+    	background: url(../images/logonew.png) no-repeat;
+    	background-size: 90px;
+    	background-position: center;
+    	margin-left: 5px;
+    }
+    .title{
+    	-webkit-box-flex: 1;
+    	padding-left: 9%;
+    	font-size: 16px;
+    	padding-bottom: 5px;
+    	font-weight: bolder;
+    }
+    .navtop{
+    	height: 44px;
+    	width: 25px;
+    	background: url(../images/linklist.png) no-repeat;
+    	background-size: 25px;
+    	background-position: center;
+    	}
+  
+    /*footer style*/
+   
+		  .tablist{
+		  display: table-cell;
+		  overflow: hidden;
+		  width: 1%;
+		  height: 45px;
+		  text-align: center;
+		  vertical-align: middle;
+		  white-space: nowrap;
+		  text-overflow: ellipsis;
+		   }
+		   .cold{
+		     	color: #929292;
+		   }
+		   .active{
+				color:#3f88b0;
+				}
+   /*end of footer style*/
+  /*不同状态切换*/
+ 		.needselect{
+     	 	width: 100%;
+     	 	padding-top:2px;
+     	 	height: 33px;
+     	 }
+      .needslectstatus{
+     	 	position: relative;
+     	 	width: 33.3%;
+     	 	float: left;
+     	 	text-align: center;
+     	 	padding: 3px;
+            font-size: 13px;
+            font-weight: bolder;
+     	 	/*margin-top: 5px;*/
+     	 }
+      .needmark{
+     	 	width: 100px;
+     	 	height: 5px;
+     	 	background: #3F88B0;
+     	 	position: absolute;
+     	 	left: 50%;
+     	 	top: 22px;
+     	 	margin-left: -50px;
+     	 	border-radius: 2px;
+     	 }	 
+     /*end of 不同状态切换*/
+    /*   personcenter style*/
+   		
+         .setuserselfinfo{
+    			/*padding-bottom: 10px;*/
+    			margin-top: 30px;
+    			width: 80%;
+    			margin-left: 10%;
+    			margin-right: 10%;
+    			color: white;
+	    		}
+    		.userselfhead{
+    			display: inline-block;
+    			text-align: center;
+    			float: left;
+    			width: 40%;
+    			position: relative;
+    		}
+    		.userinforight{
+    			width: 60%;
+    			display: inline-block;
+    			text-align: left;
+    		}
+    		.userselfhead img{
+    			width: 80px;
+    			border-radius: 50%;
+    			float: left;
+    			text-align: center;
+    		}
+    		.nicknameself{
+    			padding: 3px;
+    			font-weight: bolder;
+    			
+    		}
+    		.userselfpoints{
+    			text-align: left;
+    			padding: 3px;
+    			font-size: 13px;
+    			font-weight: bolder;
+    			/*color: #3f88b0;*/
+    		}
+    		.userselfnote{
+    			text-align: left;
+    			padding: 3px;
+    			font-size: 14px;
+    			font-weight: bolder;
+    			
+    		}
+    		.userinfomid{
+    			border-top: 1px dotted #FAF8F8;
+    			border-bottom: 1px solid #FAF8F8;
+    			width: 80%;
+    			margin: auto;
+    			margin-top:20px ;
+    			margin-bottom:20px ;
+    			padding: 10px;
+    		}
+    		 .listpart{
+     	 	margin-top: 40px;
+     	 	width: 100%;
+     	 	margin: auto;
+     	 	background: none;
+     	 }
+     	 .liststyle{
+     	    text-align: left; 
+     	 	font-size: 14px;
+     	 	font-weight: bolder;
+     	 	padding: 10px;
+     	 	border-radius: 5px;
+     	 	padding-left: 40px;
+     	 }
+    		.userinfofooter{
+    			width: 80%;
+    			margin-left: 10%;
+    			margin-right: 10%;
+    			margin-top: 10px;
+    		}
+    		.userinfofooter span{
+    			font-size: 16px;
+    			font-weight: bolder;
+    			float: right;
+    			
+    		}
+    		.userinfofooter span:first-child{
+    			float: left;
+    		}
+    		.userinfofooter span:last-child{
+    			float: right;
+    		}
+    		.usertab{
+    			height: 35px;
+    			width: 100%;
+    		}
+    		
+    		.usertabactive{
+    			background: #3f88b0;
+    			color: white;
+    		}
+    		.myhelped{
+    			border-left:2px solid #faf8f8;
+    			border-right: 2px solid #faf8f8;
+    		}
+    		 .sexshowbig{
+     	 	height: 15px;
+     	 	width: 15px;
+     	 	/*border:1px solid black;*/
+     	 	position: absolute;
+     	 	bottom: 5px;
+     	 	left: 60%;
+     	 }
+     	 #male{
+     	 	background: url(../images/male.png) no-repeat;
+     	 	background-size:15px;
+     	 }
+     	 #female{
+     	 	background: url(../images/female.png) no-repeat;
+     	 	background-size:15px;
+     	 }
+     	 #myneed{
+     	 	background: url(../images/myneed.png) no-repeat ;
+     	 	background-size:20px ;
+     	 	background-position:5px ;
+     	 	/*background-position-x:20px ;*/	
+     	 }
+     	 .asidemyhelped{
+     	 	background: url(../images/myhelped.png) no-repeat ;
+     	 	background-size:20px ;
+     	 	background-position:5px ;
+     	 
+     	 }
+     	 .mefromothers{
+     	 	background: url(../images/mefromothers.png) no-repeat ;
+     	 	background-size:20px ;
+     	 	background-position:5px ;
+     	 
+     	 }
+     	 .mycoltopic{
+     	 	background: url(../images/coltopic.png) no-repeat ;
+     	 	background-size:20px ;
+     	 	background-position:5px ;
+     	 	
+     	 }
+     	 .exchangeorder{
+     	 	background: url(../images/exchangeorder.png) no-repeat ;
+     	 	background-size:20px ;
+     	 	background-position:5px ;
+     	
+     	 }
+     	 .rewardrecord{
+     	 	background: url(../images/rewardrecord.png) no-repeat ;
+     	 	background-size:20px ;
+     	 	background-position:5px ;
+     	 	
+     	 }
+     	 .rewardgiven{
+     	 	background: url(../images/rewardgiven.png) no-repeat ;
+     	 	background-size:20px ;
+     	 	background-position:5px ;
+     	
+     	 }
+     	
+     	 .mypubpro{
+     	 	background: url(../images/name.png) no-repeat ;
+     	 	background-size:20px ;
+     	 	background-position:5px ;
+     	 
+     	 }
+     	 .shareorder{
+     	 	background: url(../images/share.png) no-repeat ;
+     	 	background-size:20px ;
+     	 	background-position:5px ;
+     	 	
+     	 }
+     	
+    		
+   /*  end of  personcenter style*/  
+   
+   
+   /* needpublish style*/
+     .needlabel{
+    	  	background: url(../images/down.png) no-repeat;
+    	  	background-size: 11px;
+    	  	background-position:90% ;
+    	  }
+    	  .tips{
+    	  	font-size: 13px;
+    	  	
+    	  }
+    	  .tips h4{
+    	  	text-align: center;
+    	  }
+    	  .tips ol li{
+    	  	color: #A1A1A1;
+    	  }
+    	  .paylabel{
+    	  	position: absolute;
+    	  	right: 0px;
+    	  	font-weight: bolder;
+    	  	padding: 13px;
+    	  	padding-left: 20px;
+    	  	padding-right: 20px;
+    	  	color:black;
+    	  	border-left: 2px solid #faf8f8;
+    	  }
+     /* end of needpublish style*/
+   
+
+   
+  	  
+     	 .colbtn{
+     	 	background: #66cccc;
+     	 	color: white;
+     	 	border: none;
+     	 	text-align: center;
+     	 	margin: auto;
+     	 	display: block;
+     	 	font-weight: bolder;
+     	 }
+    		
+    		
+    		
+     	 /*needlist style*/
+     	  .needcontainer{
+     	 	/*border: 2px solid #faf8f8;*/
+     	 	margin-top: 5px;
+     	 	border-radius: 10px;
+     	 	width: 100%;
+     	 	box-shadow:1px 2px 2px 2px #E4E4E4;
+     	 }
+     	 .needcontainerleft{
+     	 	position: relative;
+     	 	float: left ;
+     	 	width: 17%;
+     	 	text-align: center;
+     	 	max-height: 130px;
+     	 }
+     	 .headinfo{
+     	 	position: relative;
+     	 }
+     	 .needcontainerleft img{
+     	 	padding: 5px;
+     	 	width: 100%;
+     	 	border-radius: 50%;
+     	 }
+     	 .sexshow{
+     	 	height: 12px;
+     	 	width: 12px;
+     	 	position: absolute;
+     	 	bottom: 8px;
+     	 	left: 60%;
+     	 }
+     	.sexshowSmall{
+     		height: 12px;
+     	 	width: 12px;
+     	 	/*border:1px solid black;*/
+     	 	position: absolute;
+     	 	bottom: 6px;
+     	 	left: 55%;
+     	} 
+     	 .male{
+     	 	background: url(../images/male.png) no-repeat;
+     	 	background-size:12px;
+     	 }
+     	 .smale{
+     	 	background: url(../images/male.png) no-repeat;
+     	 	background-size:12px;
+     	 }
+     	 .female{
+     	 	background: url(../images/female.png) no-repeat;
+     	 	background-size:12px;
+     	 }
+     	 .sfemale{
+     	 	background: url(../images/female.png) no-repeat;
+     	 	background-size:12px;
+     	 }
+     	.needcontainerright{
+     		width: 83%;
+     		display: inline-block;
+     		min-height: 150px;
+     	}
+     	.needcontainerfooter{
+     		display: block;
+     		height: 35px;
+     	}
+    		.needid{
+           width:100%;
+           font-size: 10px;
+           color:#A1A1A1 ;
+           line-height: 13px;
+          
+    		}
+    		.needlistlabel{
+    			padding: 5px;
+    			font-size: 16px;
+    			font-weight: bolder;
+    			color:#3F88B0;
+    			display: inline-block
+    		}
+    		.needstatus{
+    			/*width: 70px;*/
+    			display: inline-block;
+     		float: right;
+    			height: 30px;
+    			padding-left: 8px;
+    			padding-right: 8px;
+    			/*padding: 5px;*/
+    			line-height: 30px;
+    			color:white;
+    			background: #66cccc;
+    			font-weight: bolder;
+    			text-align: center;
+    			font-size:13px;
+    			border-top-right-radius:8px ;
+    			border-bottom-left-radius: 5px;
+    		}
+    		.needlisttime{
+    			width: 100%;
+    			font-weight: bolder;
+    			/*padding: 4px;*/
+    			font-size: 12px;
+    			color: #3f88b0;
+    			text-align: right;
+    			padding-right: 10px;
+    
+    		}
+    		.needcontent{
+    			width: 98%;
+    			text-indent: 20px;
+    			font-size:14px;
+    			padding-right: 5px;
+    			padding-top:5px ;
+    			padding-bottom: 2px;
+    			font-weight: bolder; 	
+    		}
+    		.needcontent img{
+    			width: 96%;
+    			border-radius:5px;
+    		}
+    		.needpic{
+    			width: 98%;
+    			
+    		}
+    		.needpic img{
+    			width: 100%;
+    			border-radius:5px;
+    		}
+    		.needpay{
+    			padding-top: 3px;
+    			width: 100%;
+    			background: url(../images/pay.png) no-repeat;
+    			background-position: 10px;
+    			background-size: 13px;
+    			padding-left: 30px;
+    			font-size:12px;
+    			color: #a1a1a1;
+    			font-weight: bold;
+    		}
+    		.needlocation{
+    			width:100%;
+    			background: url(../images/location.png) no-repeat 10px;
+    			background-size: 13px;
+    			padding-left: 30px;
+    			padding-top:5px ;
+    			font-size:12px;
+    			font-weight: bold;
+    			color: #a1a1a1;
+    			padding-bottom: 3px;
+    		}
+    		
+    		.needcall a{
+    			text-decoration: none;
+    			color: black;
+    		}
+    		.needaction{
+    			float: left;
+   			width:33.3%;
+   			/*height: 30px;*/
+    			text-align: center;
+    			font-size: 13px;
+    			font-weight: bolder;
+    			color: black;
+    			border-top: 1px solid #faf8f8;
+    			/*border-bottom: 3px solid #faf8f8;*/
+    			padding-top: 5px;
+    			padding-bottom: 8px;
+   		}
+   		.needaction:nth-child(2){
+   			border-left: 1px solid #faf8f8;
+   			border-right: 1px solid #faf8f8;
+   		}
+   		.needaction:nth-child(1){
+   			border-bottom-left-radius:8px ;
+   		}
+   		.needaction:nth-child(3){
+   			border-bottom-right-radius:8px ;
+   		}
+   		.needaction .mui-icon{
+   			font-size: 20px;
+   			font-weight: bolder;
+   		}
+   		.needaction a{
+   			text-decoration: none;
+   			color: black;
+   		}
+    	/*  end of needlist or index style*/	
+    	
+    	/* needaction style*/
+    	 .needactionlist{
+     	 	/*float: left;*/
+     	 	width: 100%;
+     	 	margin-top: 10px;
+     	 	margin-bottom: 44px;
+     	 }
+    	.singleneed{
+    		float: left;
+    		background: white;
+    	
+    	}
+    	.messagecontainer{
+    		float: left;
+    		width: 100%;
+    	}
+    .msgtitle{
+    	float: left;
+    	display: block;
+    	width: 100%;
+    	border-bottom: 1px solid #faf8f8;
+    	padding-left:50px ;
+    	padding-top: 10px;
+    	padding-bottom: 10px;
+    	font-size: 15px;
+    	font-weight: bolder;
+    	color: black;
+    	background:  white url(../images/comment.png) no-repeat;
+    	background-size: 25px;
+    	background-position: 13px;
+    }
+    .sendfooter{
+    position: fixed;
+    bottom: 0px;
+	height: 44px;
+	width: 100%;
+	z-index: 10000;
+	}
+	.sendfooter div{
+		float: left;
+	}
+	 .replyto{
+    	font-weight: bold;
+    	position: fixed;
+    	z-index: 100000;
+    	color: white;
+    	padding-left:5px;
+    	padding-right: 5px;
+    	margin-bottom: 20px;
+    	background: #66cccc;
+    	border-radius: 5px;
+    	font-size: 13px;
+    }
+	.valuecontent{
+		width: 85%;
+		margin: 0px;
+		padding: 0px;
+	}
+	.valuecontent textarea[name=helpvalue]{
+		height: 50px;
+		margin: 0px;
+		padding: 0px;
+		padding-top: 20px;
+		padding-left: 5px;
+		font-size: 14px;
+	}
+	.btncontent{
+		width: 15%;
+	}
+	.valuebtn{
+		width: 100%;
+		height: 50px;
+		text-align: center;
+		padding: 10px;
+		background: #66cccc;
+		color: white;
+		font-size: 16px;
+		font-weight: bolder;
+		}
+		
+   .singlemsg{
+		background: white;
+		/*border-bottom: 3px solid #faf8f8;*/
+		border:5px solid #faf8f8;
+		border-radius: 5px;
+		margin-bottom: 5px;			
+	}
+	.hchead{
+		padding-top: 5px;
+		padding-left: 10px;
+		width: 20%;
+		float: left;
+		
+	}
+	.hchead img{
+		border-radius: 50%;
+		width: 45px;
+		height: 45px;
+	}
+	.msginfo{
+		width: 100%;
+		height: 30px;	
+	}	
+	.msginfo div{
+		display: inline;
+		float: left;
+	}
+	.msgfrom,.msgto{
+		width: 28%;
+		font-size: 12px;
+		color: #A1A1A1;
+		font-weight: bold;
+		/*padding-left: 30px;*/
+		overflow: hidden;
+     	text-overflow: ellipsis;
+     	white-space:nowrap;
+     	border-bottom: 1px dotted #faf8f8;
+     	padding-bottom: 3px;
+     	padding-top: 3px;	
+	}
+	.msgfrom a{
+		text-decoration: none;
+		color: #3f88b0;
+	}
+	.msgto a{
+		text-decoration: none;
+		color: #3f88b0;
+	}
+	
+	.msgtime{
+		width: 20%;
+		font-size: 12px;
+		color: #A1A1A1;
+		font-weight: bolder;
+		padding-left: 14px;
+		border-bottom: 1px dotted #faf8f8;
+		padding-bottom:3px;
+		padding-top: 3px;	
+	}
+	.msgcontent{
+		width:85%;
+		font-size:13px;
+		padding-top: 10px;
+		padding-bottom: 10px;
+		padding-left: 80px;
+		font-weight: bold;	
+	}
+	.msgreply{
+	
+		position: absolute;
+		right: 10%;
+		text-align: center;
+		color:#3f88b0;
+		
+	}
+	
+	.commentblack,.msgblack{
+        text-align: center;
+        font-size: 13px;
+        margin-top: 60px;
+        height: 120px;
+        /*line-height: 100px;*/
+        color: #a1a1a1;
+        background: url(../images/black.jpg) no-repeat;
+        background-size: 70px;
+        background-position: center;
+        display: block;
+        margin-right: auto;
+        margin-left: auto;
+        font-weight: bolder;
+
+      }	
+	/*end of needaction style*/
+	/*taskaction style*/
+	 	 .taskcontainer{
+     	 	width: 100%;
+     	 	/*border: 1px solid red;*/
+     	 }
+     	 .taskactionlist{
+     	 	margin: 0;
+     	 	padding: 0;
+     	 	width: 100%;
+     	 	margin-top: 5px;
+     	 }
+   	
+		 	.taskaction{
+		 	height:35px ;
+   			width:33.3%;
+   			float: left;
+    			text-align: center;
+    			font-size: 13px;
+    			font-weight: bolder;
+    			color: black;
+    			border-top: 1px solid #faf8f8;
+    			padding-top: 5px;
+    			padding-bottom: 8px;
+    			
+   		}
+   		.taskaction:nth-child(1){
+   			border-bottom-left-radius: 8px;
+   		}
+   		.taskaction:nth-child(2){
+   			border-left:2px solid #faf8f8 ;
+   			border-right:2px solid #faf8f8 ;
+   		}
+   		.taskaction:nth-child(3){
+   			border-bottom-right-radius: 8px;
+   		}
+   		 .taskaction .mui-icon{
+   			font-size: 20px;
+   			font-weight: bolder;
+   		}
+   		 .actioninfo{
+     	 	width: 100%;
+     	 	height: 25px;
+     	 	padding-bottom: 3px;
+     	 
+     	 }
+     	 .actioninfo div{
+     	 	float: left;
+     	 }
+     	 .actioninfo .publishtime{
+     	 	width: 50%;
+		font-size: 12px;
+		color: #A1A1A1;
+		font-weight: bold;
+		/*padding-left: 10px;*/
+		padding-right: 10px;
+		text-align: right;
+		padding-top: 3px;
+		padding-bottom: 3px;
+			border-bottom: 1px dotted #faf8f8;
+     	 }
+     	 .actioncontent{
+		width:95%;
+		font-size:13px;
+		padding-top: 10px;
+		padding-bottom: 10px;
+		padding-left: 80px;
+		font-weight: bold;
+	}
+	.actioncontent img{
+		width: 95%;
+		border-radius: 5px;
+	}
+	.uploadpic{
+		background: #66CCCC;
+		text-align: center;
+		color: white;
+		display: block;
+		margin-left: auto;
+		margin-right: auto;
+		padding: 5px;
+		font-size: 16px;
+		position: fixed;
+		bottom: 0px;
+		width: 100%;
+		font-weight: bolder;
+		height: 44px;
+		line-height: 44px;
+	}
+	.sendtasksurport{
+		position: fixed;
+		bottom: 0px;
+		width: 100%;
+	}
+	.surportnum{
+		border-top: 1px solid #faf8f8;
+		width: 80%;
+		float: left;
+		background: white;
+	}
+	.mui-input-row label{
+		width: 25%;
+	}
+	.mui-input-row label~input{
+		width: 75%;
+	}
+	.surportnum span{
+		font-size: 14px;
+	}
+	.surportbtn{
+		width: 20%;
+		position: absolute;
+		right: 0px;
+		float: left;
+		background: #66CCCC;
+		height: 44px;
+		text-align: center;
+		line-height: 44px;
+		border: none;
+		font-size: 20px;
+		color: white;
+		font-weight: bolder;
+	}
+	.taskcommentfooter {
+		float: left;
+		height: 44px;
+		position: fixed;
+    bottom: 0;
+    /*height: 50px;*/
+    width: 100%;
+    z-index: 10000000;
+	}
+	.taskcommentfooter div{
+		float: left;
+	}
+	.valuecontent{
+		width: 85%;
+		margin: 0px;
+		padding: 0px;
+	}
+	.valuecontent textarea[name=helpvalue]{
+		height: 44px;
+		margin: 0px;
+		/*padding-top: 20px;*/
+		/*padding-left: 5px;*/
+		padding: 10px;
+		font-size: 14px;
+	}
+	.btncontent{
+		width: 15%;
+	}
+	.valuebtn{
+		width: 100%;
+		height: 44px;
+		text-align: center;
+		padding: 10px;
+		background: #66cccc;
+		color: white;
+		font-size: 16px;
+		font-weight: bolder;
+	}	
+	.commentblack{
+		clear: both;
+		width: 100%;
+	}
+	.shan{
+		height: 50px;
+		width:50px;
+		border-radius: 40%;
+		background: url(images/shan.png) no-repeat;
+		background-size: 50px;
+		position: absolute;
+		right:0;
+		opacity: .6;
+	}
+	.viewed{
+   			background: url(images/Eye.png) no-repeat;
+   			background-size: 15px;
+   			background-position:85%;
+   			padding-left:25px;
+   			font-size: 11px;
+   		    opacity: .5;
+   		 
+   		  text-align: right;
+   		   display: block;
+   		}
+	/*personcenter style*/
+	.thankorder{
+    			
+    			border: 2px solid #faf8f8;
+    			padding: 10px;
+    			min-height:80px ;
+    			width: 96%;
+    			margin-left: 2%;
+    			margin-right: 2%;
+    			margin-bottom: 10px;
+    			border-radius: 5px;
+    		}
+    		.thankorder div{
+    			float: left;
+    		}
+    		.bywhohead img{
+    			width:90%; 
+    			border-radius:50% ;
+    		}
+    		.thankordertop{
+    			font-size: 13px;
+    			color: #A1A1A1;
+    			border-bottom: 1px solid #faf8f8;
+    			font-weight: bold;
+    		}
+    		.thankpay{
+   			width: 75%;
+   			padding-left: 10px;
+    		}
+    		.judgecontent{
+    			padding: 8px;
+    			font-weight: bolder;
+    		}
+    		.thanktime{
+    			width: 25%;
+    		}
+     	 .tabactive{
+     	 	color: #3f88b0;
+     	 }
+   		.perneedhelp{
+   			width: 50%;
+   			background: url(../images/comment.png) no-repeat;
+    			background-size: 15px;
+    			background-position: 40px;
+    			text-align: center;
+    			font-size: 13px;
+    			font-weight: bolder;
+    			color: black;
+    			border-top:1px solid #faf8f8;
+    			border-bottom: 5px solid #faf8f8;
+    			padding-top: 5px;
+    			padding-bottom: 5px;
+   		}
+   		.perneedcomment{
+   			width:50%;
+    			background: url(../images/message2.png) no-repeat;
+    			background-size: 15px;
+    			background-position: 40px;
+    			text-align: center;
+    			font-size: 13px;
+    			font-weight: bolder;
+    			color: black;
+    			border-top:1px solid #faf8f8;
+    			border-bottom: 5px solid #faf8f8;
+    			border-right: 1px solid #faf8f8;
+    			border-left: 1px solid #faf8f8;
+    			padding-top: 5px;
+    			padding-bottom: 5px;
+   		}
+     	.perneedaction{
+     		/*position: relative;*/
+     		float: right;
+    			width: 70px;
+    			height: 30px;
+    			line-height: 30px;
+    			color:white;
+    			background: #66cccc;
+    			font-weight: bolder;
+    			text-align: center;
+    			font-size:13px;
+    			border-top-right-radius:8px ;
+    			border-bottom-left-radius: 5px;
+     	}
+     	.helped{
+     		border-bottom: 3px solid #faf8f8;
+
+     	} 
+     	/*end of personcenter style*/ 	
+     	
+     	
+     	    .pubwrapper{
+			 	position: fixed;
+			 	bottom: 0px;
+			 	padding: 0;
+			 	margin: 0 auto ;
+			 	width: 100%;
+			 	height: 100%;
+			 	background: rgba(0,0,0,0.6);
+			 	z-index: 100000;
+			 	text-align: center;
+			 	animation: show 0.5s linear 0s ;
+			 	opacity: 1;
+			 }
+			 @-webkit-keyframes   show{
+			 	0%{
+			 		opacity: 0;
+			 	}
+			 	50%{
+			 		opacity: 0.3;
+			 	}
+			 	100%{
+			 		opacity: 1;
+			 	}
+			    
+			 }
+			 .pubchoose{
+			 	font-size: 16px;
+			 	font-weight: bolder;
+			 	width: 80%;
+			 	position: fixed;
+			 	bottom: 130px;
+			 	margin-left: 10%;
+			 	margin-right: 10%;
+			 	text-align: center;
+			 	z-index: 100000;
+			 	/*border:none;*/
+			 	
+			 }
+			  .pubchoose ul{
+			  	border-radius: 10px;
+			  }
+			  .pubchoose ul:before{
+			  	height: 0px;
+			  }
+			   .pubchoose ul:after{
+			  	height: 0px;
+			  }
+			 .back1{
+			 	background: url(../images/heart.png) no-repeat;
+			 	background-position:30%;
+			 	background-size:23px ;
+			 }
+			  .back2{
+			 	background: url(../images/comment.png) no-repeat;
+			 	background-position:30%;
+			 	background-size:23px ;
+			 }
+			  .back3{
+			 	background: url(../images/pay.png) no-repeat;
+			 	background-position:30%;
+			 	background-size:23px ;
+			 }
+			  .back4{
+			 	background: url(../images/cancle.png) no-repeat;
+			 	background-position:30%;
+			 	background-size:23px ;
+			 }
+			  .back5{
+			 	background: url(../images/message2.png) no-repeat;
+			 	background-position:30%;
+			 	background-size:23px ;
+			 }
+			  .back6{
+			 	background: url(../images/telphone.png) no-repeat;
+			 	background-position:30%;
+			 	background-size:23px ;
+			 }
+	/*topiclist*/
+			

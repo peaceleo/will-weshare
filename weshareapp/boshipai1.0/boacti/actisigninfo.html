@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+     <link href="../css/mui.min.css" rel="stylesheet"/>
+	<link rel="stylesheet" href="../css/boshi.css" />
+	 <script src="../js/boshare.js"></script>
+    <title>活动报名</title>
+   
+   
+     <style type="text/css">
+     	table{
+     		width: 100%;
+     		text-align: center;
+     	}
+     	table tr:first-child{
+     		font-weight: bolder;
+     		font-size: 14px;
+     	}
+     	table tr td{
+     		border: 1px solid #FAF8F8;
+     		font-weight: bold;
+     		font-size: 12px;
+     		padding-top: 8px;
+     	}
+     </style>
+</head>
+<body id='body'> 
+		<header class="mui-bar mui-bar-nav">
+		    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+		    <h1 class="mui-title"><strong>活动报名列表</strong></h1>
+		</header>
+		<section class="mui-content">
+			<table id='signlist'>
+				<tr><td>昵称</td><td>电话号码(点击拨打)</td><td>支持</td></tr>
+			
+			</table>
+			
+
+		</section>
+    
+	   <script src="../js/mui.min.js"></script>
+	   <script src="../js/openwin.js"></script>
+	   <script type="text/javascript" charset="utf-8">
+	   
+	   		mui.plusReady(function(){
+	   			   	  server=plus.storage.getItem('server');
+		      		  username=plus.storage.getItem('username');
+		      		  active=plus.storage.getItem('active');
+		      		  reward=plus.storage.getItem('rewardpoints');
+		      		  pager=plus.webview.currentWebview();
+		      		  tid=pager.tid;
+		      		  console.log(tid);
+		      		  mui.ajax(server+'acti/taskaction.php',{
+		      		  	data:{
+		      		  		action:'getsurport',
+		      		  		tid:tid
+		      		  	},
+		      		  	type:'post',
+		      		  	success:function(data){
+		      		  		console.log(data);
+		      		  		var jsondata=eval('['+data+']');
+		      		  		var signlist=jsondata[0];
+		      		  		
+		      		  		for(var i=0;i<signlist.length;i++){
+//		      		  			if()
+		      		  			html="<tr><td>"+signlist[i].bywhonickname+"</td><td><a href='tel:"+signlist[i].bywhotelphone+"'>"+signlist[i].bywhotelphone+"</a></td><td>"+signlist[i].surport+"</td></tr>";
+		      		  			document.getElementById('signlist').insertAdjacentHTML('beforeEnd',html);
+		      		  		}
+		      		  		  
+		      		  	}
+		      		  })
+	   		})
+	      
+       </script>
+</body>
+</html>

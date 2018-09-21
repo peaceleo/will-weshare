@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" href="css/weshare.css" />
+	 <script src="js/weshare.js"></script>
+    <title>needlist</title>
+   
+    <link href="css/mui.min.css" rel="stylesheet"/>
+     <style type="text/css">
+     	 body{
+     	 	background: white;
+     	 }
+     	 .mui-content{
+     	 	background: white;
+     	 	height: 100%;
+     	 }
+     	 .mui-bar-tab .mui-tab-item.mui-active{
+     	 	color: #929292;
+     	 }
+     	   .tab{
+     	 	font-size: 14px;
+     	 	line-height: 36px;
+     	 	height: 36px;
+     	 	margin-top: 4px;
+     	 	width: 75%;
+     	 	display: block;
+     	 	margin-left: auto;
+     	 	margin-right: auto;     	 	
+     	 }
+     	 .tab div{
+     	 	float: left;
+     	 }
+     	 #task{
+     	 	/*padding: 5px;*/
+     	 	/*border-top-right-radius: 5px;
+     	 	border-bottom-right-radius: 5px;*/
+     	 	border-right: 1px solid #E4E4E4;
+     	 	color: black;
+     	 	text-align: center;
+     	 	background: white;
+     	 	/*width: 35px;*/
+     	 	font-weight: bolder;
+     	 }
+     	  #needlist{
+     	 	border-radius: 5px;
+     	 	/*border-right: 1px solid #E4E4E4;*/
+     	 	color: black;
+     	 	text-align: center;
+     	 	background: white;
+     	 	/*width: 35px;*/
+     	 	font-weight: bolder;
+     	 }
+     	  #topic{
+     	 	/*padding: 5px;*/
+     	 	border-radius: 5px;
+     	 	color: white;
+     	 	text-align: center;
+     	 	background: #3F88B0;
+     	 	/*width: 35px;*/
+     	 	font-weight: bolder;
+     	 }
+     	
+     	 .searchwarpper{
+     	 	width: 92%;
+     	 	margin-left: 4%;
+     	 	margin-right: 4%;
+ 			border:2px solid #E4E4E4;
+ 			border-radius: 10px;
+ 			height: 40px;
+ 			margin-top: 5px;
+     	 }
+     	 .searchwarpper input{
+     	 	margin: 0;
+     	 	padding: 0;
+     	 	width: 81%;
+     	 	border: none;
+     	 	height: 33px;
+     	 	font-size: 14px;
+     	 	color: black;
+     	 	font-weight: bold;
+     	 	margin-left: 10px;
+     	 	margin-top: 2px;
+     	 }
+     	 .searchwarpper button{
+     	 	background: url(images/search.png) no-repeat center;
+     	 	background-size:18px ;
+     	 	/*background-posit;*/
+     	 	border: none;
+     	 	margin: 0;
+     	 	padding: 0;
+     	 	/*padding-top:10px;*/
+     	 	height: 33px;
+     	 	width: 13%;
+     	 	margin-top: 2px;
+     	 	opacity: 0.4;
+     	 }
+     	 .exchangepart{
+     	 	width: 92%;
+     	 	margin-left:4%;
+     	 	margin-right: 4%;
+     	 	border: 2px solid #E4E4E4;
+     	 	border-radius:5px;
+     	 	margin-top: 8px;
+     	 	height: 200px;
+     	 }
+     	 .exchangepart div.exchangetitle{
+     	 	padding: 5px;
+     	 	height: 30px;
+     	 }
+     	  .exchangepart div.exchangetitle span{
+     	  	
+     	 	padding-left: 25px;
+     	 	font-weight: bolder;
+     	 	font-size: 15px;
+     	 	height: 15px;
+     	 }
+     	 .span0{
+     	 	background:url(images/new.png) no-repeat;
+     	  	background-size: 16px;
+     	  	background-position-y:1px ;
+     	 }
+     	 .span1{
+     	 	background:url(images/bookblue.png) no-repeat;
+     	  	background-size: 16px;
+     	  	background-position-y:1px ;
+     	 }
+     	  .span2{
+     	 	background:url(images/lifering.png) no-repeat;
+     	  	background-size: 20px;
+     	  	background-position-y:1px ;
+     	 }
+     	  .span3{
+     	 	background:url(images/food.png) no-repeat;
+     	  	background-size: 16px;
+     	  	background-position-y:1px ;
+     	 }
+     	  .span4{
+     	 	background:url(images/football.png) no-repeat;
+     	  	background-size:20px;
+     	  	/*background-position-y:1px;*/
+     	 }
+     	   .span5{
+     	 	background:url(images/mobile.png) no-repeat;
+     	  	background-size: 18px;
+     	  	/*background-position-y:1px;*/
+     	 }
+     	  .span6{
+     	 	background:url(images/acti.png) no-repeat;
+     	  	background-size: 18px;
+     	  	/*background-position-y:1px;*/
+     	 }
+     	   .span7{
+     	 	background:url(images/location2.png) no-repeat;
+     	  	background-size: 18px;
+     	  	/*background-position-y:1px;*/
+     	 }
+     	  .exchangepart div.exchangetitle a{
+     	 text-decoration: none;
+     	 display: block;
+     	 float: right;
+     	 color: #3F88B0;
+     	 font-weight: bolder;
+     	 font-size: 13px;
+     	 }
+     	 .exchangepart ul li{
+     	 	font-size: 14px;
+     	 	font-weight: bold;
+     	 	width: 33.3%;
+     	 	height: 168px;
+     	 	/*border:1px solid black;*/
+     	 	float: left;
+     	 	text-align: center;
+     	 	border-left: 1px solid #E4E4E4;
+     	 }
+     	 .exchangepart ul li div.imgwarpper{
+     	 	width: 100%;
+     	    text-align: center;
+     	 	height: 100px;
+     	 	padding: 3px;
+     	 	/*border:1px solid black;*/
+     	 }
+     	  .exchangepart ul li div.imgwarpper img{
+     	 	/*width: 100%;*/
+     	 	max-width: 85%;
+     	 	max-height: 95%;
+     	 	/*border:1px solid darkblue;*/
+     	 	
+     	 }
+     	 .imgwarpper table{
+     	 width:100%;
+     	 }
+     	 .imgwarpper table tr td{
+     	  height:100px;
+     	  vertical-align: middle;
+     	 }
+     	 
+     	 .proname{
+     	 	font-size: 12px;
+     	 	font-weight: bolder;
+     	 	display: block;
+     	 	height: 32px;
+     	    line-break: strict;
+     	    line-height: 16px;
+     	 	
+     	 }
+     	 .proprice{
+     	 	font-size: 12px;
+     	 	font-weight: bolder;
+     	 	display: inline-block;
+     	 	background: #66CCCC;
+     	 	padding-left: 3px;
+     	 	padding-right: 3px;
+     	 	color: white;
+     	 	border-radius: 3px;
+     	 }
+     	 
+     	 .topiccomnum{
+     	 	color: #A1A1A1;
+     	 }
+     	 .status{
+     	 	float: right;
+			font-size: 12px;
+			color: #A1A1A1;
+     	 }
+   </style>
+</head>
+<body id='body'> 
+	<!--<header class="mui-bar mui-bar-nav">
+		<div class='logo' id='logo' style="display: none;"></div>
+		    <div class='tab mui-col-xs-12' id='tab'>
+     	 	<a><div id='needlist' class="mui-col-xs-4">心愿单</div></a>
+     	 	<a><div id='task' class="mui-col-xs-4">活动墙</div></a>
+     	 	<a><div id='topic' class="mui-col-xs-4">微论坛</div></a>
+     	 		
+     	 	</div>
+     	 </div>
+	</header>	-->
+	<header class="mui-bar mui-bar-nav">
+		<div class='logo' id='logo' style="display: none;"></div>
+	    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+	    <h1 class="mui-title"><strong>乐享集市</strong></h1>
+	</header>
+	
+     <div  class="mui-content">
+	    <!--<section id='search' class='searchwarpper'>
+	    			<input type="text" id='searchcontent' placeholder="请输入所需宝贝关键词"/>
+	    			<button id='searchbtn'></button>
+	    </section>-->
+	    <section id='newest' class='exchangepart'>
+	    		<div class='exchangetitle'>
+	    			<span class="span0">最新发布</span>
+	    			<a href="#" data-type='所有宝贝'>更多...</a>
+	    		</div>
+	    		<ul class='mui-table-view' id='newestcontainer'></ul>
+	    </section>
+	    <section id='hottest' class='exchangepart'>
+	    		<div class='exchangetitle'>
+	    			<span class="span1">图书资料</span>
+	    			<a href="#" data-type='图书资料'>更多...</a>
+	    		</div>
+	    		<ul class='mui-table-view' id='bookcontainer'>
+	    		
+	    		</ul>
+	    </section>
+	     <section id='lesson' class='exchangepart'>
+	    		<div class='exchangetitle'>
+	    			<span class='span2'>生活用品</span>
+	    			<a href="#" data-type='生活用品'>更多...</a>
+	    		</div>
+	    		<ul class='mui-table-view' id='lifecontainer'>
+	    		
+	    			<!--<li>
+	    				<div class='imgwarpper'>
+	    				<table>
+	    					<tr><td><img src="images/default_head.jpg" alt="" /></td></tr>
+	    				</table>
+	    				
+	    				</div>
+	    				<div class='proname'>图啊吧的绝放豆腐的身份</div>
+	    				<div class='proprice'>100</div>
+	    			</li>
+	    			<li>
+	    				<div class='imgwarpper'>
+	    				<table>
+	    					<tr><td><img src="images/backcc.jpg" alt="" /></td></tr>
+	    				</table>
+	    				
+	    				</div>
+	    				<div class='proname'>图啊吧的舒服舒服</div>
+	    				<div class='proprice'>100</div>
+	    			</li>
+	    			<li>
+	    				<div class='imgwarpper'>
+	    				<table>
+	    					<tr><td>	<img src="images/back2.png" alt="" /></td></tr>
+	    				</table>
+	    			
+	    				</div>
+	    				<div class='proname'>图啊吧的</div>
+	    				<div class='proprice'>10000</div>
+	    			</li>-->
+	    		</ul>
+	    </section>
+	     <section id='havefun' class='exchangepart'>
+	    		<div class='exchangetitle'>
+	    			<span class='span3'>吃吃喝喝</span>
+	    			<a href="#" data-type='吃吃喝喝'>更多...</a>
+	    		</div>
+	    		<ul class='mui-table-view' id='eatdrinkcontainer'></ul>
+	    </section>
+	     <section id='life' class='exchangepart'>
+	    		<div class='exchangetitle'>
+	    			<span class='span4'>户外运动</span>
+	    			<a href="#" data-type='户外运动'>更多...</a>
+	    		</div>
+	    		<ul class='mui-table-view' id='sportcontainer'></ul>
+	    </section>
+	    <section id='havefun' class='exchangepart'>
+	    		<div class='exchangetitle'>
+	    			<span class='span5'>电子产品</span>
+	    			<a href="#" data-type='电子产品'>更多...</a>
+	    		</div>
+	    		<ul class='mui-table-view' id='elccontainer'></ul>
+	    </section>
+	     <section id='havefun' class='exchangepart'>
+	    		<div class='exchangetitle'>
+	    			<span class='span6'>活动相关</span>
+	    			<a href="#" data-type='活动相关'>更多...</a>
+	    		</div>
+	    		<ul class='mui-table-view' id='acticontainer'></ul>
+	    </section>
+	   
+	    <section id='havefun' class='exchangepart'>
+	    		<div class='exchangetitle'>
+	    			<span class='span7'>其他东东</span>
+	    			<a href="#" data-type='其他宝贝'>更多...</a>
+	    		</div>
+	    		<ul class='mui-table-view' id='otherscontainer'></ul>
+	    </section>
+     </div>
+     <nav class="mui-bar mui-bar-tab">
+			<a id="indextab" class="mui-tab-item" href="index.html">
+				<span class="mui-icon mui-icon-home-filled"></span>
+				<span class="mui-tab-label">首页</span>
+			</a>
+			<a  id='needpublishtab' class="mui-tab-item" href="needpublish.html">
+				<span class="mui-icon mui-icon-plus-filled"></span>
+				<span class="mui-tab-label">发布</span>
+			</a>
+			<a  id='messagetab'class="mui-tab-item" href="message.html" >
+				<span class="mui-icon mui-icon-email-filled"><span class="mui-badge" id='remindnum' style="display: none;"></span></span>
+				<span class="mui-tab-label">消息</span>
+			</a>
+			<a  id='personcentertab' class="mui-tab-item" href="personcenter.html">
+				<span class="mui-icon mui-icon-contact-filled"></span>
+				<span class="mui-tab-label">我的</span>
+			</a>
+		</nav>
+    
+	   <script src="js/mui.min.js"></script>
+	   <script src="js/openwin.js"></script>
+	    <script type="text/javascript" charset="utf-8">
+//      mui.init();
+      	mui.plusReady(function(){
+      	
+            //获取本地推动标识信息
+      		var page=1;
+      		 server=plus.storage.getItem('server');
+      		 username=plus.storage.getItem('username');
+      		  active=plus.storage.getItem('active');
+      		  school=plus.storage.getItem('school');	 	
+      		
+////	  	//搜索
+//	  	document.getElementById('searchbtn').addEventListener('tap',function(){
+//	  		var keyword=document.getElementById('searchcontent').value;
+//	  		console.log(keyword);
+//	  		mui.openWindow({
+//	  			url:'exchangemall.html',
+//	  			id:'exchangemall',
+//	  			extras:{
+//	  				type:'search',
+//	  				keywords:keyword
+//	  			}
+//	  		})
+//	  	})
+	  	//填充top数据
+	  	 getexchangelist('所有宝贝',1,3,'newestcontainer','');
+	  	 getexchangelist('图书资料',1,3,'bookcontainer','');
+	  	 getexchangelist('生活用品',1,3,'lifecontainer','');
+	  	 getexchangelist('吃吃喝喝',1,3,'eatdrinkcontainer','');
+	  	 getexchangelist('户外运动',1,3,'sportcontainer','');
+	  	 getexchangelist('电子产品',1,3,'elccontainer','');
+	  	 getexchangelist('活动相关',1,3,'acticontainer','');
+	  	 getexchangelist('其他宝贝',1,3,'otherscontainer','');
+	  	//更多列表 
+	  	 mui('section').on('tap','a',function(){
+	  	 	var type=this.getAttribute('data-type');
+	  	 	mui.openWindow({
+	  	 		url:'exchangemall.html',
+	  	 		id:'exchangemall',
+	  	 		createNew:true,
+	  	 		extras:{
+	  	 			type:type
+	  	 		}
+	  	 	})
+	  	 })
+	  	 //to topic detail
+	  	 mui('section').on('tap','.singlepro',function(){
+	  	 	var pid=this.getAttribute('data-pid');
+	  	 		console.log(pid);
+	  	 	mui.openWindow({
+	  	 		url:'product.html',
+	  	 		id:'product',
+	  	 		extras:{
+	  	 			pid:pid
+	  	 		}
+	  	 	})
+	  	 })
+      	 })
+     
+     
+     //获取topiclist top3
+     
+ 	function getexchangelist(type,page,shownum,position,subtype){
+// 		console.log(school);
+// 		console.log(type);
+     	mui.ajax(server+'getexchangelist.php',{
+     		data:{
+     			action:'allpro',
+     			type:type,
+     			page:page,
+     			school:school,
+     			subtype:subtype
+     		},
+     		type:'post',
+     		success:function(data){
+//   			console.log(data);
+     			var topiclistcontainer=document.getElementById(position);
+     			var jsondata=eval('['+data+']');
+     			var exchangeprolist=jsondata[0];
+     			var i=0;	
+     			while(i<shownum){
+     				html="<li data-pid='"+exchangeprolist[i].pid+"' class='singlepro'>"+
+			    				"<div class='imgwarpper'>"+
+			    				"<table>"+
+			    				"<tr><td><img src='"+server+"uploads/"+exchangeprolist[i].pic+"'/></td></tr>"+
+			    				"</table>"+
+			    				"</div>"+
+			    				"<div class='proname'>"+exchangeprolist[i].name+"</div>"+
+			    				"<div class='proprice'>"+exchangeprolist[i].price+"享豆</div>"+
+			    			"</li>";
+     				topiclistcontainer.insertAdjacentHTML('beforeend',html);
+     				i++;
+     			}
+     			
+     		}
+     	})
+    }
+
+    
+    </script>
+</body>
+</html>

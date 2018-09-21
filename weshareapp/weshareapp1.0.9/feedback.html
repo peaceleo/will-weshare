@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en" class="feedback">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>举报申诉</title>
+		<link rel="stylesheet" type="text/css" href="css/mui.min.css" />
+		<link rel="stylesheet" type="text/css" href="css/feedback.css" />
+		<style>
+			.tips h4{
+				font-size: 14px;
+				color: black;
+				text-align: center;
+				margin-top: 20px;
+			}
+			.tips p{
+				font-size: 12px;
+				text-indent: 1.5em;
+			}
+		</style>
+	</head>
+     
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<button id="submit" class="mui-btn mui-btn-blue mui-btn-link mui-pull-right">发送</button>
+			<h1 class="mui-title">举报申诉</h1>
+		</header>
+		<div class="mui-content">
+			<div class="mui-content-padded">
+				<div class="mui-inline">问题描述</div>
+				<a class="mui-pull-right mui-inline" href="#popover">
+					快捷输入
+					<span class="mui-icon mui-icon-arrowdown"></span>
+				</a>
+				<!--快捷输入具体内容，开发者可自己替换常用语-->
+				<div id="popover" class="mui-popover">
+					<div class="mui-popover-arrow"></div>
+					<div class="mui-scroll-wrapper">
+						<div class="mui-scroll">
+							<ul class="mui-table-view">
+								<!--仅流应用环境下显示-->
+								<li class="mui-table-view-cell">
+									<a href="#">带有诽谤性质</a>
+								</li>
+								<li class="mui-table-view-cell"><a href="#">带有色情内容</a></li>
+								<li class="mui-table-view-cell"><a href="#">内容不适当，对我造成困扰</a></li>
+								<li class="mui-table-view-cell"><a href="#">存在欺诈行为</a></li>
+								<li class="mui-table-view-cell"><a href="#">发布仿冒信息</li>
+							</ul>
+						</div>
+					</div>
+
+				</div>
+			</div>
+			<div class="row mui-input-row">
+				<textarea id='question' class="mui-input-clear question" placeholder="请详细描述你的问题和意见..."></textarea>
+			</div>
+			<p>图片(选填,提供问题截图,总大小10M以下)</p>
+			<div id='image-list' class="row image-list"></div>
+			<p>联系方式</p>
+			<div class="mui-input-row">
+				<input id='contact' type="text" class="mui-input-clear contact" placeholder="(手机号码,选填,方便我们联系你 )" />
+			</div>
+			<div class="mui-input-row tips">
+				<h4>举报申诉须知</h4>
+				<p>您应保证您的举报申诉行为基于善意,基于理性，并代表您本人真实意思.乐分享Weshare作为中立的平台服务者,
+				受到您的的举报申诉后，会尽快按照相关法律法规的规定进行处理.我们将会采取合理的措施保护您的个人信息.除却法律法规
+				规定的情形外,未经用户许可乐分享WeShare不会向第三方公开,透露您的个人信息.</p>
+			</div>
+			
+		</div>
+		<script src="js/mui.min.js"></script>
+		<script src="js/feedback.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			mui.init();
+			mui('.mui-scroll-wrapper').scroll();
+		</script>
+	</body>
+
+</html>

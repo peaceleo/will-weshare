@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title></title>
+    <script src="js/mui.min.js"></script>
+    <link href="css/mui.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="css/weshare.css" />
+    <script type="text/javascript" charset="utf-8">
+      	mui.init();
+      	mui.plusReady(function(){
+      		var school=document.getElementById("school");
+      		var stunum=document.getElementById("stunum");
+      		var password=document.getElementById("password");
+      		var telphone=document.getElementById("telphone");
+      		var smsnuma=document.getElementById("smsnuma");
+      		var smsnumb=document.getElementById("smsnumb");
+      		var regbtn=document.getElementById("regbtn");
+      			server=plus.storage.getItem('server');
+      		telphone.addEventListener('blur',function(){
+      			mui.ajax(server+'reg.php',{
+      				data:{
+      					action:'sendsms',
+      					telphone:telphone.value
+      				},
+      				type:'POST',
+      				success:function(data){
+      					smsnuma.value=data;
+      					if(data){
+      						plus.ui.toast('短信验证码发送成功')
+      					}else{
+      						plus.ui.toast('短信验证码发送失败');
+      					}
+      				}
+      			})
+      		})
+      		
+      		regbtn.addEventListener('tap',function(){
+      			a=parseInt(smsnuma.value);
+      			b=parseInt(smsnumb.value);
+      			if(a!=b){
+      				plus.ui.toast('短信验证码错误');
+      				return;
+      			}
+      			mui.ajax(server+'reg.php',{
+      				data:{
+      					action:'resetpass',
+      					password:password.value,
+      					telphone:telphone.value
+      				},
+  	    				type:'POST',
+  	    				success:function(data){
+//	    					alert(data);
+	    					if(data==1){
+	    						plus.ui.toast('密码修改成功!');
+	    						mui.openWindow({
+	    							url:'login.html',
+	    							id:'login',
+	    							createNew:true,
+	    							show:{
+	    								aniShow:'slide-in-left',
+	    								duration:300
+	    							}
+	    							
+	    						})
+	    			
+	    					}else{
+	    						plus.ui.toast('wrong');
+	    					}
+	    						
+  	    				}
+      			});
+      		})
+      	
+      	})
+    </script>
+    <style type="text/css">
+    		.mui-content{
+    			margin-top: 30px;
+    			width: 80%;
+    			margin-left: 10%;
+    			margin-right: 10%;
+    		}
+    		 #title{
+     	 	text-align: center;
+     	 	margin: 0px;
+     	 	padding: 0px;
+     	 	font-size: 18px;
+     	 }
+     	  #telphone,#smsnumb,#password{
+     	 	border: none;
+     	 	border: 2px solid #E4E4E4;
+     	 	height: 45px;
+     	 }
+    </style>
+</head>
+<body>
+	<header class="mui-bar mui-bar-nav">
+		<div class='header index-header'>
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class='title' id='title'>修改密码</h1>
+			<a id="menu" href="#topPopover"  style='visibility:hidden;' class="mui-action-menu mui-icon mui-icon-bars mui-pull-right"></a>
+		</div>
+	</header>
+	<div class="mui-content">
+	    <form  class=''>
+	    		
+	    		<div class="mui-input-row">
+	    			<!--<label for=""><span class="mui-icon mui-icon-phone"></span></label>-->
+	    			<input type="text" class="mui-input mui-input-clear" name='telphone' id='telphone' placeholder="请输入手机号(失去焦点自动发送验证码)"/>
+	    		</div>
+	    		<div class="mui-input-row">
+	    			<!--<label for=""><span class="mui-icon mui-icon-email"></span></label>-->
+	    			<input type="text" class="mui-input mui-input-clear" name='smsnumb' id='smsnumb' placeholder="请输入短信验证码..."/>
+	    		</div>
+	    		<div class="mui-input-row" style="display: none;">
+	    			<!--<label for=""><span class="mui-icon mui-icon-email"></span></label>-->
+	    			<input type="text" class="mui-input mui-input-clear" name='smsnuma' id='smsnuma' placeholder="请输入短信验证码..."/>
+	    		</div>
+	    		<div class="mui-input-row">
+	    			<!--<label for=""><span class="mui-icon mui-icon-locked"></span></label>-->
+	    			<input type="password" class="mui-input" name='text' id='password' placeholder="请输入新密码..."/>
+	    		</div>
+	    		
+	    		<button type="button" class="mui-btn  mui-btn-block mybtncenter" id='regbtn'>确认修改</button>
+	    </form>
+	</div>
+	
+</body>
+</html>

@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title>personcenter</title>
+    <script src="../js/mui.min.js"></script>
+     <script src="../js/openwin.js"></script>
+      <script src="../js/weshare.js"></script>
+    <link href="../css/mui.min.css" rel="stylesheet"/>
+     <link rel="stylesheet" href="../css/weshare.css" />
+      
+    <script type="text/javascript" charset="utf-8">
+      	mui.init();
+      	mui.plusReady(function(){
+      		server=plus.storage.getItem('server');
+      		active=plus.storage.getItem('active');
+      		school=plus.storage.getItem('school');
+      		username=plus.storage.getItem('username');
+				updateSerivces();
+					if(plus.os.name=="Android"){
+						Intent = plus.android.importClass("android.content.Intent");
+						File = plus.android.importClass("java.io.File");
+						Uri = plus.android.importClass("android.net.Uri");
+						main = plus.android.runtimeMainActivity();
+					}
+			var pageweb=plus.webview.currentWebview();
+			 pid=pageweb.pid;
+			var reward=plus.storage.getItem('rewardpoints');
+			  if(active==='未认证'){
+      		  	plus.ui.toast('您还没有上传学生证件,请在个人信息中完善证件信息...');
+      		  	
+      		  }
+              if(active==='认证中'){
+      		  	plus.ui.toast('您的身份信息正在认证中，请耐心等待...');
+      		  
+      		  }
+			//隐藏悬浮
+//			document.getElementById('footer-select').style.display='none';
+			//填充宝贝信息
+      		mui.ajax(server+'getexchangelist.php',{
+			 	data:{
+			 		action:'singlepro',
+			 		pid:pid
+			 	},
+			 	type:'post',
+			 	success:function(data){
+//			 	console.log(data);
+			 		var jsondata=eval("["+data+"]");
+			 		var prolist=jsondata[0];
+			 		proprice=prolist[0].price;
+			 		window.productname=prolist[0].name;
+    				    window.productid=prolist[0].pid;
+			 		document.getElementById("productimg").src=server+"uploads/"+prolist[0].pic;
+			 		document.getElementById("productname").innerText=prolist[0].name;
+			 		document.getElementById("productprice").innerText=proprice+'享豆';
+			 		document.getElementById('prolocation').innerText=prolist[0].prolocation;
+			 		document.getElementById('prodescription').innerText=prolist[0].description;
+			 		document.getElementById('bywhonickname').innerText=prolist[0].usernickname;
+			 		document.getElementById('sendmessage').setAttribute('href','sms:'+prolist[0].telphone);
+			 		document.getElementById('callphone').setAttribute('href','tel:'+prolist[0].telphone);
+			 		
+			 		if(parseFloat(proprice)>parseFloat(reward)){
+					plus.ui.toast('您还没有那么多的享豆!')
+					
+				};
+			 			
+			 		}
+			 	});
+			//打开更多操作
+			document.getElementById('moreaction').addEventListener('tap',function(){
+				  if(active==='未认证'){
+      		  	plus.ui.toast('您还没有上传学生证件,请在个人信息中完善证件信息...');
+      		  	return;
+      		  }
+              if(active==='认证中'){
+      		  	plus.ui.toast('您的身份信息正在认证中，请耐心等待...');
+      		  return;
+      		  }
+			document.getElementById('footer-select').style.display='block';
+				
+				
+			})
+			//close the select of footer
+			document.getElementById('closeslect').addEventListener('tap',function(){
+				document.getElementById('footer-select').style.display='none';
+			})
+      		document.getElementById("exchangebtn").addEventListener('tap',function(){
+      		    server=plus.storage.getItem('server');
+      			username=plus.storage.getItem('username');
+      			towhotel=document.getElementById('towhotel').value;
+      			orderremark=document.getElementById('orderremark').value;
+      			
+//    			console.log(server);
+      		 if(active==='未认证'){
+      		  	plus.ui.toast('您还没有上传学生证件,请在个人信息中完善证件信息...');
+      		  	return;
+      		  }
+      		   if(active==='认证中'){
+      		  	plus.ui.toast('您的身份信息正在认证中，请耐心等待...');
+      		  	return;
+      		  }
+      		    if(towhotel.length==0){
+      		    	 plus.ui.toast('手机号码是必须的哦');
+      		    	 return;
+      		    }
+      		    if(parseFloat(proprice)>parseFloat(reward)){
+					plus.ui.toast('您还没有那么多的享豆!')
+					return;
+				};
+		
+      			mui.ajax(server+'orderaction.php',{
+      				data:{
+      					action:'neworder',
+      					username:username,
+      					school:school,
+      					pid: pid,
+      					towhotel: towhotel,
+      					remark:orderremark
+      				},
+      				type:'post',
+      				success:function(data){
+      					console.log(data);
+      					if(data==1){
+      						plus.ui.toast('温暖正在向您狂奔而去...');
+      						
+      						mui.openWindow({
+      							url:'../wepersoncenter/myexchangeorder.html',
+      							id:'myexchangeorder',
+      							extras:{
+      								type:'exchangeorder'
+      							},
+      						createNew:true,
+      							show:{
+      								aniShow:'slide-in-right',
+      								duration:300
+      							}
+      							
+      						})
+      					}else{
+      							plus.ui.toast('订单提交出了点问题哈,再试试吧');
+      					}
+      						
+      				}
+      			})
+      		})
+      		
+      		})
+			
+       // 分析链接
+function shareHref(){
+	bhref=true;
+	var ids=[{id:"weixin",ex:"WXSceneSession"},{id:"weixin",ex:"WXSceneTimeline"}],
+	bts=[{title:"发送给微信好友"},{title:"分享到微信朋友圈"}];
+	plus.nativeUI.actionSheet({cancel:"取消",buttons:bts},
+		function(e){
+			var i=e.index;
+			if(i>0){
+				shareAction(ids[i-1].id,ids[i-1].ex);
+			}
+		}
+	);
+} 
+function shareAction(id,ex) {
+	var s=null;
+//	outSet( "分享操作：" );
+	if(!id||!(s=shares[id])){
+		console.log( "无效的分享服务！" );
+		return;
+	}
+	if ( s.authenticated ) {
+		console.log( "---已授权---" );
+		shareMessage(s,ex);
+	} else {
+		console.log( "---未授权---" );
+		s.authorize( function(){
+				shareMessage(s,ex);
+			},function(e){
+			console.log( "认证授权失败："+e.code+" - "+e.message );
+		});
+	}
+}
+
+function shareMessage(s,ex){
+	console.log(productname);
+	console.log(productid);
+	var msg={ extra:{scene:ex}};
+	if(bhref){
+		msg.href="http://fudan.weshare.so:8000/web/product.html?pid="+productid+"";
+		msg.title="乐分享WeShare乐享集市之"+productname;
+		msg.content="乐分享WeShare乐享集市之"+productname;
+		msg.thumbs=["images/default_head.jpg"];
+		msg.pictures=["images/default_head.png"];
+	}else{
+		if(pic&&pic.realUrl){
+			msg.pictures=[pic.realUrl];
+		}
+	}
+	console.log(JSON.stringify(msg));
+	s.send( msg, function(){
+		console.log( "分享到\""+s.description+"\"成功！ " );
+		rewardGiven(username,10,'分享到微信收入');
+	}, function(e){
+		console.log( "分享到\""+s.description+"\"失败: "+e.code+" - "+e.message );
+	} );
+}
+
+function updateSerivces(){
+	plus.share.getServices( function(s){
+		shares={};
+		for(var i in s){
+			var t=s[i];
+			shares[t.id]=t;
+		}
+	}, function(e){
+		outSet( "获取分享服务列表失败："+e.message );
+	} );
+}
+      
+    </script>
+    <style type="text/css">
+    			
+     	 body{
+     	 	background: white;
+     	 }
+     	.productimg{
+     		padding-top: 10px;
+     		text-align: center;
+     	}
+     	.productimg img{
+     		width: 90%;
+     	}
+     	#productname{
+     		font-weight: bolder;
+     	}
+     	.productprice{
+     	 	font-size: 14px;
+		    color: white;
+		    font-weight: bolder;
+		    background: #66cccc;
+		    width: 90px;
+		    padding: 5px;
+		    border-radius: 3px;
+		    margin-top: 5px;
+		    margin-left: auto;
+		    margin-right: auto;
+		    text-align: center;
+     	}
+     	.productdes{
+     		margin-top: 8px;
+     		text-align: left;
+     		font-size: 14px;
+     		width:94%;
+     		margin-left: 3%;
+     		margin-right:3%;
+     		border: 2px solid #E4E4E4;
+     		border-radius: 5px;
+     	}
+     	.prodestitle{
+     		padding-left: 35px;
+     		padding-bottom: 10px;
+		    background: url(images/note.png) no-repeat;
+		    background-size: 18px;
+		    background-position: 10px;
+		    border-bottom: 1px dotted #E4E4E4;
+		    font-size: 15px;
+		    font-weight: bolder;
+		    height: 30px;
+		    line-height: 30px;
+     	}
+     	.prodescription{
+     		font-size: 13px;
+     		color: #A1A1A1;
+     		font-weight: bold;
+     		text-indent: 30px;
+     		padding: 10px;
+     		min-height: 80px;
+     		
+     	}
+     	.ownerinfo{
+     		/*display: inline-block;*/
+     		width:94%;
+     		margin-left: 3%;
+     		margin-right:3%;
+     		height: 30px;
+     		text-align: right;
+     		margin-top: 10px;
+     		font-weight: bolder;
+     		font-size: 13px;
+     	}
+     	  	#moreaction{
+     	     float: right;
+     		background: #E4E4E4;
+     		padding: 5px;
+     		font-weight: bolder;
+     		font-size: 13px;
+     		border-radius: 5px;
+     		background:  #66CCCC;
+     		color: white;
+     		margin-top: 6px;
+     		
+     	}
+     	.proorder{
+     		width: 94%;
+     		margin-left: 3%;
+     		margin-right:3%;
+     	}
+     	.proorder input{
+     		font-weight: bolder;
+     		font-size: 13px;
+     		padding-left: 30px;
+     	}
+     	/*底部悬浮选择框*/
+     .share{
+				float: right;
+				margin-left: 10px;
+				/*padding: 5px;*/
+				font-size: 14px;
+				font-weight: bolder;
+				color: white;
+				background: #66cccc;
+				padding-left: 5px;
+				padding-right: 5px;
+				padding-top: 2px;
+				padding-bottom: 2px;
+				border-radius: 3px;
+			}		
+     </style>
+</head>
+<body>
+	<div class='pubwrapper' id="footer-select" style='display: none;'>
+			  <div class='pubchoose'>
+			     <ul class="mui-table-view">
+						<li class="mui-table-view-cell"><a  id='sendmessage' href=""  class='back5'>短信</a></li>
+						<li class="mui-table-view-cell"><a  id='callphone' href=""  class='back6'>电话</a></li>
+			    </ul>
+			    <ul class="mui-table-view" style='margin-top: 10px;'>
+					<li  id='closeslect' class="mui-table-view-cell"><a><b>取消</b></a></li>
+			    </ul>
+			</div>
+		</div>	
+	 <header class="mui-bar mui-bar-nav">
+	     <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+	     <h1 class="mui-title" id='productname'></h1>
+	     <span id='moreaction'>联系主人</span>
+	 </header>
+	<!--<div id="topPopover" class="mui-popover">
+			<div class="mui-popover-arrow"></div>
+			<div class="mui-scroll-wrapper">
+				<div class="mui-scroll">
+					<ul class="mui-table-view">
+						<li class="mui-table-view-cell" id='exchangeMall'>漂流集市
+						</li>
+						<li class="mui-table-view-cell" id='logout'>注销
+						</li>
+						
+					</ul>
+				</div>
+			</div>
+		</div>-->
+	 
+	 <div class="mui-content">
+	 	    <div class='productimg'>
+	 	    		<img src="" alt=""  id='productimg'/>
+	 	    </div>
+	 	   <!-- <div class='productname' id='productname'>健康的九分裤</div>-->
+	 	    <div class='productprice'id='productprice'>100享豆</div>
+	 	    <div class='productdes'>
+	 	    		<div class='prodestitle'>宝贝描述</div>
+	 	    		<div class="prodescription">
+	 	    			<p id='prolocation'></p>
+	 	    			<p id='prodescription'></p>
+	 	    			
+	 	    		</div>
+	 	    </div>
+	 	    <div class='ownerinfo'>
+	 	    			 <span><a onclick='shareHref();' class="share" >分享至@</a></span>
+	 	    		   By&nbsp;&nbsp;<span id='bywhonickname'>就看见啊弗兰克</span>
+	 	    </div>
+	 	    <div class='proorder'>
+	 	   		 	<div class='prodestitle'>我要了</div>
+	 	    		<form>
+	 	    			<input type="text"  id='towhotel' placeholder="您没看错，只需要收件人的手机号码"/>
+	 	    			<input type="text"  id="orderremark" placeholder="补充信息哈（时间，地点等等啦，选填）"/>
+	 	    		</form>
+	 	    </div>
+	 	    <div class="productprice" id='exchangebtn'>提交订单</div>
+	 </div>	 
+</body>
+</html>

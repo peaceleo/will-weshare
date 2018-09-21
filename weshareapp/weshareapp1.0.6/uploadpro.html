@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title></title>
+    <script src="js/mui.min.js"></script>
+    <link href="css/mui.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="css/weshare.css" />
+     <script src="js/weshare.js"></script>
+     <style type="text/css">
+     	 .tabactive{
+     	 	color: #389EDA;
+     	 }
+     	  .mui-bar-tab .mui-tab-item.mui-active{
+     	 	color: #929292;
+     	 }
+     	 .uploadpic{
+     	 	text-align:center;
+     	 }
+     	 .uploadpic .mui-icon{
+     	 	display: inline;
+     	 	margin-left: -5px;
+     	 	padding: 0;
+     	 }
+     	 .uploadpic p{
+     	 	/*padding-left:30px ;*/
+     	 	text-align: left;
+     	 	padding-top: 5px;
+     	 }
+     	 .uploadpic img{
+     	 	width: 90%;
+     	 	display: block;
+     	 	text-align:center;
+     	 	margin: auto;
+     	 	padding: 10px;
+     	 
+     	 }
+     	 
+     </style>
+    <script type="text/javascript" charset="utf-8">
+      	mui.init();
+      	mui.plusReady(function(){
+      		quitapp();
+      	var prolabel=document.getElementById("prolabel");
+      	var proname=document.getElementById("proname");
+      	var prostore=document.getElementById("prostore");
+      	var propay=document.getElementById("propay");
+       	var pronote=document.getElementById("pronote");
+      		server=plus.storage.getItem('server');
+      		active=plus.storage.getItem('active');
+      	    username=plus.storage.getItem('username');
+      	    school=plus.storage.getItem('school');
+      		getprolabellist();
+      		 
+            
+     	})	
+       var files=[];	
+      	function getprolabellist(){
+      		mui.ajax(server+'getselectlist.php',{
+      			data:{
+      				action:'exchangetypelist'
+      			},
+      			type:'post',
+      			success:function(data){
+      				var prolabel=document.getElementById("prolabel");
+      				var jsondata=eval("["+data+"]");
+      				var exchangetypelist=jsondata[0];
+      				for(var i=exchangetypelist.length-1;i>=0;i--){
+      					html="<option value='"+exchangetypelist[i]+"'>"+exchangetypelist[i]+"</option>";
+      					prolabel.insertAdjacentHTML('afterBegin',html);
+      				}
+      			}
+      		})
+      	}
+   //从相册提取文件 
+ 
+   function appendByGallery(){
+	plus.gallery.pick(function(p){
+      document.getElementById("uploadpropic").setAttribute('src',p);
+	  files.push({name:"propic",path:p});
+    })
+}
+   
+   //上传产品
+   function uploadpic(){
+      if(active==='未认证'){
+      		  	plus.ui.toast('您还没有上传学生证件,请在个人信息中完善证件信息...');
+      		  	return;
+      		  }
+      		   if(active==='认证中'){
+      		  	plus.ui.toast('您的身份信息正在认证中，请耐心等待...');
+      		  	return;
+      		  }
+        		 if(proname.value==''){
+      		 	plus.ui.toast('请输入商品名称');
+      		 	return;
+      		 }
+      		 if(prostore.value==''){
+      		 	plus.ui.toast('请输入商品库存');
+      		 	return;
+      		 }
+      		 if(propay.value==''){
+      		 	plus.ui.toast('请输入商品价格');
+      		 	return;
+      		 }
+      		 
+      		 if(pronote.value==''){
+      		 	plus.ui.toast('请输入商品介绍');
+      		 	return;
+      		 } 
+   	 var wt=plus.nativeUI.showWaiting();
+	 task=plus.uploader.createUpload(server+'exchangeupload.php',
+		{method:"POST"},
+		function(t,status){ //上传完成
+			if(status==200){
+				plus.ui.toast('上传成功');
+                wt.close();
+                mui.openWindow({
+                	url:'exchangemall.html',
+                	id:'exchangemall',
+                	createNew:true,
+                	show:{
+                		aniShow:'slide-in-right',
+                		duration:200
+                	}
+                })
+			}else{
+				plus.ui.toast('上传失败');
+				wt.close();
+			}
+		});
+	task.addFile(files[0].path,{key:files[0].name});
+	task.addData('prolabel',prolabel.value);
+	task.addData('proname',proname.value);
+	task.addData('prostore',prostore.value);
+	task.addData('proprice',propay.value);
+	task.addData('description',pronote.value);
+	task.addData('publisher',username);
+	task.addData('proschool',school);
+	task.start();
+   }
+   
+  </script>
+</head>
+<body>
+	<header class="mui-bar mui-bar-nav">
+		<div class='header index-header'>
+			 <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class='title' id='title'>乐享集市产品发布</h1>
+			<a id="menu" href="#topPopover" class="mui-action-menu mui-icon mui-icon-bars mui-pull-right" style="display: none;"></a>
+		</div>
+	</header>
+	<div class="mui-content">
+	    <form class="mui-input-group">
+	    		<div class="mui-input-row">
+	    			<label for="">
+	    			<img src="images/needlabel.png" style="height: 20px;" />
+	    			</label>
+	    			<select name="prolabel" id="prolabel" class="needlabel">	       
+	    			</select>
+	    			
+	    		</div>
+	    		<div class="mui-input-row">
+	    			<label for="">
+	    			<img src="images/comment.png" style="height: 20px;" />
+	    			</label>
+	    			<input class="mui-input muip-input-clear" type="text" name='proname' id='proname' placeholder="商品名称"/>
+	    		</div>
+	    		<div class="mui-input-row">
+	    			<label for="">
+	    			<img src="images/note.png" style="height: 20px;" />
+	    			</label>
+	    			<input class="mui-input muip-input-clear" type="text" name='prostore' id='prostore' placeholder="商品库存" />
+	    		</div>
+	    		
+	    		
+	    		<div class="mui-input-row">
+	    			<label for="">
+	    				<img src="images/pay.png" alt="" style="height:20px ;"/>
+	    			</label>
+	    			<input class="mui-input" type="text" name='propay' id='propay' placeholder="兑换价格"/><span class="paylabel">享豆</span>
+	    		</div>
+	    		<div class="mui-input-row">
+	    			<label for=""><img src="images/addnote.png" style="height:20px ;"/></label>
+	    			<textarea class="mui-input mui-input-clear" rows="4" cols="3" name="addintro" id='pronote' placeholder="产品说明"></textarea>
+	    		</div>
+	    		<div class="mui-input-row uploadpic" >
+	    			<p><span class="mui-icon mui-icon-image"></span>&nbsp;&nbsp;&nbsp;&nbsp;上传产品图片</p>
+	    			<p style="font-size: 12px; text-align: center;">图片大小不超过3MB,图片格式jpg,jpeg,png,gif</p>
+	    			<img  id='uploadpropic' src="images/uploadpic.jpg" onclick='appendByGallery()'/>  
+	    		</div>
+	    		
+	    	  
+	    		
+	    </form>
+	    <button  id='needpubbtn' class="mui-btn-block mybtncenter" onclick="uploadpic()">提交</button>
+	    <div class="tips">
+	    			<h4>Tips</h4>
+	   		 <ul class="mui-table-view">
+	   		 	  <li class="mui-table-view-cell">1.能进入乐享集市的宝贝，均属精品</li>
+                  <li class="mui-table-view-cell">2.无论是所有权还是使用权的转让,请注明</li>
+                  <li class="mui-table-view-cell">3.经过平台认证通过的商品才能入驻集市，别着急</li>
+                  <li class="mui-table-view-cell">4.商品的图片漂亮,介绍详细，可极大的提高通过概率</li>
+        
+            </ul>
+	    </div>
+	</div>
+</body>
+</html>

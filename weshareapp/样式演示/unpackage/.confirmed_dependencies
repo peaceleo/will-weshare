@@ -1,0 +1,120 @@
+{
+	"index.html": {
+		"resources": [
+			"js/mui.min.js",
+			"fonts/mui.ttf",
+			"css/mui.min.css",
+			"js/update.js",
+			"list.html"
+		],
+		"refer": [
+			"index-menu.html",
+			"list.html"
+		]
+	},
+	"examples/tab-webview-subpage-contact.html": {
+		"resources": [
+			"images/60x60.gif"
+		]
+	},
+	"examples/tab-webview-main.html": {
+		"resources": [
+			"examples/tab-webview-subpage-about.html"
+		],
+		"refer": [
+			"examples/tab-webview-subpage-setting.html",
+			"examples/tab-webview-subpage-chat.html",
+			"examples/tab-webview-subpage-contact.html",
+			"examples/tab-webview-subpage-about.html"
+		]
+	},
+	"list.html": {
+		"refer": [
+			"examples/template.html",
+			"examples/tab-webview-main.html",
+			"examples/pullrefresh_main.html",
+			"examples/guide.html",
+			"examples/pullrefresh_with_tab.html",
+			"examples/imageviewer.html",
+			"examples/login.html",
+			"examples/indexed-list.html",
+			"examples/clouddb_wilddog.html",
+			"examples/typography.html",
+			"examples/im-chat.html"
+		]
+	},
+	"examples/pullrefresh_main.html": {
+		"resources": [
+			"examples/pullrefresh_sub.html"
+		],
+		"refer": [
+			"examples/pullrefresh_sub.html"
+		]
+	},
+	"examples/pullrefresh_with_tab.html": {
+		"resources": [
+			"js/mui.pullToRefresh.js",
+			"js/mui.min.js",
+			"js/mui.pullToRefresh.material.js",
+			"fonts/mui.ttf",
+			"css/mui.min.css"
+		]
+	},
+	"examples/imageviewer.html": {
+		"resources": [
+			"js/mui.zoom.js",
+			"images/muwu.jpg",
+			"images/yuantiao.jpg",
+			"js/mui.min.js",
+			"fonts/mui.ttf",
+			"css/mui.min.css",
+			"js/mui.previewimage.js",
+			"images/shuijiao.jpg"
+		]
+	},
+	"examples/login.html": {
+		"resources": [
+			"js/mui.min.js",
+			"css/app.css",
+			"css/mui.min.css",
+			"images/login-1.png"
+		]
+	},
+	"examples/indexed-list.html": {
+		"resources": [
+			"fonts/mui.ttf",
+			"css/mui.indexedlist.css",
+			"js/mui.indexedlist.js"
+		]
+	},
+	"examples/clouddb_wilddog.html": {
+		"resources": [
+			"js/mui.min.js",
+			"fonts/mui.ttf",
+			"css/mui.min.css"
+		]
+	},
+	"examples/typography.html": {
+		"resources": [
+			"js/mui.min.js",
+			"css/app.css",
+			"css/mui.min.css"
+		]
+	},
+	"examples/im-chat.html": {
+		"resources": [
+			"js/mui.imageViewer.js",
+			"images/logo.png",
+			"fonts/mui.ttf",
+			"css/mui.imageviewer.css",
+			"js/arttmpl.js"
+		]
+	},
+	"examples/pullrefresh_sub.html": {
+		"resources": [
+			"js/mui.min.js",
+			"fonts/mui.ttf",
+			"css/mui.min.css"
+		]
+	}
+}

@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" href="css/weshare.css" />
+	 <script src="js/weshare.js"></script>
+    <title>话题详情</title>
+   
+    <link href="css/mui.min.css" rel="stylesheet"/>
+     <style type="text/css">
+     	 body{
+     	 	background: white;
+     	 }
+     	 .mui-content{
+     	 	background: white;
+     	 	height: 100%;
+     	 }
+     	 .mui-bar-tab .mui-tab-item.mui-active{
+     	 	color: #929292;
+     	 }
+     	 #topictitle{
+     	 	font-size: 15px;
+     	 	font-weight: bolder;
+     	 }
+     	 .topicdetail,.topiccommenttitle,.topiccomment{
+     	 	width: 94%;
+     	 	margin-left:3% ;
+     	 	margin-right: 3%;
+     	 	border-radius: 5px;
+     	 	/*height: 30px;*/
+     	 	border: 2px solid #E4E4E4;
+     	 	margin-bottom: 5px;
+     	 	padding: 5px;
+     	 	
+     	 }
+     	 .publisherinfo{
+     	 	height: 25px;
+     	 	line-height: 25px;
+     	 }
+     	 .publisherinfo span.publishername{
+     	 	font-size: 12px;
+     	   height: 15px;
+     	 	line-height: 15px;
+     	    font-weight:bolder;
+     	 	float: right;
+     	 	padding-right: 10px;
+     	 	padding-left: 5px;
+     	 }
+     	 .publisherinfo span#publishtime{
+     	 	height: 15px;
+     	 	line-height: 15px;
+     	 	float: right;
+     	 	font-size: 12px;
+     	 	font-weight:bolder;
+     	 	border-right: 2px solid black;
+     	 	padding-right: 5px;
+     	 	
+     	 	/*line-height: 30px;*/
+     	 }
+     	 .topicdetail{
+     	 	/*padding:5px;*/
+     	 	border-bottom: 2px solid dotted;
+     	 }
+     	 .topicdetail div{
+     	 	border-bottom: 1px dotted #E4E4E4;
+     	 
+     	 }
+     	.titlestyle{
+     		padding-top: 5px;
+     		padding-bottom: 5px;
+     	 	font-size: 15px;
+     	 	font-weight: bolder;
+     	 	padding-left: 40px;
+     	 	/*background: url(images/linklist.png) no-repeat;*/
+     	 
+     	 }
+     	 .titlestyle1{
+     	 	background: url(images/detail.png) no-repeat;
+     	 	background-size: 15px;
+     	 	background-position:6px;
+     	 }
+     	  .titlestyle2{
+     	 background: url(images/detail.png) no-repeat;
+     	 	background-size: 15px;
+     	 	background-position:6px;
+     	 }
+     	  .titlestyle3{
+     	 	background: url(images/wifi.png) no-repeat;
+     	 	background-size: 24px;
+     	 	background-position:6px;
+     	 }
+     	 .contentstyle{
+     	 	padding-top: 3px;
+     		padding-bottom: 3px;
+     	 	font-size: 13px;
+     	 	font-weight: bold;
+     	 	padding-left: 30px;
+     	 	color: #A1A1A1;
+     	 }
+     	 .topiccommenttitle{
+     	 	margin-top: 5px;
+     	 	padding-top: 5px;
+     	 	padding-bottom: 5px;
+     	 }
+     	.rankstyle{
+     		float: right;
+     		margin-right:10px;
+     		/*background: #66CCCC;*/
+     		padding: 2px;
+     		/*color: white;*/
+     		font-size:13px;
+     		font-weight: 900;
+     	}
+     	.topiccomment{
+     		border:1px solid #E4E4E4;
+     	}
+     	.commentleft{
+     		width: 15%;
+     		/*display: inline-block;*/
+     		float: left;
+     		text-align: center;
+     	}
+     	.commentleft img{
+     		width: 90%;
+     		border-radius: 50%;
+     		
+     	}
+     	.commentleft span.commentid{
+     		font-size: 10px;
+     		font-weight: bolder;
+     		color: #A1A1A1;
+     	}
+     	.commentright{
+     		width: 85%;
+     		display: inline-block;
+     	}
+     	.commentright .cpublisherinfo{
+     		color:#3F88B0;
+     		font-size: 12px;
+     		font-weight: bolder;
+     		padding-bottom: 3px;
+     		border-bottom: 1px dotted #E4E4E4;
+     	}
+     	.commentright .cpublisherinfo span:first-child{
+     		display: inline-block;
+     		padding-left: 10px;
+     		
+     	}
+     	.commentright .cpublisherinfo span:last-child{
+     		float:right;
+     		padding-right: 10px;
+     		
+     		
+     	}
+     	.commentright .commentarea p{
+     		/*float: left;*/
+     		clear: both;
+     		width: 98%;
+     		padding: 10px;
+     		font-size: 13px;
+     		line-height: 22px;
+     		font-weight: bold;
+     		color: black;
+     		/*padding-left: 10px;*/
+     	}
+     	.commentright .commentpride {
+     		display: inline;
+     		float: right;
+     		margin-right: 20px;
+     		font-size: 13px;
+     		font-weight: bolder;
+     		padding-left: 35px;
+     		background: url(images/like.png) no-repeat;
+     		background-position-x: 10px;
+     		background-size:18px ;
+     		color: #A1A1A1;
+     	}
+     	.sendfooter{
+     		height: auto;
+     		padding: 8px;
+     		font-size: 16px;
+     		font-weight: bolder;
+     	
+     	}
+     	.moreneedbtn{
+     		float: right;
+     		font-size: 14px;
+     		/*padding: 5px;*/
+     		line-height: 20px;
+     		/*width: 50px;*/
+     		margin-top: 9px;
+     	}
+     		 #moredata{
+     	 	text-align: center;
+     	 	
+     	 	font-size: 14px;
+     	 	font-weight: bolder;
+     	 	color:#0c9ed4;
+     	 }
+ 
+     	 .loading{
+     	 	background: url(images/loading4.gif) no-repeat center;
+     	 	background-size:30px ;
+     	 	padding-top: 60px;
+     	 	/*padding-top: 10px;
+     	 	padding-bottom: 10px;*/
+     	 }
+     	 .finish{
+     	 	padding: 30px;
+     	 }
+       .downlink{
+        width: 100%;
+        height: 100%;
+        display: inline-block;
+        clear: both;
+        text-align: center;
+        background: #66CCCC;
+        font-size: 14px;
+        line-height: 44px;
+        z-index: 9999;
+        color: white;
+        font-weight: bolder;
+
+      } 
+   </style>
+</head>
+<body id='body'> 
+	<header class="mui-bar mui-bar-nav">
+	    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+	    <h1 class="mui-title" id='topictitle'></h1>
+	    <!-- <button class='moreneedbtn' id='coltopic'>收藏＋</button> -->
+	</header>	
+	
+      <div  class="mui-content">
+      	<section class='topicinfo'>
+      		 
+      		 <div class='topicdetail'>
+      		 			<div >
+      		 				<img  id='topicpic' style='width: 100%;' src="" alt="" />
+      		 			</div>
+      		 			<div class='titlestyle titlestyle1'>话题介绍:</div>
+      		 			<div class='contentstyle' id='topicintro'></div>	
+      		 			<div class='titlestyle titlestyle2'>乐享提示:</div>
+      		 			<div class='contentstyle' id='topicnotice'></div>	
+      		 </div>
+      		 <div id="" class='publisherinfo'>
+      		 		<span class='publishername'>By&nbsp;&nbsp;<span id='publishername'></span></span>
+      		 		<span id='publishtime'></span>
+      		 </div>
+      	</section>
+      	<section class='topiccommenttitle'>
+      		<span class='titlestyle titlestyle3'>分享区(<span id='totalcomnum'>0</span>)</span>
+      		<span class="rankstyle" id='bytime'>按时间</span>
+      		<span class='rankstyle' id='byhot'>按热度</span>
+      	</section>
+      	<section id='topiccomentwarpper'>
+			      		<!--<section class='topiccomment'>
+			      		<div class='commentleft'>
+			      			 <img src="images/mine.png" alt="" />
+			      			 <span class='commentid'>123123</span>
+			      		</div>
+			      		<div class='commentright'>
+			      				<div class='cpublisherinfo'>
+					      			<span>昵称</span>
+					      			<span>3天前</span>
+					      		</div>
+			      		<div class='commentarea'>
+			      			<p>对方就开始家肌肤对抗肌肤将卡号看风景看尽繁华会计师大会发空间就开始打发挥空间啊空间发挥空间看见稻盛和夫空间和空间发挥空间啊</p>
+			      		</div>
+			      		<div class='commentpride' id='like'>
+			      			<span>点赞(<span>100</span>)</span>
+			      		</div>
+			      		</div>
+			      		
+			      	</section>-->
+      	</section>
+      	<div id='moredata'>点击加载更多</div>
+      	
+      	
+      
+      </div>
+      <!-- <div class='sendfooter moreneedbtn' id='saysome'>说点什么</div> -->
+    <footer class="taskcommentfooter" id='taskcommentfooter' >
+        <div class='downlink' id='downlink'>下载乐分享WesShareAPP参与更多哦</div>
+     </footer> 
+    
+	   <script src="js/mui.min.js"></script>
+	   <script src="js/openwin.js"></script>
+     <script type="text/javascript" src='js/jquery-1.11.3.js'></script>
+	   <script type="text/javascript" charset="utf-8">
+//      mui.init();
+      	$(document).ready(function(){
+      		 var page=1;
+            // server='http://192.168.2.6/weshareapp1.0.8/';
+             server='http://fudan.weshare.so:8000/';
+            school='复旦大学'; 
+      		 // server=plus.storage.getItem('server');
+      		 // username=plus.storage.getItem('username');
+      		 //  active=plus.storage.getItem('active');
+      		 //  school=plus.storage.getItem('school');	 
+      		  // var webpage=plus.webview.currentWebview();
+      		  // var tid=webpage.tid; 
+            tid=GetQueryString('tid');
+            console.log(tid);
+      		getTopicInfo(tid); 
+      		getTopicComment(tid,'byhot',page);
+      		//判断用户是否已经收藏
+      		// iscoltopic(username,tid);
+      		//tosaysome
+      		// document.getElementById('saysome').addEventListener('tap',function(){
+      		// 	console.log(username);
+      		// 	console.log(tid);
+      		// 	mui.openWindow({
+      		// 		url:"saysome.html",
+      		// 		id:'saysome',
+      		// 		createNew:true,
+      		// 		extras:{
+      		// 			bywho:username,
+      		// 			topicid:tid
+      		// 		}
+      		// 	})
+      		// })
+      		//bytime
+      		$('#bytime').click(function(){
+      			 	var commentwarper=document.getElementById('topiccomentwarpper');
+      			 	commentwarper.innerHTML='';
+      			 	page=1;
+      			 	getTopicComment(tid,'bytime',page);
+      		})
+      		//byhot
+      		$('#byhot').click(function(){
+      			 	var commentwarper=document.getElementById('topiccomentwarpper');
+      			 	commentwarper.innerHTML='';
+      			 	page=1;
+      			 		getTopicComment(tid,'byhot',page);
+      		})
+          $('#downlink').click(function(){
+        location.href='download.html';
+       })
+      		//收藏话题
+      		// document.getElementById('coltopic').addEventListener('tap',function(){
+      		// 	 if(document.getElementById('coltopic').innerText==='已收藏'){
+      		// 	 	plus.ui.toast('您已经收藏过啦');
+      		// 	 	return;
+      		// 	 }
+      		// 	 mui.ajax(server+'topicaction.php',{
+      		// 	 	data:{
+      		// 	 		action:'coltopic',
+      		// 	 		username:username,
+      		// 	 		tid:tid
+      		// 	 	},
+      		// 	 	type:'post',
+      		// 	 	success:function(data){
+      		// 	 		if(data==1){
+      		// 	 			plus.ui.toast('收藏成功');
+      		// 	 			document.getElementById('coltopic').innerText='已收藏';
+      		// 	 		}
+      		// 	 	}
+      		// 	 })
+      		// })
+      		//评论点赞
+      		
+//       		mui('#topiccomentwarpper').on('tap','.commentpride',function(){
+//       			var tcid=this.getAttribute('data-tcid');
+//       			var towho=this.getAttribute('data-towho');
+//       			var pridenum=this.innerText;
+//       			pirdenum=10;
+// //				console.log(pridenum);
+//       			mui.ajax(server+'topicaction.php',{
+//       				data:{
+//       					action:'commentpride',
+//       					tcid:tcid,
+//       					towho:towho,
+//       					bywho:username
+//       				},
+//       				type:'post',
+//       				success:function(data){
+//       					if(data==1){
+//       						plus.ui.toast('感谢您的支持，对方已收到您的2个享豆');
+// //							var commentwarper=document.getElementById('topiccomentwarpper');
+// //    			 	        commentwarper.innerHTML='';
+// //    			 		     getTopicComment(tid,'byhot');
+//       					}
+//       				}
+//       			})
+//       		})
+      		//moredata
+      		$('#moredata').click(function(){
+				 	 	 page++;
+					 	 // var wt=plus.nativeUI.showWaiting();
+					 	 // document.getElementById('moredata').innerText='加载中...';
+					 	 // document.getElementById('moredata').className='loading';
+					 	 console.log("getTopicComment("+tid+","+"\'"+rank+"\'"+","+page+")");
+					 	 setTimeout("getTopicComment("+tid+","+"\'"+rank+"\'"+","+page+")",600);
+					 	 // wt.close();
+					 	
+					 });
+      		
+      	 })
+       	
+     //根据tid获取topic具体信息
+     function  getTopicInfo(tid){
+     	mui.ajax(server+'gettopiclist.php',{
+     		data:{
+     			action:'singletopic',
+     			tid:tid
+     		},
+     		type:'post',
+     		success:function(data){
+//   			console.log(data);
+     			 var jsondata=eval('['+data+']');
+     			 var topiclist=jsondata[0];
+//   			 console.log(topiclist[0].topicpic);
+     			 document.getElementById('topictitle').innerText=topiclist[0].topictitle;
+     			 document.getElementById('topicintro').innerText=topiclist[0].topicintro;
+     			 document.getElementById('topicnotice').innerText=topiclist[0].topicnotice;
+     			 document.getElementById('publishername').innerText=topiclist[0].publishername;
+     			 document.getElementById('publishtime').innerText=getLocalTime(topiclist[0].publishtime);
+     			 document.getElementById('topicpic').setAttribute('src',server+'uploads/'+topiclist[0].topicpic);
+     		}
+     	})
+     }
+    
+    
+    //获取主题评论
+     function getTopicComment(tid,rank,page){
+       
+       console.log(rank);
+       console.log(tid);
+       window.rank=rank;
+     	mui.ajax(server+'topicaction.php',{
+     		data:{
+     			action:'getcomment',
+     			rank:rank,
+     			tid:tid,
+     			page:page
+     		},
+     		type:'post',
+     		success:function(data){
+     			var commentwarper=document.getElementById('topiccomentwarpper');
+     			var jsondata=eval('['+data+']');
+     			var commentlist=jsondata[0];
+     			 console.log(page);
+     			
+     			 if(commentlist==''){
+     				html="<div class=\'commentblack\'>还没有经验分享哎</div>";
+     				maxpages=0;
+     			}else{
+     				var maxpages=commentlist[0].maxPages;
+     				
+     			   
+     			}
+     			console.log(page);
+     			console.log(maxpages);
+     			 if(page>maxpages){
+				 	document.getElementById('moredata').innerText='这就是全部了....';
+				 	document.getElementById('moredata').className='finish';
+				 	return;
+				    }else if(page==maxpages){
+              document.getElementById('moredata').innerText='这就是全部了....';
+              document.getElementById('moredata').className='finish';
+             }else{
+              document.getElementById('moredata').innerText='点击加载更多...';
+             document.getElementById('moredata').className='loading';
+            }
+ 				
+     			
+     			document.getElementById('totalcomnum').innerHTML=commentlist[0].maxrows;
+     			for(var i=0; i<=commentlist.length;i++){
+     				html="<section class='topiccomment'>"+
+      		                 "<div class='commentleft'>"+
+      			                  "<img src='"+server+"./uploads/"+commentlist[i].bywhohead+"'/>"+
+      			                  "<span class='commentid'>"+commentlist[i].tcid+"</span>"+
+      		                "</div>"+
+      		                "<div class='commentright'>"+
+      				           "<div class='cpublisherinfo'>"+
+		      			          "<span>"+commentlist[i].bywhonickname+"</span>"+
+		      			          "<span>"+timeFormat(commentlist[i].sendtime)+"</span>"+
+		      		       "</div>"+
+      		                "<div class='commentarea'>"+
+      			               "<p>"+commentlist[i].comment+"</p>"+
+      		                "</div>"+
+      		                  "<div class='commentpride' data-tcid='"+commentlist[i].tcid+"' data-towho='"+commentlist[i].bywhoemail+"'>点赞("+commentlist[i].pridenum+")</div>"+
+      		               "</div>"+
+      		         "</section>";
+      		         commentwarper.insertAdjacentHTML('beforeEnd',html);
+     			}
+     		}
+     	})
+     }
+     
+    //判断用户是否已经收藏主题
+    function iscoltopic(username,tid,page){
+    		mui.ajax(server+'topicaction.php',{
+    			data:{
+    				action:'iscoltopic',
+    				username:username,
+    				tid:tid,
+    				page:page
+    			},
+    			type:'post',
+    			success:function(data){
+    				if(data==1){
+    					document.getElementById('coltopic').innerText='已收藏';
+    				}
+    			}
+    		})
+    }
+    </script>
+</body>
+</html>

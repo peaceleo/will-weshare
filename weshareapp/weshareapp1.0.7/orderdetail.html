@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title>personcenter</title>
+    <script src="js/mui.min.js"></script>
+     <script src="js/openwin.js"></script>
+      <script src="js/weshare.js"></script>
+    <link href="css/mui.min.css" rel="stylesheet"/>
+     <link rel="stylesheet" href="css/weshare.css"/>
+      
+    
+    <style type="text/css">
+    			 .mui-bar-tab .mui-tab-item.mui-active{
+     	 	color: #929292;
+     	 }
+     	 body{
+     	 	background: white;
+     	 }
+     	 .mui-table-view-cell{
+     	 	padding-left:30px ;
+     	 	padding-top: 6px;
+     	 	padding-bottom: 6px;
+     	 	font-weight: bolder;
+     	 }
+     	 .mui-table-view-cell span{
+     	    font-weight: normal;
+     	    padding-left: 15px;
+     	    font-size: 12px;
+     	 }
+     	 .mui-content{
+     	 	margin: 0px;
+     	 	padding: 0px;
+     	 }
+     	 .partinfo{
+     	 	width: 96%;
+     	 	margin-left:2% ;
+     	 	margin-right: 2%;
+     	 	border:1px solid #E4E4E4;
+     	 	margin-bottom: 10px;
+     	 	font-size: 13px;
+     	 }
+     	 .parttitle{
+     	 	font-size: 14px;
+     	 	font-weight: bolder;
+     	 	padding: 5px;
+     	 	padding-left: 30px;
+     	 	background: url(images/detail.png) no-repeat ;
+     	 	background-size:15px ;
+     	 	background-position: 5px;
+     	 }
+     	 #orderaction li{
+     	 	text-align: center;
+     	 	padding: 13px;
+     	 }
+     	  #orderaction li span{
+     	 	background: #66CCCC;
+     	 	text-align: center;
+     	 	padding: 8px;
+     	 	color: white;
+     	 	font-size: 13px;
+     	 	font-weight: bolder;
+     	 	border-radius: 5px;
+     	 }
+     	 .pubwrapper li{
+     	 	 padding: 10px;
+     	 }
+     	 .choose{
+     	 	position: fixed;
+     	 	width:80%;
+     	 	margin-left: 10%;
+     	 	margin-right: 10%;
+     	 	top:300px;
+     	 }
+     	 .choose ul{
+			  	border-radius: 10px;
+			  }
+			  .choose ul:before{
+			  	height: 0px;
+			  }
+			   .choose ul:after{
+			  	height: 0px;
+			  }
+     </style>
+     
+</head>
+<body id='body'>
+	<header class="mui-bar mui-bar-nav">
+	    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+	    <h1 class="mui-title" id='title'><strong>订单详情</strong></h1>
+	</header>
+	 
+	 <div class="mui-content">	
+		 	<section class='partinfo'>
+		 		<div class='parttitle'>
+			    			<span class='span4'>订单简要</span>
+	    		   </div>
+		 		<ul class="mui-table-view">
+		 			<li class='mui-table-view-cell'> <div>订单编号:<span id='ordernum'></span></div></li>
+		 			<li class='mui-table-view-cell'> <div>订单时间:<span id='ordertime'></span></div></li>
+		 			<li class='mui-table-view-cell'> <div>订单状态:<span id='orderstatus'></span></div></li>
+		 			<li class='mui-table-view-cell'> <div>订单备注:<span id='ordernote'></span></div></li>
+		 		</ul>
+		 	</section>
+		 	<section class='partinfo'>
+		 			<div class='parttitle'>
+			    			<span class='span4'>宝贝信息</span>
+	    		   </div>
+		 		<ul class="mui-table-view">
+		 			<li class='mui-table-view-cell'> <div>宝贝名称:<span id='proname'></span></div></li>
+		 			<li class='mui-table-view-cell'> <div>宝贝价格:<span id='proprice'></span></div></li>
+		 			<li class='mui-table-view-cell'> <div>宝贝简介:<span id='prodescription'> </span></div></li>
+		 			<li class='mui-table-view-cell'> <div>所在区域:<span id='prolocation'></span></div></li>
+		 		</ul>
+		 	</section>
+		 	<section class='partinfo' id='ownerinfo'>
+		 			<div class='parttitle'>
+			    			<span class='span4'>主人信息</span>
+	    		   </div>
+		 		<ul class="mui-table-view">
+		 			<li class='mui-table-view-cell'> <div>主人昵称:<span id='ownernickname'></span></div></li>
+		 			<li class='mui-table-view-cell'> <div>手机号码:<span id='ownertel'></span></div></li>
+		 		</ul>
+		 	</section>
+		 	<section class='partinfo' id='buyerinfo'>
+		 			<div class='parttitle'>
+			    			<span class='span4'>Buyer信息</span>
+	    		   </div>
+		 		<ul class="mui-table-view">
+		 			<li class='mui-table-view-cell'> <div>用户昵称:<span id='buyernickname'></span></div></li>
+		 			<li class='mui-table-view-cell'> <div>手机号码:<span id='buyertel'></span></div></li>
+		 		</ul>
+		 	</section>
+		 	<section class='partinfo' id='orderaction'>
+		 			<div class='parttitle'>
+			    			<span class='span4'>订单操作</span>
+	    		        </div>
+		 		<ul class="mui-table-view">
+		 			<li class='mui-table-view-cell' id='contactowner'><div><span>联系主人</span></div></li>
+		 			<li class='mui-table-view-cell' id='contactbuyer'><div><span>联系买家</span></div></li>
+		 			<li class='mui-table-view-cell' id='confirmorder'><div><span>确认收货</span></div></li>
+		 			<li class='mui-table-view-cell' id='cancleorder'><div><span>取消订单</span></div></li>
+		 			
+		 		</ul>
+		 	</section>
+	 </div>
+	  <script type="text/javascript" charset="utf-8">
+      	mui.init();
+      	mui.plusReady(function(){
+//    		quitapp();
+      		 username=plus.storage.getItem('username');
+      		 getremindernum(username);
+      		 server=plus.storage.getItem('server');
+      		 getpersoninfo(username);
+      		var reward=plus.storage.getItem('rewardpoints');
+      		 var webpage=plus.webview.currentWebview();
+      		 var ordernum=webpage.onum;
+      		 var type=webpage.type;
+      		 console.log(type);
+      		 if(type==='exchange'){
+      		 	document.getElementById('contactbuyer').style.display='none';
+      		 	 document.getElementById('cancleorder').style.display='none';
+      		 	 document.getElementById('buyerinfo').style.display='none';
+      		 }else{
+      		 	document.getElementById('contactowner').style.display='none';
+      		 	 document.getElementById('confirmorder').style.display='none';
+      		 	 document.getElementById('ownerinfo').style.display='none';
+      		 }
+      		 mui.ajax(server+'getexchangeorder.php',{
+      		 	data:{
+      		 		action:'singleorder',
+      		 		onum:ordernum
+      		 	},
+      		 	type:'post',
+      		 	success:function(data){
+//    		 		alert(data);
+      		 		 var jsondata=eval('['+data+']');
+      		 		 var info=jsondata[0];
+      		 	if(info[0].remark===''){
+      		 		ordernote='暂无备注';
+      		 	}else{
+      		 		ordernote=info[0].remark;
+      		 	}
+      		    if(info[0].status==0){
+      		    	   statustext='进行中';
+      		    }else if(info[0].status==1){
+      		    	 statustext='已完成';
+      		    	 document.getElementById('confirmorder').style.display='none';
+      		    	  document.getElementById('cancleorder').style.display='none';
+      		    }else{
+      		    	statustext='已取消';
+      		    	 document.getElementById('confirmorder').style.display='none';
+      		    	  document.getElementById('cancleorder').style.display='none';
+      		    }
+				document.getElementById('ordernum').innerText=info[0].onum;
+				document.getElementById('ordertime').innerText=getLocalTime(info[0].addtime);
+				document.getElementById('orderstatus').innerText=statustext;
+				document.getElementById('ordernote').innerText=ordernote;
+				document.getElementById('proname').innerText=info[0].proname;
+//				document.getElementById('protype').innerText=info[0].protype;
+				document.getElementById('proprice').innerText=info[0].proprice+'享豆';
+				document.getElementById('prodescription').innerText=info[0].prodescription;
+				document.getElementById('prolocation').innerText=info[0].prolocation;
+				document.getElementById('ownernickname').innerText=info[0].ownernickname;
+				document.getElementById('ownertel').innerText=info[0].ownertel;
+				document.getElementById('buyernickname').innerText=info[0].recivernickname;
+      		 	document.getElementById('buyertel').innerText=info[0].recivertel;
+      		 	document.getElementById('confirmorder').setAttribute('data-onum',info[0].onum);
+      		 	document.getElementById('cancleorder').setAttribute('data-onum',info[0].onum);
+      		 	document.getElementById('contactowner').setAttribute('data-tel',info[0].ownertel);
+      		 	document.getElementById('contactbuyer').setAttribute('data-tel',info[0].recivertel);
+      		 	}
+      		 })
+      		 
+      		 //联系主人
+      		 document.getElementById('contactowner').addEventListener('tap',function(){
+      		 	var ownertel=this.getAttribute('data-tel');
+      		 	console.log(ownertel);
+      		 	html="<div class='pubwrapper' id='pubwarpper'>"+	
+      		 				"<div class='choose'>"+
+      		 			"<ul class='mui-table-view'>"+
+						"<li class='mui-table-view-cell'><a href='sms:"+ownertel+"' class='back5'>短信</a></li>"+
+						"<li class='mui-table-view-cell'><a href='tel:"+ownertel+"' class='back6'>电话</a></li>"+
+						"</ul>"+
+			        "<ul class='mui-table-view' style='margin-top: 10px;'>"+
+					"<li  id='closepub' onclick='closepub();' class='mui-table-view-cell'><b>取消</b></li>"+
+			    "</ul></div></div>";
+			     var body=document.getElementById('body');
+		        body.insertAdjacentHTML('beforeend',html);
+      		 })
+      		 //联系买家
+      		 document.getElementById('contactbuyer').addEventListener('tap',function(){
+      		 	var buyertel=this.getAttribute('data-tel');
+      		 	console.log(buyertel);
+      		 	html="<div class='pubwrapper' id='pubwarpper'><div class='choose'><ul class='mui-table-view'>"+
+						"<li class='mui-table-view-cell'><a href='sms:"+buyertel+"' class='back5'>短信</a></li>"+
+						"<li class='mui-table-view-cell'><a href='tel:"+buyertel+"' class='back6'>电话</a></li>"+
+						"</ul>"+
+			        "<ul class='mui-table-view' style='margin-top: 10px;'>"+
+					"<li  id='closepub' onclick='closepub();'class='mui-table-view-cell'><a><b>取消</b></a></li>"+
+			    "</ul></div></div>";
+			     var body=document.getElementById('body');
+		       body.insertAdjacentHTML('afterBegin',html);
+      		 })
+      		 //确认收货
+      		 document.getElementById('confirmorder').addEventListener('tap',function(){
+      		 	var onum=this.getAttribute('data-onum');
+      		 	plus.ui.confirm('您确认已经收到宝贝了嘛？',function(e){
+      		 		 if(e.index==0){
+	      		 		 	mui.ajax(server+'orderaction.php',{
+			      		 		data:{
+			      		 			action:'finishorder',
+			      		 			onum:onum
+			      		 		},
+			      		 		type:'post',
+			      		 		success:function(data){
+									if(data==1){
+										plus.ui.toast('确认收货成功,享豆将支付给宝贝主人');
+										location.reload();
+									}else{
+										 plus.ui.toast('确认失败,再试试吧');
+									}
+			      		 		}
+			      		 	})
+      		 		 }else{
+      		 		 	return;
+      		 		 }
+      		 	},'',['Yes','No']);
+      		 	
+      		 })
+      		 //取消订单
+      		 document.getElementById('cancleorder').addEventListener('tap',function(){
+      		 	var onum=this.getAttribute('data-onum');
+      		 		plus.ui.confirm('您确认要取消订单嘛？',function(e){
+      		 		 if(e.index==0){
+	      		 		 	mui.ajax(server+'orderaction.php',{
+			      		 		data:{
+			      		 			action:'cancleorder',
+			      		 			onum:onum
+			      		 		},
+			      		 		type:'post',
+			      		 		success:function(data){
+									if(data==1){
+										plus.ui.toast('取消成功,享豆将退还给主人');
+										location.reload();
+									}else{
+										 plus.ui.toast('取消失败,再试试吧');
+									}
+			      		 		}
+			      		 	})
+      		 		 }else{
+      		 		 	return;
+      		 		 }
+      		 	},'',['Yes','No']);
+      		 })
+      		 //end
+         })
+    </script>
+</body>
+</html>

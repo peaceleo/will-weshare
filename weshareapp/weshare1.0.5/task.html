@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" href="css/weshare.css" />
+	 <script src="js/weshare.js"></script>
+    <title>task</title>
+   
+    <link href="css/mui.min.css" rel="stylesheet"/>
+     <style type="text/css">
+     	 body{
+     	 	background: white;
+     	 }
+     	 p{
+     	 	font-size: 12px;
+     	 	margin: 0px;
+     	 	padding: 0px;
+     	 }
+     	 .mui-content{
+     	 	background: white;
+     	 	height: 100%;
+     	 }
+     	 .mui-bar-tab .mui-tab-item.mui-active{
+     	 	color: #929292;
+     	 }
+     	  .tab{
+     	 	font-size: 13px;
+     	 	line-height: 36px;
+     	 	height: 36px;;
+     	 	width: 60%;
+     	 	display: block;
+     	 	margin-top: 4px;
+     	 	margin-left: auto;
+     	 	margin-right: auto;     	 	
+     	 }
+     	 .tab div{
+     	 	float: left;
+     	 }
+     	 #task{
+     	 	/*padding: 5px;*/
+     	 	border-top-right-radius: 5px;
+     	 	border-bottom-right-radius: 5px;
+     	 	color: white;
+     	 	text-align: center;
+     	 	background: #3F88B0;
+     	 	/*width: 35px;*/
+     	 	font-weight: bolder;
+     	 }
+     	  #needlist{
+     	 	/*padding: 5px;*/
+     	 	border-top-left-radius: 5px;
+     	 	border-bottom-left-radius: 5px;
+     	 	color: black;
+     	 	text-align: center;
+     	 	background: white;
+     	 	/*width: 35px;*/
+     	 	font-weight: bolder;
+     	 }
+     	 	.taskaction{
+   			width:33.3%;
+    			/*background: url(../images/telphone.png) no-repeat;
+    			background-size: 15px;
+    			background-position: 15px;*/
+    			text-align: center;
+    			font-size: 13px;
+    			font-weight: bolder;
+    			color: black;
+    			border-top: 1px solid #E4E4E4;
+    			border-bottom: 3px solid #E4E4E4;
+    			padding-top: 5px;
+    			padding-bottom: 5px;
+    			border-left:2px solid #E4E4E4 ;
+   		}
+   		.taskaction .mui-icon{
+   			font-size: 20px;
+   			font-weight: bolder;
+   		}
+   		.viewed{
+   			background: url(images/Eye.png) no-repeat;
+   			background-size: 15px;
+   			background-position:5px ;
+   			padding-left:25px;
+   			font-size: 11px;
+   		    opacity: .5;
+   		   position: relative;
+   		    left:75%;
+   		    float: right;
+   		   display: block;
+   		}.needselect{
+     	 	width: 100%;
+     	 	border-bottom:1px solid #E4E4E4 ;
+     	 	float: left;
+     	 	margin-bottom: 5px;
+     	 }
+     	 .needselect div.needslectstatus{
+     	 	position: relative;
+     	 	width: 50%;
+     	 	float: left;
+     	 	text-align: center;
+     	 	border-right:1px solid #E4E4E4 ;
+     	 	padding: 3px;
+            font-size: 13px;
+            font-weight: bolder;
+     	 	margin-top: 5px;
+     	 	/*margin-bottom: 5px;*/
+     	 }
+     	
+     	
+     	 .needmark{
+     	 	width: 100%;
+     	 	height: 5px;
+     	 	background: #3F88B0;
+     	 	position: absolute;
+     	 	left: 0;
+     	 }
+     </style>
+</head>
+<body> 
+	<header class="mui-bar mui-bar-nav">
+		<div class='logo' id='logo' style="display: none;"></div>
+		  <div class='tab mui-col-xs-12' id='tab'>
+     	 	<div id='needlist' class="mui-col-xs-6">心愿单</div>
+     	 	<div id='task' class="mui-col-xs-6">活动墙</div>
+     	 </div>
+	</header>	
+
+     <div class="mui-content">
+      <div id='needselect' class='mui-col-xs-12 needselect' >
+				<div id='taskacting' class="needslectstatus">进行中(<span id='actingNum'>100</span>)
+						<div id='taskactingmark' class="needmark" style="display: block;" ></div>
+				</div>
+				<div id='taskfinish'  class="needslectstatus">完成啦(<span id='finishedNum'>100</span>)
+					<div id='finishedmark' class="needmark" style="display: none;" ></div>
+				</div>
+		</div>
+		<!--<div class='taskcontainer'>
+			  <div class='needcontainer'>
+				<div class='userhead'>
+					<img src='images/default_head.jpg'/>
+					<div class='needid'>0001</div>
+					
+				</div>
+				<div class='needlistlabel'><span>#给复旦猫儿一个温暖#</span></div>
+				<div class='needstatus'>进行中</div>
+				<div class='needcontent'>
+					<img src="images/backcc.jpg" alt="" style="width:100%;" />
+					<p>任务简介：爱猫可不要只是看看哦!这些小可爱可还饿着肚子呢,喂喂她们呗</p>
+					<p>任务要求：上传本人喂猫图片(照片要美美的o),经weshare认证通过,即可获得享豆奖励。重要的不是奖励，是爱。</p>
+					<div class="viewed">10000</div>
+				</div>
+				<div class='needpay'>1000享豆/per</div>
+				<div class='needlocation'>复旦大学</div>
+				<div class='needlisttime'>3天前</div>
+				<div class='taskaction' id='taskmove'><span class="mui-icon mui-icon-navigate"></span>&nbsp;&nbsp;行动</div>
+				<div class='taskaction' id='taskcomment'><span class="mui-icon mui-icon-email"></span>&nbsp;&nbsp;评论</div>
+				<div class='taskaction' id='tasksurport'><span class="mui-icon mui-icon-star"></span>&nbsp;&nbsp;支持</div>
+	   </div>		-->
+	   <div id='needwarp'>
+	   		<div  id='moreneed' class="moreneed"></div> 
+	   </div>
+            
+     </div>
+     <nav class="mui-bar mui-bar-tab">
+			<a id="indextab" class="mui-tab-item" href="index.html" style="color:#3F88B0;">
+				<span class="mui-icon mui-icon-home-filled"></span>
+				<span class="mui-tab-label">首页</span>
+			</a>
+			<a  id='needpublishtab' class="mui-tab-item" href="needpublish.html">
+				<span class="mui-icon mui-icon-plus-filled"></span>
+				<span class="mui-tab-label">发布</span>
+			</a>
+			<a  id='messagetab'class="mui-tab-item" href="message.html" >
+				<span class="mui-icon mui-icon-email-filled"><span class="mui-badge" id='remindnum' style="display: none;"></span></span>
+				<span class="mui-tab-label">消息</span>
+			</a>
+			<a  id='personcentertab' class="mui-tab-item" href="personcenter.html">
+				<span class="mui-icon mui-icon-contact-filled"></span>
+				<span class="mui-tab-label">我的</span>
+			</a>
+		</nav>
+    
+	   <script src="js/mui.min.js"></script>
+	   <script src="js/openwin.js"></script>
+	    <script type="text/javascript" charset="utf-8">
+	    
+     mui.plusReady(function(){
+
+//    		 quitapp();
+      		var page=1;
+      		 server=plus.storage.getItem('server');
+      		 var username=plus.storage.getItem('username');
+      		  active=plus.storage.getItem('active');
+      		  school=plus.storage.getItem('school');
+      	 	gettask(page,'actingtask');
+      	 	getremindernum(username);
+      	 	 getNeedNum();
+      	 	//切换至已完成
+      	 	document.getElementById('taskfinish').addEventListener('tap',function(){
+      	 		var html="<div id='moreneed' class='moreneed'></div>";
+      		     document.getElementById('needwarp').innerHTML=html;
+      	 		gettask(page,'finishedtask');
+      	 		document.getElementById('taskactingmark').style.display='none';
+      	 		document.getElementById('finishedmark').style.display='block';
+      	 	})
+      	 	//切换之进行中
+      	 	document.getElementById('taskacting').addEventListener('tap',function(){
+      	 		var html="<div id='moreneed' class='moreneed'></div>";
+      		     document.getElementById('needwarp').innerHTML=html;
+                 gettask(page,'actingtask');
+      	 		document.getElementById('taskactingmark').style.display='block';
+      	 		document.getElementById('finishedmark').style.display='none';
+      	 	})
+      	 	
+      	 	document.getElementById("needlist").addEventListener('tap',function(){
+      	 		mui.openWindow({
+      	 			url:'index.html',
+      	 			id:'index',
+      	 			createNew:true,
+      	 			show:{
+      	 				aniShow:'slide-in-right'
+      	 			}
+      	 		})
+      	 	})
+      	//进入详情页面
+      	mui('#needwarp').on('tap','.needcontainer',function(){
+      		tid=this.getAttribute('data-tid');
+      		taskpay=this.getAttribute('data-taskpay');
+      		//计算阅读数量
+      		mui.ajax(server+'taskaction.php',{
+      			data:{
+      				tid:tid,
+      				action:'viewnum'
+      			},
+      			type:'post',
+      			
+      			success:function(data){
+      				
+      			}
+      		})
+      		mui.openWindow({
+      			url:'taskaction.html',
+      			id:'taskaction',
+      			extras:{
+      				tid:tid,
+      				taskpay:taskpay,
+      				type:'move'
+      			},
+      			createNew:true,
+      			show:{
+      				aniShow:'slide-in-left'
+      			}
+      		})
+      	})
+      	 	
+      	});
+      	//获取需求数量
+      	function getNeedNum(){
+      		mui.ajax(server+'getneednum.php',{
+      			data:{
+      				action:'tasknum',
+      				school:school
+      			},
+      			type:'post',
+      			success:function(data){
+//    				alert(data);
+      				var jsondata=eval('['+data+']');
+      				var neednum=jsondata[0];
+          document.getElementById('actingNum').innerText=jsondata[0].actingNum;
+          document.getElementById('finishedNum').innerText=jsondata[0].finishedNum;
+      			}
+      		})
+      	}
+      	//获取所有任务列表
+      	function  gettask(page,action){
+			 mui.ajax(server+'gettask.php',{
+			 	data:{
+			 		action:action,
+			 		page:page,
+			 		school:school
+			 	},
+			 	type:'post',
+			 	success:function(data){
+//			 		alert(data);
+				var taskwarpper=document.getElementById("moreneed");
+				var jsondata=eval('['+data+']');
+				var tasklist=jsondata[0];
+				var maxrows=tasklist[0].maxrows;
+				var pagesize=tasklist[0].pagesize;
+				
+				if(tasklist==''){
+					maxpages=0
+				}else{
+					maxpages=tasklist[0].maxpages;
+				}
+				page++;
+				add="<button  class=\"moreneedbtn\" onclick=\"gettask("+page+","+"\'"+action+"\'"+");\">"+"点击加载更多"+"</button>";
+				document.getElementById("moreneed").innerHTML=add;
+				if(maxrows<=pagesize){
+					document.getElementById("moreneed").innerHTML='';
+				}else if(page>maxpages){
+					add="<button class='moreneedbtn'>这就是全部了</button>";
+					document.getElementById("moreneed").innerHTML=add;
+				}
+				for(var i=0;i<=tasklist.length;i++){
+					var publishtime=timeFormat(tasklist[i].publishtime);
+					if(tasklist[i].status==0){
+						status='进行中';
+					}else{
+						status='完成啦';
+					}
+					
+					html="<div class='needcontainer' data-tid='"+tasklist[i].tid+"' data-taskpay='"+tasklist[i].taskpayper+"'>"+
+					             "<div class='userhead'>"+
+									"<img src='images/default_head.jpg'/>"+
+									"<div class='needid'>"+tasklist[i].tid+"</div>"+
+								"</div>"+
+								"<div class='needlistlabel'><span>#"+tasklist[i].title+"#</span></div>"+
+								"<div class='needstatus'>"+status+"</div>"+
+								"<div class='needcontent'>"+
+									"<img src='"+server+"uploads/"+tasklist[i].taskpic+"' style='width:100%;' />"+
+									"<p>任务简介："+tasklist[i].taskintro+"</p>"+
+									"<p>任务要求："+tasklist[i].taskdemond+"</p>"+
+									"<div class='viewed'>"+tasklist[i].viewnum+"</div>"+
+								"</div>"+
+								"<div class='needpay'>"+tasklist[i].taskpayper+"享豆/per</div>"+
+								"<div class='needlocation'>"+tasklist[i].school+"</div>"+
+								"<div class='needlisttime'>"+publishtime+"</div>"+
+								"<div class='taskaction' id='taskmove'><span class='mui-icon mui-icon-navigate'></span>&nbsp;&nbsp;行动("+tasklist[i].resultnum+")</div>"+
+								"<div class='taskaction' id='taskcomment'><span class='mui-icon mui-icon-email'></span>&nbsp;&nbsp;评论("+tasklist[i].commentnum+")</div>"+
+								"<div class='taskaction' id='tasksurport'><span class='mui-icon mui-icon-star'></span>&nbsp;&nbsp;支持("+tasklist[i].surportnum+")</div>"+
+					  "</div>";
+					 taskwarpper.insertAdjacentHTML('beforeBegin',html); 
+				}
+			 	}
+			 })
+			}
+    </script>
+</body>
+</html>

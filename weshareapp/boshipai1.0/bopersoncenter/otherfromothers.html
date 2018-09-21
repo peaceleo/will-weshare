@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title>personcenter</title>
+    <script src="../js/mui.min.js"></script>
+     <script src="../js/openwin.js"></script>
+      <script src="../js/boshare.js"></script>
+    <link href="../css/mui.min.css" rel="stylesheet"/>
+     <link rel="stylesheet" href="../css/boshi.css" />
+      
+    
+    <style type="text/css">
+    			 .mui-bar-tab .mui-tab-item.mui-active{
+     	 	color: #929292;
+     	 }
+     	 body{
+     	 	background: white;
+     	 }
+     #wrapper {
+    		position: relative;
+    		z-index: 1;
+    		height: 35px;
+    		width: 100%;
+    		/*border: 1px solid black;*/
+    		overflow: hidden;
+    		font-weight: bolder;
+    }
+    #scroll{
+    	position: absolute;
+	z-index: 1;
+	-webkit-tap-highlight-color: rgba(0,0,0,0);
+	width: 200%;
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-webkit-text-size-adjust: none;
+	overflow-x: scroll;
+    }
+    #scroll ul{
+    		list-style: none;
+    		padding: 0;
+    		margin: 0;
+    		display: -webkit-box;
+    		
+    }
+    #scroll li{
+    border: 1px solid #E4E4E4;
+    	padding: 0;
+    	margin: 0;
+    width: 17%;
+    	line-height: 35px;
+    	overflow: hidden;
+    	text-align: center;
+    }
+    .singleorder{
+    	border-top: 2px solid #E4E4E4;
+    border-bottom: 3px solid #E4E4E4;
+    	float: left;
+    }
+    .singleorder div{
+    	/*float: left;*/
+    	
+    }
+    .proimg img{
+    	height: 90px;
+    	width: 90%;
+    	margin: 5px;
+    	padding: auto;
+    	
+    }
+    .orderinfo{
+    	  	border-left: 1px solid #e4e4e4;
+    }
+    .numandtime{
+    	border-bottom:1px solid #E4E4E4;
+    	font-size:12px;
+    	color: #A1A1A1;
+    	font-weight: bolder;
+    	padding: 3px;
+    }
+    .nameandprice{
+    	border-bottom: 1px solid #e4e4e4;
+    	padding: 10px;
+    	font-weight: bolder;
+    }
+    .orderprice{
+    	font-size: 13px;
+    color: white;
+    font-weight: bolder;
+    background: #66cccc;
+    width: 80px;
+    padding: 3px;
+    border-radius: 3px;
+    text-align: center;
+    }
+    .towhotel{
+    	font-size: 12px;
+    	padding: 3px;
+    	font-weight: bolder;
+    	color: #A1A1A1;
+    }
+    .personneedaction{
+   			width:50%;
+    			text-align: center;
+    			font-size: 13px;
+    			font-weight: bolder;
+    			color: black;
+    			border-top: 1px solid #E4E4E4;
+    			border-bottom: 3px solid #E4E4E4;
+    			padding-top: 5px;
+    			padding-bottom: 5px;
+    			border-left:2px solid #E4E4E4 ;
+   		}
+   		.personneedaction .mui-icon{
+   			font-size: 20px;
+   			font-weight: bolder;
+   		}
+   		 .mui-scroll-wrapper{
+     	 overflow: initial;
+     	 }
+     	 .sexshow{
+     	 	height: 20px;
+     	 	width: 20px;
+     	 	/*border:1px solid black;*/
+     	 	position: absolute;
+     	 	bottom: 0px;
+     	 	left: 60%;
+     	 }
+     	 #male{
+     	 	background: url(images/male.png) no-repeat;
+     	 	background-size:20px;
+     	 }
+     	 #female{
+     	 	background: url(images/female.png) no-repeat;
+     	 	background-size:20px;
+     	 }
+     /*.needcontainer{
+     	width: 94%;
+     	margin-left: 3%;
+     	margin-right:3% ;
+     	/*border:2px solid #E4E4E4;*/
+     /*}*/
+    #title{
+    	font-size: 14px;
+    	font-weight: bolder;
+    }
+    	 #moredata{
+     	 	text-align: center;
+     	 	
+     	 	font-size: 14px;
+     	 	font-weight: bolder;
+     	 	color:#0c9ed4;
+     	 }
+ 
+     	 .loading{
+     	 	background: url(images/loading4.gif) no-repeat center;
+     	 	background-size:30px ;
+     	 	padding-top: 60px;
+     	 	/*padding-top: 10px;
+     	 	padding-bottom: 10px;*/
+     	 }
+     	 .finish{
+     	 	padding: 30px;
+     	 }
+     </style>
+     
+</head>
+<body id='body'>
+	<header class="mui-bar mui-bar-nav">
+	    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+	    <h1 class="mui-title" id='title'>别人眼中的Ta</h1>
+	</header>
+	 
+	 <div class="mui-content">	
+		 	<div id="contentwarp">
+					 
+              
+            </div>
+             <div id='moredata'></div>
+	 </div>
+	  <script type="text/javascript" charset="utf-8">
+      	mui.init();
+      	mui.plusReady(function(){
+//    		quitapp();
+      		 var pager=plus.webview.currentWebview();
+      		 username=pager.username;
+      		 getremindernum(username);
+      		var reward=plus.storage.getItem('rewardpoints');
+      		page=1;
+      		getfromothers(username,page);
+      		//moredata
+		    document.addEventListener('plusscrollbottom',function(){
+								 	 	 page++;
+									 	 var wt=plus.nativeUI.showWaiting();
+									 	 document.getElementById('moredata').innerText='加载中...';
+									 	 document.getElementById('moredata').className='loading';
+									 	 console.log("mefromothers("+"\'"+username+"\'"+","+page+")");
+									 	 setTimeout("getfromothers("+"\'"+username+"\'"+","+page+")",600);
+									 	 wt.close();
+									 },false);
+      	 	//ene of moredata
+          })
+ 			 
+      	 //获取mefromothers列表
+      function   getfromothers(username,page){
+           console.log(username);
+      	   var contentcontainer=document.getElementById("contentwarp");
+      	  
+      	   mui.ajax(server+'getthankorder.php',{
+      	   	data:{
+      	   		username:username,
+      	   		page:page
+      	   	},
+      	   	type:'post',
+      	   	success:function(data){
+      	   		console.log(data);
+      	   	var contentcontainer=document.getElementById('contentwarp');
+      	   	 var jsondata=eval("["+data+"]");
+      	   	 var thankorderlist=jsondata[0];
+      	   		 if(thankorderlist==''){
+			      					maxPages=0;
+			      						html="<div class=\'commentblack\'>亲,Ta还没有收到评价呢</div>";
+      	                             contentcontainer.innerHTML=html;
+      	                             return;
+			      				}else{
+			      					maxPages=thankorderlist[0].maxPages;
+			      				}
+			      	 console.log(page);
+			      	 console.log(maxPages);
+				if(page>maxPages){
+						 	document.getElementById('moredata').innerText='这就是全部了....';
+						 	document.getElementById('moredata').className='finish';
+						 	return;
+						 }
+      	   	 for(var i=0;i<thankorderlist.length;i++){
+      	   	 	var thanktime=timeFormat(thankorderlist[i].sendtime);
+      	   	 	if(thankorderlist[i].sex=='男'){
+			      						var status1='block';
+			      						var status2='none';
+			      					}else{
+			      						var status1='none';
+			      						var status2='block';
+			      					}
+      	   	 	html="<div class='thankorder mui-col-xs-12'>"+
+      	   	 		   "<div class='bywhohead mui-col-xs-2 '>"+
+      	   	 		   "<img src='"+server+"uploads/"+thankorderlist[i].bywhohead+"' alt='head' />"+
+      	   	 		    "<span  class='male sexshow' style='display:"+status1+";'></span>"+
+				 		"<span  class='female sexshow' style='display:"+status2+";'></span>"+
+      	   	 		   "</div>"+
+      	   	 		   "<div class='mui-col-xs-10 thankordertop'>"+
+               		"<div class='thankpay'>+"+thankorderlist[i].needpay+"积分</div>"+
+               		
+               		"<div class='thanktime'>"+thanktime+"</div>"+
+                 	"</div>"+
+                 	"<div class='judgecontent mui-col-xs-10'>"+thankorderlist[i].judge+"</div>"+
+                 	"</div>";
+                 contentcontainer.insertAdjacentHTML('beforeend',html);	
+      	   	 }
+      	   	
+      	   	}
+      	   })
+      } 
+     
+     
+      
+    </script>
+</body>
+</html>

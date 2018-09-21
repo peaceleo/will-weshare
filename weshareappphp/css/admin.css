@@ -1,0 +1,390 @@
+ body{
+      width: 100%;
+      height: 100%;
+      background: #66cccc;
+      font-family: "Microsoft Yahei";
+      /*padding: 10px;*/
+      margin: auto;
+    }
+    section{
+      position: relative;
+      /*float: left;*/
+      /*background: white;*/
+      /*margin: auto;*/
+      /*border: 2px solid black;*/
+    }
+    table{
+      background: white;
+      width: 99%;
+      border: 2px solid #e4e4e4;
+      text-align: center;
+      margin: auto;
+      margin-top: 10px;
+    }
+     tr,th,td{
+      border: 1px solid #e4e4e4;
+     }
+     tr img{
+      height: 50px;
+     }
+     th{
+      font-size: 16px;
+      padding:5px;
+     }
+    .adminlist{
+      width: 100%;
+      height: 40px;
+      margin-left: auto;
+      margin-right: auto;
+      background: white;
+      /*margin: 10px;*/
+    }
+    section div.adminnav{
+      font-size: 15px;
+      /*background: white;*/
+      display: block;
+      float: left;
+      /*border: 2px solid #e4e4e4; */
+      padding: 8px;
+      padding-left: 10px;
+      padding-right: 10px;
+      height: 22px;
+      border-right: 2px solid #e4e4e4;
+    }
+    .adminnav select{
+      padding: 0px;
+      margin: 0px;
+      width: 150px;
+      height: 20px;
+    }
+    .content{
+      width: 100%;
+      position: relative;
+      margin-left: auto;
+      margin-right: auto;
+      /*top:45px;*/
+    }
+    .admincontent{
+      /*background: white;*/
+      margin-left: auto;
+      margin-right: auto;
+      width: 100%;
+    }
+    .usersearch{
+      display: inline-block;
+      /*margin-top: 10px;*/
+      margin-left: 10px;
+      margin-bottom: 0px;
+    }
+    .totalNum{
+      /*float: left;*/
+      display: inline-block;
+      margin-left: 800px;
+      font-size: 14px;
+      font-weight: bolder;
+      color: white;
+      padding: 15px;
+      margin-top: 10px;
+    }
+    .admincontent div{
+      float: left;
+    }
+    .singeuser{
+      background: white;
+      border: 1px solid #e4e4e4;
+      width: 180px;
+      height: 270px;
+      margin-right:10px;
+      margin-left: 10px; 
+      margin-top: 10px;
+    }
+    .singeuser div{
+      width: 100%;
+      text-align: center;
+
+    }
+    .singeuser div.userid{
+        color: #a1a1a1;
+        padding: 5px;
+    }
+    .singeuser div.userhead img{
+      width: 99%;
+    }
+     .singeuser div.taskpic img{
+      height: 130px;
+      width: 280px;
+     }
+    .singeuser div.userident{
+      font-weight: bolder;
+      padding: 5px;
+    }
+    .singeuser .checkmorebtn{
+      display: block;
+      border: none;
+      width: 40%;
+      background: #66cccc;
+      margin-left: auto;
+      margin-right: auto;
+      color: white;
+
+    }
+
+    .checked{
+      background: #389eda;
+      color: white;  
+    }
+    .unchecked{
+      background: white;
+      color: black;
+    }
+    .userinfo{
+      position: absolute;
+      height:1100px;
+      width: 100%;
+      background: rgba(0,0,0,0.5);
+    }
+    .taskinfo{
+      position: absolute;
+      height:2500px;
+      width: 100%;
+      background: rgba(0,0,0,0.5);
+    }
+    .userinfotable{
+      margin: auto;
+      width: 600px;
+      height: 1100px;
+      background: white;
+      opacity: 1;
+    }
+    .taskinfotable{
+      margin: auto;
+      width: 600px;
+      height: 100%;
+      background: white;
+      opacity: 1;
+    }
+    .pubcontent{
+      position: absolute;
+      top: 50px;
+      left: 30%;
+      background: white;
+      width: 500px;
+      text-align: left;
+      padding: 50px;
+
+    } 
+    .close{
+      padding: 10px;
+      width: 100%;
+      text-align: right;
+    }
+    .title{
+      border-bottom: 2px solid #e4e4e4;
+      padding: 3px;
+      margin-top: 5px;
+    }
+    .singleuserhead{
+      width: 200px;
+      float: left;
+    }
+    .singletaskpic{
+      width: 100%;
+      float: left;
+      text-align: center;
+    }
+    .singleuserhead img{
+      width: 90%;
+      padding:3px;
+    }
+    .singletaskpic img{
+      text-align: center;
+      width: 350px;
+    }
+    .personinfo{
+      float: left;
+      font-size: 13px;
+      color: #a1a1a1;
+      /*width: 100%;*/
+    }
+     .singletaskinfo{
+      float: left;
+      font-size: 13px;
+      color: #a1a1a1;
+      width: 100%;
+      padding-bottom: 10px;
+    }
+    .singletaskinfo div{
+      padding: 3px;
+      border-bottom: 1px solid #e4e4e4;
+    }
+    .personinfo div{
+      padding: 3px;
+      border-bottom: 1px solid #e4e4e4;
+    }
+    strong{
+      font-size: 14px;
+      color: black;
+    }
+    .ident{
+      float: left;
+      margin-top: 5px;
+      width: 100%;
+      /*height: 300px;*/
+      /*border: 1px solid black;*/
+    }
+    .ident img{
+      margin-left: 30px;
+      padding: 3px;
+      width: 80%;
+    }
+    .identbtn{
+      margin-top: 10px;
+      display: block;
+      margin-right: auto;
+      margin-left: auto;
+      background: #66cccc;
+      color: white;
+      padding: 5px;
+      font-weight: bolder;
+      font-size: 15px;
+      border: none;
+      border-radius: 4px;
+    }
+    .failident{
+      margin: 10px;
+    }
+    .failident select{
+      display: inline;
+      float: left;
+    }
+    #denybtn{
+    display: inline;
+    float: left;
+    margin: 0px;
+    padding: 5px;
+    margin-left: 38px;
+    }
+
+    .singleresult{
+      width: 100%;
+      height: 165px;
+      border-bottom: 4px solid #e4e4e4;
+
+    }
+    
+    .taskuserhead{
+      padding-top: 10px;
+      width: 15%;
+      display: inline;
+      float: left;
+      text-align: center;
+    }
+    .taskuserhead img{
+      width: 85%;
+      border-radius: 50%;
+    }
+    .taskresultinfo{
+      display: inline;
+      float: left;
+      width: 70%;
+      height: 150px; 
+      font-size: 12px;
+      color: #a1a1a1;
+    }
+    .taskresultinfo div{
+      font-size: 12px;
+      font-weight: bolder;
+      color: #a1a1a1;
+      padding: 2px;
+    }
+    .taskresultinfo div span{
+      margin-left: 120px;
+    }
+    .taskresultinfo div img{
+      height:115px;
+           }
+    .taskresultaction{
+      display: inline;
+      float: left;
+      width: 15%;
+      height: 150px;
+      text-align: center;
+      line-height: 150px;
+    }
+    .taskfinishbtn{
+      width: 100%;
+      text-align: center;
+    }
+    .taskfinishbtn button{
+
+      background: #66cccc;
+      padding: 3px;
+      padding-left: 10px;
+      padding-right: 10px;
+      font-weight: bolder;
+      color: white;
+      border: none;
+      border-radius: 3px;
+    }
+    .rewardAddContent{
+      width: 500px;
+      height: 600px;
+      background: white;
+      margin-right: auto;
+      margin-left: auto;
+      margin-top: 50px;
+    }
+    .rewardAddContent form{
+      /*margin-top: 30px;*/
+      padding:20px; 
+      width: 90%;
+      text-align: center;
+    }
+     .rewardAddContent form div{
+      margin: 10px;
+     width: 100%;
+    }
+    .rewardAddContent form div label{
+      font-size: 14px;
+      font-weight: bolder;
+    }
+    .rewardAdduserinfo{
+      width: 100%;
+      background: #e4e4e4;
+      margin: 10px;
+      border-radius: 5px;
+      font-weight: bolder;
+
+    }
+    .orderaction{
+      font-size: 10px;
+      font-weight: bolder;
+      border-radius: 5px;
+      margin-left: 10px;
+    }
+
+    .alertInput{
+      width: 300px;
+      height: 100px;
+      background: white;
+      border: 4px solid #e4e4e4;
+      /*opacity: 0.5;*/
+      position: fixed;
+      top: 50px;
+      left: 600px;
+      z-index: 100000;
+    }
+    .alertInput h4{
+      text-align: center;
+    }
+    .alertInput input{
+      margin-top: 10px;
+    }
+    .alertInput button{
+      /*height: px;*/
+      width: 50px;
+      padding: 5px;
+      font-size: 13px;
+      font-weight: bolder;
+      border-radius: 5px;
+    }

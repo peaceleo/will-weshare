@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title></title>
+    <script src="js/mui.min.js"></script>
+     <script src="js/openwin.js"></script>
+    <link href="css/mui.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="css/weshare.css" />
+     <script src="js/weshare.js"></script>
+     <style type="text/css">
+     	 .tabactive{
+     	 	color: #389EDA;
+     	 }
+     	  .mui-bar-tab .mui-tab-item.mui-active{
+     	 	color: #929292;
+     	 }
+     </style>
+    <script type="text/javascript" charset="utf-8">
+      	mui.init();
+      	mui.plusReady(function(){
+      		 quitapp();
+      		 plus.nativeUI.closeWaiting();
+      	var needlabel=document.getElementById("needlabel");
+      	var addintro=document.getElementById("addintro");
+      	var usertel=document.getElementById("usertel");
+
+      	var needpay=document.getElementById("needpay");
+      	var needpubbtn=document.getElementById("needpubbtn");
+      		server=plus.storage.getItem('server');
+      		active=plus.storage.getItem('active');
+      		console.log(active);
+      	var username=plus.storage.getItem('username'); 		
+      		getremindernum(username);
+      		getservicelist();
+      		getusertel(username);
+      	needpubbtn.addEventListener('tap',function(){
+      		 var reward=plus.storage.getItem('rewardpoints');
+      		
+      		  if(active==='未认证'){
+      		  	plus.ui.toast('您还没有上传学生证件,请在个人信息中完善证件信息...');
+      		  	return;
+      		  }
+      		   if(active==='认证中'){
+      		  	plus.ui.toast('您的身份信息正在认证中，请耐心等待...');
+      		  	return;
+      		  }
+        		 if(addintro.value==''){
+      		 	plus.ui.toast('您好像没说什么嘛');
+      		 	return;
+      		 }
+      		 if(usertel.value==''){
+      		 	plus.ui.toast('您还没有输入联系方式呢');
+      		 	return;
+      		 }
+      		 if(needpay.value==''){
+      		 	plus.ui.toast('每个天使都应该被美好对待');
+      		 	return;
+      		 }
+      		 if(parseFloat(needpay.value)>parseFloat(reward)){
+      		 	plus.ui.toast('您还没有那么多的资产呢');
+      		 	return;
+      		 }
+      		 if(isNaN(needpay.value)){
+      		 	plus.ui.toast('只能是数值哦');
+      		 	return;
+      		 } 
+             mui.ajax(server+'needaction.php',{
+             	data:{
+             		action:'needpublish',
+      				needlabel:needlabel.value,
+      				addintro:addintro.value,
+      				usertel:usertel.value,
+      				needpay:needpay.value,
+      				user:plus.storage.getItem('username')
+      			},
+      			type:'post',
+      			success:function(data){
+      				 if(data==1){
+      				 	plus.ui.toast('发布成功,10享豆');
+      				 	mui.openWindow({
+      				 		url:'index.html',
+      				 		id:'needlist',
+      				 		createNew:true,
+      				 		show:{
+      				 			aniShow:'slide-in-right',
+      				 			duration:300
+      				 		}
+      				 	})
+      				 }
+      				 if(data==2){
+      				 	plus.ui.toast('好像出了一些问题');
+      				 	return;
+      				 }
+      			},
+      			error:function(xhr,type,errorThrown){
+      				   plus.ui.toast('错误，请重启app');
+      			}
+             });
+				
+      	})
+      })
+      	function getusertel(username){
+      		mui.ajax(server+'useraction.php',{
+      			data:{
+      				action:'getusertel',
+      				username:username
+      			},
+      			type:'post',
+      			success:function(data){
+      				document.getElementById('usertel').value=data;
+      			}
+      		})
+      	}
+      	
+      	function getservicelist(){
+      		mui.ajax(server+'getselectlist.php',{
+      			data:{
+      				action:'servicelist'
+      			},
+      			type:'post',
+      			success:function(data){
+      				var needlabel=document.getElementById("needlabel");
+      				var jsondata=eval("["+data+"]");
+      				var servicelist=jsondata[0];
+      				for(var i=servicelist.length-1;i>=0;i--){
+      					html="<option value='"+servicelist[i]+"'>"+servicelist[i]+"</option>";
+      					needlabel.insertAdjacentHTML('afterBegin',html);
+      				}
+      			}
+      		})
+      	}
+  </script>
+</head>
+<body>
+	<header class="mui-bar mui-bar-nav">
+		<div class='header index-header'>
+			<div class='logo' id='logo'></div>
+			<h1 class='title' id='title'></h1>
+			<a id="menu" href="#topPopover" class="mui-action-menu mui-icon mui-icon-bars mui-pull-right"></a>
+		</div>
+	</header>	
+	<div id="topPopover" class="mui-popover">
+			<div class="mui-popover-arrow"></div>
+			<div class="mui-scroll-wrapper">
+				<div class="mui-scroll">
+					<ul class="mui-table-view">
+						<li class="mui-table-view-cell" id='exchangeMall'>乐享集市
+						</li>
+						<li class="mui-table-view-cell" id='logout'>注销
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	<div class="mui-content">
+	    <form class="mui-input-group">
+	    		<div class="mui-input-row">
+	    			<label for="">
+	    			<img src="images/needlabel.png" style="height: 20px;" />
+	    			</label>
+	    			<select name="needlabel" id="needlabel" class="needlabel">
+	    				       
+	    			</select>
+	    			
+	    		</div>
+	    		<div class="mui-input-row">
+	    			<label for=""><img src="images/addnote.png" style="height:20px ;"/></label>
+	    			<textarea class="mui-input mui-input-clear" rows="4" cols="3" name="addintro" id='addintro' placeholder="再说点什么吧,让大家更清楚你的需求"></textarea>
+	    		</div>
+	    		<div class="mui-input-row">
+	    			<label for=""><span class="mui-icon mui-icon-phone-filled"></span></label>
+	    			<input class="mui-input mui-input-clear"type="text" name='usertel' id='usertel' placeholder="请输入您的电话号码" />
+	    		</div>
+	    		<div class="mui-input-row">
+	    			<label for="">
+	    				<img src="images/pay.png" alt="" style="height:20px ;"/>
+	    			</label>
+	    			<input class="mui-input" type="text" name='needpay' id='needpay' placeholder="请输入悬赏数目"/><span class="paylabel">享豆</span>
+	    		</div>
+	    	  
+	    		
+	    </form>
+	    <button  id='needpubbtn' class="mui-btn-block mybtncenter">提交需求</button>
+	    <div class="tips">
+	    			<h4>Tips</h4>
+	   		 <ul class="mui-table-view">
+                  <li class="mui-table-view-cell">1.校园难题，在这里大声的告诉全世界</li>
+                  <li class="mui-table-view-cell">2.如有需要，天使们会电话确认哦</li>
+                  <li class="mui-table-view-cell">3.摘不了天上的星星，请真实合理，不要随便</li>
+        
+            </ul>
+	    </div>
+	</div>
+	 <nav class="mui-bar mui-bar-tab">
+			<a id="indextab" class="mui-tab-item " href="index.html">
+				<span class="mui-icon mui-icon-home-filled"></span>
+				<span class="mui-tab-label">首页</span>
+			</a>
+			<a  id='needpublishtab' class="mui-tab-item" href="needpublish.html" style="color:#3F88B0;">
+				<span class="mui-icon mui-icon-plus-filled"></span>
+				<span class="mui-tab-label">发布</span>
+			</a>
+			<a  id='messagetab'class="mui-tab-item" href="message.html" >
+				<span class="mui-icon mui-icon-email-filled"><span class="mui-badge" id='remindnum' style="display: none;"></span></span>
+				<span class="mui-tab-label">消息</span>
+			</a>
+			<a  id='personcentertab'class="mui-tab-item" href="personcenter.html">
+				<span class="mui-icon mui-icon-contact-filled"></span>
+				<span class="mui-tab-label">我的</span>
+			</a>
+		</nav>
+</body>
+</html>

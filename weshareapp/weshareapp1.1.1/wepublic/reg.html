@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title></title>
+    <script src="../js/mui.min.js"></script>
+    <link href="../css/mui.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="../css/weshare.css" />
+    <script type="text/javascript" charset="utf-8">
+      	mui.init();
+      	mui.plusReady(function(){
+      		var schoollist=document.getElementById("schoollist");
+      		var stunum=document.getElementById("stunum");
+      		var password=document.getElementById("password");
+      		var telphone=document.getElementById("telphone");
+      		var smsnuma=document.getElementById("smsnuma");
+      		var smsnumb=document.getElementById("smsnumb");
+      		var regbtn=document.getElementById("regbtn");
+      			server=plus.storage.getItem('server');
+//    		 selectcontainer=document.getElementById("schoollist");	
+//    		selectcontainer.onchange=function(){
+//    			school=selectcontainer.value;
+//    		}	
+				var info=plus.push.getClientInfo();
+				var clientid=info.clientid;
+				var token=info.token;
+				var appid=info.appid;
+				var version=plus.runtime.version;
+      		getschoollist();	
+      		telphone.addEventListener('blur',function(){
+      			if(telphone.value.length==0){
+      				plus.ui.toast('手机号码不能为空哦');
+      				return;
+      			}
+      			mui.ajax(server+'reg.php',{
+      				data:{
+      					action:'sendsms',
+      					telphone:telphone.value
+      				},
+      				type:'POST',
+      				success:function(data){
+      					smsnuma.value=data;
+      					stunum.value=telphone.value;
+      					if(data==0){
+      						plus.ui.toast('手机号已经注册过');
+      					}else{
+      						plus.ui.toast('短信验证码发送成功')
+      					}
+      				}
+      			})
+      		})
+      		
+      		regbtn.addEventListener('tap',function(){
+      			a=parseInt(smsnuma.value);
+      			b=parseInt(smsnumb.value);
+      			if(schoollist.value.length==0){
+      				plus.ui.toast('您总得属于一所学校吧！');
+      				return;
+      			}
+      			if(stunum.value.length==0){
+      				plus.ui.toast('您总得有学号吧！');
+      				return;
+      			}
+      			if(password.value.length==0){
+      				plus.ui.toast('您总得有一个密码吧！');
+      				return;
+      			}
+      			if(telphone.value.length==0){
+      				plus.ui.toast('这年头，谁还米有个手机呢');
+      				return;
+      			}
+      			if(a!=b){
+      				plus.ui.toast('短信验证码错误');
+      				return;
+      			}
+      			mui.ajax(server+'reg.php',{
+      				data:{
+      					action:'reg',
+      					school:schoollist.value,
+      					stunum:stunum.value,
+      					password:password.value,
+      					telphone:telphone.value,
+      					clientid:clientid,
+      					token:token,
+      					appid:appid,
+      					version:version
+      				},
+  	    				type:'POST',
+  	    				timeout:10000,
+  	    				success:function(data){
+	    					if(data==1){
+							plus.nativeUI.alert('欢迎加入weshare的大家庭,完成学生认证,开启分享之旅！','','weshare','去认证');
+	    						mui.openWindow({
+	    							url:'ident.html',
+	    							id:'ident',
+	    							createNew:true,
+	    							extras:{
+	    								username:stunum.value
+	    							},
+	    							show:{
+	    								aniShow:'slide-in-left',
+	    								duration:300
+	    							}
+	    							
+	    						})
+	    					}else if (data==0){
+	    						plus.ui.toast('手机号码已存在');
+	    					}else if(data==3){
+	    						plus.ui.toast('学号已存在');
+	    					}else if(data==-1){
+	    						plus.ui.toast('短信验证码错误');
+	    					}else{
+	    						plus.ui.toast('wrong');
+	    					}
+	    						
+  	    				}
+      			});
+      		})
+      	
+      	})
+      	function getschoollist(){
+      		
+      		mui.ajax(server+'getselectlist.php',{
+      			data:{
+      				action:'schoollist'
+      			},
+      			type:'post',
+      			success:function(data){
+      				var selectcontainer=document.getElementById("schoollist");
+      				var jsondata=eval("["+data+"]");
+      				var schoollist=jsondata[0];
+      				for(var i=schoollist.length-1;i>=0;i--){
+      					html="<option value='"+schoollist[i]+"'>"+schoollist[i]+"</option>";
+      					selectcontainer.insertAdjacentHTML('afterBegin',html);
+      				}
+      			}
+      		})
+      		
+      	}
+    </script>
+    <style type="text/css">
+    	 #schoollist{
+     	    background: url(images/down.png) no-repeat;
+    	  	    background-size: 11px;
+    	  	   background-position:90% ;
+    	  	   height: 40px;
+    	  	   border:2px solid #A1A1A1;
+    	  	   padding-left:10px;
+    	  	   padding-bottom: 0px;
+    	  	   font-weight: bolder;
+     	 }
+     	 .mui-content{
+     	 	width: 80%;
+     	 	margin-left: 10%;
+     	 	margin-right: 10%;
+     	 	margin-top: 30px;
+     	 }
+     	
+     	 #telphone,#smsnumb,#password{
+     	 	border: none;
+     	 	border: 2px solid #E4E4E4;
+     	 	height: 45px;
+     	 }
+     	 #title{
+     	 	text-align: center;
+     	 	margin: 0px;
+     	 	padding: 0px;
+     	 
+     	 	font-size: 18px;
+     	 }
+    </style>
+</head>
+<body>
+	<header class="mui-bar mui-bar-nav">
+		<div class='header index-header'>
+			 <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class='title' id='title'>注册</h1>
+			<a id="menu" href="#topPopover"  style='visibility:hidden;' class="mui-action-menu mui-icon mui-icon-bars mui-pull-right"></a>
+		</div>
+	</header>
+	<div class="mui-content">
+	    <form  class=''>
+	    		<div class="mui-input-row">
+	    			<select name="school" id='schoollist' class="schoollist">
+	    			</select>
+	    		</div>
+	    		<div class="mui-input-row">
+	    			<input type="text" class="mui-input mui-input-clear" name='telphone' id='telphone' placeholder="请输入手机号(失去焦点自动发送验证码)"/>
+	    		</div>
+	    		<div class="mui-input-row">
+	    			<!--<label for=""><span class="mui-icon mui-icon-email"></span></label>-->
+	    			
+	    			<input type="text" class="mui-input mui-input-clear" name='smsnumb' id='smsnumb' placeholder="请输入短信验证码..."/>
+	    		</div>
+	    		<div class="mui-input-row" style="display: none;">
+	    			<label for=""><span class="mui-icon mui-icon-email"></span></label>
+	    			<input type="text" class="mui-input mui-input-clear" name='smsnuma' id='smsnuma' placeholder="主上,请输入短信验证码..."/>
+	    		</div>
+	    		<div class="mui-input-row" style="display: none;">
+	    			<!--<label for=""><span class="mui-icon mui-icon-person"></span></label>-->
+	    			<input type="text" class="mui-input mui-input-clear" name='stunum' id='stunum' placeholder="主上,请输入学号..."/>
+	    		</div>
+	    		<div class="mui-input-row">
+	    			<!--<label for=""><span class="mui-icon mui-icon-locked"></span></label>-->
+	    			<input type="password" class="mui-input" name='text' id='password' placeholder="请输入密码..."/>
+	    		</div>
+	    		
+	    		<button type="button" class="mui-btn  mui-btn-block mybtncenter" id='regbtn'>下一步</button>
+	    </form>
+	</div>
+	
+</body>
+</html>

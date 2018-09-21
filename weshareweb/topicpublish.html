@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title></title>
+    <script src="js/mui.min.js"></script>
+    <link href="css/mui.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="css/weshare.css" />
+     <script src="js/weshare.js"></script>
+     <style type="text/css">
+     	 .tabactive{
+     	 	color: #389EDA;
+     	 }
+     	  .mui-bar-tab .mui-tab-item.mui-active{
+     	 	color: #929292;
+     	 }
+     	 .uploadpic{
+     	 	text-align:center;
+     	 }
+     	 .uploadpic .mui-icon{
+     	 	display: inline;
+     	 	margin-left: -5px;
+     	 	padding: 0;
+     	 }
+     	 .uploadpic p{
+     	 	/*padding-left:30px ;*/
+     	 	text-align: left;
+     	 	padding-top: 5px;
+     	 }
+     	 .uploadpic img{
+     	 	width: 90%;
+     	 	display: block;
+     	 	text-align:center;
+     	 	margin: auto;
+     	 	padding: 10px;
+     	 
+     	 }
+     	.mui-content{
+     		font-weight: bold;
+     	}
+     	
+     </style>
+    <script type="text/javascript" src='js/jquery-1.11.3.js'></script>
+    <script type="text/javascript" charset="utf-8">
+      	// mui.init();
+      	$(document).ready(function(){
+//    		quitapp();
+      	var topictype=document.getElementById("topictype");
+      	var topicname=document.getElementById("topicname");
+      	var topicintro=document.getElementById("topicintro");
+       	var topicnotice=document.getElementById("topicnotice");
+          server='http://120.27.34.187:8000/';
+      		// server=plus.storage.getItem('server');
+      		// active=plus.storage.getItem('active');
+      	 //    username=plus.storage.getItem('username');
+      	 //    school=plus.storage.getItem('school');
+      		gettopictypelist();
+      		  // if(active==='未认证'){
+      		  // 	plus.ui.toast('您还没有上传学生证件,请在个人信息中完善证件信息...');
+      		  	
+      		  // }
+          //     if(active==='认证中'){
+      		  // 	plus.ui.toast('您的身份信息正在认证中，请耐心等待...');
+      		  
+      		  // }
+            
+     	})	
+      	function gettopictypelist(){
+      		mui.ajax(server+'getselectlist.php',{
+      			data:{
+      				action:'topictypelist'
+      			},
+      			type:'post',
+      			success:function(data){
+      				console.log(data);
+      				var topictype=document.getElementById("topictype");
+      				var jsondata=eval("["+data+"]");
+      				var topictypelist=jsondata[0];
+      				for(var i=topictypelist.length-1;i>=0;i--){
+      					html="<option value='"+topictypelist[i]+"'>"+topictypelist[i]+"</option>";
+      					topictype.insertAdjacentHTML('afterBegin',html);
+      				}
+      			}
+      		})
+      	}
+
+   
+   //上传产品
+   function topicpub(){
+     if(confirm('网页端为游客模式，无法进行操作,下载App玩转更多哦')){
+                location.href='download.html';
+              }else{
+                return;
+              }
+      if(active==='未认证'){
+      		  	plus.ui.toast('您还没有上传学生证件,请在个人信息中完善证件信息...');
+      		  	return;
+      		  }
+      		   if(active==='认证中'){
+      		  	plus.ui.toast('您的身份信息正在认证中，请耐心等待...');
+      		  	return;
+      		  }
+        		 if(topicname.value==''){
+      		 	plus.ui.toast('请输入话题名称');
+      		 	return;
+      		 }
+      		
+      		 if(topicintro.value==''){
+      		 	plus.ui.toast('请输入话题说明');
+      		 	return;
+      		 }
+      		 
+      		 if(topicnotice.value==''){
+      		 	plus.ui.toast('请输入话题注意');
+      		 	return;
+      		 } 
+ var wt=plus.nativeUI.showWaiting(); 
+     mui.ajax(server+'topicaction.php',{
+     	data:{
+     		action:'topicpub',
+     		school:school,
+     		user:username,
+     		topictype:topictype.value,
+     		topicname:topicname.value,
+     		topicintro:topicintro.value,
+     		topicnotice:topicnotice.value
+     	},
+     	type:'post',
+     	success:function(data){
+//   		plus.nativeUI.Waiting();
+//      alert(data);
+     		if(data==1){
+     			wt.close();
+     			plus.ui.toast('发布成功,管理员审核通过之后，即可开始讨论');
+     			mui.openWindow({
+     				url:'topic.html',
+     				id:'topic',
+     				createNew:true
+     			})
+     		}else{
+     			plus.ui.toast('出了一点问题，这不怪你');
+     		}
+     	}
+     })
+   }
+   
+  </script>
+</head>
+<body>
+	<header class="mui-bar mui-bar-nav">
+	    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+	    <h1 class="mui-title" style='font-weight: bolder; font-size: 15px;'>话题发起</h1>
+	</header>
+	<div class="mui-content">
+	    <form class="mui-input-group">
+	    		<div class="mui-input-row">
+	    			<label for="">
+	    			<img src="images/myneed.png" style="height: 23px;" />
+	    			</label>
+	    			<select name="topictype" id="topictype" class="needlabel">	
+	 
+	    			</select>
+	    			
+	    		</div>
+	    		<div class="mui-input-row" >
+	    			<label for="">
+	    			<img src="images/name.png" style="height: 23px;" />
+	    			</label>
+	    			<input class="mui-input muip-input-clear" type="text" name='topicname' id='topicname' placeholder="话题名称"/>
+	    		</div>
+	    		
+	    		
+	    		<div class="mui-input-row">
+	    			<label for=""><img src="images/coltopic.png" style="height:23px ;"/></label>
+	    			<textarea class="mui-input mui-input-clear" rows="4" cols="3" name="topicintro" id='topicintro' placeholder="话题介绍"></textarea>
+	    		</div>
+	    		<div class="mui-input-row">
+	    			<label for=""><img src="images/mefromothers.png" style="height:23px ;"/></label>
+	    			<textarea class="mui-input mui-input-clear" rows="4" cols="3" name="topicnotice" id='topicnotice' placeholder="乐享提示" disabled>用户每产生一条经验,可获得5个享豆奖励;经验得到其他用户点赞,即可获得对方2个享豆的鼓励;希望这是个有用有爱的话题.</textarea>
+	    		</div>
+	    		
+	    		
+	    	  
+	    		
+	    </form>
+	    <button  id='needpubbtn' class="mui-btn-block mybtncenter" onclick="topicpub()">发起</button>
+	    <!--<div class="tips">
+	    			<h4>Tips</h4>
+	   		 <ul class="mui-table-view">
+	   		 	  <li class="mui-table-view-cell">1.能进入乐享集市的宝贝，均属精品</li>
+                  <li class="mui-table-view-cell">2.无论是所有权还是使用权的转让,请注明</li>
+                  <li class="mui-table-view-cell">3.经过平台认证通过的商品才能入驻集市，别着急</li>
+                  <li class="mui-table-view-cell">4.商品的图片漂亮,介绍详细，可极大的提高通过概率</li>
+        
+            </ul>
+	    </div>-->
+	</div>
+</body>
+</html>

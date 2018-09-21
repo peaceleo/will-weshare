@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title></title>
+    <script src="js/mui.min.js"></script>
+    <link href="css/mui.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="css/weshare.css" />
+     <script src="js/weshare.js"></script>
+     <style type="text/css">
+     	 .tabactive{
+     	 	color: #389EDA;
+     	 }
+     	  .mui-bar-tab .mui-tab-item.mui-active{
+     	 	color: #929292;
+     	 }
+     	 .uploadprew{
+     	 	text-align:center;
+     	 }
+     	 .uploadprew .mui-icon{
+     	 	display: inline;
+     	 	padding: 0;
+     	 }
+     	 .uploadprew p{
+     	 	padding-left: 10px;
+     	 	text-align: left;
+     	 	padding-top: 5px;
+     	 }
+     	 .picaction{
+     	 	background: #3F88B0;
+     	 	padding: 8px;
+     	 	color: white;
+     	 	font-size: 13px;
+     	 	border-radius: 5px;
+     	 	margin: 10px;
+     	 	height: 40px;
+     	 }
+     	 	 .mui-input-row label~select {
+    			 width: 75%; 
+    			 float: none;
+		}
+		.mui-input-row label~textarea {
+  			  width: 75%;
+  			  float: none;
+		}
+		.mui-content{
+			width: 100%;
+			margin: 0px;
+		}
+		.imgprew{
+			width: 90%;
+			margin-left: 5%;
+			margin-right: 5%;
+			margin-top: 10px;
+		}
+     </style>
+    <script type="text/javascript" charset="utf-8">
+      	mui.init();
+      	mui.plusReady(function(){
+//    		quitapp();
+      	var prolabel=document.getElementById("prolabel");
+      	var proname=document.getElementById("proname");
+      	var prostore=document.getElementById("prostore");
+      	var propay=document.getElementById("propay");
+       	var pronote=document.getElementById("pronote");
+       	var prodepartmentwarp=document.getElementById('departmentwarp');
+       	var proteacherwarp=document.getElementById('teacherwarp');
+       
+       
+       	var prolocation=document.getElementById('prolocation');
+       	
+       	  	prodepartmentwarp.style.display='none';
+       	  	proteacherwarp.style.display='none';
+      		server=plus.storage.getItem('server');
+      		active=plus.storage.getItem('active');
+      	    username=plus.storage.getItem('username');
+      	    school=plus.storage.getItem('school');
+      		getprolabellist();
+      		  if(active==='未认证'){
+      		  	plus.ui.toast('您还没有上传学生证件,请在个人信息中完善证件信息...');
+      		  	
+      		  }
+              if(active==='认证中'){
+      		  	plus.ui.toast('您的身份信息正在认证中，请耐心等待...');
+      		  
+      		  }
+      		prolabel.onchange=function(){
+      			var prolabelvalue=prolabel.value;
+      			if(prolabelvalue==='图书资料'){
+      				prodepartmentwarp.style.display='block';
+       	  			proteacherwarp.style.display='block';
+       	  			getdepartmentlist();
+      			}else{
+      				prodepartmentwarp.style.display='none';
+       	  			proteacherwarp.style.display='none';
+      			}
+      			
+      		}
+      		//照片操作
+//    		 window.defaultimg='images/uploadpic.jpg';
+//          document.getElementById("uploadpropic").setAttribute('src',defaultimg);
+      		var removefiles=document.getElementById('removefiles');
+      		var bylocal=document.getElementById('bylocal');
+      		var bycamera=document.getElementById('bycamera');
+      		removefiles.style.display='none';
+            //提交
+            document.getElementById('propubbtn').addEventListener('tap',uploadpic);
+     	})	
+       
+     function getprolabellist(){
+      		mui.ajax(server+'getselectlist.php',{
+      			data:{
+      				action:'protypelist'
+      			},
+      			type:'post',
+      			success:function(data){
+//    				console.log(data);
+      				var prolabel=document.getElementById("prolabel");
+      				var jsondata=eval("["+data+"]");
+      				var exchangetypelist=jsondata[0];
+//    				for(var i=exchangetypelist.length-1;i>=0;i--){
+//    					html="<option value='"+exchangetypelist[i]+"'>"+exchangetypelist[i]+"</option>";
+//    					prolabel.insertAdjacentHTML('beforeend',html);
+//    				}
+      				for(var i=0;i<=exchangetypelist.length-1;i++){
+      					html="<option value='"+exchangetypelist[i]+"'>"+exchangetypelist[i]+"</option>";
+      					prolabel.insertAdjacentHTML('beforeEnd',html);
+      				}
+      			}
+      		})
+      	}
+    //选取院系列表
+     function getdepartmentlist(){
+     	   mui.ajax(server+'getselectlist.php',{
+     	   	data:{
+     	   		action:'departmentlist'
+     	   	},
+     	   	type:'post',
+     	   	success:function(data){
+     	   		console.log(data);
+     	   		var department=document.getElementById('deparment');
+     	   		var jsondata=eval('['+data+']');
+     	   		var departmentlist=jsondata[0];
+     	   		for(var i=departmentlist.length-1;i>=0;i--){
+     	   			html="<option value='"+departmentlist[i]+"'>"+departmentlist[i]+"</option>";
+     	   			department.insertAdjacentHTML('beforeend',html);
+     	   		}
+     	   	}
+     	   })
+     }
+      	
+   //从相册提取文件 
+ var files=[];
+ 
+   function appendByGallery(){
+	plus.gallery.pick(function(p){
+      appendFile(p);
+    })
+}
+   //使用相机
+   function appendByCamera(){
+	plus.camera.getCamera().captureImage(function(p){
+	appendFile(p);
+	});	
+}
+   //添加文件
+   function  appendFile(p){
+   	path=plus.io.convertLocalFileSystemURL(p);
+	var image=new Image();
+	image.onload=function(){
+		 		resizeImg(image,600,600);
+		 		var canvas=document.getElementById('uploadpropic');
+		 		var ctx= canvas.getContext('2d');
+		 		canvas.width=image.width;
+		 		canvas.height=image.height;
+		 		ctx.clearRect(0,0,image.width,image.height);
+		 		ctx.drawImage(image,0,0,image.width,image.height);
+		 		 files= canvas.toDataURL('images/jpeg',1);
+		 		 files1=files.substr(files.indexOf(',')+1);
+ 			
+		 }
+
+image.src=path; 
+// 	   document.getElementById("uploadpropic").setAttribute('src',path);
+//	    files.push({name:"propic",path:p});
+	   document.getElementById('bylocal').style.display='none';
+	   document.getElementById('bycamera').style.display='none';
+	   document.getElementById('removefiles').style.display='inline';
+   }
+     //重新选择图片
+   function removefiles(){
+ 
+   	files='';
+   	var image=new Image();
+	image.onload=function(){
+		 		var canvas=document.getElementById('uploadpropic');
+		 		var ctx= canvas.getContext('2d');
+		 		canvas.width=image.width;
+		 		canvas.height=image.height;
+		 		ctx.clearRect(0,0,image.width,image.height);
+		 		
+ 			
+		 }
+
+image.src=path; 
+// 	 document.getElementById("uploadpropic").setAttribute('src',defaultimg);
+   		document.getElementById('bylocal').style.display='inline';
+	    document.getElementById('bycamera').style.display='inline';
+	    document.getElementById('removefiles').style.display='none';
+   }
+   
+   function resizeImg(image,max_width,max_height){
+		 	var Ratio=1;
+		 	var w=image.width;
+		 	var h= image.height;
+
+		 	var wRatio=max_width /w;
+		 	var hRatio=max_height/h;
+		 	//判断
+		 	if(max_width==0 && max_height==0){
+		 		Ratio=1;
+		 	}else if(max_width==0){
+		 		if(hRatio<1) Ratio=hRatio;
+		 	}else if(max_height==0){
+		 		if(wRatio<1) Ratio=wRatio;
+		 	}else if(wRatio<1 && hRatio<1){
+		 		Ratio= (wRatio<=hRatio)?wRatio:hRatio;
+		 	}
+
+		 	w =w * Ratio;
+		 	h =h * Ratio;
+		 	image.width=w;
+		 	image.height=h;
+		 }
+   //上传产品
+   function uploadpic(){
+// 	  console.log(files1);
+   	
+   	var prodepartment=document.getElementById('deparment');
+   		var proteacher=document.getElementById('teacher');
+   	
+   	
+             if(active==='未认证'){
+      		  	plus.ui.toast('您还没有上传学生证件,请在个人信息中完善证件信息...');
+      		  	return;
+      		  }
+      		   if(active==='认证中'){
+      		  	plus.ui.toast('您的身份信息正在认证中，请耐心等待...');
+      		  	return;
+      		  }
+      		 
+      		  if(prolabel.value==='chooseone'){
+      		  	plus.ui.toast('请选择宝贝类别');
+      		 	return;
+      		  }
+        		 if(proname.value==''){
+      		 	plus.ui.toast('请输入宝贝名称');
+      		 	return;
+      		 }
+      		 if(propay.value==''){
+      		 	plus.ui.toast('请输入宝贝价格');
+      		 	return;
+      		 }
+      		  if(prolocation.value==''){
+      		 	plus.ui.toast('请输入宝贝所在区域');
+      		 	return;
+      		 }
+      		 
+      		 if(pronote.value==''){
+      		 	plus.ui.toast('请输入宝贝介绍');
+      		 	return;
+      		 } 
+       if(prolabel.value==='图书资料'){
+         if(prodepartment.value==='all'){
+         	 plus.ui.toast('请选择宝贝所在院系');
+      		 return;
+         }
+       }	
+        if(files.length==0){
+       	      plus.ui.toast('请选择一张宝贝美照');
+      		   return;
+             }
+      
+       
+   	 var wt=plus.nativeUI.showWaiting();
+	 task=plus.uploader.createUpload(server+'exchangeupload109.php',
+		{method:"POST"},
+		function(t,status){
+			console.log(task.responseText);
+			console.log(status);
+			if(status==200){
+				plus.ui.toast('上传成功');
+                wt.close();
+                mui.openWindow({
+                	url:'exchange.html',
+                	id:'exchange',
+                	createNew:true,
+                	show:{
+                		aniShow:'slide-in-right',
+                		duration:200
+                	}
+                })
+			}else{
+				plus.ui.toast('上传失败');
+				wt.close();
+			}
+		});
+//	task.addFile(files[0].path,{key:files[0].name});
+	task.addData('files',files1);
+	task.addData('prolabel',prolabel.value);
+	task.addData('prodepartment',prodepartment.value);
+	task.addData('proname',proname.value);
+	task.addData('proteacher',proteacher.value);
+	task.addData('prostore',prostore.value);
+	task.addData('proprice',propay.value);
+	task.addData('prolocation',prolocation.value);
+	task.addData('description',pronote.value);
+	task.addData('publisher',username);
+	task.addData('proschool',school);
+	task.start();
+   }
+ 
+   
+  </script>
+</head>
+<body>
+	<header class="mui-bar mui-bar-nav">
+	    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+	    <h1 class="mui-title"><strong>闲置宝贝发起</strong></h1>
+	</header>	
+	<div class="mui-content">
+	    <form class="mui-input-group">
+	    		<div class="mui-input-row">
+	    			<label for="">
+	    			<img src="images/needlabel.png" style="height: 20px;" />
+	    			</label>
+	    			<select name="prolabel" id="prolabel" class="needlabel">	
+	    				<option value="chooseone">请选择宝贝类别</option>
+	    			</select>
+	    			
+	    		</div>
+	    		<div class="mui-input-row" id='departmentwarp'>
+	    			<label for="">
+	    			<img src="images/university.png" style="height: 20px;" />
+	    			</label>
+	    			<select name="department" id="deparment" class="needlabel">	
+	    				<option value="all">请选择院系</option>
+	    			</select>
+	    		</div>
+	    		<div class="mui-input-row">
+	    			<label for="">
+	    			<img src="images/comment.png" style="height: 20px;" />
+	    			</label>
+	    			<input class="mui-input muip-input-clear" type="text" name='proname' id='proname' placeholder="宝贝名称"/>
+	    		</div>
+	    		<div class="mui-input-row" id='teacherwarp'>
+	    			<label for="">
+	    			<img src="images/teacher.png" style="height: 20px;" />
+	    			</label>
+	    			<input class="mui-input muip-input-clear" type="text" name='teacher' id='teacher' placeholder="授课老师（选填）"/>
+	    		</div>
+	    		<div class="mui-input-row">
+	    			<label for="">
+	    			<img src="images/note.png" style="height: 20px;" />
+	    			</label>
+	    			<input class="mui-input muip-input-clear" type="text" name='prostore' id='prostore' placeholder="宝贝数量（选填）" />
+	    		</div>
+	    		<div class="mui-input-row">
+	    			<label for="">
+	    				<img src="images/pay.png" alt="" style="height:20px ;"/>
+	    			</label>
+	    			<input class="mui-input" type="text" name='propay' id='propay' placeholder="兑换价格"/><span class="paylabel">享豆</span>
+	    		</div>
+	    		<div class="mui-input-row">
+	    			<label for="">
+	    			<img src="images/note.png" style="height: 20px;" />
+	    			</label>
+	    			<input class="mui-input muip-input-clear" type="text" name='prolocation' id='prolocation' placeholder="所在区域(标明所在校区哦)" />
+	    		</div>
+	    		<div class="mui-input-row">
+	    			<label for=""><img src="images/addnote.png" style="height:20px ;"/></label>
+	    			<textarea class="mui-input mui-input-clear" rows="4" cols="3" name="addintro" id='pronote' placeholder="产品说明"></textarea>
+	    		</div>
+	    		<div class="mui-input-row uploadprew" >
+	    			<p><span class="mui-icon mui-icon-image"></span>&nbsp;&nbsp;&nbsp;&nbsp;上传产品图片</p>
+	    			<p style="font-size: 12px; text-align: center;">图片大小不超过3MB,图片格式jpg,jpeg,png,gif</p>
+	    			<span   id='bylocal' class='picaction' onclick="appendByGallery()">本地照片</span>
+	    			<span   id='bycamera' class='picaction' onclick="appendByCamera()">相机拍照</span>
+	    			<span   id='removefiles' class='picaction' onclick="removefiles()">重新选择</span>
+	    			<!--<img  id='uploadpropic' src=""/>--> 
+	    			<canvas id="uploadpropic"  class="imgprew"></canvas>
+	    		</div>
+	    		
+	    	  
+	    		
+	    </form>
+	    <button  id='propubbtn' class="mui-btn-block mybtncenter">提交</button>
+	    <div class="tips">
+	    			<h4>Tips</h4>
+	   		 <ul class="mui-table-view">
+	   		 	  <li class="mui-table-view-cell">1.不要让闲置的东西在角落生灰,要生辉</li>
+                  <li class="mui-table-view-cell">2.无论是卖还是租借,请在宝贝介绍中注明</li>
+                  <li class="mui-table-view-cell">3.享豆的兑换比例为1元人民币＝10个享豆</li>
+                  <li class="mui-table-view-cell">4.分享就是最好的拥有(借用)</li>
+            </ul>
+	    </div>
+	</div>
+</body>
+</html>

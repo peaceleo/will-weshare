@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+     <link href="../css/mui.min.css" rel="stylesheet"/>
+	<link rel="stylesheet" href="../css/boshi.css" />
+	 <script src="../js/boshare.js"></script>
+    <title>topic</title>
+   
+   
+     <style type="text/css">
+     	
+     	 .mui-bar-tab .mui-tab-item.mui-active{
+     	 	color: #929292;
+     	 }
+     	 
+     	 #task{
+     	 	color: black;
+     	 	text-align: center;
+     	 	background: white;
+     	 	/*width: 35px;*/
+     	 	font-weight: bolder;
+     	 }
+     	  #needlist{
+     	 	border-radius: 5px;
+     	 	color: black;
+     	 	text-align: center;
+     	 	background: white;
+     	 	/*width: 35px;*/
+     	 	font-weight: bolder;
+     	 }
+     	 #acti{
+     	 	border-radius: 5px;
+     	 	/*border-right: 1px solid #E4E4E4;*/
+     	 	color: black;
+     	 	text-align: center;
+     	 	background: white;
+     	 	/*width: 35px;*/
+     	 	font-weight: bolder;
+     	 }
+     	  #topic{
+     	 	/*padding: 5px;*/
+     	 	border-radius: 5px;
+     	 	color: white;
+     	 	text-align: center;
+     	 	background: #be0108;
+     	 	/*width: 35px;*/
+     	 	font-weight: bolder;
+     	 }
+     	
+     	 .searchwarpper{
+     	 	width: 96%;
+     	 	margin: auto;
+ 			border:2px solid #E4E4E4;
+ 			border-radius: 10px;
+ 			height: 40px;
+ 			margin-top: 5px;
+     	 }
+     	 .searchwarpper input{
+     	 	margin: 0;
+     	 	padding: 0;
+     	 	width: 81%;
+     	 	border: none;
+     	 	height: 33px;
+     	 	font-size: 14px;
+     	 	color: black;
+     	 	font-weight: bold;
+     	 	margin-left: 10px;
+     	 	margin-top: 2px;
+     	 }
+     	 .searchwarpper button{
+     	 	background: url(	../images/search.png) no-repeat center;
+     	 	background-size:18px ;
+     	 	/*background-posit;*/
+     	 	border: none;
+     	 	margin: 0;
+     	 	padding: 0;
+     	 	/*padding-top:10px;*/
+     	 	height: 33px;
+     	 	width: 13%;
+     	 	margin-top: 2px;
+     	 	opacity: 0.4;
+     	 }
+     	 .topicpart{
+     	 	width: 96%;
+     	 	margin: auto;
+     	 	/*border: 2px solid #E4E4E4;*/
+     	 	border-radius:5px;
+     	 	margin-top: 8px;
+     	 	box-shadow:1px 2px 2px 2px #E4E4E4;
+     	 }
+     	 .topicpart div.topictitle{
+     	 	padding: 5px;
+     	 	border-bottom: 2px solid #FAF8F8;
+     	 }
+     	  .topicpart div.topictitle span{
+     	  	
+     	 	padding-left: 25px;
+     	 	font-weight: bolder;
+     	 	font-size: 15px;
+     	 	height: 15px;
+     	 }
+     	 .span0{
+     	 	background:url(../images/new.png) no-repeat;
+     	  	background-size: 16px;
+     	  	background-position-y:1px ;
+     	 }
+     	 .span1{
+     	 	background:url(../images/hot.png) no-repeat;
+     	  	background-size: 13px;
+     	 }
+     	  .span2{
+     	 	background:url(../images/chuangye.png) no-repeat;
+     	  	background-size: 16px;
+     	 }
+     	  .span3{
+     	 	background:url(../images/huwai.png) no-repeat;
+     	  	background-size: 16px;
+     	  	background-position-y:1px ;
+     	 }
+     	  .span4{
+     	 	background:url(../images/jiaoyu.png) no-repeat;
+     	  	background-size: 16px;
+     	  	background-position-y:1px;
+     	 }
+     	   .span5{
+     	 	background:url(../images/tech.png) no-repeat;
+     	  	background-size: 16px;
+     	  	background-position-y:5px;
+     	 }
+     	   .span6{
+     	 	background:url(../images/zhichang.png) no-repeat;
+     	  	background-size: 7px;
+     	  	background-position-y:1px;
+     	  	background-position-x:5px;
+     	 }
+     	   .span7{
+     	 	background:url(../images/fenghui.png) no-repeat;
+     	  	background-size: 11px;
+     	  	background-position-y:1px;
+     	  		background-position-x:5px;
+     	 }
+     	   .span8{
+     	 	background:url(../images/gongyi.png) no-repeat;
+     	  	background-size: 16px;
+     	  	background-position-y:1px;
+     	 }
+     	   .span9{
+     	 	background:url(../images/qita.png) no-repeat;
+     	  	background-size: 16px;
+     	  	background-position-y:9px;
+     	 }
+     	  .topicpart div.topictitle a{
+     	 text-decoration: none;
+     	 display: block;
+     	 float: right;
+     	 color: #be0108;
+     	 font-weight: bolder;
+     	 font-size: 13px;
+     	 }
+     	 .topicpart ul li{
+     	 	font-size: 14px;
+     	 	font-weight: bold;
+     	 	padding-left: 30px;
+     	 	border: none;
+     	 }
+     	 .topiccomnum{
+     	 	color: #A1A1A1;
+     	 }
+     	 .status{
+     	 	float: right;
+			font-size: 12px;
+			color: #A1A1A1;
+     	 }
+     	  .mui-action-back,.mui-action-menu{
+     		width: 12%;
+     	}
+        .mui-bar-nav.mui-bar .mui-icon{
+           margin-right: 0px;
+     		margin-left: 0px;
+        }
+        .mui-bar{
+        	 padding-left: 0px;
+        	 padding-right:0px;
+        }
+        a{
+        	color: #be0108;
+        }
+         .mui-table-view:before{
+     	 	height: 0px;
+     	 }
+     	 .mui-table-view:after{
+     	 	height: 0px;
+     	 }
+     	   .mui-off-canvas-wrap .mui-bar{
+  			position: fixed;
+  		}
+  		#offCanvasContentScroll{
+  			background: white;
+  		}
+  		.mui-off-canvas-wrap .mui-inner-wrap{
+  			background: white;
+  		}
+ 		/*aside content style*/
+ 		
+    		.mui-table-view-cell:after{
+    			height: 0;
+    		}
+    		.mui-off-canvas-left {
+				color: #fff;
+			}
+   </style>
+</head>
+<body id='body'> 
+	<div id="offCanvasWrapper" class="mui-off-canvas-wrap mui-draggable">
+			<!--侧滑菜单部分-->
+			<aside id="offCanvasSide" class="mui-off-canvas-left">
+			 <div style="margin-top: auto; margin-bottom: auto;">
+		 		<div id ='setuserinfo' class='setuserselfinfo'>
+				 		 <div class='userselfhead'>
+				 		 	<img id='userpic' src='../images/default_head.jpg'/>
+				 		 	<div id='male' class="sexshowbig"></div>
+				 		 	<div id='female' class="sexshowbig" style='display:none;'></div>
+				 		 </div>
+				 		 <div class="userinforight">
+				 		 		<div class='nicknameself' id='nicknameself'>wesdasdashare</div>
+						 		 <span id='userrank' class="userselfnote">隐翼天使</span>
+						 		 <div class='userselfpoints'>积分:<span id='reward'>1234</span></div>
+				 		 </div>
+			 		 </div>
+		 		<div id ='default-setuserinfo' class='setuserselfinfo' style="display: none;">
+				 		 <div class='userselfhead'>
+				 		 	<img id='userpic' src='../images/default_head.png'/>
+				 		 </div>
+				 		 <div class="userinforight">
+				 		 		<div class="default-head">
+				 		 			<a href="../login.html" id='tologin'>注册/登陆</a>
+				 		 		</div>
+				 		 </div>
+			 	</div>
+		 		<div class='userinfomid'>
+		 			<ul class="mui-table-view listpart">
+		 				<li class='mui-table-view-cell liststyle myneed' id='myneed'>我的心愿</li>
+		 				<li class='mui-table-view-cell liststyle asidemyhelped' id='myhelped'>我帮过的</li>
+		 				<li class='mui-table-view-cell liststyle mefromothers' id='mefromothers'>别人眼中的我</li>
+		 				<li class='mui-table-view-cell liststyle mycoltopic' id='mycoltopic'>我收藏的话题</li>
+		 				<li class='mui-table-view-cell liststyle mypubpro' id='mypubpro'>我发布的宝贝</li>
+		 				<li class='mui-table-view-cell liststyle exchangeorder' id='exchangeorder'>我的兑换记录</li>
+		 				<li class='mui-table-view-cell liststyle shareorder' id='shareorder'>我的共享记录</li>
+		 				<li class='mui-table-view-cell liststyle rewardrecord' id='rewardrecord'>我的积分记录</li>
+		 				<!--<li class='mui-table-view-cell liststyle rewardgiven' id='rewardgiven'>天使享豆转增</li>-->
+		 			</ul>
+		 		</div>
+		 	 	<div class="userinfofooter">
+		 	 		 <span  id='personset' class="mui-icon mui-icon-gear-filled">&nbsp;&nbsp;&nbsp;设置</span>
+		 	 		 <!--<span  id='bestrank' class="mui-icon mui-icon-flag">&nbsp;&nbsp;&nbsp;天使排行榜</span>--> 
+		 	 	</div>
+		 		
+		   </div>	
+			</aside>
+			<!--主界面部分-->
+			<div class="mui-inner-wrap">
+				<header class="mui-bar mui-bar-nav">
+						<a href="#offCanvasSide" class="mui-icon mui-icon-contact  mui-pull-left"></a>
+					  	<div class='tab mui-col-xs-12' id='tab'>
+						     	 	<a><div id='needlist' class="mui-col-xs-3">心愿单</div></a>
+						     	 	<a><div id='task' class="mui-col-xs-3">博士墙</div></a>
+						     	 	<a><div id='acti' class="mui-col-xs-3">攒活动</div></a>
+						     	 	<a><div id='topic' class="mui-col-xs-3">微论坛</div></a>	
+						     	 	
+				     	 </div>
+				     	<a id="needpublishtab"  class="mui-action-menu mui-icon mui-icon-plus-filled mui-pull-right"></a>
+					</header>
+				
+				<div id="offCanvasContentScroll" class="mui-content mui-scroll-wrapper">
+					<div class="mui-scroll">
+						<div class="mui-content">
+							<section id='search' class='searchwarpper'>
+						    			<input type="text" id='searchcontent' placeholder="请输入话题关键词"/>
+						    			<button id='searchbtn'></button>
+						    </section>
+						    <section id='newest' class='topicpart'>
+						    		<div class='topictitle'>
+						    			<span class="span0">最新</span>
+						    			<a href="#" data-type='newest'>更多...</a>
+						    		</div>
+						    		<ul class='mui-table-view' id='newestcontainer'></ul>
+						    </section>
+						    <section id='hottest' class='topicpart'>
+						    		<div class='topictitle'>
+						    			<span class="span1">最热</span>
+						    			<a href="#" data-type='hottest'>更多...</a>
+						    		</div>
+						    		<ul class='mui-table-view' id='hotestcontainer'>
+						    			<!--<li  class='mui-table-view-cell totopicdetail'>复旦周围好品面面食食吃的精品面食<span class='topiccomnum'>(2)</span><span class='status'>14天前</span></li>-->
+					
+						     		<!--<li  class='mui-table-view-cell totopicdetail'>复旦品面食食吃的精品面食<span class='topiccomnum'>(2)</span><span class='status'>14天前</span></li>-->
+						    		</ul>
+						    </section>
+						     <section id='chuangye' class='topicpart'>
+						    		<div class='topictitle'>
+						    			<span class='span2'>创业</span>
+						    			<a href="#" data-type='chuangye'>更多...</a>
+						    		</div>
+						    		<ul class='mui-table-view' id='chuangyecontainer'></ul>
+						    </section>
+						     <section id='outdoor' class='topicpart'>
+						    		<div class='topictitle'>
+						    			<span class='span3'>户外</span>
+						    			<a href="#" data-type='outdoor'>更多...</a>
+						    		</div>
+						    		<ul class='mui-table-view' id='outdoorcontainer'></ul>
+						    </section>
+						    <section id='education' class='topicpart'>
+						    		<div class='topictitle'>
+						    			<span class='span4'>教育</span>
+						    			<a href="#" data-type='education'>更多...</a>
+						    		</div>
+						    		<ul class='mui-table-view' id='educationcontainer'></ul>
+						    </section>
+						     <section id='tech' class='topicpart'>
+						    		<div class='topictitle'>
+						    			<span class='span5'>技术转化</span>
+						    			<a href="#" data-type='tech'>更多...</a>
+						    		</div>
+						    		<ul class='mui-table-view' id='techcontainer'></ul>
+						    </section>
+						    <section id='working' class='topicpart'>
+						    		<div class='topictitle'>
+						    			<span class='span6'>职场</span>
+						    			<a href="#" data-type='working'>更多...</a>
+						    		</div>
+						    		<ul class='mui-table-view' id='workingcontainer'></ul>
+						    </section>
+						    <section id='meeting' class='topicpart'>
+						    		<div class='topictitle'>
+						    			<span class='span7'>峰会</span>
+						    			<a href="#" data-type='meetig'>更多...</a>
+						    		</div>
+						    		<ul class='mui-table-view' id='meetingcontainer'></ul>
+						    </section>
+						    <section id='good' class='topicpart'>
+						    		<div class='topictitle'>
+						    			<span class='span8'>公益</span>
+						    			<a href="#" data-type='good'>更多...</a>
+						    		</div>
+						    		<ul class='mui-table-view' id='goodcontainer'></ul>
+						    </section>
+						    <section id='else' class='topicpart'>
+						    		<div class='topictitle'>
+						    			<span class='span9'>其他</span>
+						    			<a href="#" data-type='else'>更多...</a>
+						    		</div>
+						    		<ul class='mui-table-view' id='elsecontainer'></ul>
+						    </section>
+						   
+							
+						
+
+						</div>
+					</div>
+					 <nav class="mui-bar mui-bar-tab" style="position:relative;bottom: 0;">
+									<a id="indextab" class="mui-tab-item"  style="color:#be0108;">
+										<span class="mui-icon mui-icon-home-filled"></span>
+										<span class="mui-tab-label">大厅</span>
+									</a>
+									<a  id='exchangebtn' class="mui-tab-item" >
+										<span class="mui-icon mui-icon-star-filled"></span>
+										<span class="mui-tab-label">集市</span>
+									</a>
+									<a  id='messagetab'class="mui-tab-item">
+										<span class="mui-icon mui-icon-email-filled"><span class="mui-badge" id='remindnum' style="display: none;"></span></span>
+										<span class="mui-tab-label">消息</span>
+									</a>
+								</nav>
+				</div>
+			</div>
+		</div>
+			
+		
+	
+    
+    
+	   <script src="../js/mui.min.js"></script>
+	   <script src="../js/openwin.js"></script>
+	    <script type="text/javascript" charset="utf-8">
+//      mui.init();
+         mui.init();
+			 //侧滑容器父节点
+			var offCanvasWrapper = mui('#offCanvasWrapper');
+			 //主界面容器
+			var offCanvasInner = offCanvasWrapper[0].querySelector('.mui-inner-wrap');
+			 //菜单容器
+			var offCanvasSide = document.getElementById("offCanvasSide");
+			
+			var classList = offCanvasWrapper[0].classList;
+
+				classList.add('mui-scalable');
+			 //主界面和侧滑菜单界面均支持区域滚动；
+			mui('#offCanvasSideScroll').scroll();
+			mui('#offCanvasContentScroll').scroll();
+      	mui.plusReady(function(){
+      		
+            //获取本地推动标识信息
+      		var page=1;
+      		 server=plus.storage.getItem('server');
+      		username=plus.storage.getItem('username')?plus.storage.getItem('username'):'18817362926';
+      		  active=plus.storage.getItem('active');
+      		  school=plus.storage.getItem('school');	 
+      		  getpersoninfo(username);
+//    		   document.getElementById('menu').addEventListener('tap',openmore);
+      		  if(username=='18817362926'){
+				document.getElementById('default-setuserinfo').style.display='block';
+				document.getElementById('setuserinfo').style.display='none';
+			}else{
+				document.getElementById('default-setuserinfo').style.display='none';
+				document.getElementById('setuserinfo').style.display='block';
+			}
+			 	//tologn 		
+      document.getElementById("tologin").addEventListener('tap',function(){
+      	 		mui.openWindow({
+      	 			url:'../login.html',
+      	 			id:'login',
+      	 			createNew:true,
+      	 			show:{
+      	 				aniShow:'slide-in-right',
+      	 				duration:400
+      	 			}
+      	 		})
+      	 	})
+      		  document.getElementById("needlist").addEventListener('tap',function(){
+      	 		mui.openWindow({
+      	 			url:'../bopublic/index.html',
+      	 			id:'index',
+      	 			createNew:true,
+      	 			show:{
+      	 				aniShow:'slide-in-left',
+      	 				duration:400
+      	 			}
+      	 		})
+      	 	})
+	  	document.getElementById('task').addEventListener('tap',function(){
+	  		 mui.openWindow({
+	  		 	url:'../bomasterwall/master.html',
+	  		 	id:'task',
+	  		 	createNew:true,
+	  		 	show:{
+      	 				aniShow:'slide-in-left',
+      	 				duration:400
+      	 			}
+	  		 })
+	  	})
+	  	document.getElementById('acti').addEventListener('tap',function(){
+	  		 mui.openWindow({
+	  		 	url:'../boacti/acti.html',
+	  		 	id:'acti',
+	  		 	createNew:true,
+	  		 	show:{
+      	 				aniShow:'slide-in-left',
+      	 				duration:400
+      	 			}
+	  		 })
+	  	})
+	  	
+	  	//搜索
+	  	document.getElementById('searchbtn').addEventListener('tap',function(){
+	  		var keyword=document.getElementById('searchcontent').value;
+//	  		console.log(keyword);
+	  		mui.openWindow({
+	  			url:'../botopic/topiclist.html',
+	  			id:'topiclist',
+	  			extras:{
+	  				type:'search',
+	  				keywords:keyword
+	  			}
+	  		})
+	  	})
+	  	//填充top数据
+	  	 gettopiclist('newest',1,3,'newestcontainer');
+	  	 gettopiclist('hottest',1,3,'hotestcontainer');
+	  	 gettopiclist('chuangye',1,3,'chuangyecontainer');
+	  	 gettopiclist('outdoor',1,3,'outdoorcontainer');
+	  	 gettopiclist('education',1,3,'educationcontainer');
+	  	 gettopiclist('tech',1,3,'techcontainer');
+	  	 gettopiclist('working',1,3,'workingcontainer');
+	  	 gettopiclist('meeting',1,3,'meetingcontainer');
+	  	 gettopiclist('good',1,3,'goodcontainer');
+	  	 gettopiclist('else',1,3,'elsecontainer');
+	  	//更多列表 
+	  	 mui('section').on('tap','a',function(){
+	  	 	var type=this.getAttribute('data-type');
+	  	 	mui.openWindow({
+	  	 		url:'../botopic/topiclist.html',
+	  	 		id:'topiclist',
+	  	 		createNew:true,
+	  	 		extras:{
+	  	 			type:type
+	  	 		}
+	  	 	})
+	  	 })
+	  	 //to topic detail
+	  	 mui('section').on('tap','.totopicdetail',function(){
+	  	 	var tid=this.getAttribute('data-tid');
+	  	 	mui.openWindow({
+	  	 		url:'../botopic/topicdetail.html',
+	  	 		id:'topicdetail',
+	  	 		extras:{
+	  	 			tid:tid
+	  	 		}
+	  	 	})
+	  	 })
+      	 })
+     
+     
+     //获取topiclist top3
+     
+     function gettopiclist(action,page,shownum,position){
+     	mui.ajax(server+'topic/gettopiclist.php',{
+     		data:{
+     			action:action,
+     			page:page
+     		},
+     		type:'post',
+     		success:function(data){
+     			console.log(data);
+     			var topiclistcontainer=document.getElementById(position);
+     			var jsondata=eval('['+data+']');
+     			var topiclist=jsondata[0];
+     			var i=0;	
+     			while(i<shownum){
+     				console.log(i);
+     				html="<li  data-tid='"+topiclist[i].tid+"' class='mui-table-view-cell totopicdetail'>"+topiclist[i].topictitle+"<span class='topiccomnum'>("+topiclist[i].commentnum+")</span></li>";
+     				topiclistcontainer.insertAdjacentHTML('beforeend',html);
+     				i++;
+     			}
+     			
+     		}
+     	})
+     }
+     //获取话题类型
+      	function gettopictypelist(){
+      		mui.ajax(server+'getselectlist.php',{
+      			data:{
+      				action:'topictypelist'
+      			},
+      			type:'post',
+      			success:function(data){
+      				var topictype=document.getElementById("topictype");
+      				var jsondata=eval("["+data+"]");
+      				var topictypelist=jsondata[0];
+      				for(var i=topictypelist.length-1;i>=0;i--){
+      					html="<option value='"+topictypelist[i]+"'>"+topictypelist[i]+"</option>";
+      					topictype.insertAdjacentHTML('afterBegin',html);
+      				}
+      			}
+      		})
+      	}
+
+    
+    </script>
+</body>
+</html>

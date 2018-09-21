@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	
+	 <script src="../js/mui.min.js"></script>
+     <title>排行榜</title>
+   
+    <link href="../css/mui.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="../css/weshare.css" />
+     <style type="text/css">
+     body{
+     	background: white;
+     }
+     .mui-content{
+     	background: white;
+     	text-align: center;
+     	margin-bottom: 0px;
+     	padding-bottom: 0px;
+     }
+     .mui-title{
+     	font-size: 15px;
+     	font-weight: bolder;
+     }
+     table {
+     	border: 2px solid #FAF8F8;
+     	text-align: center;
+     	width: 100%;
+     	font-size: 12px;
+     }
+     tr, th,td{
+     	border: 1px solid #FAF8F8;
+     	padding: 5px;
+     }
+     th{
+     	font-weight: border;
+     }
+     img{
+     	text-align: center;
+     	margin:5px auto;
+     	width: 50px;
+     	display: block;
+     	border-radius: 50%;
+     }
+     .thead{
+     	color: #000000;
+     	font-size: 13px;
+     	font-weight: bolder;
+     }
+</style>
+<script type="text/javascript">
+	  mui.plusReady(function(){
+	  	var server=plus.storage.getItem('server');
+	  	var school=plus.storage.getItem('school');
+		var currentpage=plus.webview.currentWebview();
+		var type=currentpage.type;
+		if(type==='rewardrank'){
+			document.getElementById('typecontent').innerText='享豆数';
+		} 
+		if(type==='pubneedrank'){
+			document.getElementById('typecontent').innerText='心愿数';
+		}
+		if(type==='finneedrank'){
+			document.getElementById('typecontent').innerText='满足心愿数';
+		}
+		if(type==='interrank'){
+			document.getElementById('typecontent').innerText='互动数';
+		}
+		mui.ajax(server+'getbestusers.php',{
+			data:{
+				action:type,
+				school:school
+			},
+			type:'post',
+			success:function(data){
+//				alert(data);
+				 var jsondata=eval('['+data+']');
+				 var ranklist=jsondata[0];
+				 for(var i=0;i<=ranklist.length;i++){
+				 	html="<tr>"+
+				 	"<td>"+(i+1)+"</td>"+
+				 	"<td class='bestuser' data-uid='"+ranklist[i].email+"'><img src='"+server+"uploads/"+ranklist[i].head+"' alt='' />"+
+				 	"</td><td>"+ranklist[i].nickname+"</td>"+
+				 	"<td>"+ranklist[i].num+"</td>"+
+				 	"</tr>";
+				   document.getElementById('rankcontent').insertAdjacentHTML('beforeEnd',html);	
+				 }
+			}
+		})
+		//用户详情
+		mui('#rankcontent').on('tap','.bestuser',function(){
+			var uid=this.getAttribute('data-uid');
+			mui.openWindow({
+				url:'othercenter.html',
+				id:'othercenter',
+				createNew:true,
+				extras:{
+					user:uid
+				}
+			})
+		})
+	  })
+</script>
+</head>
+<body> 
+	<header class="mui-bar mui-bar-nav">
+	    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+	    <h1 class="mui-title">天使排行榜</h1>
+	</header>
+	<div class="mui-content">
+		
+	      	<table id='rankcontent'>
+	      		<tr class='thead'><td>排行</td><td>天使快照</td><td>天使昵称</td><td id='typecontent'>享豆数</td></tr>
+	      		
+	      	</table>
+	</div>	
+</body>
+</html>

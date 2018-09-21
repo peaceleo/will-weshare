@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<link rel="stylesheet" href="css/weshare.css" />
+	 <script src="js/mui.min.js"></script>
+	  <script src="js/weshare.js"></script>
+    <title>话题验证</title>
+   
+    <link href="css/mui.min.css" rel="stylesheet"/>
+     <style type="text/css">
+     body{
+     	background: white;
+     }
+     .mui-content{
+     	background: white;
+     }
+     table {
+     	border: 2px solid #E4E4E4;
+     	text-align: center;
+     	width: 100%;
+     	font-size: 15px;
+     	font-weight: bolder;
+     }
+     table img{
+     	height: 300px;
+     	border-radius: 50px;
+     	
+     }
+     tr, th,td{
+     	border: 1px solid #E4E4E4;
+     	padding: 5px;
+     }
+     th{
+     	font-weight: border;
+     }
+     #givensendbtn{
+     	font-size: 15px;
+     	padding: 10px;
+     	margin-top: 10px;
+     }
+     .mui-title{
+     	font-size: 15px;
+     	font-weight: bolder;
+     }
+      textarea[placeholder],
+    input[placeholder]{
+    	font-size: 12px;
+    }
+    .mui-input-row{
+    	margin-top: 5px;
+    	margin-bottom: 5px;
+    }
+    .usercontainer{
+    	/*border: 2px solid #E4E4E4;*/
+    	margin-bottom: 10px;
+    }
+    .identinfo{
+    	text-align: center;
+    }
+    .identinfo img{
+    	  height: 300px;
+    }
+    .pass{
+    	background: #3F88B0;
+    	color: white;
+    	padding: 10px;
+    }
+    .unpass{
+    	background: red;
+    	color: white;
+    	padding: 10px;
+    }
+     </style>
+</head>
+<body> 
+	<header class="mui-bar mui-bar-nav">
+	    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+	    <h1 class="mui-title">话题验证</h1>
+	</header>
+	<div class="mui-content">
+	     <div id='userinfo'>
+	     	<!--<section class='usercontainer'>
+	     		<section class='identinfo'>
+	     			<img src="" alt="" />
+	     		</section>
+	     		<section>
+	     			<table>
+	     				<tr><td>学校</td><td></td></tr>
+	     				<tr><td>学号</td><td></td></tr>
+	     				<tr><td>电话</td><td></td></tr>
+	     			</table>
+	     		</section>
+	     		<section class='action'>
+	     			<table>
+	     				<tr><td>通过</td><td>驳回</td></tr>
+	     			</table>
+	     		</section>
+	     	</section>-->
+	     </div>
+	</div>
+	
+	<script type="text/javascript">
+		mui.init();
+		mui.plusReady(function(){
+			server=plus.storage.getItem('server');
+			//获取待验证的话题
+		    mui.ajax(server+"admin.php",{
+		    	data:{
+		    		action:'unpasstopic'
+		    	},
+		    	type:'post',
+		    	success:function(data){
+		    		console.log(data);
+		    		var jsondata=eval('['+data+']');
+		    		var userinfo=jsondata[0];
+		    		if(userinfo==''){
+		    			html="<div class='commentblack'>没有需要验证的话题</div>";
+		    			 document.getElementById('userinfo').innerHTML=html;  	
+		    		}
+		    		for(var i=0;i<=userinfo.length;i++){
+		    			  var html="<section class='usercontainer'>"+
+				     		"<section>"+
+				     			"<table>"+
+				     				"<tr><td>标题</td><td>"+userinfo[i].topictitle+"</td></tr>"+
+				     				"<tr><td>介绍</td><td>"+userinfo[i].topicintro+"</td></tr>"+
+				     			"</table>"+
+				     		"</section>"+
+				     		"<section class='action'>"+
+				     			"<table>"+
+				     				"<tr><td  class='pass' data-user='"+userinfo[i].tid+"' data-publisher='"+userinfo[i].publisher+"'>通过</td><td class='unpass' data-user='"+userinfo[i].tid+"'>驳回</td></tr>"+
+				     			"</table>"+
+				     		"</section>"+
+				     	"</section>";
+				   document.getElementById('userinfo').insertAdjacentHTML('beforeend',html);  	
+		    			
+		    		}
+		    	  
+		    	}
+		    })
+			//通过认证
+			mui('#userinfo').on('tap','.pass',function(){
+				var uid=this.getAttribute('data-user');
+				var username=this.getAttribute('data-publisher');
+				plus.ui.confirm("确认通过?",function(e){
+      				if(e.index==0){
+      				mui.ajax(server+'topicaction.php',{
+      					data:{
+      						action:'passtopic',
+      						username:username,
+      						tid:uid
+      					},
+      					type:'post',
+      					success:function(data){
+      						console.log(data);
+      						if(data==1){
+      							plus.ui.toast('通过成功');
+      						    location.reload();
+      						   }
+      						else{
+      							plus.ui.toast('认证失败');
+      						}
+      					}
+      				})
+                  }else {
+                  	plus.ui.toast('取消了');
+                  }
+      			},"",["Yes","No"]);
+				
+				
+			})
+			//驳回认证
+			mui('#userinfo').on('tap','.unpass',function(){
+				var uid=this.getAttribute('data-user');
+				var username=this.getAttribute('data-publisher');
+				plus.ui.confirm("确认驳回?",function(e){
+      				if(e.index==0){
+      				mui.ajax(server+'topicaction.php',{
+      					data:{
+      						action:'refusetopic',
+      						tid:uid
+      					},
+      					type:'post',
+      					success:function(data){
+      						console.log(data);
+      						if(data==1){
+      							plus.ui.toast('驳回成功');
+      						    location.reload();
+      						   }
+      						else{
+      							plus.ui.toast('驳回失败');
+      						}
+      					}
+      				})
+                  }else {
+                  	plus.ui.toast('取消了');
+                  }
+      			},"",["Yes","No"]);
+				
+				
+			})
+
+		})
+	</script>
+</body>
+</html>

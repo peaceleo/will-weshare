@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" href="css/weshare.css" />
+	 <script src="js/weshare.js"></script>
+    <title>needlist</title>
+   
+    <link href="css/mui.min.css" rel="stylesheet"/>
+     <style type="text/css">
+     	 body{
+     	 	background: white;
+     	 }
+     	 .mui-content{
+     	 	background: white;
+     	 	height: 100%;
+     	 }
+     	 .mui-bar-tab .mui-tab-item.mui-active{
+     	 	color: #929292;
+     	 }
+     	   .tab{
+     	 	font-size: 13px;
+     	 	line-height: 36px;
+     	 	height: 36px;
+     	 	margin-top: 4px;
+     	 	width: 60%;
+     	 	display: block;
+     	 	margin-left: auto;
+     	 	margin-right: auto;     	 	
+     	 }
+     	 .tab div{
+     	 	float: left;
+     	 }
+     	 #task{
+     	 	/*padding: 5px;*/
+     	 	border-top-right-radius: 5px;
+     	 	border-bottom-right-radius: 5px;
+     	 	color: black;
+     	 	text-align: center;
+     	 	background: white;
+     	 	/*width: 35px;*/
+     	 	font-weight: bolder;
+     	 }
+     	  #needlist{
+     	 	/*padding: 5px;*/
+     	 	border-top-left-radius: 5px;
+     	 	border-bottom-left-radius: 5px;
+     	 	color: white;
+     	 	text-align: center;
+     	 	background: #3F88B0;
+     	 	/*width: 35px;*/
+     	 	font-weight: bolder;
+     	 }
+     	 	.needaction{
+   			width:33.3%;
+    			text-align: center;
+    			font-size: 13px;
+    			font-weight: bolder;
+    			color: black;
+    			border-top: 1px solid #E4E4E4;
+    			border-bottom: 3px solid #E4E4E4;
+    			padding-top: 5px;
+    			padding-bottom: 5px;
+    			border-left:2px solid #E4E4E4 ;
+   		}
+   		.needaction .mui-icon{
+   			font-size: 20px;
+   			font-weight: bolder;
+   		}
+   		.needaction a{
+   			text-decoration: none;
+   			color: black;
+   		}	
+     	 .mui-badge-index{
+     	 	font-size: 9px; 
+		     line-height: 1.4; 
+		     position: absolute; 
+		     top: -2px; 
+		     right: 0px; 
+		     margin-left: -10px; 
+		     padding: 1px 5px; 
+		     color: #fff; 
+		     background:red;
+		     border-radius:50px;
+     	 }
+     	 .needselect{
+     	 	width: 100%;
+     	 	border-bottom:1px solid #E4E4E4 ;
+     	 	float: left;
+     	 	margin-bottom: 5px;
+     	 }
+     	 .needselect div.needslectstatus{
+     	 	position: relative;
+     	 	width: 33.3%;
+     	 	float: left;
+     	 	text-align: center;
+     	 	border-right:1px solid #E4E4E4 ;
+     	 	padding: 3px;
+            font-size: 13px;
+            font-weight: bolder;
+     	 	margin-top: 5px;
+     	 	/*margin-bottom: 5px;*/
+     	 }
+     	
+     	
+     	 .needmark{
+     	 	width: 100%;
+     	 	height: 5px;
+     	 	background: #3F88B0;
+     	 	position: absolute;
+     	 	left: 0;
+     	 }
+     	 
+   </style>
+</head>
+<body> 
+	<header class="mui-bar mui-bar-nav">
+		<div class='logo' id='logo' style="display: none;"></div>
+		    <div class='tab mui-col-xs-12' id='tab'>
+     	 	<div id='needlist' class="mui-col-xs-6"><span class="mui-badge-index" id='newneednum' style="display: none;"></span>心愿单</div>
+     	 	<div id='task' class="mui-col-xs-6"><span class="mui-badge-index"  id='newtasknum'style="display:none ;"></span>活动墙</div>
+     	 </div>
+	</header>	
+	<div id="topPopover" class="mui-popover">
+			<div class="mui-popover-arrow"></div>
+			<div class="mui-scroll-wrapper">
+				<div class="mui-scroll">
+					<ul class="mui-table-view">
+						<li class="mui-table-view-cell" id='exchangeMall'>乐享集市</li>
+						<li class="mui-table-view-cell" id='bookstore'>乐享书屋</li>
+						<li class="mui-table-view-cell" id='logout'>退出</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	
+     <div  class="mui-content">
+     	<div id='needselect' class='mui-col-xs-12 needselect' >
+				<div id='needing' class="needslectstatus">求助中(<span id='needingNum'>100</span>)
+						<div id='needingmark' class="needmark" style="display: block;" ></div>
+				</div>
+				<div id='helping'  class="needslectstatus">帮忙中(<span id='helpingNum'>100</span>)
+					<div id='helpingmark' class="needmark" style="display: none;" ></div>
+				</div>
+				<div id='finished'  class="needslectstatus">已完成(<span id='finishedNum'>100</span>)
+					<div id='finishedmark' class="needmark" style="display: none;"></div>
+				</div>
+		</div>
+     	 <!--<!--<div class='tab mui-col-xs-12' id='tab'>
+     	 	<div id='needlist' class="mui-col-xs-6">需求列表</div>
+     	 	<div id='task' class="mui-col-xs-6">平台任务</div>
+     	 </div>-->
+     	<!--<div class='needcontainer'>
+				<div class='userhead'>
+					<div class='headinfo'>
+						<img src='images/default_head.jpg'/>
+						<span class="male sexshow" style="display: block;"></span>
+				 		<span class="female sexshow" style='display:none;'></span>
+					</div>
+					<div class='needid'>0001</div>
+				</div>
+				<div class='needlistlabel'><span>#校园接送#</span></div>
+				<div class='needstatus'>求助中</div>
+				<div class='needcontent'>决定减肥肯定就犯困快点ssf实打实大师撒打算打算阿萨德阿迪dasd阿达达dasd 啊放假快点看到就犯困</div>
+				<div class='needpay'>1000享豆</div>
+				<div class='needlocation'>复旦大学</div>
+				<div class='needlisttime'>3天前</div>
+				<div class='needhelp' >帮忙</div>
+				<div class='needcomment'>评论</div>
+				<div class='needcall'><a href='tel:"+needlist[i].usertel+"'>电话</a></div>
+	   </div>-->
+	     <div id="needwarp">
+	     	  <div  id='moreneed' class="moreneed"></div>  
+	     </div>    
+     </div>
+     <nav class="mui-bar mui-bar-tab">
+			<a id="indextab" class="mui-tab-item" href="index.html" style="color:#3F88B0;">
+				<span class="mui-icon mui-icon-home-filled"></span>
+				<span class="mui-tab-label">首页</span>
+			</a>
+			<a  id='needpublishtab' class="mui-tab-item" href="needpublish.html">
+				<span class="mui-icon mui-icon-plus-filled"></span>
+				<span class="mui-tab-label">发布</span>
+			</a>
+			<a  id='messagetab'class="mui-tab-item" href="message.html" >
+				<span class="mui-icon mui-icon-email-filled"><span class="mui-badge" id='remindnum' style="display: none;"></span></span>
+				<span class="mui-tab-label">消息</span>
+			</a>
+			<a  id='personcentertab' class="mui-tab-item" href="personcenter.html">
+				<span class="mui-icon mui-icon-contact-filled"></span>
+				<span class="mui-tab-label">我的</span>
+			</a>
+		</nav>
+    
+	   <script src="js/mui.min.js"></script>
+	   <script src="js/openwin.js"></script>
+	    <script type="text/javascript" charset="utf-8">
+//      mui.init();
+      	mui.plusReady(function(){
+      		quitapp();
+            //获取本地推动标识信息
+      		var page=1;
+      		 server=plus.storage.getItem('server');
+      		 username=plus.storage.getItem('username');
+      		  active=plus.storage.getItem('active');
+      		  school=plus.storage.getItem('school');
+      		  console.log(plus.storage.getItem('rank'));
+      		getNeedNum();
+      	 	getmyneed(page,'needing');
+      	 	
+      	 	getremindernum(username);
+      	 	document.getElementById("task").addEventListener('tap',function(){
+      	 		mui.openWindow({
+      	 			url:'task.html',
+      	 			id:'task',
+      	 			createNew:true,
+      	 			show:{
+      	 				aniShow:'slide-in-left',
+      	 				duration:400
+      	 			}
+      	 		})
+      	 	})
+      	 	
+      	 	//切换至不同状态的需求列表
+      	 	//至求助中
+      	 	document.getElementById('needing').addEventListener('tap',function(){
+      	 		var html="<div id='moreneed' class='moreneed'></div>";
+      		     document.getElementById('needwarp').innerHTML=html;
+      	 		getmyneed(page,'needing');
+      	 		document.getElementById('needingmark').style.display='block';
+      	 		document.getElementById('helpingmark').style.display='none';
+      	 		document.getElementById('finishedmark').style.display='none';
+      	 		
+      	 	})
+      	 	//至帮忙中
+      	 	document.getElementById('helping').addEventListener('tap',function(){
+      	 		var html="<div id='moreneed' class='moreneed'></div>";
+      		document.getElementById('needwarp').innerHTML=html;
+      	 		getmyneed(page,'helping');
+      	 		document.getElementById('needingmark').style.display='none';
+      	 		document.getElementById('helpingmark').style.display='block';
+      	 		document.getElementById('finishedmark').style.display='none';
+      	 	})
+      	 	//至已完成
+      	 	document.getElementById('finished').addEventListener('tap',function(){
+      	 		var html="<div id='moreneed' class='moreneed'></div>";
+      		document.getElementById('needwarp').innerHTML=html;
+      	 		getmyneed(page,'finished');
+      	 		document.getElementById('needingmark').style.display='none';
+      	 		document.getElementById('helpingmark').style.display='none';
+      	 		document.getElementById('finishedmark').style.display='block';
+      	 	})
+      	 	
+      	});
+      	//获取需求数量
+      	function getNeedNum(){
+      		mui.ajax(server+'getneednum.php',{
+      			data:{
+      				action:'neednum',
+      				school:school
+      			},
+      			type:'post',
+      			success:function(data){
+//    				alert(data);
+      				var jsondata=eval('['+data+']');
+      				var neednum=jsondata[0];
+//    				alert(jsondata[0].needingNum);
+        document.getElementById('needingNum').innerText=jsondata[0].needingNum;
+         document.getElementById('helpingNum').innerText=jsondata[0].helpingNum;
+          document.getElementById('finishedNum').innerText=jsondata[0].finishedNum;
+      			}
+      		})
+      	}
+      	//填充需求列表
+      	function getmyneed(page,action){
+				     	 mui.ajax(server+'getneedlist.php',{
+			      			data:{
+			      				action:action,
+			      				page:page,
+			      				school:school
+			      			},
+			      			type:'post',
+			      			success:function(data){
+//			      				alert(data);
+			      				var needwarper=document.getElementById('moreneed');
+			      				var jsondata=eval("["+data+"]");
+			      				var needlist=jsondata[0];
+			      				var maxrows=needlist[0].maxRows;
+			      				var pagesize=needlist[0].pageSize;
+			      				if(needlist==''){
+			      					maxpages=0;
+			      				}else{
+			      					maxpages=needlist[0].maxPages;
+			      				}
+			      				
+			      				page++;
+				      			add="<button  class=\"moreneedbtn\" onclick=\"getmyneed("+page+","+"\'"+action+"\'"+");\">"+"点击加载更多"+"</button>";
+				      			document.getElementById('moreneed').innerHTML=add;
+				      			if(maxrows<=pagesize){
+				      				document.getElementById("moreneed").innerHTML='';
+				      			}
+			      			    else if(page>maxpages){
+			      			     	add="<button  class='moreneedbtn'>"+"这就是全部了"+"</button>";
+			      			     	document.getElementById('moreneed').innerHTML=add;
+			      			    }
+			      				for(var i=0;i<=needlist.length;i++){
+			      					var publishtime=timeFormat(needlist[i].publishtime);
+			      					if(needlist[i].sex=='男'){
+			      						var status1='block';
+			      						var status2='none';
+			      					}else{
+			      						var status1='none';
+			      						var status2='block';
+			      					}
+			      					 html="<div class='needcontainer'data-id='"+needlist[i].id+"' data-user='"+needlist[i].user+"'>"+
+								  	   	    "<div class='userhead' data-needuser='"+needlist[i].useremail+"'>"+
+								  	   	    "<div class='headinfo'>"+
+								  	   	       "<img src='"+server+"/uploads/"+needlist[i].head+"'/>"+
+								  	   	       "<span  class='male sexshow' style='display:"+status1+";'></span>"+
+				 							   "<span  class='female sexshow' style='display:"+status2+";'></span>"+
+				 							 "</div>"+   
+								  	   	    "<div class='needid'>"+needlist[i].id+"</div>"+
+								  	   	   
+								  	   	    "</div>"+
+								  	   	    "<div class='needlistlabel'>#"+needlist[i].label+"#</div>"+
+								  	   	    "<div class='needstatus'>"+needlist[i].status+"</div>"+
+								  	   	    "<div class='needcontent'>"+needlist[i].remark+"</div>"+
+								  	   	    "<div class='needpay'>享之"+needlist[i].needpay+"享豆</div>"+
+								  	   	    "<div class='needlocation'>"+needlist[i].needlocation+"</div>"+
+								  	   	    "<div class='needlisttime'>"+publishtime+"</div>"+
+								  	   		"<div class='needaction' id='needmsg' data-id='"+needlist[i].id+"' data-user='"+needlist[i].useremail+"'><span class='mui-icon mui-icon-navigate'></span>&nbsp;&nbsp;帮忙("+needlist[i].msgNum+")</div>"+
+								  	   		"<div class='needaction' id='needcomment'data-id='"+needlist[i].id+"' data-user='"+needlist[i].useremail+"'><span class='mui-icon mui-icon-email'></span>&nbsp;&nbsp;评论("+needlist[i].cmtNum+")</div>"+
+								  	   	    "<div class='needaction' data-id='"+needlist[i].id+"' data-user='"+needlist[i].useremail+"'><a href='tel:"+needlist[i].usertel+"'><span class='mui-icon mui-icon-phone'></span>&nbsp;&nbsp;电话</a></div>"+
+								  	   "</div> ";
+								  	 needwarper.insertAdjacentHTML('beforeBegin',html); 
+								  	 
+								
+			      				}
+			      				
+			      			}
+						 })
+				     }
+								      		
+			
+
+  mui('#needwarp').on('tap','.needaction',function(){
+      	var needid=this.getAttribute('data-id');
+      	var towho=this.getAttribute('data-user');
+      	 console.log(towho);
+      	 if(active==='未认证'){
+      		  	plus.ui.toast('您还没有上传学生证件,请在个人信息中完善证件信息...');
+      		  	return;
+      		  }
+      if(active==='认证中'){
+      		  	plus.ui.toast('您的身份信息正在认证中，请耐心等待...');
+      		  	return;
+      		  }
+     		mui.openWindow({
+     			url:'needaction.html',
+     			id:'needaction',
+     			extras:{
+     				needid:needid,
+     				towho:towho
+     			},
+     			show:{
+     				aniShow: 'slide-in-right',
+     				duration:300
+     			}
+     		});
+     	})
+       mui('#needwarp').on('tap','.userhead',function(){
+      	var user=this.getAttribute('data-needuser');
+//   		alert(user);
+     		mui.openWindow({
+     			url:'othercenter.html',
+     			id:'othercenter',
+     			extras:{
+     				user:user
+     			},
+     			show:{
+     				anishow:'slide-in-left',
+     				duration:300
+     			}
+     		})
+     	})
+    
+    </script>
+</body>
+</html>

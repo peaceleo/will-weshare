@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title>setnote</title>
+    <script src="../js/mui.min.js"></script>
+     <script src="../js/openwin.js"></script>
+      <script src="../js/weshare.js"></script>
+    <link href="../css/mui.min.css" rel="stylesheet"/>
+     <link rel="stylesheet" href="../css/weshare.css" />
+    <script type="text/javascript" charset="utf-8">
+      	mui.init();
+    </script>
+    <style type="text/css">
+     .mui-content div{
+    	float: left;
+     }
+    	  .settitle{
+    	  	font-size: 16px;
+    	  	font-weight: bolder;
+    	  	padding: 10px;
+    	  }
+    	  .setsendbtn{
+    	  	width: 100%;
+    	  	height: 40px;
+    	  	background: #66cccc;
+    	  	color:white;
+    	  	font-size: 14px;
+    	  	font-weight: bolder;
+    	  } 
+    </style>
+</head>
+<body>
+	<header class="mui-bar mui-bar-nav">
+		<div class='header index-header'>
+			 <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class='title' id='title'></h1>
+			<!--<a id="menu" href="#topPopover" class="mui-action-menu mui-icon mui-icon-bars mui-pull-right"></a>-->
+		</div>
+	</header>	
+	<div id="topPopover" class="mui-popover">
+			<div class="mui-popover-arrow"></div>
+			<div class="mui-scroll-wrapper">
+				<div class="mui-scroll">
+					<ul class="mui-table-view">
+		
+						<li class="mui-table-view-cell" id='logout'>注销
+						</li>						
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="mui-content">
+		    <div class='mui-col-xs-12 settitle'>
+		    	 	<span class="mui-icon mui-icon-contact-filled"></span>&nbsp;&nbsp;性别修改
+		    </div>
+		    
+		    <div class="mui-col-xs-10" id='updatenote'>
+		    		<select name="sexvalue" id="contentvalue">
+		    			<option value="男">男</option>
+		    			<option value="女">女</option>
+		    		</select>
+      			
+      		</div>
+      		
+	     	<div class=" mui-col-xs-2 ">
+	     		<button id='setsendbtn'class='setsendbtn'>确认</button>
+	     	</div>
+		</div>
+		<script type="text/javascript">
+			mui.plusReady(function(){
+				var newsex=document.getElementById('contentvalue');
+				var username=plus.storage.getItem('username');
+				var setsendbtn=document.getElementById("setsendbtn");
+					server=plus.storage.getItem('server');
+				setsendbtn.addEventListener('tap',function(){
+						mui.ajax(server+'setpersoninfo.php',{
+					data:{
+						action:'setsex',
+						username:username,
+						newsex:newsex.value	
+					},
+					type:'post',
+					success:function(data){
+//						console.log(data);
+						if(data==1){
+							plus.ui.toast('修改成功');
+							mui.openWindow({
+								url:'personset.html',
+								id:'personset',
+								createNew:true,
+								show:{
+									aniShow:'none',
+									duration:200
+								}
+							})
+						}else{
+							plus.ui.toast('出了点问题，再去试试吧');
+						}
+					}
+				})
+				})
+			
+			})
+		</script>
+</body>
+</html>

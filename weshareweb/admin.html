@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title>personset</title>
+   <script src="js/mui.min.js"></script>
+     <script src="js/openwin.js"></script>
+      <script src="js/weshare.js"></script>
+    <link href="css/mui.min.css" rel="stylesheet"/>
+     <link rel="stylesheet" href="css/weshare.css" />
+ 
+    <style type="text/css">
+    	.settitle{
+    		background: url(images/note.png) no-repeat 5px;
+  background-size: 20px;
+  padding: 8px;
+  padding-left: 30px;
+  border-bottom: 2px solid #e4e4e4;
+  margin-top: 10px;
+  padding-bottom: 10px;
+  font-weight: bolder;
+    	}
+ 	.setinfo {
+  background: url(images/arrow_right.png) no-repeat 95%;
+  background-size: 9px 13px;
+  font-size: 13px;
+  border-bottom: 1px solid #e4e4e4;
+  padding: 5px;
+  text-align: center;
+  line-height: 25px;
+  float: left;
+ color: #3F88B0;
+}
+.setinfo div{
+	float: left;
+}
+.setlisttitle {
+  font-size: 13px;
+  font-weight: bolder;
+  color: black;
+}
+.head {
+  line-height: 52px;
+}
+.imgsize img {
+  border-radius: 50%;
+  width: 20%;
+}
+.squimg img{
+	width: 40%;
+}
+.setsection{
+	border-bottom: 5px solid #E4E4E4;
+	display: block;
+	float: left;
+}
+.activestatus{
+	font-weight: bolder;
+}
+#admin{
+	position: relative;
+	top:10px;
+	left: 75%;
+	/*padding: 5px;*/
+	padding: 0;
+	padding-top:5px ;
+	padding-bottom:5px ;
+	font-size: 14px;
+	background: #66CCCC;
+	font-weight: bolder;
+	color: white;
+	/*width: 90px;*/
+	border-radius: 5px;
+}
+    </style>
+</head>
+<body>
+	<header class="mui-bar mui-bar-nav">
+	    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+	    <h1 class="mui-title">后台管理</h1>
+	    
+	</header>
+	
+		<div class="mui-content">
+		
+	       <secton id='userrule' class="setsection mui-col-xs-12">
+	      			<div class='settitle mui-col-xs-12'>任务活动管理</div>
+	      				  <div  class='mui-col-xs-12 setinfo' id='taskpub'>
+	      				 		<div class='mui-col-xs-5  setlisttitle'>任务活动发布</div>
+	      				  </div>
+	      </secton>
+	      
+		</div>
+	 
+</body>
+   <script type="text/javascript" charset="utf-8">
+      	mui.init();
+      	mui.plusReady(function(){
+      			 server=plus.storage.getItem('server');
+      		var  username=plus.storage.getItem('username');
+      		var  ismanager=plus.storage.getItem('ismanager');
+      		
+      		//跳转至任务活动发布页面
+      		document.getElementById('taskpub').addEventListener('tap',function(){
+      			mui.openWindow({
+      				url:'taskpub.html',
+      				id:'taskpub'
+      			})
+      		})
+      		
+  		
+      	})
+    </script>
+</html>

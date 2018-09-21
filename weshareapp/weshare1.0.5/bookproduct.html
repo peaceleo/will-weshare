@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title>personcenter</title>
+    <script src="js/mui.min.js"></script>
+     <script src="js/openwin.js"></script>
+      <script src="js/weshare.js"></script>
+    <link href="css/mui.min.css" rel="stylesheet"/>
+     <link rel="stylesheet" href="css/weshare.css" />
+      
+    <script type="text/javascript" charset="utf-8">
+      	mui.init();
+      	mui.plusReady(function(){
+      		server=plus.storage.getItem('server');
+      		active=plus.storage.getItem('active');
+      		school=plus.storage.getItem('school');
+			var reward=plus.storage.getItem('rewardpoints');
+			var pageweb=plus.webview.currentWebview();
+			 bid=pageweb.bid;
+			 store=pageweb.store;
+				var reward=plus.storage.getItem('rewardpoints');
+			tabChange();
+      		mui.ajax(server+'getcoursebooklist.php',{
+			 	data:{
+			 		action:'singlebook',
+			 		bid:bid
+			 	},
+			 	type:'post',
+			 	success:function(data){
+//			 		alert(data);
+			 		var jsondata=eval("["+data+"]");
+			 		var prolist=jsondata[0];
+			 		proprice=prolist[0].exprice;
+			 		document.getElementById("productimg").src=server+"uploads/"+prolist[0].pic;
+			 		document.getElementById("productname").innerText=prolist[0].coursebook;
+			 		document.getElementById("productprice").innerText=proprice+'享豆';
+			 		document.getElementById('prodescription').innerHTML="<div>适用课程:"+prolist[0].coursename+"</div>"+
+			 		"<div>授课老师:"+prolist[0].courseteacher+"</div>"+
+			 		"<div>"+prolist[0].description+"</div>";
+			 		document.getElementById('recoverprice').innerText=prolist[0].reprice;
+			 			
+			 		}
+			 	});
+			 	//存入兑换订单
+      		document.getElementById("exchangebtn").addEventListener('tap',function(){
+      		    server=plus.storage.getItem('server');
+      			username=plus.storage.getItem('username');
+      		
+      			towhotel=document.getElementById('towhotel').value;
+      			orderremark=document.getElementById('orderremark').value;
+      			 if(active==='未认证'){
+      		  	plus.ui.toast('您还没有上传学生证件,请在个人信息中完善证件信息...');
+      		  	return;
+      		  }
+      		   if(active==='认证中'){
+      		  	plus.ui.toast('您的身份信息正在认证中，请耐心等待...');
+      		  	return;
+      		  }
+      		   if(parseFloat(store)<1){
+					plus.ui.toast('宝贝暂无库存！')
+					return;
+				}
+      		    if(towhotel.length==0){
+      		    	 plus.ui.toast('手机号码是必须的哦');
+      		    	 return;
+      		    }
+      		    if(parseFloat(proprice)>parseFloat(reward)){
+					plus.ui.toast('您还没有那么多的享豆!')
+					return;
+				}
+      		    
+      		    
+      			mui.ajax(server+'exchangeorderaciton.php',{
+      				data:{
+      					action:'book',
+      					username:username,
+      					school:school,
+      					bid: bid,
+      					towhotel: towhotel,
+      					remark:orderremark
+      				},
+      				type:'post',
+      				success:function(data){
+      					console.log(data);
+      						plus.ui.toast('温暖正在向您狂奔而去...');
+      						mui.openWindow({
+      							url:'personcenter.html',
+      							id:'personcenter',
+      							extras:{
+      								type:'exchangeorder'
+      							},
+      						createNew:true,
+      							show:{
+      								aniShow:'slide-in-right',
+      								duration:300
+      							}
+      							
+      						})
+      				}
+      			})
+      		})
+      		
+      		//存入回收订单
+      		document.getElementById("recoverbtn").addEventListener('tap',function(){
+      		    server=plus.storage.getItem('server');
+      			username=plus.storage.getItem('username');
+      			bywhotel=document.getElementById('bywhotel').value;
+      			orderremark=document.getElementById('reorderremark').value;
+      			 if(active==='未认证'){
+      		  	plus.ui.toast('您还没有上传学生证件,请在个人信息中完善证件信息...');
+      		  	return;
+      		  }
+      		   if(active==='认证中'){
+      		  	plus.ui.toast('您的身份信息正在认证中，请耐心等待...');
+      		  	return;
+      		  }
+      		    if(towhotel.length==0){
+      		    	 plus.ui.toast('手机号码是必须的哦');
+      		    	 return;
+      		    }
+      		    
+      			mui.ajax(server+'exchangeorderaciton.php',{
+      				data:{
+      					action:'bookreorder',
+      					username:username,
+      					school:school,
+      					bid: bid,
+      					bywhotel: bywhotel,
+      					remark:orderremark
+      					},
+      				type:'post',
+      				success:function(data){
+      						plus.ui.toast('您的回收订单正在处理中，请耐心等候...');
+      						mui.openWindow({
+      							url:'bookstore.html',
+      							id:'bookstore',
+      						    createNew:true,
+      							show:{
+      								aniShow:'slide-in-right',
+      								duration:300
+      							}
+      							
+      						})
+      				}
+      			})
+      		})
+      		
+      		
+      		})
+		
+		function tabChange(){
+			document.getElementById('bywhotel').value=plus.storage.getItem('telphone');
+			document.getElementById('bookextitle').addEventListener('tap',function(){
+				this.style.background='#66cccc';
+				this.style.color='white';
+				document.getElementById('bookretitle').style.background='white';
+				document.getElementById('bookretitle').style.color='black';
+				document.getElementById('bookex').style.display='block';
+				document.getElementById('bookre').style.display='none';
+			})
+			
+			document.getElementById('bookretitle').addEventListener('tap',function(){
+				this.style.background='#66cccc';
+				this.style.color='white';
+				document.getElementById('bookextitle').style.background='white';
+				document.getElementById('bookextitle').style.color='black';
+				document.getElementById('bookre').style.display='block';
+				document.getElementById('bookex').style.display='none';
+			})
+			
+		}
+      
+      
+    </script>
+    <style type="text/css">
+    			
+     	 body{
+     	 	background: white;
+     	 }
+     	.productimg{
+     		
+     		padding-top: 10px;
+     		text-align: center;
+     	}
+     	.productimg img{
+     		width: 90%;
+     	}
+     	.productname{
+     		padding-top:10px;
+     		font-size: 17px;
+     		font-weight: bolder;
+     		text-align: center;
+     	}
+     	.productprice{
+     	 	font-size: 14px;
+		    color: white;
+		    font-weight: bolder;
+		    background: #66cccc;
+		    width: 110px;
+		    padding: 5px;
+		    border-radius: 3px;
+		    margin-top: 5px;
+		    margin-left: auto;
+		    margin-right: auto;
+		    text-align: center;
+     	}
+     	.productdes{
+     		text-align: left;
+     		font-size: 14px;
+     		
+     	}
+     	.tabchange{
+     		width: 100%;
+     		height: 30px;
+     		margin-bottom: 10px;
+     	}
+     	.tabchange div{
+     		width: 50%;
+     		float: left;
+     		text-align: center;
+     		padding-left: 0px;
+     		padding-top: 5px;
+     		padding-bottom: 5px;
+     		position: relative;
+     		border-right: 1px solid #E4E4E4;
+     		border-bottom: none;
+     		border-radius: 10px;
+     		background: none;
+     	}
+     	.prodestitle{
+     		padding-left: 40px;
+		    background: url(images/note.png) no-repeat;
+		    background-size: 18px;
+		    background-position: 10px 0px;
+		    border-bottom: 1px solid #a1a1a1;
+		    padding-bottom: 5px;
+		    font-size: 15px;
+		    font-weight: bolder;
+     	}
+     	.prodescription{
+     		font-size: 13px;
+     		color: #A1A1A1;
+     		font-weight: bold;
+     		text-indent: 30px;
+     		padding: 10px;
+     		margin-bottom: 40px;
+     	}
+     	.recoverprice{
+     		text-align: center;
+     		font-size: 13px;
+     		font-weight: bolder;
+     		margin: 10px;
+     	}
+     	
+     </style>
+</head>
+<body>
+	 <header class="mui-bar mui-bar-nav">
+		<div class='header index-header'>
+			<div class='logo' id='logo' style="display: none;"></div>
+			    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class='title' id='title'></h1>
+			<!--<a id="menu" href="#topPopover" class="mui-action-menu mui-icon mui-icon-bars mui-pull-right"></a>-->
+		</div>
+	</header>
+	<!--<div id="topPopover" class="mui-popover">
+			<div class="mui-popover-arrow"></div>
+			<div class="mui-scroll-wrapper">
+				<div class="mui-scroll">
+					<ul class="mui-table-view">
+						<li class="mui-table-view-cell" id='exchangeMall'>漂流集市
+						</li>
+						<li class="mui-table-view-cell" id='logout'>注销
+						</li>
+						
+					</ul>
+				</div>
+			</div>
+		</div>-->
+	 
+	 <div class="mui-content">
+	 	    <div class='productimg'>
+	 	    		<img src="" alt=""  id='productimg'/>
+	 	    </div>
+	 	    <div class='productname' id='productname'></div>
+	 	    <div class='productprice'id='productprice'>100享豆</div>
+	 	    <div class='productdes'>
+	 	    		<div class='prodestitle'>宝贝描述</div>
+	 	    		<div class="prodescription" id='prodescription'></div>
+	 	    </div>
+	 	    <div class='tabchange'>
+			 	    	<div class='prodestitle' id='bookextitle' style="background: #66CCCC;color:white">我要兑换</div>
+			 	    	<div class='prodestitle' id='bookretitle'>我要贡献</div>
+	 	    </div>
+	 	    
+	 	    <div class='proorder' id='bookex'>
+	 	    		<form>
+	 	    			<input type="text" id='towhotel' placeholder="您没看错，只需要收件人的手机号码"/>
+	 	    			<input type="text"  id="orderremark" placeholder="您还有其他要补充的吗？"/>
+	 	    		</form>
+	 	    		 <div class="productprice" id='exchangebtn'>提交订单</div>
+	 	    </div>
+	 	    
+	 	    <div class='proorder' id='bookre' style="display: none;">
+	 	    		<form>
+	 	    			 <div class='recoverprice'>回收价格：<span id='recoverprice'>100</span>享豆</div>
+	 	    			<input type="text" id='bywhotel' placeholder="您没看错，只需要您的手机号码"/>
+	 	    			<input type="text"  id="reorderremark" placeholder="您还有其他要补充的吗？"/>
+	 	    		</form>
+	 	    		 <div class="productprice" id='recoverbtn'>提交回收订单</div>
+	 	    </div>
+	 	   
+	 </div>	 
+</body>
+</html>

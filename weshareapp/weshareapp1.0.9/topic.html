@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+     <link href="css/mui.min.css" rel="stylesheet"/>
+	<link rel="stylesheet" href="css/weshare.css" />
+	 <script src="js/weshare.js"></script>
+    <title>needlist</title>
+   
+   
+     <style type="text/css">
+     	
+     	 .mui-bar-tab .mui-tab-item.mui-active{
+     	 	color: #929292;
+     	 }
+     	 
+     	 #task{
+     	 	color: black;
+     	 	text-align: center;
+     	 	background: white;
+     	 	/*width: 35px;*/
+     	 	font-weight: bolder;
+     	 }
+     	  #needlist{
+     	 	border-radius: 5px;
+     	 	color: black;
+     	 	text-align: center;
+     	 	background: white;
+     	 	/*width: 35px;*/
+     	 	font-weight: bolder;
+     	 }
+     	 #acti{
+     	 	border-radius: 5px;
+     	 	/*border-right: 1px solid #E4E4E4;*/
+     	 	color: black;
+     	 	text-align: center;
+     	 	background: white;
+     	 	/*width: 35px;*/
+     	 	font-weight: bolder;
+     	 }
+     	  #topic{
+     	 	/*padding: 5px;*/
+     	 	border-radius: 5px;
+     	 	color: white;
+     	 	text-align: center;
+     	 	background: #3F88B0;
+     	 	/*width: 35px;*/
+     	 	font-weight: bolder;
+     	 }
+     	
+     	 .searchwarpper{
+     	 	width: 96%;
+     	 	margin: auto;
+ 			border:2px solid #E4E4E4;
+ 			border-radius: 10px;
+ 			height: 40px;
+ 			margin-top: 5px;
+     	 }
+     	 .searchwarpper input{
+     	 	margin: 0;
+     	 	padding: 0;
+     	 	width: 81%;
+     	 	border: none;
+     	 	height: 33px;
+     	 	font-size: 14px;
+     	 	color: black;
+     	 	font-weight: bold;
+     	 	margin-left: 10px;
+     	 	margin-top: 2px;
+     	 }
+     	 .searchwarpper button{
+     	 	background: url(images/search.png) no-repeat center;
+     	 	background-size:18px ;
+     	 	/*background-posit;*/
+     	 	border: none;
+     	 	margin: 0;
+     	 	padding: 0;
+     	 	/*padding-top:10px;*/
+     	 	height: 33px;
+     	 	width: 13%;
+     	 	margin-top: 2px;
+     	 	opacity: 0.4;
+     	 }
+     	 .topicpart{
+     	 	width: 96%;
+     	 	margin: auto;
+     	 	/*border: 2px solid #E4E4E4;*/
+     	 	border-radius:5px;
+     	 	margin-top: 8px;
+     	 	box-shadow:1px 2px 2px 2px #E4E4E4;
+     	 }
+     	 .topicpart div.topictitle{
+     	 	padding: 5px;
+     	 	border-bottom: 2px solid #FAF8F8;
+     	 }
+     	  .topicpart div.topictitle span{
+     	  	
+     	 	padding-left: 25px;
+     	 	font-weight: bolder;
+     	 	font-size: 15px;
+     	 	height: 15px;
+     	 }
+     	 .span0{
+     	 	background:url(images/new.png) no-repeat;
+     	  	background-size: 16px;
+     	  	background-position-y:1px ;
+     	 }
+     	 .span1{
+     	 	background:url(images/hot.png) no-repeat;
+     	  	background-size: 13px;
+     	 }
+     	  .span2{
+     	 	background:url(images/book.png) no-repeat;
+     	  	background-size: 13px;
+     	 }
+     	  .span3{
+     	 	background:url(images/life.png) no-repeat;
+     	  	background-size: 16px;
+     	  	background-position-y:1px ;
+     	 }
+     	  .span4{
+     	 	background:url(images/smeil.png) no-repeat;
+     	  	background-size: 16px;
+     	  	background-position-y:1px;
+     	 }
+     	   .span5{
+     	 	background:url(images/unhappy.png) no-repeat;
+     	  	background-size: 16px;
+     	  	background-position-y:1px;
+     	 }
+     	  .topicpart div.topictitle a{
+     	 text-decoration: none;
+     	 display: block;
+     	 float: right;
+     	 color: #3F88B0;
+     	 font-weight: bolder;
+     	 font-size: 13px;
+     	 }
+     	 .topicpart ul li{
+     	 	font-size: 14px;
+     	 	font-weight: bold;
+     	 	padding-left: 30px;
+     	 	border: none;
+     	 }
+     	 .topiccomnum{
+     	 	color: #A1A1A1;
+     	 }
+     	 .status{
+     	 	float: right;
+			font-size: 12px;
+			color: #A1A1A1;
+     	 }
+     	  .mui-action-back,.mui-action-menu{
+     		width: 12%;
+     	}
+        .mui-bar-nav.mui-bar .mui-icon{
+           margin-right: 0px;
+     		margin-left: 0px;
+        }
+        .mui-bar{
+        	 padding-left: 0px;
+        	 padding-right:0px;
+        }
+        a{
+        	color: #3F88B0;
+        }
+         .mui-table-view:before{
+     	 	height: 0px;
+     	 }
+     	 .mui-table-view:after{
+     	 	height: 0px;
+     	 }
+   </style>
+</head>
+<body id='body'> 
+		<header class="mui-bar mui-bar-nav">
+		<div class='logo' id='logo' style="display: none;"></div>
+	    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+	  	<div class='tab mui-col-xs-12' id='tab'>
+		     	 	<a><div id='needlist' class="mui-col-xs-3">心愿单</div></a>
+		     	 	<a><div id='task' class="mui-col-xs-3">任务墙</div></a>
+		     	 	<a><div id='acti' class="mui-col-xs-3">攒活动</div></a>
+		     	 	<a><div id='topic' class="mui-col-xs-3">微论坛</div></a>	
+		     	 	
+     	 </div>
+     	<a id="menu" class="mui-action-menu mui-icon mui-icon-bars mui-pull-right"></a>
+	</header>
+	
+     <div  class="mui-content">
+	    <section id='search' class='searchwarpper'>
+	    			<input type="text" id='searchcontent' placeholder="请输入话题关键词"/>
+	    			<button id='searchbtn'></button>
+	    </section>
+	    <section id='newest' class='topicpart'>
+	    		<div class='topictitle'>
+	    			<span class="span0">最新</span>
+	    			<a href="#" data-type='newest'>更多...</a>
+	    		</div>
+	    		<ul class='mui-table-view' id='newestcontainer'></ul>
+	    </section>
+	    <section id='hottest' class='topicpart'>
+	    		<div class='topictitle'>
+	    			<span class="span1">最热</span>
+	    			<a href="#" data-type='hottest'>更多...</a>
+	    		</div>
+	    		<ul class='mui-table-view' id='hotestcontainer'>
+	    			<!--<li  class='mui-table-view-cell totopicdetail'>复旦周围好品面面食食吃的精品面食<span class='topiccomnum'>(2)</span><span class='status'>14天前</span></li>-->
+
+	     			<!--<li  class='mui-table-view-cell totopicdetail'>复旦品面食食吃的精品面食<span class='topiccomnum'>(2)</span><span class='status'>14天前</span></li>-->
+	    		</ul>
+	    </section>
+	     <section id='lesson' class='topicpart'>
+	    		<div class='topictitle'>
+	    			<span class='span2'>学习</span>
+	    			<a href="#" data-type='lesson'>更多...</a>
+	    		</div>
+	    		<ul class='mui-table-view' id='lessoncontainer'></ul>
+	    </section>
+	     <section id='life' class='topicpart'>
+	    		<div class='topictitle'>
+	    			<span class='span3'>生活</span>
+	    			<a href="#" data-type='life'>更多...</a>
+	    		</div>
+	    		<ul class='mui-table-view' id='lifecontainer'></ul>
+	    </section>
+	    <section id='havefun' class='topicpart'>
+	    		<div class='topictitle'>
+	    			<span class='span5'>情感</span>
+	    			<a href="#" data-type='emotion'>更多...</a>
+	    		</div>
+	    		<ul class='mui-table-view' id='emotioncontainer'></ul>
+	    </section>
+	     <section id='havefun' class='topicpart'>
+	    		<div class='topictitle'>
+	    			<span class='span4'>娱乐</span>
+	    			<a href="#" data-type='havefun'>更多...</a>
+	    		</div>
+	    		<ul class='mui-table-view' id='havefuncontainer'></ul>
+	    </section>
+     </div>
+     <nav class="mui-bar mui-bar-tab">
+			<a id="indextab" class="mui-tab-item" href="index.html" style="color:#3F88B0;">
+				<span class="mui-icon mui-icon-home-filled"></span>
+				<span class="mui-tab-label">首页</span>
+			</a>
+			<a  id='needpublishtab' class="mui-tab-item" href="needpublish.html">
+				<span class="mui-icon mui-icon-plus-filled"></span>
+				<span class="mui-tab-label">发布</span>
+			</a>
+			<a  id='messagetab'class="mui-tab-item" href="message.html" >
+				<span class="mui-icon mui-icon-email-filled"><span class="mui-badge" id='remindnum' style="display: none;"></span></span>
+				<span class="mui-tab-label">消息</span>
+			</a>
+			<a  id='personcentertab' class="mui-tab-item" href="personcenter.html">
+				<span class="mui-icon mui-icon-contact-filled"></span>
+				<span class="mui-tab-label">我的</span>
+			</a>
+		</nav>
+    
+	   <script src="js/mui.min.js"></script>
+	   <script src="js/openwin.js"></script>
+	    <script type="text/javascript" charset="utf-8">
+//      mui.init();
+      	mui.plusReady(function(){
+      	
+            //获取本地推动标识信息
+      		var page=1;
+      		 server=plus.storage.getItem('server');
+      		 username=plus.storage.getItem('username');
+      		  active=plus.storage.getItem('active');
+      		  school=plus.storage.getItem('school');	 	
+      		   document.getElementById('menu').addEventListener('tap',openmore);
+      		  
+      		  document.getElementById("needlist").addEventListener('tap',function(){
+      	 		mui.openWindow({
+      	 			url:'index.html',
+      	 			id:'index',
+      	 			createNew:true,
+      	 			show:{
+      	 				aniShow:'slide-in-left',
+      	 				duration:400
+      	 			}
+      	 		})
+      	 	})
+	  	document.getElementById('task').addEventListener('tap',function(){
+	  		 mui.openWindow({
+	  		 	url:'task.html',
+	  		 	id:'task',
+	  		 	createNew:true,
+	  		 	show:{
+      	 				aniShow:'slide-in-left',
+      	 				duration:400
+      	 			}
+	  		 })
+	  	})
+	  	document.getElementById('acti').addEventListener('tap',function(){
+	  		 mui.openWindow({
+	  		 	url:'acti.html',
+	  		 	id:'acti',
+	  		 	createNew:true,
+	  		 	show:{
+      	 				aniShow:'slide-in-left',
+      	 				duration:400
+      	 			}
+	  		 })
+	  	})
+	  	
+	  	//搜索
+	  	document.getElementById('searchbtn').addEventListener('tap',function(){
+	  		var keyword=document.getElementById('searchcontent').value;
+//	  		console.log(keyword);
+	  		mui.openWindow({
+	  			url:'topiclist.html',
+	  			id:'topiclist',
+	  			extras:{
+	  				type:'search',
+	  				keywords:keyword
+	  			}
+	  		})
+	  	})
+	  	//填充top数据
+	  	 gettopiclist('newest',1,3,'newestcontainer');
+	  	 gettopiclist('hottest',1,3,'hotestcontainer');
+	  	 gettopiclist('lesson',1,3,'lessoncontainer');
+	  	 gettopiclist('life',1,3,'lifecontainer');
+	  	 gettopiclist('havefun',1,3,'havefuncontainer');
+	  	 gettopiclist('emotion',1,3,'emotioncontainer');
+	  	//更多列表 
+	  	 mui('section').on('tap','a',function(){
+	  	 	var type=this.getAttribute('data-type');
+	  	 	mui.openWindow({
+	  	 		url:'topiclist.html',
+	  	 		id:'topiclist',
+	  	 		createNew:true,
+	  	 		extras:{
+	  	 			type:type
+	  	 		}
+	  	 	})
+	  	 })
+	  	 //to topic detail
+	  	 mui('section').on('tap','.totopicdetail',function(){
+	  	 	var tid=this.getAttribute('data-tid');
+	  	 	mui.openWindow({
+	  	 		url:'topicdetail.html',
+	  	 		id:'topicdetail',
+	  	 		extras:{
+	  	 			tid:tid
+	  	 		}
+	  	 	})
+	  	 })
+      	 })
+     
+     
+     //获取topiclist top3
+     
+     function gettopiclist(action,page,shownum,position){
+     	mui.ajax(server+'gettopiclist.php',{
+     		data:{
+     			action:action,
+     			page:page,
+     			school:school
+     		},
+     		type:'post',
+     		success:function(data){
+     			var topiclistcontainer=document.getElementById(position);
+     			var jsondata=eval('['+data+']');
+     			var topiclist=jsondata[0];
+     			var i=0;	
+     			while(i<shownum){
+     				console.log(i);
+     				html="<li  data-tid='"+topiclist[i].tid+"' class='mui-table-view-cell totopicdetail'>"+topiclist[i].topictitle+"<span class='topiccomnum'>("+topiclist[i].commentnum+")</span><span class='status'>"+timeFormat(topiclist[i].publishtime)+"</span></li>";
+     				topiclistcontainer.insertAdjacentHTML('beforeend',html);
+     				i++;
+     			}
+     			
+     		}
+     	})
+     }
+     //获取话题类型
+      	function gettopictypelist(){
+      		mui.ajax(server+'getselectlist.php',{
+      			data:{
+      				action:'topictypelist'
+      			},
+      			type:'post',
+      			success:function(data){
+      				var topictype=document.getElementById("topictype");
+      				var jsondata=eval("["+data+"]");
+      				var topictypelist=jsondata[0];
+      				for(var i=topictypelist.length-1;i>=0;i--){
+      					html="<option value='"+topictypelist[i]+"'>"+topictypelist[i]+"</option>";
+      					topictype.insertAdjacentHTML('afterBegin',html);
+      				}
+      			}
+      		})
+      	}
+
+    
+    </script>
+</body>
+</html>

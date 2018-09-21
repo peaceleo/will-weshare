@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title>personcenter</title>
+    <script src="../js/mui.min.js"></script>
+     <script src="../js/openwin.js"></script>
+      <script src="../js/weshare.js"></script>
+    <link href="../css/mui.min.css" rel="stylesheet"/>
+     <link rel="stylesheet" href="../css/weshare.css"/>
+      
+    
+    <style type="text/css">
+    			 .mui-bar-tab .mui-tab-item.mui-active{
+     	 	color: #929292;
+     	 }
+     	 body{
+     	 	background: white;
+     	 }
+     	 .mui-content{
+     	 	margin: 0px;
+     	 	padding: 0px;
+     	 }
+     #wrapper {
+    		position: relative;
+    		z-index: 1;
+    		height: 35px;
+    		width: 100%;
+    		/*border: 1px solid black;*/
+    		overflow: hidden;
+    		font-weight: bolder;
+    }
+    #scroll{
+    	position: absolute;
+	z-index: 1;
+	-webkit-tap-highlight-color: rgba(0,0,0,0);
+	width: 200%;
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-webkit-text-size-adjust: none;
+	overflow-x: scroll;
+    }
+    #scroll ul{
+    		list-style: none;
+    		padding: 0;
+    		margin: 0;
+    		display: -webkit-box;
+    		
+    }
+    #scroll li{
+    border: 1px solid #E4E4E4;
+    	padding: 0;
+    	margin: 0;
+    width: 17%;
+    	line-height: 35px;
+    	overflow: hidden;
+    	text-align: center;
+    }
+    .singleorder{
+    	border: 2px solid #E4E4E4;
+    	/*border-top-left-radius: 5%;
+    	border-top-right-radius: 5%;*/
+    	border-radius: 5px;
+    	margin-bottom: 15px;
+    	width: 94%;
+    	margin-left: 3%;
+    	margin-right: 3%;
+    }
+    .proimg{
+    	width: 30%;
+    	float: left;
+    	height: 140px;
+    }
+    .proimg table tr td{
+    	 text-align: center;
+     vertical-align: middle;
+     height: 140px;
+    }
+     .proimg img{
+     	max-width: 85%;
+     	max-height: 85%;
+     }
+    .orderinfo{
+    	  	border-left: 1px solid #e4e4e4;
+    	  	display: inline-block;
+    	  	width: 70%;
+    	  
+    }
+    .numandtime{
+    	border-bottom:1px solid #E4E4E4;
+    	font-size:12px;
+    	color: #A1A1A1;
+    	font-weight: bolder;
+    	padding: 3px;
+    	height: 30px;
+    }
+    .numandtime div{
+    	float: left;
+    }
+     .nameandprice{
+    	border-bottom: 1px solid #e4e4e4;
+    	padding: 10px;
+    	font-weight: bolder;
+    	min-height:80px ;
+    	width: 100%;
+    }
+    .ordername{
+    	width: 50%;
+    	float: left;
+    	margin-right: 15px;
+    }
+    .orderprice{
+    	float: left;
+    	width: 40%;
+    	font-size: 13px;
+    color: white;
+    font-weight: bolder;
+    background: #66cccc;
+    /*width: 80px;*/
+    padding: 5px;
+    border-radius: 3px;
+    text-align: center;
+    /*margin-top:8px;*/
+    }
+    .towhotel{
+    	font-size: 12px;
+    	padding: 5px;
+    	font-weight: bolder;
+    	color: #A1A1A1;
+    }
+    .personneedaction{
+   			width:50%;
+    			text-align: center;
+    			font-size: 13px;
+    			font-weight: bolder;
+    			color: black;
+    			border-top: 1px solid #E4E4E4;
+    			border-bottom: 3px solid #E4E4E4;
+    			padding-top: 5px;
+    			padding-bottom: 5px;
+    			border-left:2px solid #E4E4E4 ;
+   		}
+   		.personneedaction .mui-icon{
+   			font-size: 20px;
+   			font-weight: bolder;
+   		}
+   		 .mui-scroll-wrapper{
+     	 overflow: initial;
+     	 }
+     	 .sexshow{
+     	 	height: 20px;
+     	 	width: 20px;
+     	 	/*border:1px solid black;*/
+     	 	position: absolute;
+     	 	bottom: 0px;
+     	 	left: 60%;
+     	 }
+     	 #male{
+     	 	background: url(images/male.png) no-repeat;
+     	 	background-size:20px;
+     	 }
+     	 #female{
+     	 	background: url(images/female.png) no-repeat;
+     	 	background-size:20px;
+     	 }
+    #title{
+    	font-size: 14px;
+    	font-weight: bolder;
+    }
+    .footercontainer{
+    	width: 100%;
+    	height: 35px;
+    }
+    .footercontainer div{
+    	float: left;
+    	width: 33.3%;
+    	text-align: center;
+    padding-top: 8px;
+    	border:1px solid #E4E4E4;
+    	border-bottom: none;
+    	font-size: 12px;
+    	font-weight: bolder;
+    	padding-bottom: 5px;
+    }
+    .mui-icon{
+        	font-weight: bolder;
+        	font-size: 18px;
+     }
+       .choose{
+     	 	position: fixed;
+     	 	width:80%;
+     	 	margin-left: 10%;
+     	 	margin-right: 10%;
+     	 	top:300px;
+     	 	font-weight: bolder;
+     	 }
+     	 .choose ul{
+			  	border-radius: 10px;
+			  }
+			  .choose ul:before{
+			  	height: 0px;
+			  }
+			   .choose ul:after{
+			  	height: 0px;
+			  }   
+     </style>
+     
+</head>
+<body id='body'>
+	<header class="mui-bar mui-bar-nav">
+	    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+	    <h1 class="mui-title" id='title'>我的共享记录</h1>
+	</header>
+	 
+	 <div class="mui-content">	
+		 	<div id="contentwarp">
+		 		<!--<div class='singleorder mui-col-xs-12'>
+		 			     <div class='proimg'>
+		 			     	<table>
+		 			     		<tr><td> <img src='images/default_head.jpg'/></td></tr>
+		 			     	</table>
+		 			     </div>
+		 			 <div class='orderinfo'>
+		 				    <div class='numandtime mui-col-xs-12'>
+		 					<div class='ordernum mui-col-xs-9'>订单号:</div>
+		 					<div class='ordertime mui-col-xs-3'>3天前</div>
+		 				     </div>
+		 				<div class='nameandprice mui-col-xs-12'>
+		 						<div class='ordername mui-col-xs-12'>你好你啊大大大洒店大撒大洒店哈大大</div>
+		 						<div class='orderprice mui-col-xs-12'>100享豆</div>
+		 			    </div>
+		 				 <div class='towhotel mui-col-xs-12'>收件人:18501773419</div>
+		 			</div>
+		 			<div class='footercontainer'>
+		 				<div><span class='mui-icon mui-icon-gear-filled'></span>&nbsp;&nbsp;查看详情</div>
+		 				<div><span class='mui-icon mui-icon-chatbubble-filled'></span>&nbsp;&nbsp;联系主人</div>
+		 				<div><span class='mui-icon mui-icon-checkbox-filled'></span>&nbsp;&nbsp;确认收货</div>
+		 			</div>
+		 		</div>-->
+              <!--<div class='singleorder mui-col-xs-12'>
+		 			     <div class='proimg'>
+		 			     	<table>
+		 			     		<tr><td> <img src='images/default_head.jpg'/></td></tr>
+		 			     	</table>
+		 			     </div>
+		 			 <div class='orderinfo'>
+		 				    <div class='numandtime mui-col-xs-12'>
+		 					<div class='ordernum mui-col-xs-9'>订单号:</div>
+		 					<div class='ordertime mui-col-xs-3'>3天前</div>
+		 				     </div>
+		 				<div class='nameandprice mui-col-xs-12'>
+		 						<div class='ordername mui-col-xs-12'>你好你啊大大大洒店大撒大洒店哈大大</div>
+		 						<div class='orderprice mui-col-xs-12'>100享豆</div>
+		 			    </div>
+		 				 <div class='towhotel mui-col-xs-12'>收件人:18501773419</div>
+		 			</div>
+		 			<div class='footercontainer'>
+		 				<div><span class='mui-icon mui-icon-gear-filled'></span>&nbsp;&nbsp;查看详情</div>
+		 				<div><span class='mui-icon mui-icon-chatbubble-filled'></span>&nbsp;&nbsp;联系主人</div>
+		 				<div><span class='mui-icon mui-icon-checkbox-filled'></span>&nbsp;&nbsp;确认收货</div>
+		 			</div>
+		 		</div>-->
+            </div>
+             <div id='moredata'></div>
+	 </div>
+	  <script type="text/javascript" charset="utf-8">
+      	mui.init();
+      	mui.plusReady(function(){
+//    		quitapp();
+      		 username=plus.storage.getItem('username');
+      		 getremindernum(username);
+      		 getpersoninfo(username);
+      		var reward=plus.storage.getItem('rewardpoints');
+      		page=1;
+      		getexchangeorder(username);
+      		//checkdetail
+      		mui('#contentwarp').on('tap','.checkdetail',function(){
+      			var onum=this.getAttribute('data-onum');
+      			 mui.openWindow({
+      			 	url:'orderdetail.html',
+      			 	id:'orderdetail',
+      			 	createNew:true,
+      			 	extras:{
+      			 		onum:onum,
+      			 		type:'share'
+      			 	}
+      			 })
+      		})
+      		//contactbuyer 
+      		mui('#contentwarp').on('tap','.contactbuyer',function(){
+      		 	var buyertel=this.getAttribute('data-tel');
+      		 	console.log(buyertel);
+      		 	html="<div class='pubwrapper' id='pubwarpper'><div class='choose'><ul class='mui-table-view'>"+
+						"<li class='mui-table-view-cell'><a href='sms:"+buyertel+"' class='back5'>短信</a></li>"+
+						"<li class='mui-table-view-cell'><a href='tel:"+buyertel+"' class='back6'>电话</a></li>"+
+						"</ul>"+
+			        "<ul class='mui-table-view' style='margin-top: 10px;'>"+
+					"<li  id='closepub' onclick='closepub();'class='mui-table-view-cell'><a><b>取消</b></a></li>"+
+			    "</ul></div></div>";
+			     var body=document.getElementById('body');
+		       body.insertAdjacentHTML('afterBegin',html);
+      		 })
+      		 //取消订单
+      		 mui('#contentwarp').on('tap','.cancleorder',function(){
+      		 	var onum=this.getAttribute('data-onum');
+      		 	var orderstatus=this.getAttribute('data-status');
+      		 	if(orderstatus==1){
+      		 		plus.ui.toast('您的订单已经完成啦');
+      		 		return;
+      		 	}else if(orderstatus==2){
+      		 		plus.ui.toast('您的订单已经取消啦');
+      		 		return;
+      		 	}
+      		 		plus.ui.confirm('您确认要取消订单嘛？',function(e){
+      		 		 if(e.index==0){
+	      		 		 	mui.ajax(server+'orderaction.php',{
+			      		 		data:{
+			      		 			action:'cancleorder',
+			      		 			onum:onum
+			      		 		},
+			      		 		type:'post',
+			      		 		success:function(data){
+									if(data==1){
+										plus.ui.toast('取消成功,享豆将退还给主人');
+										location.reload();
+									}else{
+										 plus.ui.toast('取消失败,再试试吧');
+									}
+			      		 		}
+			      		 	})
+      		 		 }else{
+      		 		 	return;
+      		 		 }
+      		 	},'',['Yes','No']);
+      		 })
+          })
+          
+ 			 
+      	 //获取兑换订单
+     function getexchangeorder(){
+     	var contentcontainer=document.getElementById('contentwarp');
+//   	 contentcontainer.innerHTML='';
+     	mui.ajax(server+'getexchangeorder.php',{
+     		data:{
+     			action:'someoneshare',
+     			username:username
+     		},
+     		type:'post',
+     		success:function(data){
+			console.log(data);
+     			
+			 var jsondata=eval("["+data+"]");
+			 var exchangeorderlist=jsondata[0];
+			 if(exchangeorderlist==''){
+			 	 html="<div class=\'commentblack\'>还没有共享订单</div>";
+      	   	 	  contentcontainer.innerHTML=html;
+			 }
+			 for(var i=0;i<=exchangeorderlist.length;i++){
+			 		if(exchangeorderlist[i].status==0){
+			 			actiontext='取消订单';
+			 		}else if(exchangeorderlist[i].status==1){
+			 			actiontext='已完成';
+			 		}else{
+			 			actiontext='已取消';
+			 		}
+			 		
+			 	sendtime=timeFormat(exchangeorderlist[i].addtime);
+			 	 html2="<div class='singleorder mui-col-xs-12'>"+
+		 			     "<div class='proimg '>"+
+		 			     	"<table>"+
+		 				   "<tr><td><img src='"+server+"uploads/"+exchangeorderlist[i].propic+"'/></td></tr>"+
+		 				    "</table>"+
+		 			     " </div>"+
+		 			  " <div class='orderinfo'>"+
+		 				    "<div class='numandtime mui-col-xs-12'>"+
+		 						"<div class='ordernum mui-col-xs-9'>订单号:"+exchangeorderlist[i].onum+"</div>"+
+		 						"<div class='ordertime mui-col-xs-3'>"+sendtime+"</div>"+
+		 				     "</div>"+
+		 				"<div class='nameandprice mui-col-xs-12'>"+
+		 						"<div class='ordername mui-col-xs-8'>"+exchangeorderlist[i].proname+"</div>"+
+		 						"<div class='orderprice mui-col-xs-3'>"+exchangeorderlist[i].proprice+"享豆</div>"+
+		 				"</div>"+
+		 				 " <div class='towhotel mui-col-xs-12'>收件人:"+exchangeorderlist[i].recivertel+"</div>"+
+		 			"</div>"+
+		 			"<div class='footercontainer'>"+
+		 				"<div class='checkdetail' data-onum='"+exchangeorderlist[i].onum+"'><span class='mui-icon mui-icon-gear-filled'></span>&nbsp;&nbsp;查看详情</div>"+
+		 				"<div class='contactbuyer' data-tel='"+exchangeorderlist[i].recivertel+"'><span class='mui-icon mui-icon-chatbubble-filled'></span>&nbsp;&nbsp;联系买方</div>"+
+		 				"<div class='cancleorder' data-onum='"+exchangeorderlist[i].onum+"'data-status='"+exchangeorderlist[i].status+"'><span class='mui-icon mui-icon-checkbox-filled'></span>&nbsp;&nbsp;"+actiontext+"</div>"+
+		 			"</div>"+
+		 		"</div>";
+		 		 contentcontainer.insertAdjacentHTML('beforeend',html2);	
+			 }
+     		}
+     	})
+     }
+     
+     
+      
+    </script>
+</body>
+</html>

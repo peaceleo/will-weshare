@@ -1,0 +1,484 @@
+{
+  "login.html": {
+    "resources": [
+      "js/weshare.js",
+      "js/mui.min.js",
+      "css/weshare.css",
+      "fonts/mui.ttf",
+      "css/mui.min.css",
+      "images/logonew.png"
+    ],
+    "refer": [
+      "index.html",
+      "reg.html"
+    ]
+  },
+  "message.html": {
+    "refer": [
+      "needpublish.html",
+      "personcenter.html",
+      "login.html",
+      "exchangemall.html",
+      "index.html",
+      "bookstore.html",
+      "checkneedaction.html"
+    ],
+    "resources": [
+      "images/black.jpg",
+      "fonts/mui.ttf",
+      "images/logonew.png",
+      "js/openwin.js",
+      "js/weshare.js",
+      "js/mui.min.js",
+      "css/weshare.css",
+      "css/mui.min.css",
+      "images/female.png",
+      "images/male.png"
+    ]
+  },
+  "index.html": {
+    "resources": [
+      "js/openwin.js",
+      "images/pay.png",
+      "images/location.png",
+      "js/mui.min.js",
+      "js/weshare.js",
+      "css/weshare.css",
+      "fonts/mui.ttf",
+      "css/mui.min.css",
+      "images/logonew.png",
+      "message.html",
+      "needpublish.html",
+      "images/default_head.jpg",
+      "images/female.png",
+      "images/male.png"
+    ],
+    "refer": [
+      "personcenter.html",
+      "task.html",
+      "needpublish.html",
+      "message.html",
+      "needaction.html",
+      "othercenter.html"
+    ]
+  },
+  "personcenter.html": {
+    "resources": [
+      "images/perback.jpg",
+      "images/default_head.jpg",
+      "images/arrow_right.png",
+      "js/openwin.js",
+      "images/black.jpg",
+      "js/weshare.js",
+      "js/mui.min.js",
+      "css/weshare.css",
+      "fonts/mui.ttf",
+      "css/mui.min.css",
+      "images/logonew.png",
+      "images/pay.png",
+      "images/location.png",
+      "images/male.png",
+      "images/female.png"
+    ],
+    "refer": [
+      "message.html",
+      "exchangemall.html",
+      "personset.html",
+      "login.html",
+      "index.html",
+      "needpublish.html",
+      "bookstore.html",
+      "checkneedaction.html",
+      "markfinish.html"
+    ]
+  },
+  "needpublish.html": {
+    "resources": [
+      "images/down.png",
+      "images/addnote.png",
+      "images/needlabel.png",
+      "js/openwin.js",
+      "js/weshare.js",
+      "js/mui.min.js",
+      "css/weshare.css",
+      "fonts/mui.ttf",
+      "css/mui.min.css",
+      "images/pay.png",
+      "images/logonew.png"
+    ],
+    "refer": [
+      "index.html",
+      "exchangemall.html",
+      "login.html",
+      "onekeyask.html",
+      "message.html",
+      "personcenter.html",
+      "bookstore.html",
+      "ridestore.html"
+    ]
+  },
+  "taskaction.html": {
+    "resources": [
+      "images/shan.png",
+      "js/mui.zoom.js",
+      "js/mui.previewimage.js",
+      "js/mui.view.js",
+      "js/weshare.js",
+      "js/mui.min.js",
+      "css/weshare.css",
+      "fonts/mui.ttf",
+      "css/mui.min.css",
+      "images/default_head.jpg",
+      "images/pay.png",
+      "images/location.png",
+      "images/Eye.png",
+      "images/black.jpg",
+      "images/female.png",
+      "images/male.png"
+    ],
+    "refer": [
+      "uploadresult.html",
+      "othercenter.html"
+    ]
+  },
+  "task.html": {
+    "resources": [
+      "images/Eye.png",
+      "images/default_head.jpg",
+      "images/location.png",
+      "js/openwin.js",
+      "js/mui.min.js",
+      "js/weshare.js",
+      "css/weshare.css",
+      "fonts/mui.ttf",
+      "css/mui.min.css",
+      "images/pay.png",
+      "images/logonew.png",
+      "needpublish.html"
+    ],
+    "refer": [
+      "taskaction.html",
+      "index.html",
+      "message.html",
+      "needpublish.html",
+      "personcenter.html"
+    ]
+  },
+  "exchangemall.html": {
+    "resources": [
+      "images/down.png",
+      "images/model.png",
+      "js/openwin.js",
+      "js/weshare.js",
+      "js/mui.min.js",
+      "css/weshare.css",
+      "fonts/mui.ttf",
+      "css/mui.min.css",
+      "images/logonew.png"
+    ],
+    "refer": [
+      "product.html",
+      "uploadpro.html"
+    ]
+  },
+  "product.html": {
+    "resources": [
+      "images/note.png",
+      "js/openwin.js",
+      "js/weshare.js",
+      "js/mui.min.js",
+      "css/weshare.css",
+      "fonts/mui.ttf",
+      "css/mui.min.css",
+      "images/logonew.png"
+    ]
+  },
+  "personset.html": {
+    "resources": [
+      "images/note.png",
+      "images/arrow_right.png",
+      "js/openwin.js",
+      "js/weshare.js",
+      "css/weshare.css",
+      "images/logonew.png",
+      "js/mui.min.js",
+      "fonts/mui.ttf",
+      "css/mui.min.css"
+    ],
+    "refer": [
+      "rewardrecord.html",
+      "personcenter.html",
+      "setnickname.html",
+      "sethead.html",
+      "ident.html",
+      "setsex.html",
+      "setnote.html",
+      "rewardgiven.html"
+    ]
+  },
+  "onekeyask.html": {
+    "resources": [
+      "js/openwin.js",
+      "js/weshare.js",
+      "js/mui.min.js",
+      "images/bike.jpg",
+      "css/weshare.css",
+      "fonts/mui.ttf",
+      "css/mui.min.css",
+      "images/default_head.jpg",
+      "images/logonew.png"
+    ]
+  },
+  "reg.html": {
+    "resources": [
+      "images/down.png",
+      "js/mui.min.js",
+      "css/weshare.css",
+      "fonts/mui.ttf",
+      "css/mui.min.css"
+    ],
+    "refer": [
+      "ident.html"
+    ]
+  },
+  "ident.html": {
+    "resources": [
+      "js/jquery.Jcrop.min.js",
+      "js/common.js",
+      "js/jquery-1.11.3.js",
+      "css/jquery.Jcrop.min.css",
+      "images/success.png",
+      "js/immersed.js"
+    ],
+    "refer": [
+      "login.html"
+    ]
+  },
+  "rewardrecord.html": {
+    "resources": [
+      "js/weshare.js",
+      "js/mui.min.js",
+      "css/weshare.css",
+      "fonts/mui.ttf",
+      "css/mui.min.css"
+    ]
+  },
+  "bookstore.html": {
+    "resources": [
+      "images/model.png",
+      "images/down.png",
+      "js/openwin.js",
+      "js/weshare.js",
+      "js/mui.min.js",
+      "css/weshare.css",
+      "css/mui.min.css",
+      "fonts/mui.ttf",
+      "images/logonew.png"
+    ],
+    "refer": [
+      "product.html",
+      "bookproduct.html"
+    ]
+  },
+  "uploadpro.html": {
+    "resources": [
+      "images/comment.png",
+      "images/uploadpic.jpg",
+      "images/addnote.png",
+      "images/needlabel.png",
+      "images/pay.png",
+      "images/note.png"
+    ]
+  },
+  "setnickname.html": {
+    "refer": [
+      "personset.html"
+    ],
+    "resources": [
+      "js/openwin.js",
+      "js/weshare.js",
+      "js/mui.min.js",
+      "css/weshare.css",
+      "fonts/mui.ttf",
+      "css/mui.min.css"
+    ]
+  },
+  "bookproduct.html": {
+    "resources": [
+      "images/note.png",
+      "js/openwin.js",
+      "js/weshare.js",
+      "js/mui.min.js",
+      "css/weshare.css",
+      "fonts/mui.ttf",
+      "css/mui.min.css",
+      "images/logonew.png"
+    ],
+    "refer": [
+      "personcenter.html",
+      "bookstore.html"
+    ]
+  },
+  "needaction.html": {
+    "resources": [
+      "images/black.jpg",
+      "js/mui.min.js",
+      "js/weshare.js",
+      "css/weshare.css",
+      "fonts/mui.ttf",
+      "css/mui.min.css",
+      "images/pay.png",
+      "images/location.png",
+      "images/logonew.png",
+      "images/female.png",
+      "images/male.png"
+    ],
+    "refer": [
+      "othercenter.html"
+    ]
+  },
+  "checkneedaction.html": {
+    "resources": [
+      "images/black.jpg",
+      "js/mui.min.js",
+      "js/weshare.js",
+      "css/weshare.css",
+      "fonts/mui.ttf",
+      "css/mui.min.css",
+      "images/pay.png",
+      "images/logonew.png",
+      "images/location.png",
+      "images/female.png",
+      "images/male.png"
+    ],
+    "refer": [
+      "othercenter.html"
+    ]
+  },
+  "uploadresult.html": {
+    "resources": [
+      "js/jquery.Jcrop.min.js",
+      "js/common.js",
+      "images/perback.jpg",
+      "js/jquery-1.11.3.js",
+      "css/jquery.Jcrop.min.css",
+      "images/success.png",
+      "js/immersed.js",
+      "js/mui.min.js",
+      "fonts/mui.ttf",
+      "css/mui.min.css"
+    ],
+    "refer": [
+      "taskaction.html"
+    ]
+  },
+  "sethead.html": {
+    "resources": [
+      "js/jquery.Jcrop.min.js",
+      "js/common.js",
+      "images/perback.jpg",
+      "js/mui.min.js",
+      "js/jquery-1.11.3.js",
+      "fonts/mui.ttf",
+      "css/mui.min.css",
+      "css/jquery.Jcrop.min.css",
+      "images/success.png",
+      "images/cut.png",
+      "js/immersed.js"
+    ],
+    "refer": [
+      "personset.html"
+    ]
+  },
+  "othercenter.html": {
+    "resources": [
+      "images/perback.jpg",
+      "js/openwin.js",
+      "js/weshare.js",
+      "js/mui.min.js",
+      "css/weshare.css",
+      "fonts/mui.ttf",
+      "css/mui.min.css",
+      "images/logonew.png",
+      "images/pay.png",
+      "images/location.png",
+      "images/female.png",
+      "images/male.png"
+    ]
+  },
+  "setnote.html": {
+    "resources": [
+      "js/openwin.js",
+      "js/weshare.js",
+      "js/mui.min.js",
+      "css/weshare.css",
+      "fonts/mui.ttf",
+      "css/mui.min.css"
+    ],
+    "refer": [
+      "personset.html"
+    ]
+  },
+  "setsex.html": {
+    "refer": [
+      "personset.html"
+    ],
+    "resources": [
+      "js/openwin.js",
+      "js/weshare.js",
+      "js/mui.min.js",
+      "css/weshare.css",
+      "fonts/mui.ttf",
+      "css/mui.min.css"
+    ]
+  },
+  "markfinish.html": {
+    "resources": [
+      "images/down.png",
+      "images/select_person.png",
+      "images/backcc.jpg",
+      "js/openwin.js",
+      "js/weshare.js",
+      "js/mui.min.js",
+      "css/weshare.css",
+      "fonts/mui.ttf",
+      "css/mui.min.css",
+      "images/pay.png",
+      "images/logonew.png"
+    ],
+    "refer": [
+      "personcenter.html"
+    ]
+  },
+  "rewardgiven.html": {
+    "resources": [
+      "js/weshare.js",
+      "js/mui.min.js",
+      "css/weshare.css",
+      "fonts/mui.ttf",
+      "css/mui.min.css",
+      "images/select_person.png",
+      "images/Eye.png",
+      "images/pay.png",
+      "images/male.png",
+      "images/addnote.png"
+    ],
+    "refer": [
+      "rewardrecord.html"
+    ]
+  },
+  "ridestore.html": {
+    "resources": [
+      "js/openwin.js",
+      "js/weshare.js",
+      "js/mui.min.js",
+      "css/weshare.css",
+      "fonts/mui.ttf",
+      "css/mui.min.css",
+      "images/logonew.png"
+    ],
+    "refer": [
+      "product.html"
+    ]
+  }
+}

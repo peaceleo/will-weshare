@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title>othercenter</title>
+    <script src="js/mui.min.js"></script>
+     <script src="js/openwin.js"></script>
+      <script src="js/weshare.js"></script>
+    <link href="css/mui.min.css" rel="stylesheet"/>
+     <link rel="stylesheet" href="css/weshare.css" />
+      
+    <script type="text/javascript" charset="utf-8">
+      	mui.init();
+      	mui.plusReady(function(){
+//    		 username=plus.storage.getItem('username');
+//    		 getremindernum(username);
+			var page=plus.webview.currentWebview();
+			var username=page.user;
+      		var reward=plus.storage.getItem('rewardpoints');
+      		var  page=1;
+      		var myneed= document.getElementById('myneed');
+      		var myhelped=document.getElementById('myhelped');
+      		var mefromothers= document.getElementById('mefromothers');
+      			server=plus.storage.getItem('server');
+      			active=plus.storage.getItem('active');
+      		
+      		getpersoninfo(username);
+      	 	getmyneed(username,page);
+      	 	plus.nativeUI.closeWaiting();
+      	 	myneed.style.background='#389EDA';
+      	 	myneed.style.color='white';
+      	 	
+//    	 	mui.currentWebview.show();
+      	 	//切换至myneed
+      	 myneed.addEventListener('tap',function(){
+      	  	this.style.background='#389EDA';
+      	 	this.style.color='white';
+      	 	myhelped.style.background='white';
+      	 	myhelped.style.color='black';
+      	 	mefromothers.style.background='white';
+      	 	mefromothers.style.color='black';
+      	  	var page=1;
+      	  	moreneed="<div id='moreneed' class='moreneed'></div>";
+      		document.getElementById('contentwarp').innerHTML=moreneed;
+      	  	getmyneed(username,page);
+      	  });
+      	  //切换至myhelped
+      	  myhelped.addEventListener('tap',function(){
+      	  	this.style.background='#389EDA';
+      	 	this.style.color='white';
+      	 	myneed.style.background='white';
+      	 	myneed.style.color='black';
+      	 	mefromothers.style.background='white';
+      	 	mefromothers.style.color='black';
+      	  	getmyhelped(username);
+      	  });
+      	  //切换至他人评价
+      	 mefromothers.addEventListener('tap',function(){
+      	 	this.style.background='#389EDA';
+      	 	this.style.color='white';
+      	 	myhelped.style.background='white';
+      	 	myhelped.style.color='black';
+      	 	myneed.style.background='white';
+      	 	myneed.style.color='black';
+      	  	getfromothers(username);
+      	  });
+      
+        //
+          mui('#contentwarp').on('tap','.needaction',function(){
+      	var needid=this.getAttribute('data-id');
+      	var towho=this.getAttribute('data-user');
+      	if(active!='已认证'){
+      		  	plus.ui.toast('您的身份还在认证中...');
+      		  	return;
+      		  }
+     		mui.openWindow({
+     			url:'needaction.html',
+     			id:'needaction',
+     			extras:{
+     				needid:needid,
+     				towho:towho
+     			},
+     			show:{
+     				aniShow: 'slide-in-right',
+     				duration:300
+     			}
+     		});
+     	})
+         }) 
+    
+      	//获取用户信息重要信息 	 
+	function getpersoninfo(username){
+      			mui.ajax(server+'personaction.php',{
+      			data:{
+      				username:username
+      			},
+      			type:'post',
+      			success:function(data){
+
+      				var userinfoContent=document.getElementById("userinfo");
+      				var datajson=eval("["+data+"]");
+      				userinfo=datajson[0];
+      				plus.storage.setItem('rewardpoints',userinfo[0].rewardpoints);
+      				html="<div id ='setuserinfo' class='setuserselfinfo'>"+
+				 		 "<div class='userselfhead'><img src='"+server+"uploads/"+userinfo[0].head+"' alt='head' /></div>"+
+				 		 "<div class='nicknameself'>"+userinfo[0].nickname+"</div>"+
+				 		 "<div class='userselfpoints'>"+userinfo[0].rankname+"</div>"+
+				 		 "<div class='userselfnote'>"+userinfo[0].note+"</div>"+
+			 		 "</div>";
+			 		
+			 		 userinfoContent.innerHTML=html;
+      			}
+      		})
+      	}
+      	//获取个人需求列表
+      	function getmyneed(username,page){
+      		  var contentcontainer=document.getElementById("contentwarp");
+      		
+				     	 mui.ajax(server+'getneedlist.php',{
+			      			data:{
+			      				action:'somebodyneed',
+			      				page:page,
+			      				username:username
+			      			},
+			      			type:'post',
+			      			success:function(data){ 
+			      				var jsondata=eval("["+data+"]");
+			      				var needlist=jsondata[0];
+			      				var maxrows=needlist[0].maxRows;
+			      				var pagesize=needlist[0].pageSize;
+			      				if(needlist==''){
+			      					maxpages=0;
+			      					html="<div class=\'commentblack\'>亲,TA还没有发布需求呢</div>";
+      	                             contentcontainer.innerHTML=html;
+			      				}else{
+			      					maxpages=needlist[0].maxPages;
+			      				}
+			      				
+			      				page++;
+			      				console.log(maxrows);
+			      				console.log(pagesize);
+			      				if(maxrows<=pagesize){
+			      					document.getElementById('moreneed').innerHTML='';
+			      				}
+			      				else if(page>maxpages){
+			      			     	add="<button  class='moreneedbtn'>"+"这就是全部了"+"</button>";
+			      			     	document.getElementById('moreneed').innerHTML=add;
+			      			    }else{
+			      			    	add="<button  class='moreneedbtn' onclick='getmyneed("+username+","+page+");\'>"+"点击加载更多"+"</button>";
+				      			document.getElementById('moreneed').innerHTML=add;
+			      			    }
+				      			
+			      			   
+			      				for(var i=0;i<=needlist.length;i++){
+			      					var publishtime=timeFormat(needlist[i].publishtime);
+			      					var needwarper=document.getElementById('moreneed');
+			      					 html="<div class='needcontainer'>"+
+								  	   	    "<div class='userhead' data-needuser='"+needlist[i].useremail+"'><img src='"+server+"/uploads/"+needlist[i].head+"'/><div class='needid'>"+needlist[i].id+"</div></div>"+
+								  	   	    "<div class='needlistlabel'>#"+needlist[i].label+"#</div>"+
+								  	   	    "<div class='needstatus'>"+needlist[i].status+"</div>"+
+								  	   	    "<div class='needcontent'>"+needlist[i].remark+"</div>"+
+								  	   	    "<div class='needpay'>享之"+needlist[i].needpay+"享豆</div>"+
+								  	   	    "<div class='needlocation'>"+needlist[i].needlocation+"</div>"+
+								  	   	    "<div class='needlisttime'>"+publishtime+"</div>"+
+								  	   		"<div class='needaction' id='needmsg' data-id='"+needlist[i].id+"' data-user='"+needlist[i].user+"'><span class='mui-icon mui-icon-navigate'></span>&nbsp;&nbsp;帮忙("+needlist[i].msgNum+")</div>"+
+								  	   		"<div class='needaction' id='needcomment'data-id='"+needlist[i].id+"' data-user='"+needlist[i].user+"'><span class='mui-icon mui-icon-email'></span>&nbsp;&nbsp;评论("+needlist[i].cmtNum+")</div>"+
+								  	   	    "<div class='needaction' data-id='"+needlist[i].id+"' data-user='"+needlist[i].user+"'><a href='tel:"+needlist[i].usertel+"'><span class='mui-icon mui-icon-phone'></span>&nbsp;&nbsp;电话</a></div>"+
+								  	   "</div> ";
+								  	 needwarper.insertAdjacentHTML('beforeBegin',html); 
+								
+			      				}			      				
+			      			}
+						 })
+				     }     	       	 
+      //获取myhelped列表
+      function   getmyhelped(username){
+      	   var contentcontainer=document.getElementById("contentwarp");
+      	   contentcontainer.innerHTML='';
+      		 mui.ajax(server+'getneedlist.php',{
+			      			data:{
+			      				action:'myhelpedneed',
+			      				username:username
+			      			},
+			      			type:'post',
+			      			success:function(data){ 	
+			      				
+			      				var needwarper=document.getElementById('contentwarp');
+			      				var jsondata=eval("["+data+"]");
+			      				var needlist=jsondata[0];
+			      				if(needlist==''){
+			      					 html="<div class=\'commentblack\'>亲,Ta还没有帮过人呢</div>";
+      	                             contentcontainer.innerHTML=html;	
+			      				}
+			      				for(var i=0;i<=needlist.length;i++){
+			      					var publishtime=timeFormat(needlist[i].publishtime);
+			      					 html="<div class='needcontainer'>"+
+								  	   	   "<div class='userhead'><img src='"+server+"uploads/"+needlist[i].head+"'/><div class='needid'>"+needlist[i].id+"</div></div>"+
+								  	   	    "<div class='needlistlabel'>#"+needlist[i].label+"#</div>"+
+								  	   	    "<div class='needstatus'>"+needlist[i].status+"</div>"+
+								  	   	    "<div class='needcontent'>"+needlist[i].remark+"</div>"+
+								  	   	    "<div class='needpay'>"+needlist[i].needpay+"享豆</div>"+
+								  	   	   
+								  	   	    "<div class='needlocation helped'>"+needlist[i].needlocation+"</div>"+
+								  	   	    "<div class='needlisttime helped'>"+publishtime+"</div>"+
+								  	   "</div> ";
+								  	 needwarper.insertAdjacentHTML('afterBegin',html); 
+								
+			      				}
+			      				
+			      			}
+						 })
+                        }   
+       //获取mefromothers列表
+      function   getfromothers(username){
+      	   var contentcontainer=document.getElementById("contentwarp");
+      	   contentcontainer.innerHTML='';
+      	  
+      	   mui.ajax(server+'getthankorder.php',{
+      	   	data:{
+      	   		username:username
+      	   	},
+      	   	type:'post',
+      	   	success:function(data){
+      	   		
+      	   	var contentcontainer=document.getElementById('contentwarp');
+      	   	 var jsondata=eval("["+data+"]");
+      	   	 var thankorderlist=jsondata[0];
+      	   	 if(thankorderlist==''){
+      	   	 	 html="<div class=\'commentblack\'>还没有来自别人的评价哎</div>";
+      	   	 	  contentcontainer.innerHTML=html;	
+      	   	 }
+      	   	 for(var i=0;i<thankorderlist.length;i++){
+      	   	 	var thanktime=timeFormat(thankorderlist[i].sendtime);
+      	   	 	html="<div class='thankorder mui-col-xs-12'>"+
+      	   	 		   "<div class='bywhohead mui-col-xs-2'><img src='"+server+"uploads/"+thankorderlist[i].bywhohead+"' alt='head' /></div>"+
+      	   	 		   "<div class='mui-col-xs-10 thankordertop'>"+
+               		"<div class='thankpay'>+"+thankorderlist[i].needpay+"享豆</div>"+
+               		
+               		"<div class='thanktime'>"+thanktime+"</div>"+
+                 	"</div>"+
+                 	"<div class='judgecontent mui-col-xs-10'>"+thankorderlist[i].judge+"</div>"+
+                 	"</div>";
+                 contentcontainer.insertAdjacentHTML('afterBegin',html);	
+      	   	 }
+      	   	
+      	   	}
+      	   })
+      } 
+     //打开个人中心查看私信以及查看评论
+     
+      
+    </script>
+    <style type="text/css">
+    			 .mui-bar-tab .mui-tab-item.mui-active{
+     	 	color: #929292;
+     	 }
+     	 .nicknameself{
+     	 	background: none;
+     	 }
+     	 body{
+     	 	background: white;
+     	 }
+     #wrapper {
+    		position: relative;
+    		z-index: 1;
+    		height: 35px;
+    		width: 100%;
+    		/*border: 1px solid black;*/
+    		overflow: hidden;
+    		font-weight: bolder;
+    }
+    #scroll{
+    	position: absolute;
+	z-index: 1;
+	-webkit-tap-highlight-color: rgba(0,0,0,0);
+	width: 200%;
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-webkit-text-size-adjust: none;
+	overflow-x: scroll;
+    }
+    #scroll ul{
+    		list-style: none;
+    		padding: 0;
+    		margin: 0;
+    		display: -webkit-box;
+    		
+    }
+    #scroll li{
+    border: 1px solid #E4E4E4;
+    	padding: 0;
+    	margin: 0;
+    width: 17%;
+    	line-height: 35px;
+    	overflow: hidden;
+    	text-align: center;
+    }
+    .mui-content{
+    	padding-bottom: 0px;
+    }
+    
+     </style>
+</head>
+<body>
+	 <header class="mui-bar mui-bar-nav">
+		<div class='header index-header'>
+				<div class='logo' id='logo' style="display: none;"></div>
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class='title' id='title'></h1>
+			<a id="menu" href="#topPopover" class="mui-action-menu mui-icon mui-icon-bars mui-pull-right"></a>
+		</div>
+	</header>
+	<div id="topPopover" class="mui-popover">
+			<div class="mui-popover-arrow"></div>
+			<div class="mui-scroll-wrapper">
+				<div class="mui-scroll">
+					<ul class="mui-table-view">
+						<li class="mui-table-view-cell" id='exchangeMall'>漂流集市
+						</li>
+						<li class="mui-table-view-cell" id='logout'>注销
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	 
+	 <div class="mui-content">
+		 	<div class="userselfinfo" id='userinfo'></div>
+		 	<div  id='wrapper'>
+		 		<div id='scroll'>
+		 			<ul>
+		 				<li id="myneed">Ta的需求</li>
+		 				<li id='myhelped'>Ta帮过的</li>
+		 				<li id='mefromothers'>别人眼中的Ta</li>
+		 				<li id='exchangeorder'>兑换记录</li>
+		 				<li>0</li>
+		 				<li>0</li>		 				
+		 			</ul>
+		 		</div>
+		   </div>	
+		 	<div id="contentwarp"> 
+               <div class="moreneed" id='moreneed'>
+              
+               </div>
+            </div>
+	 </div>
+</body>
+</html>

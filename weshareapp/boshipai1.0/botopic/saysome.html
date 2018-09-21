@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title></title>
+    <script src="../js/mui.min.js"></script>
+    <link href="../css/mui.min.css" rel="stylesheet"/>
+    <link href="../css/boshi.css" rel="stylesheet"/>
+   
+    <style>
+    		.mainpart{
+    			width: 94%;
+    			margin-left: 3%;
+    			margin-right: 3%;
+    			margin-top: 10px;
+    			
+    		}
+    		.mainpart textarea{
+    			border: 2px solid #E4E4E4;
+    			border-radius: 5px;
+    		}
+    		.mainpart button#sendbtn{
+    			float: right;
+    			width: 80px;
+    			background: #BE0108;
+    			color: white;
+    			font-weight:bolder ;
+    			border: none;
+    			font-size: 15px;
+    		}
+    		
+    </style>
+</head>
+<body>
+	<header class="mui-bar mui-bar-nav">
+	    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+	    <h1 class="mui-title"><strong>说点什么呢</strong></h1>
+	</header>
+
+	<section class='mui-content'>
+		<div class='mainpart'>
+			<textarea class="mui-input mui-input-clear" rows="5" cols="3" name="topiccomment" id='topiccoment' placeholder="say something......"></textarea>
+			<button class='moreneedbtn' id='sendbtn'>发送</button>
+		</div>
+		
+	</section>
+	 <script type="text/javascript" charset="UTF-8">
+      	mui.init();
+      	mui.plusReady(function(){
+      		 server=plus.storage.getItem('server');
+      		 username=plus.storage.getItem('username');
+      		  active=plus.storage.getItem('active');
+      		  school=plus.storage.getItem('school');	 
+      		  var page=plus.webview.currentWebview();
+      		  var topicid=page.topicid;
+      		  
+      		  
+      		  document.getElementById('sendbtn').addEventListener('tap',function(){
+      		  	 var topiccomment=document.getElementById('topiccoment').value;
+//    		  	 if(active==='未认证'){
+//    		  	plus.ui.toast('您还没有上传学生证件,请在个人信息中完善证件信息...');
+//    		  	return;
+//    		  }
+//    		   if(active==='认证中'){
+//    		  	plus.ui.toast('您的身份信息正在认证中，请耐心等待...');
+//    		  	return;
+//    		  }
+        		 if(topiccomment==''){
+      		 	plus.ui.toast('您好像没说什么嘛');
+      		 	return;
+      		 }
+      		  	 var wt=plus.nativeUI.showWaiting();
+      		  	 
+				mui.ajax(server+'topic/topicaction.php',{
+					data:{
+						action:'topiccomment',
+						topicid:topicid,
+						bywho:username,
+						topiccomment:topiccomment
+					},
+					type:'post',
+					success:function(data){
+						if(data==1){
+							
+							plus.ui.toast('发布成功,Got5个积分');
+							
+							mui.openWindow({
+								url:'topicdetail.html',
+								id:'topicdetail',
+								createNew:true,
+								extras:{
+									tid:topicid
+								}
+							});
+							wt.close();
+						}
+					}
+				})
+      		  })
+      	})
+    </script>	
+</body>
+</html>

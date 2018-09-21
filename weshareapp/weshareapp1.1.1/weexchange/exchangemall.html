@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title>personcenter</title>
+    <script src="../js/mui.min.js"></script>
+     <script src="../js/openwin.js"></script>
+      <script src="../js/weshare.js"></script>
+    <link href="../css/mui.min.css" rel="stylesheet"/>
+     <link rel="stylesheet" href="../css/weshare.css" />
+      
+    
+    <style type="text/css">
+    			
+     	 body{
+     	 	background: white;
+     	 }
+     	 .protypestyle{
+     	    background: url(../images/down.png) no-repeat;
+    	  	    background-size: 12px;
+    	  	   background-position:90% ;
+    	  	   padding: 5px;
+    	  	   margin: 0px;
+    	  	   opacity: 0.8;
+     	 }
+     	 .selectcondition{
+     	 	width:100%;
+     	 	height: 45px;
+     	 	border-radius: 5px;
+     	 	margin-top: 10px;
+     	 }
+     	 .selectcondition div{
+     	 	display: block;
+     	 	float: left;
+     	 	width: 50%;
+     	 	border: 2px solid #FAF8F8;
+     	 	border-radius: 5px;
+     	 	
+     	 	/*border-top-left-radius: 10px;
+     	 	border-top-right-radius: 10px;*/	
+     	 }
+     	 .selectcondition div select{
+     	 	font-weight: bolder;
+     	 	padding-left: 30px;
+     	 	/*color: #A1A1A1;*/
+     	 }
+     	 .rewardpoint{
+     	 	background: #3F88B0;
+     	 	font-size: 13px;
+     	 	text-align: center;
+     	 	color: white;
+     	 	height: 20px;
+     	 	border-radius: 3px;
+     	 }
+     	 .singlepro{
+           
+     	 	border: 2px solid #FAF8F8;
+     	 	min-height: 110px;
+     	 	margin-top: 8px;
+     	 	display: table;
+     	 	box-shadow:1px 1px 1px 1px #E4E4E4 ;
+     	 }
+     	 .singlepro div{
+     	 	float: left;
+     	 	
+     	 }
+     	 .proimg{
+     	 	width: 30%;
+     	 	min-height: 110px;
+     	 	margin-left: auto;
+     	 	margin-right: auto;
+     	 }
+     	 .proimg table{
+     	  width: 100%;
+     	 }
+     	 .proimg  table  tr td{
+     	 	width: 100%;
+     	     height: 110px; 
+     	     text-align: center;
+     	     vertical-align: middle;
+     	 }
+     	 .proimg  img{
+     	 	max-width: 75%;
+     	 	max-height: 85%;
+     	 	margin: auto;
+     	 }
+     	 .proinfo {
+     	 	width: 70%;
+     	 	padding-left: 30px;
+     	 }
+     	 .proinfo h5{
+     	 	font-weight: bolder;
+     	 	color: black;
+     	 	padding-top: 5px;
+     	 	padding-bottom: 5px;
+     	 }
+     	 .proinfo div.proprice{
+     	 	/*display: inline;*/
+     	 	text-align: center;
+     	 	font-size: 14px;
+		    color: white;
+		    font-weight: bolder;
+		    background: #66cccc;
+		    width: 90px;
+		    padding: 5px;
+		    border-radius: 3px
+     	 }
+     	 .proinfo div.prodescription{
+     	 	width: 180px;
+     	 	height: 30px;
+     	 	clear: both;
+     	 	font-size: 12px;
+     	 	color: #A1A1A1;
+     	 	padding: 5px;
+     	 	overflow: hidden;
+     	 	text-overflow: ellipsis;
+     	 	 white-space:nowrap;
+     	 }
+     	  #moredata{
+     	 	text-align: center;
+     	 	font-size: 14px;
+     	 	font-weight: bolder;
+     	 	color:#0c9ed4;
+     	 }
+     	 .loading{
+     	 	background: url(../images/loading4.gif) no-repeat center;
+     	 	background-size:30px ;
+     	 	padding-top: 60px;
+     	 }
+     	 .finish{
+     	 	padding: 30px;
+     	 }
+     	  .searchwarpper{
+     	 	width: 100%;
+ 			border:2px solid #FAF8F8;
+ 			border-radius: 10px;
+ 			height: 40px;
+ 			margin-top: 5px;
+     	 }
+     	 .searchwarpper select{
+     	 	margin: 0;
+     	 	padding: 0;
+     	 	width: 81%;
+     	 	border: none;
+     	 	height: 33px;
+     	 	font-size: 14px;
+     	 	color: black;
+     	 	font-weight: bold;
+     	 	margin-left: 10px;
+     	 	margin-top: 2px;
+     	 }
+     	  .searchwarpper input{
+     	 	margin: 0;
+     	 	padding: 0;
+     	 	width: 81%;
+     	 	border: none;
+     	 	height: 33px;
+     	 	font-size: 14px;
+     	 	color: black;
+     	 	font-weight: bold;
+     	 	margin-left: 10px;
+     	 	margin-top: 2px;
+     	 }
+     	 .searchwarpper button.search{
+     	 	background: url(../images/search.png) no-repeat center;
+     	 	background-size:18px ;
+     	 	/*background-posit;*/
+     	 	border: none;
+     	 	margin: 0;
+     	 	padding: 0;
+     	 	/*padding-top:10px;*/
+     	 	height: 33px;
+     	 	width: 13%;
+     	 	margin-top: 2px;
+     	 	opacity: 0.4;
+     	 }
+     	  .nodata{
+     	    text-align: center;
+	        font-size: 13px;
+	        padding-top: 10px;
+	        height: 120px;
+	        /*line-height: 100px;*/
+	        color: #a1a1a1;
+	        background: url(../images/black.jpg) no-repeat;
+	        background-size: 50px;
+	        background-position: center;
+	        display: block;
+	        margin-right: auto;
+	        margin-left: auto;
+	        font-weight: bolder;
+     	 }
+     	 #pub{
+     	 	width: 40px;
+     	 	height: 40px;
+     	 	background: url(../images/addmore.png) no-repeat center;
+     	 	background-size:23px ;
+     	 	display: inline-block;
+     	 	margin: 5px 5px ;
+     	 }
+     </style>
+</head>
+<body>
+	 <header class="mui-bar mui-bar-nav">
+		<div class='header index-header'>
+			<div class='logo' id='logo' style="display: none;"></div>
+			 <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class='title' id='title'></h1>
+			<a class="" id='pub'></a>
+		</div>
+	</header>
+	 
+	 <div class="mui-content">
+	 	<div class='rewardpoint'>您还有<span id='reward'></span>享豆可以进行兑换</div>
+	 	<section id='search' class='searchwarpper'>
+	    			<input type="text" id='searchcontent' placeholder="请输入宝贝关键词"/>
+	    			<button id='searchbtn' class="search"></button>
+	    </section>
+	 	<div class="selectcondition" id='selectcondition'>
+	 		<div>
+		 		<label for="">
+	    			</label>
+		 		<select name="type" id="protypelist" class="protypestyle" >
+		 			<option value="所有宝贝"  id='firstoption'>所有宝贝</option>
+		 		</select>
+		 	</div>
+		 	<div>
+		 		<label for="">
+	    			</label>
+		 		<select name="type" id="subprotypelist" class="protypestyle" disabled style='opacity: 0.2;'>
+		 			<option value="" id='subfirstoption'>所有</option>
+		 		</select>
+		 	</div>
+		 
+	 		
+	 	   </div>
+		 	
+		 	
+		 	<div id="productwarp">
+			 	  	<!--<div class='singlepro mui-col-xs-12'>
+			 	   			 <div class='proimg mui-col-xs-5'>
+			 	   			  <table>
+			 	   			  <tr><td><img src='images/add.png'/></td></tr>
+			 	   			  </table>
+			 	   		      </div>
+			 	   		      <div class='proinfo mui-col-xs-7'>
+			 	   			       <h5>名称觉得反抗撒娇弗兰克</h5>
+			 	   			       <div class='proprice'>10000享豆</div>
+			 	   			       <div	 class='prodescription'>肌肤对抗肌肤看</div>
+			 	          	</div>
+			 	      </div>    	-->
+			</div>
+			
+		<div id='moredata'></div>  	  
+	 </div>
+	  
+</body>
+<script type="text/javascript" charset="utf-8">
+      	mui.init();
+      	mui.plusReady(function(){
+      		server=plus.storage.getItem('server');
+      		school=plus.storage.getItem('school');
+      		username=plus.storage.getItem('username');
+      	
+      	
+      		getexchangetypelist();
+      		getExchangeSubtypeList();
+      		var webpage=plus.webview.currentWebview();
+      		var type=webpage.type;
+      		
+      		var selectcontainer=document.getElementById("protypelist");
+      		var action='';
+//    		console.log(keywords);
+      		switch(type){
+      			case'search':
+      				page=1;
+      				action='search';
+      				var keywords=webpage.keywords;
+      				document.getElementById('selectcondition').style.display='none';
+      				document.getElementById('searchcontent').value=keywords;
+      				getproductlist(action,page,school,keywords);
+      			break;
+      			case '所有宝贝':
+      				page=1;
+      				document.getElementById('firstoption').innerText='所有宝贝';
+      				action='所有宝贝';
+      				document.getElementById('search').style.display='none';
+					getproductlist(action,page,school,'');
+      			break;
+      			case '图书资料':
+      				 page=1;
+	      			document.getElementById('subprotypelist').disabled=false;
+					document.getElementById('subprotypelist').style.opacity=1;
+      				document.getElementById('firstoption').innerText='图书资料';
+      				document.getElementById('search').style.display='none';
+      				action='图书资料';
+					getproductlist(action,page,school,'');
+      			break;
+      			case '生活用品':
+      				page=1;
+      				document.getElementById('firstoption').innerText='生活用品';
+      				document.getElementById('search').style.display='none';
+      				action='生活用品';
+					getproductlist(action,page,school,'');
+      			break;
+      			case '吃吃喝喝':
+      				page=1;
+      				document.getElementById('firstoption').innerText=type;
+      				document.getElementById('search').style.display='none';
+      				action='吃吃喝喝';
+					getproductlist(action,page,school,'');
+      			break;
+      			case '电子产品':
+      				page=1;
+      				document.getElementById('firstoption').innerText=type;
+      				document.getElementById('search').style.display='none';
+      				action='电子产品';
+					getproductlist(action,page,school,'');
+      			break;
+      			case '其他宝贝':
+      				page=1;
+      				document.getElementById('firstoption').innerText=type;
+      				document.getElementById('search').style.display='none';
+      				action='其他宝贝';
+					getproductlist(action,page,school,'');
+      			break;
+      			case '户外运动':
+      				page=1;
+      				document.getElementById('firstoption').innerText=type;
+      				document.getElementById('search').style.display='none';
+      				action='户外运动';
+					getproductlist(action,page,school,'');
+      			break;
+      			case '活动相关':
+      				page=1;
+      				document.getElementById('firstoption').innerText=type;
+      				document.getElementById('search').style.display='none';
+      				action='活动相关';
+					getproductlist(action,page,school,'');
+      			break;
+      		}
+      		
+		
+			var reward=plus.storage.getItem('rewardpoints');
+			document.getElementById("reward").innerText=reward;
+			//father select
+			selectcontainer.onchange=function(){
+				 var type=selectcontainer.value;
+				
+				switch(type){
+				case '所有宝贝':
+					page=1;
+      				action='所有宝贝';
+      				document.getElementById('subprotypelist').disabled=true;
+					document.getElementById('subprotypelist').style.opacity=0.2;
+      			break;
+      			case '图书资料':
+      				page=1;
+	      			 document.getElementById('subprotypelist').disabled=false;
+					 document.getElementById('subprotypelist').style.opacity=1;
+      				 action='图书资料';
+      			break;
+      			case '户外运动':
+      				page=1;
+	      			 document.getElementById('subprotypelist').disabled=true;
+					 document.getElementById('subprotypelist').style.opacity=0.2;
+      				 action='户外运动';
+      			break;
+      			case '生活用品':
+      				page=1;
+      				document.getElementById('subprotypelist').disabled=true;
+					document.getElementById('subprotypelist').style.opacity=0.2;
+      				action='生活用品';
+				
+      			break;
+      			case '吃吃喝喝':
+      				page=1;
+      				document.getElementById('subprotypelist').disabled=true;
+				    document.getElementById('subprotypelist').style.opacity=0.2;
+      				action='吃吃喝喝';
+      			break;
+      			case '电子产品':
+      				page=1;
+      				document.getElementById('subprotypelist').disabled=true;
+				document.getElementById('subprotypelist').style.opacity=0.2;
+      				action='电子产品';
+      				
+      			break;
+      			case '活动相关':
+      				page=1;
+      				document.getElementById('subprotypelist').disabled=true;
+				document.getElementById('subprotypelist').style.opacity=0.2;
+      				action='活动相关';
+      				
+      			break;
+      		
+      			
+      			case '其他宝贝':
+      				page=1;
+      				
+						document.getElementById('subprotypelist').disabled=true;
+				       document.getElementById('subprotypelist').style.opacity=0.2;
+				       action='其他宝贝';
+      			break;
+				}
+				
+				
+				var prolistcontain=document.getElementById("productwarp");
+      		     prolistcontain.innerHTML='';
+      		     document.getElementById('subfirstoption').innerText='所有';
+      		     console.log(action);
+      		     getproductlist(action,page,school,'');
+				
+			 
+			}
+			// sub select
+			var subselectcontainer=document.getElementById('subprotypelist');
+			    subselectcontainer.onchange=function(){
+				var subtype=subselectcontainer.value;
+				var prolistcontain=document.getElementById("productwarp");
+      		     prolistcontain.innerHTML='';
+      		     page=1;
+      		     getproductlist('图书资料',page,school,subtype);
+				
+				
+			}
+			    //本页搜索
+			  document.getElementById('searchbtn').addEventListener('tap',function(){
+      		 	var keywords=document.getElementById('searchcontent').value;
+      		 	var prolistcontain=document.getElementById("productwarp");
+      		 	 prolistcontain.innerHTML='';
+      		 	  page=1;
+      		 	 console.log(page);
+//    		 	 console.log(aciton);
+      			 console.log(keywords);
+      		 	 getproductlist('search',page,school,keywords);
+      		 })   
+
+ //发布
+      		 document.getElementById('pub').addEventListener('tap',function(){
+      		 	mui.openWindow({
+      		 		url:'uploadpro.html',
+      		 		id:'uploadpro',
+      		 		createNew:true,
+      		 		show:{
+						aniShow: 'slide-in-left',
+						duration:300
+					}
+      		 	})
+      		 })
+			//tap进入宝贝详情
+			mui('#productwarp').on('tap','.singlepro',function(){
+				var proprice=this.getAttribute('data-price');
+				var pid=this.getAttribute('data-pid');
+				if(parseFloat(proprice)>parseFloat(reward)){
+					plus.ui.toast('您还没有那么多的享豆!')
+				}
+				mui.openWindow({
+					url:'product.html',
+					id:'product',
+					extras:{
+						pid:pid
+					},
+					createNew:true,
+					show:{
+						aniShow:'slide-in-right',
+						duration:300
+					}
+				})
+			})
+			//moredata
+		    document.addEventListener('plusscrollbottom',function(){
+		    								
+								 	 	 page++;
+									 	 var wt=plus.nativeUI.showWaiting();
+									 	 document.getElementById('moredata').innerText='加载中...';
+									 	 document.getElementById('moredata').className='loading';
+									 	 console.log("getproductlist("+"\'"+action+"\'"+","+page+","+"\'"+school+"\'"+","+"\'"+subtype+"\'"+")");
+									 	 setTimeout("getproductlist("+"\'"+action+"\'"+","+page+","+"\'"+school+"\'"+","+"\'"+subtype+"\'"+")",600);
+									 	 wt.close();
+									 },false);
+			//endof moredata
+			
+		
+      	})
+      	//获取productlist
+      	function getproductlist(action,page,school,subtype){
+      		  window.action=action;
+      		   window.subtype=subtype;
+      		mui.ajax(server+'getexchangelist.php',{
+			 	data:{
+			 		action:'allpro',
+			 		type:action,
+			 		school:school,
+			 		page:page,
+			 		subtype:subtype
+			 	},
+			 	type:'post',
+			 	success:function(data){
+			 		console.log(data);
+			 		 prolistcontainer=document.getElementById("productwarp");
+			 		var jsondata=eval("["+data+"]");
+			 		var prolist=jsondata[0];
+			 		if(prolist==''){
+			 			html="<div class='nodata'>没有找到，换一个词试试吧</div>";
+     					prolistcontainer.innerHTML=''
+     					prolistcontainer.innerHTML=html;
+   						maxPages=0;
+			 		}else{
+			 			maxpages=prolist[0].maxpages;
+			 		}
+						if(page>maxpages){
+						 	document.getElementById('moredata').innerText='这就是全部了....';
+						 	document.getElementById('moredata').className='finish';
+						 	return;
+						 }
+			 		for(var i=0;i<=prolist.length;i++){
+			 			html="<div class='singlepro mui-col-xs-12' data-pid='"+prolist[i].pid+"' data-price='"+prolist[i].price+"'>"+
+			 	   				"<div class='proimg mui-col-xs-5'>"+
+					 	   				"<table>"+
+					 	   			    "<tr><td><img src='"+server+"uploads/"+prolist[i].pic+"'/></td><tr>"+
+					 	   			    "</table>"+
+			 	   		        "</div>"+
+			 	   		        "<div class='proinfo mui-col-xs-7'>"+
+			 	   			       "<h5>"+prolist[i].name+"</h5>"+
+			 	   			       "<div class='proprice'>"+prolist[i].price+"享豆</div>"+
+			 	   			       "<div	 class='prodescription'>"+prolist[i].description+"</div>"+
+			 	              	"</div>"+
+			 	          		"</div>";
+			 	          prolistcontainer.insertAdjacentHTML('beforeEnd',html);	
+			 		}
+			 	}
+			 })
+      	}
+      	//获取typelist
+      	function getexchangetypelist(){
+      		
+      		mui.ajax(server+'getselectlist.php',{
+      			data:{
+      				action:'exchangetypelist'
+      			},
+      			type:'post',
+      			success:function(data){
+      				var selectlistcontainer=document.getElementById("protypelist");
+      				var jsondata=eval("["+data+"]");
+      				var protypelist=jsondata[0];
+      				var length=protypelist.length;
+      				for(var i=0;i<=length-1;i++){
+      					html="<option value='"+protypelist[i]+"'>"+protypelist[i]+"</option>";
+      					selectlistcontainer.insertAdjacentHTML('beforeEnd',html);
+      				}
+      			}
+      		})
+      	}
+       //获取subtypelist
+       function getExchangeSubtypeList(){
+       	 mui.ajax(server+'getselectlist.php',{
+       	 	data:{
+       	 		action:'exchangesubtypelist'
+       	 	},
+       	 	type:'post',
+       	 	success:function(data){
+//     	 		console.log(data);
+       	 		  var selectlistcontainer=document.getElementById("subprotypelist");
+      				var jsondata=eval("["+data+"]");
+      				var protypelist=jsondata[0];
+      				for(var i=0;i<=protypelist.length-1;i++){
+      					if(protypelist[i]==='all') continue;
+      					html="<option value='"+protypelist[i]+"'>"+protypelist[i]+"</option>";
+      					selectlistcontainer.insertAdjacentHTML('beforeEnd',html);
+      				}
+       	 	}
+       	 })
+       }
+   
+    </script>
+</html>

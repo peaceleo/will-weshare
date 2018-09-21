@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title></title>
+    <script src="../js/mui.min.js"></script>
+    <script src="../js/boshare.js"></script>
+    <script src="../js/openwin.js"></script>
+    <link href="../css/mui.min.css" rel="stylesheet"/>
+    <link href="../css/boshi.css" rel="stylesheet"/>
+    <script type="text/javascript" charset="utf-8">
+      	mui.init();
+      	mui.plusReady(function(){
+      	   var self=plus.webview.currentWebview();
+      	   var needid=self.needid;
+      	   var bywhostu=plus.storage.getItem('username');
+      	   var needthankbtn=document.getElementById("thanksendbtn");
+      	   var needcanclebtn=document.getElementById('needcanclebtn');
+      	 	server=plus.storage.getItem('server');
+      	    user=self.user;
+      		getwholist(needid);
+      		needcanclebtn.addEventListener('tap',function(){
+      			plus.ui.confirm("您确定要取消这个需求吗?",function(e){
+      				if(e.index==0){
+      				mui.ajax(server+'need/needaction.php',{
+      					data:{
+      						action:'needdelete',
+      						needid:needid
+      					},
+      					type:'post',
+      					success:function(data){
+      						if(data==1){
+      							plus.ui.toast('需求取消成功！')
+      							mui.openWindow({
+      								url:'myneed.html',
+      								id:'myneed',
+      								createNew:true
+      							})
+      						}else{
+      							plus.ui.toast('需求取消失败');
+      						}
+      					}
+      				})
+                  }else {
+                  	plus.ui.toast('再逛逛呗');
+                  }
+      			},"",["Yes","No"]);
+      		})
+      		needthankbtn.addEventListener('tap',function(){
+      			  var reward=plus.storage.getItem('rewardpoints');
+      			  
+      			  var thanktowho=document.getElementById("thanktowho");
+      			  var needpay=document.getElementById("needpay");
+      			  var judge=document.getElementById("judge");
+      			     
+      			  if(needpay.value.length==0){
+      			  	 plus.ui.toast('悬赏不能空着吧');
+      			  	 return;
+      			  }
+      			  if(isNaN(needpay.value)){
+      			  	 plus.ui.toast('只能是个数儿吧');
+      			  	 return;
+      			  }
+      			  if(parseFloat(needpay.value) > parseFloat(reward)){
+      			  	plus.ui.toast('您还没有那么多的资产呢');
+      			  	return;
+      			  }
+      			  if(judge.value.length==0){
+      			  	plus.ui.toast('还是说点什么吧');
+      			  	return;
+      			  }
+      			   var wt=plus.nativeUI.showWaiting();
+      		    mui.ajax(server+'thankaction.php',{
+      		    	    data:{
+      		    	    	needid:needid,
+      		    	    	thanktowho:thanktowho.value,
+      		    	    	bywhostu:bywhostu,
+      		    	    	needpay:needpay.value,
+      		    	    	judge:judge.value
+      		    	    },
+      		    	    type:'post',
+      		    	    success:function(data){
+//    		    	    	alert(data);
+      		    	    	   if(data==1){
+      		    	    	   	wt.close();
+      		    	    	   	plus.ui.toast('搞定,您的谢意正火急火燎的奔向Ta');
+      		    	    	   	mui.openWindow({
+      		    	    	   		url:'myneed.html',
+      		    	    	   		id:'myneed',
+      		    	    	   		createNew:true,
+      		    	    	   		show:{
+      		    	    	   			duration:200
+      		    	    	   		}
+      		    	    	   	})
+      		    	    	   	
+      		    	    	   }
+      		    	    	   else{
+      		    	    	   	plus.ui.toast('失败了,好事多磨,再试试吧');
+      		    	    	   }
+      		    	    }
+      		    })
+      		})
+      	  	
+      	})
+      	
+      	function getwholist(needid){
+      			var username=plus.storage.getItem('username');
+      		mui.ajax(server+'getselectlist.php',{
+      			data:{
+      				action:'thanktowholist',
+      				needid: needid
+      			},
+      			type:'post',
+      			success:function(data){
+      				console.log(data);
+      				var selectcontainer=document.getElementById("thanktowho");
+      				var jsondata=eval("["+data+"]");
+      				var thanktowholist=jsondata[0];
+//					    myself="<option value='"+user+"'>"+user+"</option>";
+//					    selectcontainer.insertAdjacentHTML('afterBegin',myself);
+      				for(var i=0; i<thanktowholist.length; i++){
+      					
+      					
+      					html="<option value='"+thanktowholist[i]+"'>"+thanktowholist[i]+"</option>";
+      	
+      					selectcontainer.insertAdjacentHTML('beforeEnd',html);
+      				}
+      				
+      			}
+      		})
+      	}
+
+    </script>
+    <style type="text/css">
+    	.thanktowho{
+    		background: url(../images/down.png) no-repeat;
+    	  	background-size: 11px;
+    	  	background-position:90% ;
+    	}
+    	.markfinishinfo{
+    		text-align: center;
+    		padding: 30px;
+    	}
+    	.markfinishinfo img{
+ 		margin: auto;
+    		 width: 128px;
+    		 /*height: 220px;*/
+    		/*text-align: center;*/
+    	}
+    	#thanksendbtn{
+    		background: #3f88b0;
+    	}
+    	.mui-input-row label~select{
+    		width: 75%;
+    	}
+    </style>
+</head>
+ <body>
+	<header class="mui-bar mui-bar-nav">
+		<div class='header index-header'>
+			<div class='logo' id='logo' style="display: none;"></div>
+			 <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class='title' id='title'></h1>
+			<a id="menu" href="#topPopover" class="mui-action-menu mui-icon mui-icon-bars mui-pull-right" style="display: none;"></a>
+		</div>
+	</header>
+
+	<div class="mui-content">
+		<div class="markfinishinfo">
+			
+<img src="../images/location2.png" alt="" />
+			
+		</div>
+	      <form class="mui-input-group">
+	      	
+	    		<div class="mui-input-row">
+	    			<label for="">
+	    			<img src="../images/select_person.png" style="height: 20px;" />
+	    			</label>
+	    			<select name="thanktowho" id="thanktowho" class="thanktowho"></select>
+	    		</div>
+	    		<div class="mui-input-row">
+	    			<label for="">
+	    				<img src="../images/pay.png" alt="" style="height:20px ;"/>
+	    			</label>
+	    			<input class="mui-input" type="text" name='needpay' id='needpay' placeholder="请输入悬赏数目"/><span class="paylabel">积分</span>
+	    		</div>
+	    		<div class="mui-input-row">
+	    			<label for=""><span class="mui-icon mui-icon-starhalf"></span></label>
+	    			<input class="mui-input mui-input-clear"type="text" name='judge' id='judge' placeholder="评价一下这位天使" />
+	    		</div>
+	    </form>
+	    <button  id='thanksendbtn' class="mui-btn-block mybtncenter">确认</button>
+	     <button  id='needcanclebtn' class="mui-btn-block mui-btn-danger mybtncenterdanger">取消需求</button>
+	</div>
+</body>
+</html>

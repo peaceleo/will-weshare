@@ -1,0 +1,160 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+		<meta name="HandheldFriendly" content="true"/>
+		<meta name="MobileOptimized" content="320"/>
+		<title>sethead</title>
+		<script type="text/javascript" src="../js/common.js"></script>
+		<script src="../js/mui.min.js"></script>
+		<script src="../js/jquery-1.11.3.js"></script>
+		<script src="../js/jquery.Jcrop.min.js"></script>
+		 <link href="../css/mui.min.css" rel="stylesheet"/>
+	    <link rel="stylesheet" type="text/css" href="../css/jquery.Jcrop.min.css">
+		<script type="text/javascript">
+		
+		mui.plusReady(function(){
+			appendByGallery();
+				server=plus.storage.getItem('server');
+		})
+
+var files=[];
+
+// 上传文件
+function upload(){
+	var wt=plus.nativeUI.showWaiting();
+	 task=plus.uploader.createUpload(server+'user/sethead.php',
+		{method:"POST"},
+		function(t,status){ //上传完成
+     		console.log(t.responseText);
+			if(status==200){
+				plus.ui.toast('上传成功');
+                wt.close();
+                mui.openWindow({
+                	url:'personset.html',
+                	id:'personset',
+                	createNew:true,
+                	show:{
+                		aniShow:'none',
+                		duration:200
+                	}
+                })
+			}else{
+				plus.ui.toast('上传失败');
+				wt.close();
+			}
+		}
+	);
+//	x=100;
+	task.addData("username",plus.storage.getItem('username'));
+	task.addData('x',document.getElementById("x").value);
+	task.addData('y',document.getElementById("y").value);
+	task.addData('w',document.getElementById("w").value);
+	task.addData('h',document.getElementById("h").value);
+	task.addData('realw',document.getElementById("realW").value);
+	task.addData('realh',document.getElementById("realH").value);
+	task.addFile(files[0].path,{key:files[0].name});
+	task.start();
+}
+// 从相册添加文件
+function appendByGallery(){
+	plus.gallery.pick(function(p){
+        appendFile(p);
+         document.getElementById('imgcut').style.display='block'; 
+    });
+}
+// 添加文件
+//var index=1;
+function appendFile(p){
+	
+	document.getElementById("imgprew").setAttribute('src',p);
+	files.push({name:"pic",path:p});
+	
+
+}
+function imgcut(){
+	var api = $.Jcrop("#imgprew"); 
+
+         var realsize= api.getBounds();
+         var check=[100,100,300,300];
+         api.setSelect(check);
+         
+         api.setOptions({
+          allowResize:false,
+          bgOpacity:0.5,
+          aspectRatio:1,
+
+          createDragbars:[ 0,0,150,150],
+          onSelect:function(c){
+              $('#x').val(c.x);
+              $('#y').val(c.y);
+              $('#w').val(c.w);
+              $('#h').val(c.h);
+              $('#realW').val(realsize[0]);
+              $('#realH').val(realsize[1]);
+             }
+           })
+      document.getElementById('imgupload').style.display='block';  
+      document.getElementById('imgcut').style.display='none';   
+}
+
+		</script>
+		<style type="text/css">
+			.imgcontainer{
+				/*width:100%;*/
+				/*min-height:300px ;*/
+				overflow: hidden;
+				padding-top: 44px;
+				
+			}
+			.imgcontainer img{
+				
+				width: 100%;
+				height: auto;
+				
+			}
+		  .setaction{
+		  	float: right;
+		  	position: relative;
+		  	height: 44px;
+		  	width: 44px;
+		  	background: url(../images/cut.png) no-repeat;
+		  	/*border: 1px solid black;*/
+		  	background-size: 25px;
+		  	background-position: center;
+		  }
+		  #imgupload{
+		  	background: url(../images/success.png) no-repeat;
+		  	background-position: center;
+		  	background-size: 25px;
+		  }
+		</style>
+		
+	</head>
+	<body>
+		<header class="mui-bar mui-bar-nav">
+		    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" href="personset.html"></a>
+		    <h1 class="mui-title">头像修改</h1>
+		    <div class="setaction" id='imgcut' onclick="imgcut()" style='display: none;'></div>
+		    <div class="setaction" id='imgupload' onclick="upload()" style='display: none;'></div>
+		</header>
+		
+		
+		<div id="dcontent" class="mui-content">
+			<div id='imgcontainer' class="imgcontainer mui-col-xs-12">
+				<img  id='imgprew' class="imgprew" src="../images/logo.jpg" alt="" />
+			</div>
+			<div>
+				<input type="text" id='x' value="" style="display: none;"/>
+				<input type="text" id='y' value="" style="display: none;"/>
+				<input type="text" id='w' value="" style="display: none;"/>
+				<input type="text" id='h' value="" style="display: none;"/>
+				<input type="text" id='realW' value="" style="display: none;"/>
+				<input type="text" id='realH' value="" style="display: none;"/>
+			</div>
+		
+		</div>
+	</body>
+	<script type="text/javascript" src="../js/immersed.js" ></script>
+</html>

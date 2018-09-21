@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title></title>
+    <script src="js/mui.min.js"></script>
+    <link href="css/mui.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="css/weshare.css" />
+     <script src="js/weshare.js"></script>
+     <style type="text/css">
+     	 .tabactive{
+     	 	color: #389EDA;
+     	 }
+     	  .mui-bar-tab .mui-tab-item.mui-active{
+     	 	color: #929292;
+     	 }
+     	 .uploadpic{
+     	 	text-align:center;
+     	 }
+     	 .uploadpic .mui-icon{
+     	 	display: inline;
+     	 	margin-left: -5px;
+     	 	padding: 0;
+     	 }
+     	 .uploadpic p{
+     	 	/*padding-left:30px ;*/
+     	 	text-align: left;
+     	 	padding-top: 5px;
+     	 }
+     	 .uploadpic img{
+     	 	width: 65%;
+     	 	display: block;
+     	 	text-align:center;
+     	 	margin: auto;
+     	 	margin-top: 10px;
+     	 	padding: 10px;
+     	 
+     	 }
+     	 .picaction{
+     	 	background: #3F88B0;
+     	 	padding: 8px;
+     	 	color: white;
+     	 	font-size: 13px;
+     	 	border-radius: 5px;
+     	 	margin: 10px;
+     	 }
+     </style>
+    <script type="text/javascript" charset="utf-8">
+      	mui.init();
+      	mui.plusReady(function(){
+      		server=plus.storage.getItem('server');
+      		active=plus.storage.getItem('active');
+      	    username=plus.storage.getItem('username');
+      	    school=plus.storage.getItem('school');
+      	
+      		
+      		var type=document.getElementById("type");  
+      		type.onchange=function(){
+      		   var typetext=type.value;
+      		   console.log(typetext)
+      		   if(typetext==='acti'){
+      		   	  document.getElementById('timewarp').style.display='block';
+      		   	  document.getElementById('locationwarp').style.display='block';
+//    		   	   document.getElementById('demondwarp').style.display='none';
+      		   	    document.getElementById('tipswarp').style.display='none';
+      		   }else if(typetext==='task'){
+      		   	  document.getElementById('timewarp').style.display='none';
+      		   	  document.getElementById('locationwarp').style.display='none';
+//    		   	   document.getElementById('demondwarp').style.display='block';
+      		   	    document.getElementById('tipswarp').style.display='block';
+      		   }
+      			
+      		}
+      		//照片操作
+      		window.defaultimg='images/uploadpic.jpg';
+            document.getElementById("uploadpropic").setAttribute('src',defaultimg);
+      		var removefiles=document.getElementById('removefiles');
+      		var bylocal=document.getElementById('bylocal');
+      		var bycamera=document.getElementById('bycamera');
+      		removefiles.style.display='none';
+            //提交
+            document.getElementById('propubbtn').addEventListener('tap',uploadpic);
+     	})	
+       
+
+      	
+   //从相册提取文件 
+ var files=[];
+ 
+   function appendByGallery(){
+	plus.gallery.pick(function(p){
+      appendFile(p);
+    })
+}
+   //使用相机
+   function appendByCamera(){
+	plus.camera.getCamera().captureImage(function(p){
+	appendFile(p);
+	});	
+}
+   //添加文件
+   function  appendFile(p){
+   	path=plus.io.convertLocalFileSystemURL(p);
+   	   document.getElementById("uploadpropic").setAttribute('src',path);
+	    files.push({name:"propic",path:p});
+	    document.getElementById('bylocal').style.display='none';
+	   document.getElementById('bycamera').style.display='none';
+	    document.getElementById('removefiles').style.display='inline-block';
+   }
+     //重新选择图片
+   function removefiles(){
+ 
+   	files.length=0;
+   	 document.getElementById("uploadpropic").setAttribute('src',defaultimg);
+   		document.getElementById('bylocal').style.display='inline-block';
+	     document.getElementById('bycamera').style.display='inline-block';
+	     document.getElementById('removefiles').style.display='none';
+   }
+   //上传产品
+   function uploadpic(){
+   	  var type=document.getElementById("type");
+      	var name=document.getElementById("name");
+      	var timewarp=document.getElementById("timewarp");
+      	var time=document.getElementById("time");
+      	var locationwarp=document.getElementById("locationwarp");
+      	var location=document.getElementById("location");
+      	var pay=document.getElementById("pay");
+      	var sponser=document.getElementById("sponser");
+       	var intro=document.getElementById("intro");
+       	var demand=document.getElementById('demand');
+       	var tips=document.getElementById('tips');  
+
+      	console.log(demand.value);	 
+      		  if(type.value==='chooseone'){
+      		  	plus.ui.toast('请选择发布类别');
+      		 	return;
+      		  }
+        		 if(name.value==''){
+      		 	plus.ui.toast('请输入标题');
+      		 	return;
+      		 }
+      		 if(pay.value==''){
+      		 	plus.ui.toast('请输入任务悬赏');
+      		 	return;
+      		 }
+      		 
+      		 if(intro.value==''){
+      		 	plus.ui.toast('请输入任务或者活动简介');
+      		 	return;
+      		 } 
+             if(files.length==0){
+       	      plus.ui.toast('请选择一张宝贝美照');
+      		   return;
+             }
+      
+       
+   	 var wt=plus.nativeUI.showWaiting();
+	 task=plus.uploader.createUpload(server+'taskpublish.php',
+		{method:"POST"},
+		function(t,status){ 
+			console.log(t);
+			console.log(status);
+			if(status==200){
+				plus.ui.toast('上传成功');
+                wt.close();
+                mui.openWindow({
+                	url:'acti.html',
+                	id:'acti',
+                	createNew:true,
+                	show:{
+                		aniShow:'slide-in-right',
+                		duration:200
+                	}
+                })
+			}else{
+				plus.ui.toast('上传失败');
+				wt.close();
+			}
+		});
+	task.addFile(files[0].path,{key:files[0].name});
+	task.addData('school',school);
+	task.addData('type',type.value);
+	task.addData('name',name.value);
+	task.addData('intro',intro.value);
+	task.addData('demand',demand.value);
+	task.addData('tips',tips.value);
+	task.addData('time',time.value);
+	task.addData('location',location.value);
+	task.addData('publisher',username);
+	task.addData('sponser',sponser.value);
+	task.addData('pay',pay.value);
+	task.start();
+   }
+ 
+   
+  </script>
+</head>
+<body>
+	<header class="mui-bar mui-bar-nav">
+	    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+	    <h1 class="mui-title"><strong>活动任务发起</strong></h1>
+	</header>	
+	<div class="mui-content">
+	    <form class="mui-input-group">
+	    		<div class="mui-input-row">
+	    			<label for="">
+	    			<img src="images/needlabel.png" style="height: 20px;" />
+	    			</label>
+	    			<select name="prolabel" id="type" class="needlabel">	
+	    				<option value="chooseone">请选择发布类型</option>
+	    				<option value="task">平台任务</option>
+	    				<option value="acti">平台活动</option>
+	    			</select>
+	    			
+	    		</div>
+	    		<div class="mui-input-row">
+	    			<label for="">
+	    			<img src="images/comment.png" style="height: 20px;" />
+	    			</label>
+	    			<input class="mui-input muip-input-clear" type="text" name='name' id='name' placeholder="标题"/>
+	    		</div>
+	    		<div class="mui-input-row" id='timewarp'>
+	    			<label for="">
+	    			<img src="images/time.png" style="height: 20px;" />
+	    			</label>
+	    			<input class="mui-input muip-input-clear" type="datetime-local" name='time' id='time' placeholder="活动时间"/>
+	    		</div>
+	    		<div class="mui-input-row" id='locationwarp'>
+	    			<label for="">
+	    			<img src="images/location.png" style="height: 20px;" />
+	    			</label>
+	    			<input class="mui-input muip-input-clear" type="text" name='location' id='location' placeholder="活动地点" />
+	    		</div>
+	    		<div class="mui-input-row">
+	    			<label for="">
+	    				<img src="images/pay.png"   alt="" style="height:20px ;"/>
+	    			</label>
+	    			<input class="mui-input" type="text" name='pay' id='pay' placeholder="任务悬赏（每人）"/><span class="paylabel">享豆</span>
+	    		</div>
+	    		<div class="mui-input-row">
+	    			<label for="">
+	    			<img src="images/heart.png" style="height: 20px;" />
+	    			</label>
+	    			<input class="mui-input muip-input-clear" type="text" name='sponser' id='sponser' placeholder="任务或者活动赞助" />
+	    		</div>
+	    		<div class="mui-input-row">
+	    			<label for=""><img src="images/addnote.png" style="height:20px ;"/></label>
+	    			<textarea class="mui-input mui-input-clear" rows="4" cols="3" name="intro" id='intro' placeholder="任务或者活动简介"></textarea>
+	    		</div>
+	    		<div class="mui-input-row" id='demondwarp'>
+	    			<label for=""><img src="images/addnote.png" style="height:20px ;"/></label>
+	    			<textarea class="mui-input mui-input-clear" rows="4" cols="3" name="demand" id='demand' placeholder="任务要求或者报名方式"></textarea>
+	    		</div>
+	    		<div class="mui-input-row" id='tipswarp'>
+	    			<label for=""><img src="images/addnote.png" style="height:20px ;"/></label>
+	    			<textarea class="mui-input mui-input-clear" rows="4" cols="3" name="tips" id='tips' placeholder="任务提示"></textarea>
+	    		</div>
+	    		<div class="mui-input-row uploadpic" >
+	    			<p><span class="mui-icon mui-icon-image"></span>&nbsp;&nbsp;&nbsp;&nbsp;上传主题图片</p>
+	    			<p style="font-size: 12px; text-align: center;">图片大小不超过3MB,图片格式jpg,jpeg,png,gif</p>
+	    			<span   id='bylocal' class='picaction' onclick="appendByGallery()">本地照片</span>
+	    			<span   id='bycamera' class='picaction' onclick="appendByCamera()">相机拍照</span>
+	    			<span   id='removefiles' class='picaction' onclick="removefiles()">重新选择</span>
+	    			 <img  id='uploadpropic' src=""/> 
+	    		</div>
+	    		
+	    	  
+	    		
+	    </form>
+	    <button  id='propubbtn' class="mui-btn-block mybtncenter">提交</button>
+	    
+	</div>
+</body>
+</html>

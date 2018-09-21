@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<link rel="stylesheet" href="css/weshare.css" />
+	 <script src="js/mui.min.js"></script>
+	  <script src="js/weshare.js"></script>
+    <title></title>
+   
+    <link href="css/mui.min.css" rel="stylesheet"/>
+     <style type="text/css">
+     body{
+     	background: white;
+     }
+     .mui-content{
+     	background: white;
+     }
+     table {
+     	border: 2px solid #E4E4E4;
+     	text-align: center;
+     	width: 100%;
+     	font-size: 15px;
+     	font-weight: bolder;
+     }
+     table img{
+     	height: 100px;
+     	border-radius: 50px;
+     	
+     }
+     tr, th,td{
+     	border: 1px solid #E4E4E4;
+     	padding: 5px;
+     }
+     th{
+     	font-weight: border;
+     }
+     #givensendbtn{
+     	font-size: 15px;
+     	padding: 10px;
+     	margin-top: 10px;
+     }
+     .mui-title{
+     	font-size: 15px;
+     	font-weight: bolder;
+     }
+      textarea[placeholder],
+    input[placeholder]{
+    	font-size: 12px;
+    }
+    .mui-input-row{
+    	margin-top: 5px;
+    	margin-bottom: 5px;
+    }
+     </style>
+</head>
+<body> 
+	<header class="mui-bar mui-bar-nav">
+	    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+	    <h1 class="mui-title">享豆转赠</h1>
+	</header>
+	<div class="mui-content">
+		<form class="mui-input-group">
+			 <div class="mui-input-row">
+	    			<label for="">
+	    			<img src="images/select_person.png" style="height: 20px;" />
+	    			</label>
+	    			<input type="text"  id='towhotel' placeholder="请输入对方的手机号码"/>
+	    		</div>
+	    		<div id='userinfo' >
+	    		</div>
+	    		 <div class="mui-input-row">
+	    			<label for="">
+	    			<img src="images/pay.png" style="height: 20px;" />
+	    			</label>
+	    			<input type="text"  id='reward' placeholder="请输入转赠享豆数目"/>
+	    		</div>
+	    		 <div class="mui-input-row">
+	    			<label for="">
+	    			<img src="images/Eye.png" style="height: 20px;" />
+	    			</label>
+	    			<input type="password"  id='password' placeholder="请输入密码"/>
+	    		</div>
+	    	
+			
+		</form>
+			<button id='givensendbtn' class="mui-btn-block mybtncenter" >确认转赠</button>
+	      
+	</div>
+	<script type="text/javascript">
+		mui.init();
+		mui.plusReady(function(){
+			server=plus.storage.getItem('server');
+			username=plus.storage.getItem('username');
+			rewardPoints=plus.storage.getItem('rewardpoints');
+			var towhotel=document.getElementById('towhotel');
+			//获取转赠方信息
+			towhotel.addEventListener('blur',function(){
+					mui.ajax(server+'useraction.php',{
+						data:{
+							action:'singleuser',
+							usertelphone:towhotel.value
+						},
+						type:'post',
+						success:function(data){
+//							alert(data);
+							var infocontainer=document.getElementById("userinfo");
+							var jsondata=eval("["+data+"]");
+							var rewardlist=jsondata[0];
+								html="<table><tr><td><img src='"+server+"uploads/"+rewardlist[0].head+"'/></td><td>"+rewardlist[0].nickname+"</td><td>"+rewardlist[0].email+"</td></tr></table>";
+								infocontainer.innerHTML=html;
+							    	
+							
+						}
+					});
+			});
+			//发送转赠请求
+			document.getElementById('givensendbtn').addEventListener('tap',function(){
+				var usertel=document.getElementById('towhotel').value;
+				var reward=document.getElementById('reward').value;
+				var passward=document.getElementById('password').value;
+				console.log(username);
+				if(reward.length==0){
+					plus.ui.toast('不能空着哦');
+					return;
+				}
+				 if(isNaN(reward)){
+      			  	 plus.ui.toast('只能是个数儿吧');
+      			  	 return;
+      			  }
+				if(parseFloat(rewardPoints) < parseFloat(reward)){
+					plus.ui.toast('您还没有那么多的享豆哦');
+					return;
+				}
+				mui.ajax(server+'rewardaction.php',{
+					data:{
+						action:'rewardgiven',
+						usertel:usertel,
+						bywho:username,
+						reward:reward,
+						password:passward
+					},
+					type:'post',
+					success:function(data){
+						if(data==0){
+							plus.ui.toast('密码错误哎');
+							return;
+						}
+						if(data==1){
+							plus.ui.toast('转赠成功');
+							mui.openWindow({
+								url:"rewardrecord.html",
+								id:'rewardrecord',
+								createNew:true
+							})
+						}else{
+							plus.ui.toast('失败了哎,好事多磨嘛');
+						}
+					}
+				})
+			})
+
+		})
+	</script>
+</body>
+</html>

@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title>othercenter</title>
+    <script src="../js/mui.min.js"></script>
+     <!--<script src="js/openwin.js"></script>-->
+      <script src="../js/weshare.js"></script>
+    <link href="../css/mui.min.css" rel="stylesheet"/>
+     <link rel="stylesheet" href="../css/weshare.css" />
+      
+    <script type="text/javascript" charset="utf-8">
+      	mui.init();
+      	mui.plusReady(function(){
+			var page=plus.webview.currentWebview();
+			var username=page.username;
+			    bywho=plus.storage.getItem('username');
+      		var reward=plus.storage.getItem('rewardpoints');
+      			server=plus.storage.getItem('server');
+      			active=plus.storage.getItem('active');
+      		var qlist=['第一问：有没有认认真真手写的文字，不为考试，不为装逼，就是单纯想写','第二问：墨镜可以回答任何关于你的未来的问题，你有3次机会，你会问什么？','第三问：你觉得自己会怎么样死去？如果一年之后，你会以自己设想的方式离开，这一年的时间，你会做什么？','第四问：你的完美的一天由什么组成？','第五问：用这个句式，造三个句子。“我希望能有一个（）的人。”','第六问：你最喜欢异性身上的那些品质？','第七问：你最鄙视的人是？','第八问；描述一下10年后的你现在在做什么？','第九问：最喜欢穿出去的一套衣服（鞋子，配饰等等也算哦）'];
+      		
+      		for(var i=1;i<=qlist.length;i++){
+      			var qcontainer=document.getElementById('qcontainer');
+      			var index='q'+i;
+//    			console.log(index);
+      		      html="<section id='' class='othercenterpart'>"+
+						    		"<div class='othercentertitle'>"+
+						    			"<span class='span1'>"+qlist[i-1]+"</span>"+
+						    			"<a  class='checkans' data-qnum='"+index+"'>查看</a>"+
+						    		"</div>"+
+						    		"<div class='qanswer' id='"+index+"answer'>"+
+						    		"</div>"+
+					"</section>";
+				qcontainer.insertAdjacentHTML('beforeBegin',html);
+//    					
+      		}
+      	 mui('section').on('tap','.checkans',function(){
+      	 	var qnum=this.getAttribute('data-qnum');
+      	 		console.log(qnum);
+      	 		mui.ajax(server+'getqslist.php',{
+     			data:{
+     				action:'certainQ',
+     				username:username,
+     				index:qnum
+     			},
+     			type:'post',
+     			success:function(data){
+     				var jsondata=eval('['+data+']');
+     				var contentid=qnum+'answer';
+     				if(jsondata[0].qpay!=='0'){
+     					payforQa(bywho,username,jsondata[0].qpay);
+     					plus.ui.confirm('该问题需要支付'+jsondata[0].qpay+'积分才能查看,您确认支付吗？',function(e){
+     						
+		      			  if(e.index==0){
+		      			  	
+		      				 document.getElementById(contentid).innerHTML=jsondata[0].q;	
+		                  }
+		      			},"",["Yes","No"]);
+     				}else{
+     					document.getElementById(contentid).innerHTML=jsondata[0].q;	
+     				}
+
+     			}
+     		})
+      	 })
+       }) 
+
+     function payforQa(bywho,towho,pay){
+     	  mui.ajax(server+'qsAction.php',{
+     	  	data:{
+     	  		action:'payforqa',
+     	  		bywho:bywho,
+     	  		towho:towho,
+     	  		pay:pay
+     	  	},
+     	  	type:'post',
+     	  	success:function(data){
+     	  		
+     	  	}
+     	  })
+     }
+     
+      
+    </script>
+    <style type="text/css">
+    		
+     .mui-bar-nav~.mui-content{
+     	width: 100%;
+     	margin: 0px;
+     	padding-top: 44px;
+     }
+     
+    		 .othercenterpart{
+     	 	width: 96%;
+     	 	margin: auto;
+     	 	border-top: 1px solid #FAF8F8;
+     	 	border-radius:5px;
+     	 	margin-top:15px;
+     	 	margin-bottom: 15px;
+     	 	/*height: 50px;*/
+     	 	box-shadow:1px 2px 2px 2px #E4E4E4;
+     	 }
+     	 .othercenterpart div.othercentertitle{
+     	 	padding: 10px;
+     	 	/*height: 30px;*/
+     	 	border-bottom:2px solid #FAF8F8 ;
+     	 }
+     	  .othercenterpart div.othercentertitle span{
+     	  	display: inline-block;
+     	  	width: 85%;
+     	 	padding-left: 25px;
+     	 	font-weight: bolder;
+     	 	font-size: 14px;
+     	 	/*height: 15px;*/
+     	 	color: #333;
+     	 }
+     	  .othercenterpart div.othercentertitle a.checkans{
+     	 text-decoration: none;
+     	 display: inline-block;
+     	 float: right;
+     	text-align: right;
+     	 color: #3F88B0;
+     	 font-weight: bolder;
+     	 font-size: 14px;
+     	 margin-right: 5px;
+     	 }
+     	 .span1{
+     	 	background:url(../images/bookblue.png) no-repeat;
+     	  	background-size: 16px;
+     	  	background-position-y:1px ;
+     	 }
+     	.qanswer{
+     	 	padding: 20px;
+     	 	padding-left:20px;
+     	 	font-size: 13px;
+     	 	color: #A1a1a1;
+     	 	text-indent: 20px;
+     	 	padding-right: 20px;
+     	 	letter-spacing: 1px;
+     	 	font-weight: bolder;
+     	 }
+     </style>
+</head>
+<body>
+	<header class="mui-bar mui-bar-nav">
+	    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+	    <h1 class="mui-title"><strong>乐享九问</strong></h1>
+	</header>
+	 
+	 <div class="mui-content">
+	 	
+	 	<section id='qcontainer'>
+		 
+								   		   
+		<section>
+			
+	 </div>
+</body>
+</html>

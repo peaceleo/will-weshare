@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title>乐享十问</title>
+   <script src="../js/mui.min.js"></script>
+     <script src="../js/openwin.js"></script>
+      <script src="../js/weshare.js"></script>
+    <link href="../css/mui.min.css" rel="stylesheet"/>
+     <link rel="stylesheet" href="../css/weshare.css" />
+  
+    <style type="text/css">
+    .setsection{
+	border: 2px solid #FAF8F8;
+	display: block;
+	position: relative;
+	border-radius:5px ;
+	margin-top: 10px;
+	box-shadow:1px 2px 2px 2px #E4E4E4;
+}
+.mui-input-row label{
+	width: auto;
+	font-size: 14px;
+	font-weight: bolder;
+	
+}
+textarea{
+	border:2px solid #FAF8F8;
+	border-top: 2px solid #FAF8F8;
+	border-bottom: 2px solid #FAF8F8;
+	font-weight: bolder;
+	font-size: 13px;
+	padding-left: 20px;
+	
+	
+}
+input[placeholder]{
+	font-size: 12px;
+	text-indent: 40px;
+}
+.mui-input-row label span{
+	width: auto;
+	font-size: 12px;
+	font-weight: bolder;
+	color: #A1A1A1;
+	
+}
+.mui-checkbox input[type=checkbox]:before, .mui-radio input[type=radio]:before{
+	font-size: 20px;
+}
+.mui-checkbox input[type=checkbox]:checked:before, .mui-radio input[type=radio]:checked:before {
+	color: #3F88B0;
+}
+.mui-checkbox input[type=checkbox], .mui-radio input[type=radio]{
+	top: 7px;
+}
+.qtitle{
+	font-size:15px ;
+	padding: 6px;
+	font-weight: bolder;
+}
+.qaction{
+	/*border: 1px solid black;*/
+	margin-top: 20px;
+	position: relative;
+	height: 45px;
+}
+.qaction div{
+	width: 50%;
+	display: inline-block;
+	float: left;
+	text-align: center;
+	line-height: 45px;
+}
+.qaction div span{
+	background: #66CCCC;
+	padding: 8px;
+	border-radius: 5px;
+	color: white;
+}
+   </style>
+   <script type="text/javascript">
+   	  mui.plusReady(function(){
+   	  var username=plus.storage.getItem('username');
+   	  server=plus.storage.getItem('server');
+   	  //变量
+   	  var nextq=document.getElementById('nextq');
+   	  var submitdata=document.getElementById('submitdata');
+// 	  getQalist(username);
+ 	    getQa(username,'q1');
+   	    var index=1;
+   	   	changeQuestion(index);
+   	   	
+   	   	
+   	   	//转到下一个问题
+   	    nextq.addEventListener('tap',function(){	
+		   	   	index++;
+		   	   	var Pindex='q'+index;
+		   	   	if(index<10){
+		   	   		 changeQuestion(index);
+		   	   		 getQa(username,Pindex);
+		   	   		 oRadioChange(index-1);
+		   	   	}	   	
+   	   })
+   	    
+   	    //提交数据至服务器
+   	    submitdata.addEventListener('tap',function(){
+   	    		
+				mui.ajax(server+'qsAction.php',{
+					data:{
+						action:'answer',
+						username:username,
+						q1:document.getElementById('q1answer').value,
+						q1pay:document.getElementById('q1pay').value,
+						q2:document.getElementById('q2answer').value,
+						q2pay:document.getElementById('q2pay').value,
+						q3:document.getElementById('q3answer').value,
+						q3pay:document.getElementById('q3pay').value,
+						q4:document.getElementById('q4answer').value,
+						q4pay:document.getElementById('q4pay').value,
+						q5:document.getElementById('q5answer').value,
+						q5pay:document.getElementById('q5pay').value,
+						q6:document.getElementById('q6answer').value,
+						q6pay:document.getElementById('q6pay').value,
+						q7:document.getElementById('q7answer').value,
+						q7pay:document.getElementById('q7pay').value,
+						q8:document.getElementById('q8answer').value,
+						q8pay:document.getElementById('q8pay').value,
+						q9:document.getElementById('q9answer').value,
+						q9pay:document.getElementById('q9pay').value
+					},
+					type:'post',
+					success:function(data){
+						if(data==1){
+							plus.ui.toast('修改成功');
+							mui.openWindow({
+								url:'personset.html',
+								id:'personset',
+								createNew:true,
+								show:{
+									aniShow:'none',
+									duration:200
+								}
+							})
+						}else{
+							plus.ui.toast('您好像没有修改哦');
+						}
+						
+					}
+				})
+   	    })
+   	  
+   	  })
+     	 //获取答案列表
+     	function  getQa(username,index){
+     		mui.ajax(server+'getqslist.php',{
+     			data:{
+     				action:'certainQ',
+     				username:username,
+     				index:index
+     			},
+     			type:'post',
+     			success:function(data){
+     				var jsondata=eval('['+data+']');
+     				var contentid=index+'answer';
+     				var payid=index+'pay';
+     				var noneValue=index+'&none';
+     				var blockValue=index+'&block';
+     				document.getElementById(contentid).innerHTML=jsondata[0].q;
+     				document.getElementById(payid).value=jsondata[0].qpay;
+     				if(jsondata[0].qpay==='0'){
+     					getRadioCheckedByValue(noneValue,'radio1');
+     				}else{
+     					getRadioCheckedByValue(blockValue,'radio1');
+     				}
+     			}
+     		})
+     	}
+     	//根据value值选中单选框
+     	function getRadioCheckedByValue(radiovalue,radioname){
+     		var oRadio=document.getElementsByName(radioname);
+     		for(var i=0;i<=oRadio.length;i++){
+     			var value=oRadio[i].getAttribute('value');
+     			if(value===radiovalue){
+     				oRadio[i].checked=true;
+     				var aList=radiovalue.split('&');
+     				var id="paycontainer"+aList[0];
+		   	  		var status=aList[1];
+		   	  		document.getElementById(id).style.display=status;
+     			}
+     		}
+     	}
+     	 //切换问题
+   	  	function  changeQuestion(index){
+   	  		var oSection=document.getElementsByClassName('setsection');
+   	  		var id='q'+index;
+   	  		
+     		if(index>1){
+     			var lastid='q'+(index-1);
+	   	  		var contentid=lastid+'answer';
+	     		var payid=lastid+'pay';
+	     		
+	     		if(document.getElementById(contentid).value==''){
+	     			document.getElementById(contentid).value='宛若一阵清风,关于这个问题,Ta什么都没留下';
+	     		}
+	     		if(document.getElementById(payid).value==''){
+	     			document.getElementById(payid).value=0;
+	     		}
+	     		console.log(document.getElementById(contentid).value);
+	     		console.log(document.getElementById(payid).value);
+     		}
+   	  		if(index==9){
+   	  			document.getElementById('nextq').style.background='#A1A1A1';
+   	  		}
+   	  		
+   	  		for(var i=0;i<oSection.length;i++){
+   	  			if(oSection[i].getAttribute('id')===id){
+   	  				
+   	  				oSection[i].style.display='block';
+   	  			}else{
+   	  				oSection[i].style.display='none';
+   	  			}
+   	  		}
+   	  	}
+   	  	
+   	  	
+   	  	function  oRadioChange(){
+   	  		  
+   	  			var oRadio=document.getElementsByName('radio1');
+		   	  	for(var i=0;i<=oRadio.length;i++){
+		   	  		if(oRadio[i].checked){
+		   	  			var value=oRadio[i].getAttribute('value');
+		   	  			var aList=value.split('&');
+		   	  			var id="paycontainer"+aList[0];
+		   	  			var status=aList[1];
+		   	  			document.getElementById(id).style.display=status;
+		   	  			
+		   	  		}
+		   	  	}
+   	  	}
+   	
+   </script>
+</head>
+<body>
+	<header class="mui-bar mui-bar-nav">
+	    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+	    <h1 class="mui-title"><strong>乐享就问</strong></h1>
+	</header>
+	 <!--
+	 	第一问：有没有认认真真手写的文字，不为考试，不为装逼，就是单纯想写
+	 	第二问：墨镜可以回答任何关于你的未来的问题，你有3次机会，你会问什么？
+	 	第三问：你觉得自己会怎么样死去？如果一年之后，你会以自己设想的方式离开，这一年的时间，你会做什么？
+	 	第四问：你的完美的一天由什么组成？
+	 	第五问：用这个句式，造三个句子。“我希望能有一个（）的人。”
+	 	第六问：你最喜欢异性身上的那些品质？
+	 	第七问：你最鄙视的人是？
+	 	第八问；描述一下10年后的你现在在做什么？
+	 	第九问：最喜欢穿出去的一套衣服（鞋子，配饰等等也算哦）
+	 	第十问：爆一张你的生活照吧。
+	 -->
+		<div class="mui-content">
+		  <section  id='q1'  class="setsection mui-col-xs-12">
+		     <div class='qtitle mui-col-xs-12'>第一问：有没有认认真真手写的文字，不为考试，不为装逼，就是单纯想写</div>
+		     <textarea name="q1answer" rows="6" cols="" id='q1answer'></textarea>
+		        <form class="mui-input-group">
+					<div class="mui-input-row mui-radio mui-left" >
+						<label>公开<span>(您的回答会公开显示在您的个人主页)</span></label>
+						<input name="radio1" type="radio"  value='q1&none' checked="checked" onclick="oRadioChange()">
+					</div>
+					<div class="mui-input-row mui-radio mui-left">
+						<label>付豆查看<span>(其他用户需向您支付一定数量享豆来查看)</span></label>
+						<input name="radio1" type="radio" value='q1&block' onclick="oRadioChange()">
+					</div>
+					<div class="mui-input-row" id='paycontainerq1' style="display: none;">
+			    			<input class="mui-input" type="text" name='q1pay' id='q1pay' placeholder="请输入查看答案所需享豆" value="0"/><span class="paylabel">享豆</span>
+			    		</div>
+				
+				</form>
+	      </section>
+	      <section  id='q2'  class="setsection mui-col-xs-12" >
+		     <div class='qtitle mui-col-xs-12'>第二问：墨镜可以回答任何关于你的未来的问题，你有3次机会，你会问什么？</div>
+		     <textarea name="q2answer"rows="6" cols="" id='q2answer'></textarea>
+		        <form class="mui-input-group">
+					<div class="mui-input-row mui-radio mui-left" >
+						<label>公开<span>(您的回答会公开显示在您的个人主页)</span></label>
+						<input name="radio1" type="radio"  value='q2&none' checked="checked" onclick="oRadioChange()">
+					</div>
+					<div class="mui-input-row mui-radio mui-left">
+						<label>付豆查看<span>(其他用户需向您支付一定数量享豆来查看)</span></label>
+						<input name="radio1" type="radio" value='q2&block' onclick="oRadioChange()">
+					</div>
+					<div class="mui-input-row" id='paycontainerq2' style="display: none;">
+			    			<input class="mui-input" type="text" name='qpay' id='q2pay' placeholder="请输入查看答案所需享豆" value="0"/><span class="paylabel">享豆</span>
+			    		</div>
+				
+				</form>
+	      </section>
+	      <section  id='q3'  class="setsection mui-col-xs-12" >
+		     <div class='qtitle mui-col-xs-12'>第三问：你觉得自己会怎么样死去？如果一年之后，你会以自己设想的方式离开，这一年的时间，你会做什么？</div>
+		     <textarea name="q3answer" rows="6" cols="" id='q3answer'></textarea>
+		        <form class="mui-input-group">
+					<div class="mui-input-row mui-radio mui-left" >
+						<label>公开<span>(您的回答会公开显示在您的个人主页)</span></label>
+						<input name="radio1" type="radio"  value='q3&none' checked="checked" onclick="oRadioChange()">
+					</div>
+					<div class="mui-input-row mui-radio mui-left">
+						<label>付豆查看<span>(其他用户需向您支付一定数量享豆来查看)</span></label>
+						<input name="radio1" type="radio" value='q3&block' onclick="oRadioChange()">
+					</div>
+					<div class="mui-input-row" id='paycontainerq3' style="display: none;">
+			    			<input class="mui-input" type="text" name='q3pay' id='q3pay' placeholder="请输入查看答案所需享豆" value="0"/><span class="paylabel">享豆</span>
+			    		</div>
+				
+				</form>
+	      </section>
+	      <section  id='q4'  class="setsection mui-col-xs-12" >
+		     <div class='qtitle mui-col-xs-12'>第四问：你的完美的一天由什么组成？</div>
+		     <textarea name="q4answer" rows="6" cols="" id='q4answer'></textarea>
+		        <form class="mui-input-group">
+					<div class="mui-input-row mui-radio mui-left" >
+						<label>公开<span>(您的回答会公开显示在您的个人主页)</span></label>
+						<input name="radio1" type="radio"  value='q4&none' checked="checked" onclick="oRadioChange()">
+					</div>
+					<div class="mui-input-row mui-radio mui-left">
+						<label>付豆查看<span>(其他用户需向您支付一定数量享豆来查看)</span></label>
+						<input name="radio1" type="radio" value='q4&block' onclick="oRadioChange()">
+					</div>
+					<div class="mui-input-row" id='paycontainerq4' style="display: none;">
+			    			<input class="mui-input" type="text" name='q4pay' id='q4pay' placeholder="请输入查看答案所需享豆" value="0"/><span class="paylabel">享豆</span>
+			    		</div>
+				
+				</form>
+	      </section>
+	      <section  id='q5'  class="setsection mui-col-xs-12" >
+		     <div class='qtitle mui-col-xs-12'>第五问：用这个句式，造三个句子。“我希望能有一个（）的人。”</div>
+		     <textarea name="q5answer" rows="6" cols="" id='q5answer'></textarea>
+		        <form class="mui-input-group">
+					<div class="mui-input-row mui-radio mui-left" >
+						<label>公开<span>(您的回答会公开显示在您的个人主页)</span></label>
+						<input name="radio1" type="radio"  value='q5&none' checked="checked" onclick="oRadioChange()">
+					</div>
+					<div class="mui-input-row mui-radio mui-left">
+						<label>付豆查看<span>(其他用户需向您支付一定数量享豆来查看)</span></label>
+						<input name="radio1" type="radio" value='q5&block' onclick="oRadioChange()">
+					</div>
+					<div class="mui-input-row" id='paycontainerq5' style="display: none;">
+			    			<input class="mui-input" type="text" name='q5pay' id='q5pay' placeholder="请输入查看答案所需享豆" value="0"/><span class="paylabel">享豆</span>
+			    		</div>
+				
+				</form>
+	      </section>
+	      <section  id='q6'  class="setsection mui-col-xs-12" >
+		     <div class='qtitle mui-col-xs-12'>	第六问：你最喜欢异性身上的那些品质？</div>
+		     <textarea name="q6answer" rows="6" cols="" id='q6answer'></textarea>
+		        <form class="mui-input-group">
+					<div class="mui-input-row mui-radio mui-left" >
+						<label>公开<span>(您的回答会公开显示在您的个人主页)</span></label>
+						<input name="radio1" type="radio"  value='q6&none' checked="checked" onclick="oRadioChange()">
+					</div>
+					<div class="mui-input-row mui-radio mui-left">
+						<label>付豆查看<span>(其他用户需向您支付一定数量享豆来查看)</span></label>
+						<input name="radio1" type="radio" value='q6&block' onclick="oRadioChange()">
+					</div>
+					<div class="mui-input-row" id='paycontainerq6' style="display: none;">
+			    			<input class="mui-input" type="text" name='q6pay' id='q6pay' placeholder="请输入查看答案所需享豆" value="0"/><span class="paylabel">享豆</span>
+			    		</div>
+				
+				</form>
+	      </section>
+	      <section  id='q7'  class="setsection mui-col-xs-12" >
+		     <div class='qtitle mui-col-xs-12'>第七问：你最鄙视的人是？</div>
+		     <textarea name="q7answer" rows="6" cols="" id='q7answer'></textarea>
+		        <form class="mui-input-group">
+					<div class="mui-input-row mui-radio mui-left" >
+						<label>公开<span>(您的回答会公开显示在您的个人主页)</span></label>
+						<input name="radio1" type="radio"  value='q7&none' checked="checked" onclick="oRadioChange()">
+					</div>
+					<div class="mui-input-row mui-radio mui-left">
+						<label>付豆查看<span>(其他用户需向您支付一定数量享豆来查看)</span></label>
+						<input name="radio1" type="radio" value='q7&block' onclick="oRadioChange()">
+					</div>
+					<div class="mui-input-row" id='paycontainerq7' style="display: none;">
+			    			<input class="mui-input" type="text" name='q7pay' id='q7pay' placeholder="请输入查看答案所需享豆" value="0"/><span class="paylabel">享豆</span>
+			    		</div>
+				
+				</form>
+	      </section>
+	      <section  id='q8'  class="setsection mui-col-xs-12" >
+		     <div class='qtitle mui-col-xs-12'>第八问；描述一下10年后的你现在在做什么？</div>
+		     <textarea name="qanswer" rows="6" cols="" id='q8answer'></textarea>
+		        <form class="mui-input-group">
+					<div class="mui-input-row mui-radio mui-left" >
+						<label>公开<span>(您的回答会公开显示在您的个人主页)</span></label>
+						<input name="radio1" type="radio"  value='q8&none' checked="checked" onclick="oRadioChange()">
+					</div>
+					<div class="mui-input-row mui-radio mui-left">
+						<label>付豆查看<span>(其他用户需向您支付一定数量享豆来查看)</span></label>
+						<input name="radio1" type="radio" value='q8&block' onclick="oRadioChange()">
+					</div>
+					<div class="mui-input-row" id='paycontainerq8' style="display: none;">
+			    			<input class="mui-input" type="text" name='qpay' id='q8pay' placeholder="请输入查看答案所需享豆" value="0"/><span class="paylabel">享豆</span>
+			    		</div>
+				
+				</form>
+	      </section>
+	      <section  id='q9'  class="setsection mui-col-xs-12" >
+		     <div class='qtitle mui-col-xs-12'>第九问：最喜欢穿出去的一套衣服（鞋子，配饰等等也算哦）</div>
+		     <textarea name="qanswer" rows="6" cols="" id='q9answer'></textarea>
+		        <form class="mui-input-group">
+					<div class="mui-input-row mui-radio mui-left" >
+						<label>公开<span>(您的回答会公开显示在您的个人主页)</span></label>
+						<input name="radio1" type="radio"  value='q9&none' checked="checked" onclick="oRadioChange()">
+					</div>
+					<div class="mui-input-row mui-radio mui-left">
+						<label>付豆查看<span>(其他用户需向您支付一定数量享豆来查看)</span></label>
+						<input name="radio1" type="radio" value='q9&block' onclick="oRadioChange()">
+					</div>
+					<div class="mui-input-row" id='paycontainerq9' style="display: none;">
+			    			<input class="mui-input" type="text" name='qpay' id='q9pay' placeholder="请输入查看答案所需享豆" value="0"/><span class="paylabel">享豆</span>
+			    		</div>
+				
+				</form>
+	      </section>
+
+	      <section>
+	      		<div class='qaction'>
+	      			<div><span id='nextq'>下一个</span></div>
+	      			<div><span id='submitdata'>保存</span></div>
+	      		</div>
+	      </section>
+		</div>
+	 
+</body>
+</html>

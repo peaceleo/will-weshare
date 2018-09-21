@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title>personset</title>
+   <script src="js/mui.min.js"></script>
+     <script src="js/openwin.js"></script>
+      <script src="js/weshare.js"></script>
+    <link href="css/mui.min.css" rel="stylesheet"/>
+     <link rel="stylesheet" href="css/weshare.css" />
+    <script type="text/javascript" charset="utf-8">
+      	mui.init();
+      	mui.plusReady(function(){
+      			server=plus.storage.getItem('server');
+      		var  username=plus.storage.getItem('username');
+      		mui.ajax(server+'personaction.php',{
+      			data:{
+      				username:username
+      			},
+      			type:'post',
+      			success:function(data){
+//    				console.log(data);
+      				var usersimpleinfoset=document.getElementById("usersimpleinfoset");
+      				var useridentfy=document.getElementById("useridentfy");
+      				var jsondata=eval("["+data+"]");
+      				var userinfo=jsondata[0];
+      				
+      				html=" <div class='settitle mui-col-xs-12'>个人资料</div>"+
+	      				" <div  id='sethead' class='mui-col-xs-12 setinfo'>"+
+	      				 		"<div class='mui-col-xs-1'></div>"+
+	      				 		"<div class='mui-col-xs-2 head setlisttitle' >头像</div>"+
+	      				 		"<div class='mui-col-xs-8 imgsize' >"+
+	      				 			"<img src='"+server+"uploads/"+userinfo[0].head+"'/>"+
+	      				 	"</div>"+
+	      				" </div>"+
+	      				 "<div id='setnickname' class='mui-col-xs-12 setinfo'>"+
+	      				 	   " <div class='mui-col-xs-1'></div>"+
+	      				 		"<div class='mui-col-xs-2 setlisttitle'>姓名</div>"+
+	      				 		"<div class='mui-col-xs-8'>"+userinfo[0].nickname+"</div>"+
+	      				 "</div>"+
+	      				" <div id='setsex' class='mui-col-xs-12 setinfo'>"+
+	      				 		"<div class='mui-col-xs-1'></div>"+
+	      				 		"<div class='mui-col-xs-2 setlisttitle'>性别</div>"+
+	      				 		"<div class='mui-col-xs-8'>"+userinfo[0].sex+"</div>"+
+	      				" </div>"+
+	      				" <div id='setschool' class='mui-col-xs-12 setinfo'>"+
+	      				 		"<div class='mui-col-xs-1'></div>"+
+	      				 		"<div class='mui-col-xs-2 setlisttitle'>学校</div>"+
+	      				 		"<div class='mui-col-xs-8'>"+userinfo[0].school+"</div>"+
+	      				" </div>"+
+	      				" <div  id='setemail' class='mui-col-xs-12 setinfo'>"+
+	      				 		"<div class='mui-col-xs-1'></div>"+
+	      				 		"<div class='mui-col-xs-2 setlisttitle'>学号</div>"+
+	      				 		"<div class='mui-col-xs-8'>"+userinfo[0].email+"</div>"+
+	      				" </div>"+
+	      				" <div id='settelphone' class='mui-col-xs-12 setinfo'>"+
+	      				 		"<div class='mui-col-xs-1'></div>"+
+	      				 		"<div class='mui-col-xs-2 setlisttitle'>手机</div>"+
+	      				 		"<div class='mui-col-xs-8'>"+userinfo[0].telphone+"</div>"+
+	      				 "</div>"+
+	      				 "<div id='setnote' class='mui-col-xs-12 setinfo'>"+
+	      				 		"<div class='mui-col-xs-1'></div>"+
+	      				 		"<div class='mui-col-xs-2 setlisttitle'>签名</div>"+
+	      				 		"<div class='mui-col-xs-8'>"+userinfo[0].note+"</div>"+
+	      				 "</div>";
+	      				 usersimpleinfoset.innerHTML=html;
+	      				 html2="<div class='settitle col-xs-12'>个人认证</div>"+
+	      						 "<div  id='ident' class='mui-col-xs-12 setinfo' data-active='"+userinfo[0].active+"'>"+
+	      				 			"<div class='mui-col-xs-1'></div>"+
+	      				 			"<div class='mui-col-xs-2 setlisttitle'>学生证</div>"+
+	      				 			"<div class='mui-col-xs-8 activestatus'>"+userinfo[0].active+"</div>"+
+	      				 "</div>";	
+	      				 useridentfy.innerHTML=html2;
+      				
+      			}
+      		})
+      		//设置头像
+           	mui('#usersimpleinfoset').on('tap','#sethead',function(){
+           		mui.openWindow({
+           			url:'sethead.html',
+           			id:'sethead',
+           			show:{
+           				anishow:'none',
+           				duration:200
+           			}
+           		})
+           	})
+      		
+        		//设置昵称
+      		mui('#usersimpleinfoset').on('tap','#setnickname',function(){
+      			mui.openWindow({
+      				url:'setnickname.html',
+      				id:'setnickname',
+      				show:{
+      					aniShow: 'slide-in-left',
+      					duration: 200
+      				}
+      			})
+      		})
+      		//设置签名
+      		mui('#usersimpleinfoset').on('tap','#setnote',function(){
+      			mui.openWindow({
+      				url:'setnote.html',
+      				id:'setnote',
+      				show:{
+      					aniShow:'slide-in-left',
+      					duration:200
+      				}
+      			})
+      		})
+      		//设置性别
+      		mui('#usersimpleinfoset').on('tap','#setsex',function(){
+      			mui.openWindow({
+      				url:'setsex.html',
+      				id:'setsex',
+      				show:{
+      					aniShow:'slide-in-left',
+      					duration:200
+      				}
+      			})
+      		})
+      		//设置
+      		mui('#usersimpleinfoset').on('tap','#setschool',function(){
+      			plus.ui.toast('不能修改学校哦');
+      		})
+      		mui('#usersimpleinfoset').on('tap','#setemail',function(){
+      			plus.ui.toast('不能修改学号哦');
+      		})
+      		mui('#usersimpleinfoset').on('tap','#settelphone',function(){
+      			plus.ui.toast('不能修改手机哦');
+      		})
+      		
+      		//学生证认证
+      			mui('#useridentfy').on('tap','#ident',function(){
+      				var active=this.getAttribute('data-active');
+      				
+      				if(active=='认证中'){
+      					plus.ui.toast('正在认证中,请耐心等待...');
+      					return;
+      				}
+      				else if(active=='已认证'){
+      					plus.ui.toast('认证已完成,如有问题请联系客服...');
+      					return;
+      				}else{
+      					mui.openWindow({
+      				url:'ident.html',
+      				id:'ident',
+      				extras:{
+      					username:plus.storage.getItem('username')	
+      				},
+      				show:{
+      					aniShow:'slide-in-left',
+      					duration:200
+      				}
+      			})
+      				}
+      				
+      			
+      		})
+      		//直接打开个人中心
+      		document.getElementById("topersoncenter").addEventListener('tap',function(){
+      			mui.openWindow({
+		url:'personcenter.html',
+		id:'personcenter',
+		createNew:true,
+		show:{
+			aniShow: 'none',
+			duration:300
+		}
+	})
+      		})
+      		
+         //打开会员规则说明
+         document.getElementById("rankintro").addEventListener('tap',function(){
+         	mui.openWindow({
+         		url:'rank.html',
+         		id:'rank'
+         	})
+         })
+         
+         //打开会员享豆记录
+         document.getElementById("rewardrecord").addEventListener('tap',function(){
+         	mui.openWindow({
+         		url:'rewardrecord.html',
+         		id:'rewardrecord'
+         	})
+         })
+          //打开会员享豆记录
+         document.getElementById("rewardgiven").addEventListener('tap',function(){
+         	mui.openWindow({
+         		url:'rewardgiven.html',
+         		id:'rewardgiven'
+         	})
+         })
+         
+         //版本更新
+         document.getElementById('updateversion').addEventListener('tap',function(){
+         	var versionnow=plus.runtime.version;
+         	console.log(versionnow);
+         	 mui.ajax(server+'checkupdate.php',{
+         	 	type:'post',
+         	 	success:function(data){
+         	 		console.log(data);
+         	 		var jsondata=eval("["+data+']');
+         	 		var versioninfo=jsondata[0];
+         	 		if(versionnow===versioninfo[0].version){
+         	 			plus.ui.toast('最新版本，无需更新');
+         	 		}else{	
+         	 		plus.nativeUI.confirm('有新的版本，需要更新吗？',function(e){
+         	 				if(e.index==0){
+         	 					console.log('0');
+         	 					console.log(versioninfo[0].urlandroid);
+         	 				    plus.runtime.openURL(versioninfo[0].urlandroid);
+         	 				}else if(e.index==1){
+         	 					console.log('1');
+         	 					return;
+         	 				}
+         	 			},'版本更新',['去更新','暂不更新']);
+         	 			
+         	 		}
+         	 	}
+         	 })
+         })
+  		
+      	})
+    </script>
+    <style type="text/css">
+    	.settitle{
+    		background: url(images/note.png) no-repeat 5px;
+  background-size: 20px;
+  padding: 8px;
+  padding-left: 30px;
+  border-bottom: 2px solid #e4e4e4;
+  margin-top: 10px;
+  padding-bottom: 10px;
+  font-weight: bolder;
+    	}
+    	.setinfo {
+  background: url(images/arrow_right.png) no-repeat 95%;
+  background-size: 9px 13px;
+  font-size: 13px;
+  border-bottom: 1px solid #e4e4e4;
+  padding: 5px;
+  text-align: center;
+  line-height: 25px;
+  float: left;
+ color: #3F88B0;
+}
+.setinfo div{
+	float: left;
+}
+.setlisttitle {
+  font-size: 13px;
+  font-weight: bolder;
+  color: black;
+}
+.head {
+  line-height: 52px;
+}
+.imgsize img {
+  border-radius: 50%;
+  width: 20%;
+}
+.squimg img{
+	width: 40%;
+}
+.setsection{
+	border-bottom: 5px solid #E4E4E4;
+	display: block;
+	float: left;
+}
+.activestatus{
+	font-weight: bolder;
+}
+    </style>
+</head>
+<body>
+	 <header class="mui-bar mui-bar-nav">
+		<div class='header index-header'>
+			<div class='logo' id='logo' style="display: none;"></div>
+			 <a class="mui-icon mui-icon-left-nav" id="topersoncenter"></a>
+			<h1 class='title' id='title'></h1>
+			<a id="menu" href="#topPopover" class="mui-action-menu mui-icon mui-icon-bars mui-pull-right" style="display:none"></a>
+		</div>
+	</header>	
+	
+		<div class="mui-content">
+			<section id='usersimpleinfoset' class="setsection">
+		     <!--<div class='settitle col-xs-12'>个人资料</div>
+	      				 <div  class='mui-col-xs-12 setinfo'>
+	      				 		<div class='mui-col-xs-1'></div>
+	      				 		<div class='mui-col-xs-2 head setlisttitle' >头像</div>
+	      				 		<div class='mui-col-xs-8 imgsize' >
+	      				 			<img src="images/default_head.jpg" alt="" />
+	      				 		</div>
+	      				 </div>
+	      				 <div class='mui-col-xs-12 setinfo'>
+	      				 	    <div class='mui-col-xs-1'></div>
+	      				 		<div class='mui-col-xs-2 setlisttitle'>昵称</div>
+	      				 		<div class='mui-col-xs-8'>超儿</div>
+	      				 </div>
+	      				 <div class='mui-col-xs-12 setinfo'>
+	      				 		<div class='mui-col-xs-1'></div>
+	      				 		<div class='mui-col-xs-2 setlisttitle'>性别</div>
+	      				 		<div class='mui-col-xs-8'>男</div>
+	      				 </div>
+	      				 <div  class='mui-col-xs-12 setinfo'>
+	      				 		<div class='mui-col-xs-1'></div>
+	      				 		<div class='mui-col-xs-2 setlisttitle'>邮箱</div>
+	      				 		<div class='mui-col-xs-8'>11307100199@fudan.edu.cn</div>
+	      				 </div>
+	      				 <div class='mui-col-xs-12 setinfo'>
+	      				 		<div class='mui-col-xs-1'></div>
+	      				 		<div class='mui-col-xs-2 setlisttitle'>手机</div>
+	      				 		<div class='mui-col-xs-8'>18501773419</div>
+	      				 </div>
+	      				 <div class='mui-col-xs-12 setinfo'>
+	      				 		<div class='mui-col-xs-1'></div>
+	      				 		<div class='mui-col-xs-2 setlisttitle'>签名</div>
+	      				 		<div class='mui-col-xs-8'></div>
+	      				 </div>-->
+	      </section>
+	      <secton id='useridentfy' class="setsection mui-col-xs-12">
+	      			<!--<div class='settitle mui-col-xs-12'>个人认证</div>
+	      				 <div  class='mui-col-xs-12 setinfo'>
+	      				 		<div class='mui-col-xs-1'></div>
+	      				 		<div class='mui-col-xs-2 head setlisttitle' >学生证</div>
+	      				 		<div class='mui-col-xs-8' >
+	      				 			<img src="images/default_head.jpg" alt="" />
+	      				 		</div>
+	      			</div>-->
+	      </secton>
+	       <secton id='userrule' class="setsection mui-col-xs-12">
+	      			<div class='settitle mui-col-xs-12'>系统信息</div>
+	      				 <div  class='mui-col-xs-12 setinfo'  id='rewardrecord'>
+	      				 		<div class='mui-col-xs-5  setlisttitle'>会员享豆记录</div>
+	      				 </div>
+	      				 <div  class='mui-col-xs-12 setinfo'  id='rewardgiven'>
+	      				 		<div class='mui-col-xs-5  setlisttitle'>会员享豆转赠</div>
+	      				 </div>
+	      				  <div  class='mui-col-xs-12 setinfo' id='rankintro'>
+	      				 		<div class='mui-col-xs-5  setlisttitle'>天使进阶规则</div>
+	      				 </div>
+	      				 <div  class='mui-col-xs-12 setinfo' id='updateversion'>
+	      				 		<div class='mui-col-xs-5  setlisttitle'>应用检查更新</div>
+	      				 </div>
+	      </secton>
+	      
+		</div>
+	 
+</body>
+</html>

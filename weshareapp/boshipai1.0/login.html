@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title></title>
+    <script src="js/mui.min.js"></script>
+    <script src="js/boshare.js"></script>
+    <link href="css/mui.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="css/boshi.css" />
+    <script type="text/javascript" charset="utf-8">
+      	mui.init();
+      	document.addEventListener('plusready',function(){
+//    		 quitapp();
+//    		  server=plus.storage.setItem('server','http://120.27.34.187:8000/');
+//    		  server=plus.storage.setItem('server','http://192.168.2.6/weshareapp1.1/');
+				plus.storage.clear();
+					 server=plus.storage.setItem('server','http://120.27.34.187:8000/boshi/');
+//		        		 server=plus.storage.setItem('server','http://192.168.1.230/boshipai1.0/');
+		//      		 server='http://192.168.1.104/boshipai1.0/';
+      			var usernameinput=document.getElementById("username");
+      	        var passwordinput=document.getElementById("password");
+      			var info=plus.push.getClientInfo();
+      			console.log(info);
+				var clientid=info.clientid;
+				var token=info.token;
+				var appid=info.appid;
+				var version=plus.runtime.version;
+      			server=plus.storage.getItem('server');
+		      	var login=document.getElementById("login");
+		      	var reg=document.getElementById("reg");
+		      	var resetpass=document.getElementById("resetpass");
+       		   console.log(server);
+      		login.addEventListener('tap',function(){
+      			  console.log(server);
+			     plus.storage.setItem('password',passwordinput.value);
+			     plus.storage.setItem('username',usernameinput.value);
+//			     console.log(usernameinput.value);
+                 mui.ajax(server+'user/login.php',{
+                 	data:{
+                 		username:usernameinput.value,
+                 		password:passwordinput.value,
+                 		clientid:clientid,
+                 		token:token,
+                 		appid:appid,
+                 		version:version
+                 	},
+                 	type:'post',
+                 	success:function(data){
+                 		console.log(data);
+                 		if(data==0){
+                 			plus.ui.toast('用户不存在哎');
+                 			return;
+                 		}else if(data==1){
+                 			plus.ui.toast('欢迎回来');
+                 			getpersoninfo(usernameinput.value);
+                 			mui.openWindow({
+                 				url:'bopublic/index.html',
+                 				id:'index',
+                 				createNew:true,
+                 				show:{
+                 					aniShow:'slide-in-left',
+                 					duration:300
+                 				}	 
+                 			})
+                 		}else if(data==2){
+                 			plus.ui.toast('密码错误');
+                 			return;
+                 		}
+                 	}
+                 });
+      		})
+      		
+      		reg.addEventListener('tap',function(){
+        		
+//    			mui.ajax(server+'push.php',{
+//    				type:'post',
+//    				success:function(data){
+//    					console.log('123');
+//    				}
+//    			})
+      			mui.openWindow({
+      				url:'bopublic/reg.html',
+      				id:'register',
+      				show:{
+      					aniShow:'slide-in-right',
+      					duration:300
+      				}
+      			})
+      		})
+      		
+      		resetpass.addEventListener('tap',function(){
+      			mui.openWindow({
+      				url:'bopublic/resetpass.html',
+      				id:'resetpass',
+      				show:{
+      					aniShow:'slide-in-left',
+      					duration:300
+      				}
+      			})
+      		})
+      		    var username=plus.storage.getItem('username');
+      			var password=plus.storage.getItem('password');
+      			usernameinput.value=username;
+      			passwordinput.value=password; 
+      		if(usernameinput.value!=""  &&  passwordinput.value!=""){
+				 mui.ajax(server+'login.php',{
+                 	data:{
+                 		username:username,
+                 		password:password,
+                 		clientid:clientid,
+                 		token:token,
+                 		appid:appid,
+                 		version:version
+                 	},
+                 	type:'post',
+                 	success:function(data){
+                 		
+                 		if(data==0){
+                 			plus.ui.toast('用户不存在哎!');
+                 			return;
+                 		}else if(data==1){
+                 			plus.ui.toast('欢迎回来');
+                 			getpersoninfo(usernameinput.value);
+                 			mui.openWindow({
+                 				url:'bopublic/index.html',
+                 				id:'index',
+                 				createNew:true,
+                 				show:{
+                 					aniShow:'slide-in-left',
+                 					duration:300
+                 				}
+                 				 
+                 			})
+                 		}
+                 		else if(data==2){
+                 			plus.ui.toast('密码错误');
+                 			return;
+                 		}
+                 	}
+                 });
+      		}
+      	})
+      	
+      
+    </script>
+    <style>
+     #body{
+   font-weight: bolder;
+   
+     }
+     .mui-content{
+     	background: none;
+     }
+     .main-content{
+     	
+     	width: 80%;
+     	margin: auto;
+     	margin-top:50px;
+     	/*color: white;*/
+     	color: #A1A1A1;
+     	text-align: center;
+     }
+     .loginlogo{
+     	text-align: center;
+     	margin-top:30px ;
+     	margin-bottom:80px ;
+     	padding-top: 30px;
+     	
+     }
+     .loginlogo img{
+     	width: 200px;
+     	/*border-radius: 30px;*/
+     	
+     }
+     input[placeholder]{
+     	color: black;
+     }
+    	 .mybtnleft{
+    	 	width:25%;
+    	 	float: left;
+    	 	padding: 10px;
+    	 	color: #A1A1A1;
+    	 	border: none;
+    	 	background: none;
+    	 	font-size: 15px;
+    	 	 font-weight: bolder;
+    	 }
+    	 .mybtnright{
+    	 	width: 25%;
+    	 	float: right;
+    	 	padding: 10px;
+    	 	color: #A1A1A1;
+    	 	border: none;
+    	 	background: none;
+    	 	font-size: 15px;
+    	 	 font-weight: bolder;
+    	 }
+    	 form.input{
+    	 	border:none;
+    	 }
+    	 #username,#password{
+    	 	border:none;
+    	 	border-bottom: 2px solid #A1A1A1;
+    	 }
+    </style>
+</head>
+<body id='body'>
+	<!--<header class="mui-bar mui-bar-nav">
+		<div class='header index-header'>
+			<div class='logo' id='logo'></div>
+			<h1 class='title' id='title'></h1>
+			<!--<a id="menu" class="mui-action-menu mui-icon mui-icon-bars mui-pull-right"></a>-->
+		</div>
+	</header>
+	<div class="mui-content">
+		<section class='main-content'>
+			<div class='loginlogo'>
+				<img src="images/logo.jpg" alt="" />
+				 <!--<div class='slogon'>被人需要是一种莫大的幸福</div>-->
+			</div>
+			 <form class="input">
+	     		<div class="mui-input-row">
+	     			<input type="text" class="mui-input mui-input-clear " id='username'  placeholder="手机号码"/>
+	     		</div>
+	     		<div class='mui-input-row'>
+	     			<input type="password" class='mui-input mui-input-clear 'id='password' placeholder="密码" />
+	     		</div>	
+	         </form>
+			 <div > 
+			     	 <button id="resetpass" class='mui-btn-block mybtnleft'>忘记密码</button>
+			     	 <button id='reg' class='mui-btn-block mybtnright'>免费注册</button>
+			     	 <button id="login" class='mui-btn-block mybtncenter'>登录</button>
+			     	 
+	         </div>
+	        
+		</section>
+	    
+	    
+	</div>
+</body>
+</html>

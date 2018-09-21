@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title>wepersoncenter</title>
+    <script src="../js/mui.min.js"></script>
+     <script src="../js/openwin.js"></script>
+      <script src="../js/boshare.js"></script>
+    <link href="../css/mui.min.css" rel="stylesheet"/>
+     <link rel="stylesheet" href="../css/boshi.css" />
+      
+    
+    <style type="text/css">
+    			 .mui-bar-tab .mui-tab-item.mui-active{
+     	 	color: #929292;
+     	 }
+     	 body{
+     	 	background: white;
+     	 }
+     .mui-content{
+     	width: 100%;
+     	margin: 0;
+     }	 
+     #wrapper {
+    		position: relative;
+    		z-index: 1;
+    		height: 35px;
+    		width: 100%;
+    		/*border: 1px solid black;*/
+    		overflow: hidden;
+    		font-weight: bolder;
+    }
+    #scroll{
+    	position: absolute;
+	z-index: 1;
+	-webkit-tap-highlight-color: rgba(0,0,0,0);
+	width: 200%;
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-webkit-text-size-adjust: none;
+	overflow-x: scroll;
+    }
+    #scroll ul{
+    		list-style: none;
+    		padding: 0;
+    		margin: 0;
+    		display: -webkit-box;
+    		
+    }
+    #scroll li{
+    border: 1px solid #E4E4E4;
+    	padding: 0;
+    	margin: 0;
+    width: 17%;
+    	line-height: 35px;
+    	overflow: hidden;
+    	text-align: center;
+    }
+    .singleorder{
+    	border-top: 2px solid #E4E4E4;
+    border-bottom: 3px solid #E4E4E4;
+    	float: left;
+    }
+    .singleorder div{
+    	float: left;
+    	
+    }
+    .proimg img{
+    	height: 90px;
+    	width: 90%;
+    	margin: 5px;
+    	padding: auto;
+    	
+    }
+    .orderinfo{
+    	  	border-left: 1px solid #e4e4e4;
+    }
+    .numandtime{
+    	border-bottom:1px solid #E4E4E4;
+    	font-size:12px;
+    	color: #A1A1A1;
+    	font-weight: bolder;
+    	padding: 3px;
+    }
+    .nameandprice{
+    	border-bottom: 1px solid #e4e4e4;
+    	padding: 10px;
+    	font-weight: bolder;
+    }
+    .orderprice{
+    	font-size: 13px;
+    color: white;
+    font-weight: bolder;
+    background: #66cccc;
+    width: 80px;
+    padding: 3px;
+    border-radius: 3px;
+    text-align: center;
+    }
+    .towhotel{
+    	font-size: 12px;
+    	padding: 3px;
+    	font-weight: bolder;
+    	color: #A1A1A1;
+    }
+    .personneedaction{
+   			width:50%;
+    			text-align: center;
+    			font-size: 13px;
+    			font-weight: bolder;
+    			color: black;
+    			border-top: 1px solid #E4E4E4;
+    			border-bottom: 3px solid #E4E4E4;
+    			padding-top: 5px;
+    			padding-bottom: 5px;
+    			border-left:2px solid #E4E4E4 ;
+   		}
+   		.personneedaction .mui-icon{
+   			font-size: 20px;
+   			font-weight: bolder;
+   		}
+   		 .mui-scroll-wrapper{
+     	 overflow: initial;
+     	 }
+     	 .sexshow{
+     	 	height: 20px;
+     	 	width: 20px;
+     	 	/*border:1px solid black;*/
+     	 	position: absolute;
+     	 	bottom: 0px;
+     	 	left: 60%;
+     	 }
+     	 #male{
+     	 	background: url(images/male.png) no-repeat;
+     	 	background-size:20px;
+     	 }
+     	 #female{
+     	 	background: url(images/female.png) no-repeat;
+     	 	background-size:20px;
+     	 }
+     	 .listpart{
+     	 	margin-bottom: 20px;
+     	 }
+     	 .liststyle{
+     	 	padding-left: 60px;
+     	 	font-size: 14px;
+     	 	font-weight: bolder;
+     	 }
+     	 
+     	 #myneed{
+     	 	background: url(images/myneed.png) no-repeat ;
+     	 	background-size:25px ;
+     	 	background-position:5px ;
+     	 	background-position-x:20px ;	
+     	 }
+     	 #myhelped{
+     	 	background: url(images/myhelped.png) no-repeat ;
+     	 	background-size:25px ;
+     	 	background-position:5px ;
+     	 	background-position-x:20px ;	
+     	 }
+     	 #mefromothers{
+     	 	background: url(images/mefromothers.png) no-repeat ;
+     	 	background-size:25px ;
+     	 	background-position:5px ;
+     	 	background-position-x:20px ;	
+     	 }
+     	 #mycoltopic{
+     	 	background: url(images/coltopic.png) no-repeat ;
+     	 	background-size:25px ;
+     	 	background-position:5px ;
+     	 	background-position-x:20px ;	
+     	 }
+     	 #exchangeorder{
+     	 	background: url(images/exchangeorder.png) no-repeat ;
+     	 	background-size:25px ;
+     	 	background-position:5px ;
+     	 	background-position-x:20px ;	
+     	 }
+     	 #rewardrecord{
+     	 	background: url(images/rewardrecord.png) no-repeat ;
+     	 	background-size:25px ;
+     	 	background-position:5px ;
+     	 	background-position-x:20px ;	
+     	 }
+     	 #rewardgiven{
+     	 	background: url(images/rewardgiven.png) no-repeat ;
+     	 	background-size:25px ;
+     	 	background-position:5px ;
+     	 	background-position-x:20px ;	
+     	 }
+     	 .tolink{
+     	 	display: inline-block;
+     	 	float: right;
+     	 	width: 30px;
+     	 	height: 20px;
+     	 	background: url(images/arrow_right.png) no-repeat center;
+     	 	background-size: 8px;
+     	 }
+     	 #mypubpro{
+     	 	background: url(images/name.png) no-repeat ;
+     	 	background-size:25px ;
+     	 	background-position:5px ;
+     	 	background-position-x:20px ;	
+     	 }
+     	 #shareorder{
+     	 	background: url(images/share.png) no-repeat ;
+     	 	background-size:25px ;
+     	 	background-position:5px ;
+     	 	background-position-x:20px ;	
+     	 }
+     </style>
+     
+</head>
+<body id='body'>
+	 <header class="mui-bar mui-bar-nav">
+		<div class='header index-header'>
+			<div class='logo' id='logo'></div>
+			<h1 class='title' id='title'></h1>
+			<a id="menu" class="mui-action-menu mui-icon mui-icon-bars mui-pull-right"></a>
+		</div>
+	</header>	
+	 
+	 <div class="mui-content">
+		 	<div class="userselfinfo" id='userinfo'>
+		 		<div id ='setuserinfo' class='setuserselfinfo'>
+				 		 <div class='userselfhead'>
+				 		 	<img id='userpic' src='images/default_head.jpg'/>
+				 		 	<div id='male' class="sexshow" style="display: none;"></div>
+				 		 	<div id='female' class="sexshow" style='display:none;'></div>
+				 		 </div>
+				 		 <div class='nicknameself' id='nicknameself'>weshare</div>
+				 		 <span id='userrank' class="userselfnote">隐翼天使</span>
+				 		 <div class='userselfpoints'>我的享豆:<span id='reward'>1234</span></div>
+				 		 <div class='userselfnote' id='userselfnote'>被人需要是一种幸福</div>
+			 		 </div>
+		 	</div>
+		 	<div>
+		 		<div>
+		 			<ul class="mui-table-view listpart">
+		 				<li class='mui-table-view-cell liststyle' id='myneed'>我的心愿<span class="tolink"></span></li>
+		 				<li class='mui-table-view-cell liststyle' id='myhelped'>我帮过的<span class="tolink"></span></li>
+		 				<li class='mui-table-view-cell liststyle' id='mefromothers'>别人眼中的我<span class="tolink"></span></li>
+		 				<li class='mui-table-view-cell liststyle' id='mycoltopic'>我收藏的话题<span class="tolink"></span></li>
+		 			</ul>
+		 			
+		 			<ul class="mui-table-view listpart">
+		 				<li class='mui-table-view-cell liststyle' id='mypubpro'>我发布的宝贝<span class="tolink"></span></li>
+		 				<li class='mui-table-view-cell liststyle' id='exchangeorder'>我的兑换记录<span class="tolink"></span></li>
+		 				<li class='mui-table-view-cell liststyle' id='shareorder'>我的共享记录<span class="tolink"></span></li>
+		 				<li class='mui-table-view-cell liststyle' id='rewardrecord'>我的享豆记录<span class="tolink"></span></li>
+		 				<li class='mui-table-view-cell liststyle' id='rewardgiven'>天使享豆转增<span class="tolink"></span></li>
+		 			</ul>
+		 		</div>
+		   </div>	
+		 
+	 </div>
+	   <nav class="mui-bar mui-bar-tab">
+			<a id="indextab" class="mui-tab-item" href="index.html">
+				<span class="mui-icon mui-icon-home-filled"></span>
+				<span class="mui-tab-label">首页</span>
+			</a>
+			<a  id='needpublishtab' class="mui-tab-item" href="needpublish.html">
+				<span class="mui-icon mui-icon-plus-filled"></span>
+				<span class="mui-tab-label">发布</span>
+			</a>
+			<a  id='messagetab'class="mui-tab-item" href="message.html" >
+				<span class="mui-icon mui-icon-email-filled"><span class="mui-badge" id='remindnum' style="display: none;"></span></span>
+				<span class="mui-tab-label">消息</span>
+			</a>
+			<a  id='wepersoncentertab'class="mui-tab-item" href="wepersoncenter.html" style="color:#3f88b0;">
+				<span class="mui-icon mui-icon-contact-filled"></span>
+				<span class="mui-tab-label">我的</span>
+			</a>
+	  </nav>
+	  <script type="text/javascript" charset="utf-8">
+      	mui.init();
+      	mui.plusReady(function(){
+//    		quitapp();
+      		 username=plus.storage.getItem('username');
+      		 getremindernum(username);
+      		 getpersoninfo(username);
+      		var reward=plus.storage.getItem('rewardpoints');
+      	
+      			server=plus.storage.getItem('server');
+			document.getElementById("userpic").setAttribute('src',server+'uploads/'+plus.storage.getItem('userpic'));
+			if(plus.storage.getItem('sex')=='男'){
+				document.getElementById('male').style.display='block';
+				document.getElementById('female').style.display='none';
+			}else{
+				document.getElementById('male').style.display='none';
+				document.getElementById('female').style.display='block';
+			}
+			document.getElementById("nicknameself").innerText=plus.storage.getItem('nickname');
+			document.getElementById("reward").innerText=plus.storage.getItem('rewardpoints');
+			document.getElementById("userselfnote").innerText=plus.storage.getItem('usernote');
+			document.getElementById("userrank").innerText=plus.storage.getItem('rank');
+      	 //打开更多功能
+      	 document.getElementById('menu').addEventListener('tap',openmore);
+      	  //打开个人信息更新
+
+      	   mui('#userinfo').on('tap','#setuserinfo',function(){
+      	  	mui.openWindow({
+      	  		url:'wepersoncenter/personset.html',
+      	  		id:'personset',
+      	  		createNew:true,
+      	  		show:{
+			     duration:300
+		       }
+      	  	})
+      	  })
+      	   //跳转至不同内容界面
+      	   document.getElementById('myneed').addEventListener('tap',function(){
+      	   	 mui.openWindow({
+      	   	 	url:'wepersoncenter/myneed.html',
+      	   	 	id:'myneed',
+      	   	 	createNew:true
+      	   	 })
+      	   })
+      	   
+      	    //跳转至不同内容界面
+      	   document.getElementById('myhelped').addEventListener('tap',function(){
+      	   	 mui.openWindow({
+      	   	 	url:'wepersoncenter/myhelped.html',
+      	   	 	id:'myhelped',
+      	   	 	createNew:true
+      	   	 })
+      	   })
+      	       //跳转至不同内容界面
+      	   document.getElementById('mefromothers').addEventListener('tap',function(){
+      	   	 mui.openWindow({
+      	   	 	url:'wepersoncenter/mefromothers.html',
+      	   	 	id:'mefromothers',
+      	   	 	createNew:true
+      	   	 })
+      	   })
+      	      //跳转至不同内容界面
+      	   document.getElementById('mycoltopic').addEventListener('tap',function(){
+      	   	 mui.openWindow({
+      	   	 	url:'wepersoncenter/mycoltopic.html',
+      	   	 	id:'mycoltopic',
+      	   	 	createNew:true
+      	   	 })
+      	   })
+      	   
+      	        //跳转至不同内容界面
+      	   document.getElementById('exchangeorder').addEventListener('tap',function(){
+      	   	 mui.openWindow({
+      	   	 	url:'wepersoncenter/myexchangeorder.html',
+      	   	 	id:'myexchangeroder',
+      	   	 	createNew:true
+      	   	 })
+      	   })
+      	        //跳转至不同内容界面
+      	   document.getElementById('shareorder').addEventListener('tap',function(){
+      	   	 mui.openWindow({
+      	   	 	url:'wepersoncenter/myshareorder.html',
+      	   	 	id:'myshareorder',
+      	   	 	createNew:true
+      	   	 })
+      	   })
+      	    //打开会员享豆记录
+         document.getElementById("rewardrecord").addEventListener('tap',function(){
+         	mui.openWindow({
+         		url:'wepersoncenter/rewardrecord.html',
+         		id:'rewardrecord'
+         	})
+         })
+         
+          //打开会员享豆记录
+         document.getElementById("rewardgiven").addEventListener('tap',function(){
+         	mui.openWindow({
+         		url:'wepersoncenter/rewardgiven.html',
+         		id:'rewardgiven'
+         	})
+         })
+         //打开我发布的宝贝
+         document.getElementById('mypubpro').addEventListener('tap',function(){
+         	mui.openWindow({
+         		url:'wepersoncenter/mypubpro.html',
+         		id:'mypubpro',
+         		createNew:true
+         	})
+         	
+         })
+      	 
+       })
+ 
+      	
+     
+      
+    </script>
+</body>
+</html>

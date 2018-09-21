@@ -1,0 +1,1671 @@
+{
+	"@platforms": ["android", "iPhone", "iPad"],
+	"id": "H5406E220",/*应用的标识，创建应用时自动生成，勿手动修改*/
+	"name": "乐分享WeShare",/*应用名称，程序桌面图标名称*/
+	"version": {
+		"name": "1.0.9",/*应用版本名称*/
+		"code": "110"
+	},
+	"description": "",/*应用描述信息*/
+	"icons": {
+		"72": "icon.png"
+	},
+	"launch_path": "login.html",/*应用的入口页面，默认为根目录下的index.html；支持网络地址，必须以http://或https://开头*/
+	"developer": {
+		"name": "",/*开发者名称*/
+		"email": "",/*开发者邮箱地址*/
+		"url": "http://www.dcloud.io"
+	},
+	"permissions": {
+		"Accelerometer": {
+			"description": "访问加速度感应器"
+		},
+		"Audio": {
+			"description": "访问麦克风"
+		},
+		"Cache": {
+			"description": "管理应用缓存"
+		},
+		"Camera": {
+			"description": "访问摄像头"
+		},
+		"Console": {
+			"description": "跟踪调试输出日志"
+		},
+		"Contacts": {
+			"description": "访问系统联系人信息"
+		},
+		"Device": {
+			"description": "访问设备信息"
+		},
+		"Downloader": {
+			"description": "文件下载管理"
+		},
+		"Events": {
+			"description": "应用扩展事件"
+		},
+		"File": {
+			"description": "访问本地文件系统"
+		},
+		"Gallery": {
+			"description": "访问系统相册"
+		},
+		"Geolocation": {
+			"description": "访问位置信息"
+		},
+		"Invocation": {
+			"description": "使用Native.js能力"
+		},
+
+		"Orientation": {
+			"description": "访问方向感应器"
+		},
+		"Proximity": {
+			"description": "访问距离感应器"
+		},
+		"Storage": {
+			"description": "管理应用本地数据"
+		},
+
+		"Uploader": {
+			"description": "管理文件上传任务"
+		},
+		"Runtime": {
+			"description": "访问运行期环境"
+		},
+		"XMLHttpRequest": {
+			"description": "跨域网络访问"
+		},
+		"Zip": {
+			"description": "文件压缩与解压缩"
+		},
+		"Barcode": {
+			"description": "管理二维码扫描插件"
+		},
+		"Maps": {
+			"description": "管理地图插件"
+		},
+		"Speech": {
+			"description": "管理语音识别插件"
+		},
+		"Webview": {
+			"description": "窗口管理"
+		},
+		"NativeUI": {
+			"description": "原生UI控件"
+		},
+		"Navigator": {
+			"description": "浏览器信息"
+		},
+		"NativeObj": {
+			"description": "原生对象"
+		},
+		"Messaging":{},
+		"Push":{
+		"description":"管理推送消息插件"
+		},"Share":{}
+	},
+	"plus": {
+		"splashscreen": {
+			"autoclose": true,/*是否自动关闭程序启动界面，true表示应用加载应用入口页面后自动关闭；false则需调plus.navigator.closeSplashscreen()关闭*/
+			"waiting": true,"delay":"1500"
+		},
+		"runmode": "liberate",/*应用的首次启动运行模式，可取liberate或normal，liberate模式在第一次启动时将解压应用资源（Android平台File API才可正常访问_www目录）*/
+		"signature": "Sk9JTiBVUyBtYWlsdG86aHIyMDEzQGRjbG91ZC5pbw==",/*可选，保留给应用签名，暂不使用*/
+		"distribute": {
+			"plugins": {"share":{"weixin":{"appid":"wx0359a3d8742d47c9","appsecret":"8c58a6b78cc822bbbcc9b3651009cd0f","description":"可选，微信分享"}},
+				"push": {"igexin":{"appid":"Sn2QWpV3Nk91tDoXo6QS19","appkey":"PDIdqjVkHl7MrHhOhZsy03","appsecret":"m0DvAfM0356hR7s5Xltec"}
+					
+				}
+			},
+			"apple": {
+				"appid": "",/*iOS应用标识，苹果开发网站申请的appid，如io.dcloud.HelloH5*/
+				"mobileprovision": "",/*iOS应用打包配置文件*/
+				"password": "",/*iOS应用打包个人证书导入密码*/
+				"p12": "",/*iOS应用打包个人证书，打包配置文件关联的个人证书*/
+				"devices": "universal",/*iOS应用支持的设备类型，可取值iphone/ipad/universal*/
+				"frameworks": []
+			},
+			"google": {
+				"packagename": "",/*Android应用包名，如io.dcloud.HelloH5*/
+				"keystore": "",/*Android应用打包使用的密钥库文件*/
+				"password": "",/*Android应用打包使用密钥库中证书的密码*/
+				"aliasname": "",/*Android应用打包使用密钥库中证书的别名*/
+				"permissions": ["<uses-permission android:name=\"android.permission.CHANGE_NETWORK_STATE\"/>","<uses-permission android:name=\"android.permission.READ_CONTACTS\"/>","<uses-permission android:name=\"android.permission.MOUNT_UNMOUNT_FILESYSTEMS\"/>","<uses-permission android:name=\"android.permission.GET_TASKS\"/>","<uses-permission android:name=\"android.permission.VIBRATE\"/>","<uses-permission android:name=\"android.permission.READ_LOGS\"/>","<uses-permission android:name=\"android.permission.ACCESS_WIFI_STATE\"/>","<uses-feature android:name=\"android.hardware.camera.autofocus\"/>","<uses-permission android:name=\"android.permission.WRITE_CONTACTS\"/>","<uses-permission android:name=\"android.permission.ACCESS_NETWORK_STATE\"/>","<uses-permission android:name=\"android.permission.RECEIVE_BOOT_COMPLETED\"/>","<uses-permission android:name=\"com.android.launcher.permission.UNINSTALL_SHORTCUT\"/>","<uses-permission android:name=\"android.permission.CAMERA\"/>","<uses-permission android:name=\"android.permission.GET_ACCOUNTS\"/>","<uses-permission android:name=\"android.permission.RECORD_AUDIO\"/>","<uses-permission android:name=\"android.permission.MODIFY_AUDIO_SETTINGS\"/>","<uses-permission android:name=\"com.android.launcher.permission.INSTALL_SHORTCUT\"/>","<uses-permission android:name=\"android.permission.SEND_SMS\"/>","<uses-permission android:name=\"android.permission.READ_PHONE_STATE\"/>","<uses-permission android:name=\"android.permission.CHANGE_WIFI_STATE\"/>","<uses-permission android:name=\"android.permission.WAKE_LOCK\"/>","<uses-permission android:name=\"android.permission.CALL_PHONE\"/>","<uses-permission android:name=\"android.permission.FLASHLIGHT\"/>","<uses-permission android:name=\"android.permission.ACCESS_COARSE_LOCATION\"/>","<uses-feature android:name=\"android.hardware.camera\"/>","<uses-permission android:name=\"android.permission.ACCESS_FINE_LOCATION\"/>","<uses-permission android:name=\"android.permission.RECEIVE_USER_PRESENT\"/>","<uses-permission android:name=\"android.permission.WRITE_SETTINGS\"/>","<uses-permission android:name=\"android.permission.WRITE_SMS\"/>","<uses-permission android:name=\"android.permission.READ_SMS\"/>"]
+			},
+			"orientation": ["portrait-primary","portrait-secondary"],/*应用支持的方向，portrait-primary：竖屏正方向；portrait-secondary：竖屏反方向；landscape-primary：横屏正方向；landscape-secondary：横屏反方向*/
+			"icons": {
+				"ios": {
+					"prerendered": true, /*应用图标是否已经高亮处理，在iOS6及以下设备上有效*/
+					"auto": "", /*应用图标，分辨率：512x512，用于自动生成各种尺寸程序图标*/
+					"iphone": {
+						"normal": "unpackage/res/icons/57x57.png",/*iPhone普通屏幕程序图标，分辨率：57x57*/
+						"retina": "unpackage/res/icons/114x114.png",/*iPhone高分屏程序图标，分辨率：114x114*/
+						"retina7": "unpackage/res/icons/120x120.png",/*iPhone iOS7高分屏程序图标，分辨率：120x120*/
+						"spotlight-normal": "unpackage/res/icons/29x29.png", /*iPhone Spotlight搜索程序图标，分辨率：29x29*/
+						"spotlight-retina": "unpackage/res/icons/58x58.png", /*iPhone高分屏Spotlight搜索程序图标，分辨率：58x58*/
+						"spotlight-retina7": "unpackage/res/icons/80x80.png",/*iPhone iOS7高分屏Spotlight搜索程序图标，分辨率：80x80*/
+						"settings-normal": "unpackage/res/icons/29x29.png", /*iPhone设置页面程序图标，分辨率：29x29*/
+						"settings-retina": "unpackage/res/icons/58x58.png","retina8":"unpackage/res/icons/180x180.png","settings-retina8":"unpackage/res/icons/87x87.png"
+					},
+					"ipad": {
+						"normal": "unpackage/res/icons/72x72.png", /*iPad普通屏幕程序图标，分辨率：72x72*/
+						"retina": "unpackage/res/icons/144x144.png", /*iPad高分屏程序图标，分辨率：144x144*/
+						"normal7": "unpackage/res/icons/76x76.png", /*iPad iOS7程序图标，分辨率：76x76*/
+						"retina7": "unpackage/res/icons/152x152.png", /*iPad iOS7高分屏程序图标，分辨率：152x152*/
+						"spotlight-normal": "unpackage/res/icons/50x50.png", /*iPad Spotlight搜索程序图标，分辨率：50x50*/
+						"spotlight-retina": "unpackage/res/icons/100x100.png", /*iPad高分屏Spotlight搜索程序图标，分辨率：100x100*/
+						"spotlight-normal7": "unpackage/res/icons/40x40.png",/*iPad iOS7 Spotlight搜索程序图标，分辨率：40x40*/
+						"spotlight-retina7": "unpackage/res/icons/80x80.png",/*iPad iOS7高分屏Spotlight搜索程序图标，分辨率：80x80*/
+						"settings-normal": "unpackage/res/icons/29x29.png",/*iPad设置页面程序图标，分辨率：29x29*/
+						"settings-retina": "unpackage/res/icons/58x58.png"
+					}
+				},
+				"android": {
+					"mdpi": "unpackage/res/icons/48x48.png", /*普通屏程序图标，分辨率：48x48*/
+					"ldpi": "unpackage/res/icons/48x48.png", /*大屏程序图标，分辨率：48x48*/
+					"hdpi": "unpackage/res/icons/72x72.png", /*高分屏程序图标，分辨率：72x72*/
+					"xhdpi": "unpackage/res/icons/96x96.png",/*720P高分屏程序图标，分辨率：96x96*/
+					"xxhdpi": "unpackage/res/icons/144x144.png"
+				}
+			},
+			"splashscreen": {
+				"ios": {
+					"iphone": {
+						 /*iPhone3启动图片选，分辨率：320x480*/
+						"retina35": "/Users/peace/Desktop/weshare美工/750111.png",/*3.5英寸设备(iPhone4)启动图片，分辨率：640x960*/
+						"retina40": "/Users/peace/Desktop/weshare美工/750111.png","retina47":"/Users/peace/Desktop/weshare美工/750111.png","retina55":"/Users/peace/Desktop/weshare美工/750111.png"
+					},
+					"ipad": {
+						 /*iPad竖屏启动图片，分辨率：768x1004*/
+						/*iPad高分屏竖屏图片，分辨率：1536x2008*/
+						 /*iPad横屏启动图片，分辨率：1024x748*/
+						 /*iPad高分屏横屏启动图片，分辨率：2048x1496*/
+						 /*iPad iOS7竖屏启动图片，分辨率：768x1024*/
+						/*iPad iOS7高分屏竖屏图片，分辨率：1536x2048*/
+						 /*iPad iOS7横屏启动图片，分辨率：1024x768*/
+						
+					}
+				},
+				"android": {
+					 /*普通屏启动图片，分辨率：240x282*/
+					"ldpi": "/Users/peace/Desktop/weshare美工/750111.png", /*大屏启动图片，分辨率：320x442*/
+					"hdpi": "/Users/peace/Desktop/weshare美工/750111.png", /*高分屏启动图片，分辨率：480x762*/
+					"xhdpi": "/Users/peace/Desktop/weshare美工/750111.png","mdpi":"/Users/peace/Desktop/weshare美工/750111.png","xxhdpi":"/Users/peace/Desktop/weshare美工/750111.png"
+				}
+			},"debug":true
+		}
+	},
+	"fullscreen": false,
+	"dependencies": {
+		"pages": {
+			"login.html": {
+				"resources": [
+					"js/mui.min.js",
+					"css/weshare.css",
+					"css/mui.min.css",
+					"fonts/mui.ttf",
+					"images/logonew.png",
+					"js/weshare.js",
+					"images/linklist.png",
+					"images/slide.jpg",
+					"images/arrow_right.png",
+					"images/down.png",
+					"images/pay.png",
+					"images/location.png",
+					"images/comment.png",
+					"images/message2.png",
+					"images/telphone.png",
+					"images/black.png",
+					"images/perback.jpg",
+					"images/black.jpg",
+					"images/location2.png",
+					"images/default_head.jpg"
+				],
+				"refer": [
+					"reg.html",
+					"index.html",
+					"resetpass.html"
+				],
+				"priority": 0
+			},
+			"reg.html": {
+				"resources": [
+					"fonts/mui.ttf",
+					"js/mui.min.js",
+					"css/mui.min.css",
+					"css/weshare.css",
+					"images/logonew.png",
+					"images/down.png",
+					"images/linklist.png",
+					"images/slide.jpg",
+					"images/arrow_right.png",
+					"images/pay.png",
+					"images/location.png",
+					"images/comment.png",
+					"images/message2.png",
+					"images/telphone.png",
+					"images/black.png",
+					"images/perback.jpg",
+					"images/black.jpg"
+				],
+				"refer": [
+					"ident.html"
+				],
+				"priority": 0
+			},
+			"index.html": {
+				"resources": [
+					"images/time.png",
+					"js/openwin.js",
+					"images/comment.png",
+					"js/weshare.js",
+					"fonts/mui.ttf",
+					"images/telphone.png",
+					"images/message2.png",
+					"images/location.png",
+					"images/logonew.png",
+					"js/mui.min.js",
+					"css/weshare.css",
+					"css/mui.min.css",
+					"needpublish.html",
+					null,
+					"images/pay.png",
+					"images/default_head.jpg",
+					"images/linklist.png",
+					"images/slide.jpg",
+					"images/arrow_right.png",
+					"images/down.png",
+					"images/black.png",
+					"images/perback.jpg",
+					"images/black.jpg",
+					"message.html",
+					"images/female.png",
+					"images/male.png",
+					"images/heart.png",
+					"topicpublish.html",
+					"images/loading4.gif",
+					"uploadpro.html",
+					"exchange.html",
+					"bestusers.html",
+					"personcenter.html"
+				],
+				"refer": [
+					"needhelp.html",
+					"login.html",
+					"needcomment.html",
+					"othercenter.html",
+					"exchangemall.html",
+					"index.html",
+					"needaction.html",
+					"task.html",
+					"message_child.html",
+					"topic.html",
+					"acti.html"
+				],
+				"priority": 0
+			},
+			"message.html": {
+				"resources": [
+					"images/default_head.jpg",
+					"js/openwin.js",
+					"js/weshare.js",
+					"js/mui.min.js",
+					"css/weshare.css",
+					"fonts/mui.ttf",
+					"css/mui.min.css",
+					"images/logonew.png",
+					"index.html",
+					"images/black.png",
+					"images/black.jpg",
+					"images/female.png",
+					"images/male.png",
+					"message_child.html",
+					"images/comment.png",
+					"images/pay.png",
+					"images/heart.png",
+					"uploadpro.html",
+					"topicpublish.html",
+					"needpublish.html",
+					"bestusers.html",
+					"exchange.html"
+				],
+				"refer": [
+					"personcenter.html",
+					"checkmsg.html",
+					"checkcomment.html",
+					"login.html",
+					"exchangemall.html",
+					"checkneedaction.html",
+					"bookstore.html",
+					"needaction.html",
+					"mefromothers.html",
+					"myshareorder.html",
+					"rewardrecord.html"
+				],
+				"priority": 0
+			},
+			"personcenter.html": {
+				"resources": [
+					"images/slide.jpg",
+					"images/black.png",
+					"images/arrow_right.png",
+					"images/time.png",
+					"js/openwin.js",
+					"js/weshare.js",
+					"fonts/mui.ttf",
+					"images/location.png",
+					"images/logonew.png",
+					"js/mui.min.js",
+					"css/weshare.css",
+					"css/mui.min.css",
+					"index.html",
+					"images/comment.png",
+					"images/message2.png",
+					null,
+					"images/default_head.jpg",
+					"images/pay.png",
+					"images/backcc.jpg",
+					"images/perback.jpg",
+					"images/black.jpg",
+					"images/male.png",
+					"images/female.png",
+					"images/coltopic.png",
+					"images/rewardrecord.png",
+					"images/myhelped.png",
+					"images/myneed.png",
+					"images/rewardgiven.png",
+					"images/exchangeorder.png",
+					"images/mefromothers.png",
+					"images/heart.png",
+					"needpublish.html",
+					"topicpublish.html",
+					"uploadpro.html",
+					"personset.html",
+					"images/name.png",
+					"exchange.html",
+					"bestusers.html",
+					"images/share.png"
+				],
+				"refer": [
+					"message.html",
+					"login.html",
+					"markfinish.html",
+					"checkmsg.html",
+					"checkcomment.html",
+					"exchangemall.html",
+					"checkneedaction.html",
+					"bookstore.html",
+					"myneed.html",
+					"mycoltopic.html",
+					"myhelped.html",
+					"mefromothers.html",
+					"rewardgiven.html",
+					"rewardrecord.html",
+					"exchangeorder.html",
+					"mypubpro.html",
+					"myexchangeorder.html",
+					"myshareorder.html"
+				],
+				"priority": 0
+			},
+			"needpublish.html": {
+				"resources": [
+					"images/down.png",
+					"images/addnote.png",
+					"images/needlabel.png",
+					"images/pay.png",
+					"js/openwin.js",
+					"js/mui.min.js",
+					"css/weshare.css",
+					"fonts/mui.ttf",
+					"css/mui.min.css",
+					"images/logonew.png",
+					"js/weshare.js",
+					"message.html",
+					"index.html",
+					"topicpublish.html",
+					"uploadpro.html",
+					"task.html",
+					"topic.html",
+					"personcenter.html"
+				],
+				"refer": [
+					"login.html",
+					"exchangemall.html",
+					"onekeyask.html",
+					"bookstore.html",
+					"ridestore.html"
+				],
+				"priority": 0
+			},
+			"personset.html": {
+				"resources": [
+					"images/default_head.jpg",
+					"images/note.png",
+					"js/openwin.js",
+					"js/weshare.js",
+					"css/weshare.css",
+					"images/arrow_right.png",
+					"js/mui.min.js",
+					"fonts/mui.ttf",
+					"css/mui.min.css",
+					null,
+					"images/logonew.png",
+					"images/linklist.png",
+					"images/slide.jpg",
+					"images/down.png",
+					"images/pay.png",
+					"images/location.png",
+					"images/comment.png",
+					"images/message2.png",
+					"images/telphone.png",
+					"images/black.png",
+					"images/perback.jpg",
+					"images/black.jpg",
+					"personcenter.html",
+					"bestusers.html"
+				],
+				"refer": [
+					"sethead.html",
+					"setnickname.html",
+					"setnote.html",
+					"ident.html",
+					"message.html",
+					"login.html",
+					"needpublish.html",
+					"index.html",
+					"exchangemall.html",
+					"rewardrecord.html",
+					"setsex.html",
+					"rewardgiven.html",
+					"rank.html",
+					"admin.html"
+				],
+				"priority": 0
+			},
+			"sethead.html": {
+				"resources": [
+					"js/jquery.Jcrop.min.js",
+					"js/common.js",
+					"js/jquery-1.11.3.js",
+					"css/jquery.Jcrop.min.css",
+					"images/success.png",
+					"images/cut.png",
+					"js/immersed.js",
+					"js/mui.min.js",
+					"fonts/mui.ttf",
+					"css/mui.min.css",
+					"images/slide.jpg",
+					"images/perback.jpg"
+				],
+				"refer": [
+					"personset.html"
+				],
+				"priority": 0
+			},
+			"needhelp.html": {
+				"resources": [
+					"images/time.png",
+					"images/comment.png",
+					"js/weshare.js",
+					"js/mui.min.js",
+					"css/weshare.css",
+					"fonts/mui.ttf",
+					"images/telphone.png",
+					"css/mui.min.css",
+					"images/message2.png",
+					"images/location.png",
+					"images/black.png",
+					"js/openwin.js",
+					"images/pay.png",
+					"images/black.jpg"
+				],
+				"refer": [
+					"needcomment.html"
+				],
+				"priority": 0
+			},
+			"setnickname.html": {
+				"resources": [
+					"js/weshare.js",
+					"js/mui.min.js",
+					"js/openwin.js",
+					"css/weshare.css",
+					"images/logonew.png",
+					"images/linklist.png",
+					"images/slide.jpg",
+					"images/arrow_right.png",
+					"images/down.png",
+					"images/pay.png",
+					"images/location.png",
+					"images/comment.png",
+					"images/message2.png",
+					"images/telphone.png",
+					"images/black.png",
+					"css/mui.min.css",
+					"fonts/mui.ttf",
+					"images/perback.jpg",
+					"images/black.jpg"
+				],
+				"refer": [
+					"personset.html",
+					"message.html",
+					"login.html",
+					"personcenter.html",
+					"needpublish.html",
+					"index.html",
+					"exchangemall.html"
+				],
+				"priority": 0
+			},
+			"checkmsg.html": {
+				"resources": [
+					"images/time.png",
+					"images/comment.png",
+					"images/location.png",
+					"js/weshare.js",
+					"js/mui.min.js",
+					"css/weshare.css",
+					"fonts/mui.ttf",
+					"css/mui.min.css",
+					"images/default_head.jpg",
+					"images/black.png",
+					"images/message2.png",
+					"js/openwin.js",
+					"images/pay.png",
+					"images/black.jpg"
+				],
+				"refer": [
+					"checkcomment.html",
+					"markfinish.html"
+				],
+				"priority": 0
+			},
+			"needcomment.html": {
+				"resources": [
+					"images/comment.png",
+					"js/weshare.js",
+					"js/mui.min.js",
+					"css/weshare.css",
+					"fonts/mui.ttf",
+					"css/mui.min.css",
+					"images/black.png",
+					"images/time.png",
+					"images/telphone.png",
+					"images/message2.png",
+					"images/location.png",
+					"js/openwin.js",
+					"images/pay.png",
+					"images/black.jpg"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"markfinish.html": {
+				"resources": [
+					"images/select_person.png",
+					"images/down.png",
+					"images/pay.png",
+					"images/backcc.jpg",
+					"js/openwin.js",
+					"js/weshare.js",
+					"js/mui.min.js",
+					"css/weshare.css",
+					"fonts/mui.ttf",
+					"css/mui.min.css",
+					"images/logonew.png",
+					"images/linklist.png",
+					"images/slide.jpg",
+					"images/arrow_right.png",
+					"images/location.png",
+					"images/comment.png",
+					"images/message2.png",
+					"images/telphone.png",
+					"images/black.png",
+					"images/perback.jpg",
+					"images/black.jpg"
+				],
+				"refer": [
+					"personcenter.html",
+					"message.html",
+					"login.html",
+					"needpublish.html",
+					"index.html",
+					"exchangemall.html"
+				],
+				"priority": 0
+			},
+			"checkcomment.html": {
+				"resources": [
+					"images/comment.png",
+					"images/default_head.jpg",
+					"images/time.png",
+					"js/weshare.js",
+					"js/mui.min.js",
+					"css/weshare.css",
+					"fonts/mui.ttf",
+					"css/mui.min.css",
+					"images/location.png",
+					"images/black.png",
+					"images/message2.png",
+					"images/pay.png"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"othercenter.html": {
+				"resources": [
+					"images/time.png",
+					"js/openwin.js",
+					"js/weshare.js",
+					"css/weshare.css",
+					"fonts/mui.ttf",
+					"images/telphone.png",
+					"images/slide.jpg",
+					"images/arrow_right.png",
+					"images/comment.png",
+					"js/mui.min.js",
+					"css/mui.min.css",
+					"images/black.png",
+					"images/location.png",
+					"images/message2.png",
+					"images/logonew.png",
+					"images/linklist.png",
+					"images/down.png",
+					"images/pay.png",
+					"images/perback.jpg",
+					"images/black.jpg",
+					"images/female.png",
+					"images/male.png"
+				],
+				"refer": [
+					"needcomment.html",
+					"needhelp.html",
+					"personset.html",
+					"login.html",
+					"message.html",
+					"personcenter.html",
+					"needpublish.html",
+					"index.html",
+					"exchangemall.html",
+					"needaction.html"
+				],
+				"priority": 0
+			},
+			"ident.html": {
+				"resources": [
+					"js/jquery.Jcrop.min.js",
+					"js/common.js",
+					"js/jquery-1.11.3.js",
+					"css/jquery.Jcrop.min.css",
+					"images/success.png",
+					"images/cut.png",
+					"js/immersed.js",
+					"js/mui.min.js",
+					"fonts/mui.ttf",
+					"css/mui.min.css",
+					"images/slide.jpg",
+					null
+				],
+				"refer": [
+					"personset.html",
+					"login.html"
+				],
+				"priority": 0
+			},
+			"resetpass.html": {
+				"resources": [
+					"js/mui.min.js",
+					"css/weshare.css",
+					"fonts/mui.ttf",
+					"css/mui.min.css",
+					"images/logonew.png",
+					"images/linklist.png",
+					"images/slide.jpg",
+					"images/arrow_right.png",
+					"images/down.png",
+					"images/pay.png",
+					"images/location.png",
+					"images/comment.png",
+					"images/message2.png",
+					"images/telphone.png",
+					"images/black.png",
+					"images/perback.jpg",
+					"images/black.jpg"
+				],
+				"refer": [
+					"login.html"
+				],
+				"priority": 0
+			},
+			"setnote.html": {
+				"resources": [
+					"js/openwin.js",
+					"js/weshare.js",
+					"js/mui.min.js",
+					"css/weshare.css",
+					"fonts/mui.ttf",
+					"css/mui.min.css",
+					"images/logonew.png",
+					"images/linklist.png",
+					"images/slide.jpg",
+					"images/arrow_right.png",
+					"images/down.png",
+					"images/pay.png",
+					"images/location.png",
+					"images/comment.png",
+					"images/message2.png",
+					"images/telphone.png",
+					"images/black.png",
+					"images/perback.jpg",
+					"images/black.jpg"
+				],
+				"refer": [
+					"message.html",
+					"login.html",
+					"personcenter.html",
+					"needpublish.html",
+					"index.html",
+					"exchangemall.html",
+					"personset.html"
+				],
+				"priority": 0
+			},
+			"exchangemall.html": {
+				"resources": [
+					"js/openwin.js",
+					"js/weshare.js",
+					"js/mui.min.js",
+					"css/weshare.css",
+					"fonts/mui.ttf",
+					"css/mui.min.css",
+					"images/logonew.png",
+					"images/model.png",
+					"images/down.png",
+					"images/default_head.jpg",
+					"rank.html",
+					"images/loading4.gif",
+					"images/add.png",
+					"images/search.png"
+				],
+				"refer": [
+					"personcenter.html",
+					"index.html",
+					"message.html",
+					"needpublish.html",
+					"product.html",
+					"uploadpro.html"
+				],
+				"priority": 0
+			},
+			"product.html": {
+				"resources": [
+					"js/openwin.js",
+					"js/weshare.js",
+					"js/mui.min.js",
+					"css/weshare.css",
+					"fonts/mui.ttf",
+					"css/mui.min.css",
+					"images/logonew.png",
+					"images/note.png",
+					"images/linklist.png",
+					"images/slide.jpg",
+					"images/arrow_right.png",
+					"images/down.png",
+					"images/pay.png",
+					"images/location.png",
+					"images/comment.png",
+					"images/message2.png",
+					"images/telphone.png",
+					"images/black.png",
+					"images/perback.jpg",
+					"images/black.jpg",
+					"images/heart.png"
+				],
+				"refer": [
+					"index.html",
+					"personcenter.html",
+					"message.html",
+					"login.html",
+					"needpublish.html",
+					"exchangemall.html",
+					"myexchangeorder.html"
+				],
+				"priority": 0
+			},
+			"test.html": {
+				"resources": [
+					"js/mui.min.js",
+					"css/mui.min.css",
+					"js/iscroll.js"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"needaction.html": {
+				"href": "needaction.html",
+				"priority": 5,
+				"resources": [
+					"js/mui.min.js",
+					"js/weshare.js",
+					"css/weshare.css",
+					"css/mui.min.css",
+					"images/logonew.png",
+					"images/black.jpg",
+					"fonts/mui.ttf",
+					"images/pay.png",
+					"images/location.png",
+					"images/female.png",
+					"images/male.png"
+				],
+				"refer": [
+					"othercenter.html"
+				]
+			},
+			"checkneedaction.html": {
+				"href": "checkneedaction.html",
+				"priority": 5,
+				"resources": [
+					"js/mui.min.js",
+					"js/weshare.js",
+					"css/weshare.css",
+					"fonts/mui.ttf",
+					"css/mui.min.css",
+					"images/pay.png",
+					"images/location.png",
+					"images/logonew.png",
+					"images/black.jpg",
+					"images/female.png",
+					"images/male.png"
+				],
+				"refer": [
+					"othercenter.html"
+				]
+			},
+			"taskaction.html": {
+				"href": "taskaction.html",
+				"resources": [
+					"js/weshare.js",
+					"js/mui.min.js",
+					"css/weshare.css",
+					"images/logonew.png",
+					"images/linklist.png",
+					"images/perback.jpg",
+					"images/arrow_right.png",
+					"images/down.png",
+					"images/pay.png",
+					"images/location.png",
+					"images/comment.png",
+					"images/black.jpg",
+					"images/message2.png",
+					"css/mui.min.css",
+					"fonts/mui.ttf",
+					"images/pay.png",
+					"images/shan.png",
+					"js/mui.zoom.js",
+					"js/mui.previewimage.js",
+					"js/mui.view.js",
+					"images/default_head.jpg",
+					"images/Eye.png",
+					"images/female.png",
+					"images/male.png"
+				],
+				"refer": [
+					"uploadresult.html",
+					"othercenter.html"
+				],
+				"priority": 13
+			},
+			"uploadresult.html": {
+				"href": "uploadresult.html",
+				"resources": [
+					"js/jquery.Jcrop.min.js",
+					"js/jquery-1.11.3.js",
+					"js/common.js",
+					"js/immersed.js",
+					"images/perback.jpg",
+					"js/mui.min.js",
+					"css/jquery.Jcrop.min.css",
+					"css/mui.min.css",
+					"fonts/mui.ttf",
+					"images/cut.png",
+					"images/success.png"
+				],
+				"refer": [
+					"taskaction.html"
+				],
+				"priority": 13
+			},
+			"task.html": {
+				"href": "task.html",
+				"resources": [
+					"js/weshare.js",
+					"js/mui.min.js",
+					"js/openwin.js",
+					"css/weshare.css",
+					"images/logonew.png",
+					"images/linklist.png",
+					"images/perback.jpg",
+					"images/arrow_right.png",
+					"images/down.png",
+					"images/pay.png",
+					"images/location.png",
+					"images/comment.png",
+					"images/black.jpg",
+					"images/message2.png",
+					"css/mui.min.css",
+					"fonts/mui.ttf",
+					"images/default_head.jpg",
+					"images/Eye.png",
+					"needpublish.html",
+					"images/loading4.gif",
+					"images/heart.png",
+					"bestusers.html"
+				],
+				"refer": [
+					"personcenter.html",
+					"message.html",
+					"index.html",
+					"taskaction.html",
+					"login.html",
+					"exchangemall.html",
+					"topic.html",
+					"acti.html"
+				],
+				"priority": 9
+			},
+			"onekeyask.html": {
+				"resources": [
+					"js/openwin.js",
+					"js/weshare.js",
+					"js/mui.min.js",
+					"images/bike.jpg",
+					"css/weshare.css",
+					"fonts/mui.ttf",
+					"css/mui.min.css",
+					"images/default_head.jpg",
+					"images/logonew.png"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"rewardrecord.html": {
+				"resources": [
+					"js/weshare.js",
+					"js/mui.min.js",
+					"css/weshare.css",
+					"fonts/mui.ttf",
+					"css/mui.min.css"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"bookstore.html": {
+				"resources": [
+					"images/model.png",
+					"images/down.png",
+					"js/openwin.js",
+					"js/weshare.js",
+					"js/mui.min.js",
+					"css/weshare.css",
+					"css/mui.min.css",
+					"fonts/mui.ttf",
+					"images/logonew.png",
+					"rank.html"
+				],
+				"refer": [
+					"product.html",
+					"bookproduct.html"
+				],
+				"priority": 0
+			},
+			"uploadpro.html": {
+				"resources": [
+					"images/comment.png",
+					"images/uploadpic.jpg",
+					"images/addnote.png",
+					"images/needlabel.png",
+					"images/pay.png",
+					"images/note.png",
+					"images/down.png",
+					"js/weshare.js",
+					"js/mui.min.js",
+					"css/weshare.css",
+					"fonts/mui.ttf",
+					"css/mui.min.css",
+					"message.html",
+					"index.html",
+					"images/university.png",
+					"images/teacher.png",
+					"images/mefromothers.png",
+					"exchange.html",
+					"personcenter.html",
+					"needpublish.html",
+					"topic.html"
+				],
+				"refer": [
+					"exchangemall.html"
+				],
+				"priority": 0
+			},
+			"bookproduct.html": {
+				"resources": [
+					"images/note.png",
+					"js/openwin.js",
+					"js/weshare.js",
+					"js/mui.min.js",
+					"css/weshare.css",
+					"fonts/mui.ttf",
+					"css/mui.min.css",
+					"images/logonew.png"
+				],
+				"refer": [
+					"personcenter.html",
+					"bookstore.html"
+				],
+				"priority": 0
+			},
+			"setsex.html": {
+				"resources": [
+					"js/openwin.js",
+					"js/weshare.js",
+					"js/mui.min.js",
+					"css/weshare.css",
+					"fonts/mui.ttf",
+					"css/mui.min.css"
+				],
+				"refer": [
+					"personset.html"
+				],
+				"priority": 0
+			},
+			"rewardgiven.html": {
+				"resources": [
+					"js/weshare.js",
+					"js/mui.min.js",
+					"css/weshare.css",
+					"fonts/mui.ttf",
+					"css/mui.min.css",
+					"images/select_person.png",
+					"images/Eye.png",
+					"images/pay.png",
+					"images/male.png",
+					"images/addnote.png"
+				],
+				"refer": [
+					"rewardrecord.html"
+				],
+				"priority": 0
+			},
+			"ridestore.html": {
+				"resources": [
+					"js/openwin.js",
+					"js/weshare.js",
+					"js/mui.min.js",
+					"css/weshare.css",
+					"fonts/mui.ttf",
+					"css/mui.min.css",
+					"images/logonew.png",
+					"rank.html"
+				],
+				"refer": [
+					"product.html"
+				],
+				"priority": 0
+			},
+			"rank.html": {
+				"resources": [
+					"images/add.png",
+					"js/mui.min.js",
+					"css/weshare.css",
+					"fonts/mui.ttf",
+					"css/mui.min.css",
+					"images/reduce.png",
+					"bookstore.html",
+					"ridestore.html",
+					"exchangemall.html"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"message_child.html": {
+				"resources": [
+					"js/mui.js",
+					"css/mui.css",
+					"fonts/mui.ttf",
+					"js/openwin.js",
+					"js/weshare.js",
+					"js/mui.min.js"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"topic.html": {
+				"resources": [
+					"images/life.png",
+					"images/new.png",
+					"images/smeil.png",
+					"images/hot.png",
+					"images/book.png",
+					"images/search.png",
+					"images/unhappy.png",
+					"images/comment.png",
+					"images/pay.png",
+					"images/heart.png",
+					"js/openwin.js",
+					"js/weshare.js",
+					"css/weshare.css",
+					"fonts/mui.ttf",
+					"js/mui.min.js",
+					"css/mui.min.css",
+					"images/logonew.png",
+					"needpublish.html",
+					"topicpublish.html",
+					"exchange.html",
+					"bestusers.html",
+					"uploadpro.html"
+				],
+				"refer": [
+					"personcenter.html",
+					"topicdetail.html",
+					"topiclist.html",
+					"index.html",
+					"task.html",
+					"message.html",
+					"acti.html"
+				],
+				"priority": 0
+			},
+			"myneed.html": {
+				"resources": [
+					"images/black.jpg",
+					"images/pay.png",
+					"images/location.png",
+					"js/openwin.js",
+					"js/weshare.js",
+					"js/mui.min.js",
+					"css/weshare.css",
+					"images/female.png",
+					"fonts/mui.ttf",
+					"css/mui.min.css",
+					"images/male.png",
+					"images/loading4.gif"
+				],
+				"refer": [
+					"markfinish.html",
+					"checkneedaction.html"
+				],
+				"priority": 0
+			},
+			"mycoltopic.html": {
+				"resources": [
+					"js/openwin.js",
+					"js/weshare.js",
+					"js/mui.min.js",
+					"css/weshare.css",
+					"fonts/mui.ttf",
+					"css/mui.min.css",
+					"images/smeil.png"
+				],
+				"refer": [
+					"topicdetail.html"
+				],
+				"priority": 0
+			},
+			"topicdetail.html": {
+				"resources": [
+					"images/linklist.png",
+					"images/like.png",
+					"images/backcc.jpg",
+					"images/black.jpg",
+					"js/openwin.js",
+					"js/mui.min.js",
+					"js/weshare.js",
+					"css/weshare.css",
+					"fonts/mui.ttf",
+					"css/mui.min.css",
+					"images/mine.png",
+					"images/wifi.png",
+					"images/location2.png",
+					"images/detail.png",
+					"images/loading4.gif"
+				],
+				"refer": [
+					"saysome.html"
+				],
+				"priority": 0
+			},
+			"topiclist.html": {
+				"resources": [
+					"js/openwin.js",
+					"js/mui.min.js",
+					"js/weshare.js",
+					"css/weshare.css",
+					"fonts/mui.ttf",
+					"css/mui.min.css",
+					"images/search.png",
+					"images/loading.gif",
+					"images/loading2.gif",
+					"images/loading3.jpg",
+					"images/myhelped.png",
+					"images/loading4.gif",
+					"images/smeil.png"
+				],
+				"refer": [
+					"topicdetail.html"
+				],
+				"priority": 0
+			},
+			"topicpublish.html": {
+				"resources": [
+					"images/down.png",
+					"images/addnote.png",
+					"images/needlabel.png",
+					"images/Eye.png",
+					"js/weshare.js",
+					"js/mui.min.js",
+					"css/weshare.css",
+					"fonts/mui.ttf",
+					"css/mui.min.css",
+					"index.html",
+					"images/rewardgiven.png",
+					"images/comment.png",
+					"topic.html",
+					"images/myneed.png",
+					"images/name.png",
+					"images/detail.png",
+					"images/careful.png",
+					"images/coltopic.png",
+					"images/mefromothers.png",
+					"needpublish.html",
+					"message.html"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"myhelped.html": {
+				"resources": [
+					"images/black.jpg",
+					"js/openwin.js",
+					"js/weshare.js",
+					"js/mui.min.js",
+					"css/weshare.css",
+					"fonts/mui.ttf",
+					"css/mui.min.css",
+					"images/female.png",
+					"images/pay.png",
+					"images/location.png",
+					"images/male.png",
+					"images/loading4.gif"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"saysome.html": {
+				"resources": [],
+				"refer": [
+					"topicdetail.html"
+				],
+				"priority": 0
+			},
+			"mefromothers.html": {
+				"resources": [
+					"js/openwin.js",
+					"images/black.jpg",
+					"js/weshare.js",
+					"js/mui.min.js",
+					"css/weshare.css",
+					"fonts/mui.ttf",
+					"css/mui.min.css",
+					"images/female.png",
+					"images/male.png",
+					"images/loading4.gif"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"exchangeorder.html": {
+				"resources": [
+					"js/openwin.js",
+					"js/weshare.js",
+					"js/mui.min.js",
+					"css/weshare.css",
+					"fonts/mui.ttf",
+					"css/mui.min.css",
+					"images/default_head.jpg"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"bestusers.html": {
+				"resources": [
+					"images/success.png",
+					"images/pay.png",
+					"images/message2.png",
+					"images/question.png",
+					"personset.html",
+					"personcenter.html",
+					"message.html",
+					"images/arrow_right.png",
+					"task.html",
+					"topic.html",
+					"images/wifi.png",
+					"images/name.png",
+					"images/myhelped.png",
+					"images/myneed.png",
+					"index.html",
+					"acti.html"
+				],
+				"refer": [
+					"spbestusers.html"
+				],
+				"priority": 0
+			},
+			"spbestusers.html": {
+				"resources": [
+					"js/mui.min.js",
+					"css/weshare.css",
+					"fonts/mui.ttf",
+					"css/mui.min.css"
+				],
+				"refer": [
+					"othercenter.html"
+				],
+				"priority": 0
+			},
+			"exchange.html": {
+				"resources": [
+					"images/life.png",
+					"images/new.png",
+					"images/smeil.png",
+					"images/hot.png",
+					"images/book.png",
+					"images/search.png",
+					"images/unhappy.png",
+					"js/openwin.js",
+					"js/weshare.js",
+					"css/weshare.css",
+					"fonts/mui.ttf",
+					"js/mui.min.js",
+					"css/mui.min.css",
+					"images/default_head.jpg",
+					"images/back2.png",
+					"images/backcc.jpg",
+					"images/comment.png",
+					"uploadpro.html",
+					"images/heart.png",
+					"images/pay.png",
+					"personcenter.html",
+					"message.html",
+					"topic.html",
+					"index.html",
+					"images/logonew.png",
+					"images/bookblue.png",
+					"images/lifering.png",
+					"images/food.png",
+					"images/football.png",
+					"images/mobile.png",
+					"images/location2.png",
+					"images/acti.png",
+					null
+				],
+				"refer": [
+					"topiclist.html",
+					"exchangemall.html",
+					"product.html"
+				],
+				"priority": 0
+			},
+			"mypubpro.html": {
+				"resources": [
+					"images/book.png",
+					"js/openwin.js",
+					"js/weshare.js",
+					"js/mui.min.js",
+					"css/weshare.css",
+					"fonts/mui.ttf",
+					"css/mui.min.css",
+					"images/loading4.gif",
+					"images/reduce.png"
+				],
+				"refer": [
+					"repubpro.html",
+					"personcenter.html"
+				],
+				"priority": 0
+			},
+			"repubpro.html": {
+				"resources": [
+					"images/down.png",
+					"images/comment.png",
+					"images/university.png",
+					"images/addnote.png",
+					"images/needlabel.png",
+					"images/pay.png",
+					"images/teacher.png",
+					"images/note.png",
+					"js/weshare.js",
+					"css/weshare.css",
+					"fonts/mui.ttf",
+					"js/mui.min.js",
+					"css/mui.min.css",
+					"images/uploadpic.jpg"
+				],
+				"refer": [
+					"exchange.html",
+					"mypubpro.html"
+				],
+				"priority": 0
+			},
+			"myexchangeorder.html": {
+				"resources": [
+					"js/openwin.js",
+					"js/weshare.js",
+					"js/mui.min.js",
+					"css/weshare.css",
+					"fonts/mui.ttf",
+					"css/mui.min.css",
+					"images/default_head.jpg",
+					"images/black.jpg",
+					"images/telphone.png",
+					"images/message2.png"
+				],
+				"refer": [
+					"orderdetail.html"
+				],
+				"priority": 0
+			},
+			"myshareorder.html": {
+				"resources": [
+					"images/black.jpg",
+					"js/openwin.js",
+					"js/weshare.js",
+					"js/mui.min.js",
+					"css/weshare.css",
+					"fonts/mui.ttf",
+					"css/mui.min.css",
+					"images/telphone.png",
+					"images/message2.png"
+				],
+				"refer": [
+					"orderdetail.html"
+				],
+				"priority": 0
+			},
+			"orderdetail.html": {
+				"resources": [
+					"images/detail.png",
+					"js/openwin.js",
+					"js/weshare.js",
+					"js/mui.min.js",
+					"css/weshare.css",
+					"fonts/mui.ttf",
+					"css/mui.min.css",
+					"images/comment.png",
+					"images/pay.png",
+					"images/heart.png",
+					"images/telphone.png",
+					"images/message2.png"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"taskpub.html": {
+				"resources": [
+					"images/down.png",
+					"images/comment.png",
+					"images/university.png",
+					"images/uploadpic.jpg",
+					"images/addnote.png",
+					"images/needlabel.png",
+					"images/pay.png",
+					"images/teacher.png",
+					"js/weshare.js",
+					"css/weshare.css",
+					"fonts/mui.ttf",
+					"images/note.png",
+					"js/mui.min.js",
+					"css/mui.min.css",
+					"images/time.png",
+					"images/heart.png",
+					"images/location.png"
+				],
+				"refer": [
+					"exchange.html",
+					"admin.html",
+					"acti.html"
+				],
+				"priority": 0
+			},
+			"admin.html": {
+				"resources": [
+					"js/openwin.js",
+					"js/weshare.js",
+					"js/mui.min.js",
+					"css/weshare.css",
+					"fonts/mui.ttf",
+					"css/mui.min.css",
+					"images/arrow_right.png",
+					"images/note.png"
+				],
+				"refer": [
+					"taskpub.html"
+				],
+				"priority": 0
+			},
+			"acti.html": {
+				"resources": [
+					"images/pay.png",
+					"images/default_head.jpg",
+					"images/location.png",
+					"images/Eye.png",
+					"js/openwin.js",
+					"js/mui.min.js",
+					"js/weshare.js",
+					"css/weshare.css",
+					"fonts/mui.ttf",
+					"css/mui.min.css",
+					"images/logonew.png",
+					"images/loading4.gif",
+					"bestusers.html",
+					"images/comment.png",
+					"images/heart.png"
+				],
+				"refer": [
+					"topic.html",
+					"index.html",
+					"task.html",
+					"taskaction.html",
+					"actiaction.html",
+					"personcenter.html"
+				],
+				"priority": 0
+			},
+			"actiaction.html": {
+				"resources": [
+					"js/mui.zoom.js",
+					"js/mui.previewimage.js",
+					"js/mui.view.js",
+					"images/black.jpg",
+					"images/shan.png",
+					"js/weshare.js",
+					"js/mui.min.js",
+					"css/weshare.css",
+					"images/female.png",
+					"fonts/mui.ttf",
+					"css/mui.min.css",
+					"images/default_head.jpg",
+					"images/pay.png",
+					"images/location.png",
+					"images/Eye.png",
+					"images/male.png"
+				],
+				"refer": [
+					"uploadresult.html"
+				],
+				"priority": 0
+			}
+		},
+		"index": {
+			"resources": [
+				"js/mui.min.js",
+				"css/weshare.css",
+				"css/mui.min.css"
+			],
+			"refer": [
+				"reg.html"
+			],
+			"priority": 0
+		},
+		"idle": {
+			"resources": [
+				"images/back1.png",
+				"images/arrow_leftblack.png",
+				"js/update.json",
+				"images/publish.png",
+				"images/iphone.png",
+				"images/label.png",
+				"images/welcomeback.png",
+				"images/input-unchecked.png",
+				"images/next.png",
+				"images/select_p.png",
+				"images/right_foot.png",
+				"images/home.png",
+				"js/update.js",
+				"images/tel.png",
+				"images/input-checked.png",
+				"images/last.png",
+				"js/shortcut.js",
+				"images/arrow_leftblue.png"
+			]
+		}
+	},
+	"push": {
+    "igexin": {
+        "appid": "rx7zgTLDXx9z9EnftrYdN6",
+        "appkey": "Aq5tSsmuwO9vpKgdutkDa8",
+        "appsecret": "7CRbLLpLcj5CLibBm45aw5"
+    }
+},
+	"unpackage":[
+	  "images/arrow_leftblack.png",
+	  "images/arrow_leftblue.png",
+	  "images/back1.png",
+	  "images/home.png",
+	  "images/input-checked.png",
+	  "images/input-unchecked.png",
+	  "images/iphone.png",
+	  "images/label.png",
+	  "images/last.png",
+	  "images/next.png",
+	  "images/publish.png",
+	  "images/right_foot.png",
+	  "images/select_p.png",
+	  "images/tel.png",
+	  "images/welcomeback.png",
+	  "js/shortcut.js",
+	  "js/update.js",
+	  "js/update.json"
+	]
+}

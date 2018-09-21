@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title>othercenter</title>
+    <script src="../js/mui.min.js"></script>
+     <!--<script src="js/openwin.js"></script>-->
+      <script src="../js/boshare.js"></script>
+    <link href="../css/mui.min.css" rel="stylesheet"/>
+     <link rel="stylesheet" href="../css/boshi.css" />
+      
+    <script type="text/javascript" charset="utf-8">
+      	mui.init();
+      	mui.plusReady(function(){
+			var page=plus.webview.currentWebview();
+			var username=page.user;
+      		var reward=plus.storage.getItem('rewardpoints');
+      		var  page=1;
+      		var myneed= document.getElementById('myneed');
+      		var myhelped=document.getElementById('myhelped');
+      		var mefromothers= document.getElementById('mefromothers');
+      			server=plus.storage.getItem('server');
+      			active=plus.storage.getItem('active');
+      			console.log(username);
+      		 getpersoninfoforother(username);
+      		 getmyneed(username,1);
+      		 getmyhelped(username,1);
+      		 getfromothers(username,1);
+//    		 getQa(username,'q1');
+      		 
+      		 //更多9问
+//    		 document.getElementById('moreqa').addEventListener('tap',function(){
+//    		 	mui.openWindow({
+//    		 		url:'otherjiuq.html',
+//    		 		id:'otherjiuq',
+//    		 		createNew:true,
+//    		 		show:{
+//						aniShow: 'slide-in-right',
+//						duration:200
+//					},
+//    		 		extras:{
+//	  	 			username:username
+//	  	 		}
+//    		 	})
+//    		 })
+      		       		 //更多心愿
+      		 document.getElementById('moreneed').addEventListener('tap',function(){
+      		 	mui.openWindow({
+      		 		url:'otherneed.html',
+      		 		id:'otherneed',
+      		 		createNew:true,
+      		 		show:{
+						aniShow: 'slide-in-right',
+						duration:200
+					},
+      		 		extras:{
+	  	 			username:username
+	  	 		}
+      		 	})
+      		 })
+      		       		 //更多9问
+      		 document.getElementById('morehelped').addEventListener('tap',function(){
+      		 	mui.openWindow({
+      		 		url:'otherhelped.html',
+      		 		id:'otherhepled',
+      		 		createNew:true,
+      		 		show:{
+						aniShow: 'slide-in-right',
+						duration:200
+					},
+      		 		extras:{
+	  	 			username:username
+	  	 		}
+      		 	})
+      		 })
+      		       		 //更多9问
+      		 document.getElementById('morefromother').addEventListener('tap',function(){
+      		 	mui.openWindow({
+      		 		url:'otherfromothers.html',
+      		 		id:'otherfromothers',
+      		 		createNew:true,
+      		 		show:{
+						aniShow: 'slide-in-right',
+						duration:200
+					},
+      		 		extras:{
+	  	 			username:username
+	  	 		}
+      		 	})
+      		 })
+       }) 
+ 
+      	//获取用户信息重要信息 	 
+	function getpersoninfoforother(username){
+      			mui.ajax(server+'user/personaction.php',{
+      			data:{
+      				username:username
+      			},
+      			type:'post',
+      			success:function(data){
+//					alert(data);
+      				var userinfoContent=document.getElementById("userinfo");
+      				var datajson=eval("["+data+"]");
+      				userinfo=datajson[0];
+//    				plus.storage.setItem('rewardpoints',userinfo[0].rewardpoints);
+									if(userinfo[0].sex=='男'){
+			      						var status1='block';
+			      						var status2='none';
+			      					}else{
+			      						var status1='none';
+			      						var status2='block';
+			      					}
+			      					
+      				html="<div id ='setuserinfo' class='othersetuserselfinfo'>"+
+				 		 "<div class='otheruserselfhead'>"+
+				 		 "<img src='"+server+"uploads/"+userinfo[0].head+"' alt='head' />"+
+				 		      "<span  class='male sexshow' style='display:"+status1+";'></span>"+
+				 			  "<span  class='female sexshow' style='display:"+status2+";'></span>"+
+				 		 "</div>"+
+				 		 "<div class='othernicknameself'>"+userinfo[0].nickname+"</div>"+
+				 		 "<div class='otheruserselfpoints'>"+userinfo[0].rankname+"</div>"+
+				 		 "<div class='otheruserselfnote'>"+userinfo[0].note+"</div>"+
+			 		 "</div>";
+			 		
+			 		 userinfoContent.innerHTML=html;
+      			}
+      		})
+      	}
+      	//获取个人需求列表
+    function getmyneed(username,page){
+      		  var contentcontainer=document.getElementById("contentwarp");
+				     	 mui.ajax(server+'need/getneedlist.php',{
+			      			data:{
+			      				action:'somebodyneed',
+			      				page:page,
+			      				username:username
+			      			},
+			      			type:'post',
+			      			success:function(data){
+			      				console.log(data);
+			      				var jsondata=eval("["+data+"]");
+			      				var needwarper=document.getElementById('otherneed');
+			      				var needlist=jsondata[0];
+			      				
+			      				if(needlist==''){
+			      					html="<div class=\'commentblack\'>亲,TA还没有发布心愿呢</div>";
+      	                             needwarper.innerHTML=html;
+			      				}
+			      				   var publishtime=timeFormat(needlist[0].publishtime);
+			      					var needwarper=document.getElementById('otherneed');
+			      					if(needlist[0].sex=='男'){
+			      						var status1='block';
+			      						var status2='none';
+			      					}else{
+			      						var status1='none';
+			      						var status2='block';
+			      					}
+									if(needlist[0].needpic==''){
+			      						ispic='none';
+			      					}else{
+			      						ispic='block';
+			      					}
+			      					 html="<div class='needcontainer'>"+
+								  	   	    "<div class='needcontainerleft'>"+
+								  	   	    "<div class='headinfo'>"+
+								  	   	       "<img src='"+server+"/uploads/"+needlist[0].head+"'/>"+
+								  	   	       "<span  class='male sexshow' style='display:"+status1+";'></span>"+
+				 							   "<span  class='female sexshow' style='display:"+status2+";'></span>"+
+				 							 "</div>"+   
+								  	   	    "<div class='needid'>"+needlist[0].id+"</div>"+
+								  	   	    "</div>"+
+								  	   	    "<div class='needcontainerright'>"+
+								  	   	    "<div class='needlistlabel'>#"+needlist[0].label+"#</div>"+
+								  	   	    "<div class='needstatus'>"+needlist[0].status+"</div>"+
+								  	   	    "<div class='needcontent'>"+needlist[0].remark+"</div>"+
+								  	   	     "<div class='needpic' style='display:"+ispic+";' ><img src='"+server+"/uploads/"+needlist[0].needpic+"'/></div>"+
+								  	   	    "<div class='needpay'>享之"+needlist[0].needpay+"积分</div>"+
+								  	   	    "<div class='needlocation'>"+needlist[0].needlocation+"</div>"+
+								  	   	    "<div class='needlisttime'>"+publishtime+"</div>"+
+								  	   	    "</div>"+
+								  	   	    "<div class='needcontainerfooter'>"+
+								  	   		"<div class='needaction' id='msg' data-id='"+needlist[0].id+"' data-user='"+needlist[0].user+"'><span class='mui-icon mui-icon-navigate'></span>&nbsp;&nbsp;帮忙("+needlist[0].msgNum+")</div>"+
+								  	   		"<div class='needaction' id='comment'data-id='"+needlist[0].id+"' data-user='"+needlist[0].user+"'><span class='mui-icon mui-icon-email'></span>&nbsp;&nbsp;评论("+needlist[0].cmtNum+")</div>"+
+								  	   	    "<div class='needaction' data-id='"+needlist[0].id+"' data-user='"+needlist[0].user+"'><a href='tel:"+needlist[0].usertel+"'><span class='mui-icon mui-icon-phone'></span>&nbsp;&nbsp;电话</a></div>"+
+								  	  		"</div>"+
+								  	  "</div> ";
+								  	 needwarper.insertAdjacentHTML('beforeBegin',html); 
+			      					      				
+			      			}
+						 })
+				     }     	       	 
+      //获取myhelped列表
+    function   getmyhelped(username,page){
+      	  
+      		 mui.ajax(server+'need/getneedlist.php',{
+			      			data:{
+			      				action:'myhelpedneed',
+			      				username:username,
+			      				page:page
+			      			},
+			      			type:'post',
+			      			success:function(data){ 	
+//			      				console.log(data);
+			      				var needwarper=document.getElementById('otherhelped');
+			      				var jsondata=eval("["+data+"]");
+			      				var needlist=jsondata[0];
+			      				console.log(needlist.length);
+			      				if(needlist.length==0){
+			      					maxpages=0;
+			      					 html="<div class=\'commentblack\'>亲,Ta还没有帮过人呢</div>";
+      	                             otherhelped.innerHTML=html;	
+			      				}
+			      				var publishtime=timeFormat(needlist[0].publishtime);
+			      					if(needlist[0].sex=='男'){
+			      						var status1='block';
+			      						var status2='none';
+			      					}else{
+			      						var status1='none';
+			      						var status2='block';
+			      					}
+			      					if(needlist[0].needpic==''){
+			      						ispic='none';
+			      					}else{
+			      						ispic='block';
+			      					}
+			      					 html="<div class='needcontainer'>"+
+								  	   	   "<div class='needcontainerleft'>"+
+								  	   	    "<div class='headinfo'>"+
+								  	   	       "<img src='"+server+"/uploads/"+needlist[0].head+"'/>"+
+								  	   	       "<span  class='male sexshow' style='display:"+status1+";'></span>"+
+				 							   "<span  class='female sexshow' style='display:"+status2+";'></span>"+
+				 							 "</div>"+   
+								  	   	    "<div class='needid'>"+needlist[0].id+"</div>"+
+								  	   	    "</div>"+
+								  	   	    "<div class='needcontainerright'>"+
+								  	   	    "<div class='needlistlabel'>#"+needlist[0].label+"#</div>"+
+								  	   	    "<div class='needstatus'>"+needlist[0].status+"</div>"+
+								  	   	    "<div class='needcontent'>"+needlist[0].remark+"</div>"+
+								  	   	     "<div class='needpic' style='display:"+ispic+";' ><img src='"+server+"/uploads/"+needlist[0].needpic+"'/></div>"+
+								  	   	    "<div class='needpay'>"+needlist[0].needpay+"积分</div>"+
+								  	   	   
+								  	   	    "<div class='needlocation'>"+needlist[0].needlocation+"</div>"+
+								  	   	    "<div class='needlisttime'>"+publishtime+"</div>"+
+								  	   	    "</div>"+
+								  	   "</div> ";
+								  	 needwarper.insertAdjacentHTML('beforebegin',html); 
+			      				
+			      			}
+						 })
+                        }   
+       //获取mefromothers列表
+    function   getfromothers(username,page){
+//			console.log(username);
+      	   var contentcontainer=document.getElementById("contentwarp");
+      	  
+      	   mui.ajax(server+'getthankorder.php',{
+      	   	data:{
+      	   		username:username,
+      	   		page:page
+      	   	},
+      	   	type:'post',
+      	   	success:function(data){
+      	   		console.log(data);
+      	   	var contentcontainer=document.getElementById('otherformother');
+      	   	 var jsondata=eval("["+data+"]");
+      	   	 var thankorderlist=jsondata[0];
+      	   	
+      	   	 if(thankorderlist.length==0){
+      	   	 	maxpages=0;
+      	   	 	 html="<div class=\'commentblack\'>还没有来自别人的评价哎</div>";
+      	   	 	  contentcontainer.innerHTML=html;	
+      	   	 	  return;
+      	   	 }
+      	   	 var thanktime=timeFormat(thankorderlist[0].sendtime);
+      	   	 	if(thankorderlist[0].sex=='男'){
+			      						var status1='block';
+			      						var status2='none';
+			      					}else{
+			      						var status1='none';
+			      						var status2='block';
+			      					}
+      	   	 	html="<div class='thankorder mui-col-xs-12'>"+
+      	   	 		    "<div class='bywhohead mui-col-xs-2 '>"+
+      	   	 		   "<img src='"+server+"uploads/"+thankorderlist[0].bywhohead+"' alt='head' />"+
+      	   	 		    "<span  class='male sexshow' style='display:"+status1+";'></span>"+
+				 		"<span  class='female sexshow' style='display:"+status2+";'></span>"+
+      	   	 		   "</div>"+
+      	   	 		   "<div class='mui-col-xs-10 thankordertop'>"+
+               		"<div class='thankpay'>+"+thankorderlist[0].needpay+"积分</div>"+
+               		
+               		"<div class='thanktime'>"+thanktime+"</div>"+
+                 	"</div>"+
+                 	"<div class='judgecontent mui-col-xs-10'>"+thankorderlist[0].judge+"</div>"+
+                 	"</div>";
+                 contentcontainer.insertAdjacentHTML('beforebegin',html);	
+      	   	
+      	   	}
+      	   })
+      } 
+     //打开个人中心查看私信以及查看评论
+   function  getQa(username,index){
+     		mui.ajax(server+'getqslist.php',{
+     			data:{
+     				action:'certainQ',
+     				username:username,
+     				index:index
+     			},
+     			type:'post',
+     			success:function(data){
+//   				 console.log(data);
+     				var jsondata=eval('['+data+']');
+					if(jsondata[0].q===''){
+						qa='Ta什么都没说,宛若一缕清风';
+					}else{
+						qa=jsondata[0].q;
+					}
+     				document.getElementById('q1ans').innerHTML=qa;
+     				
+ 
+     			}
+     		})
+     	}
+      
+    </script>
+    <style type="text/css">
+    		
+     .mui-bar-nav~.mui-content{
+     	width: 100%;
+     	margin: 0px;
+     	padding-top: 44px;
+     }
+     .otheruserselfinfo{
+     	background: url(../images/slide.jpg);
+     	margin: 0px;
+     	padding: 0px;
+     	color: #333;
+     	padding-bottom: 20px;
+     }
+      .othersetuserselfinfo{
+    			/*padding-bottom: 10px;*/
+    			margin-top: 0px;
+    			width: 100%;
+    			/*color: black;*/
+    			margin: 0px;
+    			
+	    		}
+    		.otheruserselfhead{
+    			display: inline-block;
+    			text-align: center;
+    			float: clear;
+    			width: 100%;
+    			position: relative;
+    			padding: 10px;
+    		}
+    		
+    		.otheruserselfhead img{
+    			width: 100px;
+    			border-radius: 50%;
+    			float: clear;
+    			text-align: center;
+    		}
+    		 .otheruserselfhead .sexshow{
+     	 	height: 12px;
+     	 	width: 12px;
+     	 	position: absolute;
+     	 	bottom: 20px;
+     	 	left: 55%;
+     	 }
+    		.othernicknameself{
+    		
+    			font-weight: bolder;
+    			text-align: center;
+    			font-weight: bolder;
+    			font-size: 14px;
+    			
+    		}
+    		.otheruserselfpoints{
+    			text-align: center;
+    			/*padding: 3px;*/
+    			font-size: 13px;
+    			font-weight: bolder;
+    			
+    		}
+    		.otheruserselfnote{
+    			text-align: center;
+    			font-size: 13px;
+    			font-weight: bolder;
+    			
+    		}
+    		 .othercenterpart{
+     	 	width: 96%;
+     	 	margin: auto;
+     	 	border-top: 2px solid #FAF8F8;
+     	 	border-radius:5px;
+     	 	margin-top: 10px;
+     	 	/*height: 50px;*/
+     	 	box-shadow:1px 2px 2px 2px #E4E4E4;
+     	 }
+     	 .othercenterpart div.othercentertitle{
+     	 	padding: 5px;
+     	 	/*height: 30px;*/
+     	 	border-bottom:2px solid #FAF8F8 ;
+     	 }
+     	  .othercenterpart div.othercentertitle span{
+     	  	display: inline-block;
+     	  	width: 85%;
+     	 	padding-left: 25px;
+     	 	font-weight: bolder;
+     	 	font-size: 13px;
+     	 }
+     	  .othercenterpart div.othercentertitle a{
+     	 text-decoration: none;
+     	 display: inline-block;
+     	 float: right;
+     	text-align: right;
+     	 color: #BE0108;
+     	 font-weight: bolder;
+     	 font-size: 13px;
+     	 }
+     	 .span0{
+     	 	background:url(../images/myneed.png) no-repeat;
+     	  	background-size: 20px;
+     	  	background-position-y:1px ;
+     	 }
+     	 .span1{
+     	 	background:url(../images/myhelped.png) no-repeat;
+     	  	background-size: 20px;
+     	  	background-position-y:1px ;
+     	 }
+     	  .span2{
+     	 	background: url(../images/mefromothers.png) no-repeat ;
+     	  	background-size: 20px;
+     	  	background-position-y:1px ;
+     	 }
+     	   .span3{
+     	 	background: url(../images/bookblue.png) no-repeat ;
+     	  	background-size: 20px;
+     	  	background-position-y:1px ;
+     	 }
+     	 .qanswer{
+     	 	padding: 10px;
+     	 	padding-left:30px;
+     	 	font-size: 13px;
+     	 	color: #A1a1a1;
+     	 	text-indent: 20px;
+     	 	padding-right: 20px;
+     	 	letter-spacing: 1px;
+     	 	font-weight: bolder;
+     	 }
+     	
+     </style>
+</head>
+<body>
+	 <header class="mui-bar mui-bar-nav">
+		<div class='header index-header'>
+			<div class='logo' id='logo' style="display: none;"></div>
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class='title' id='title'></h1>
+			<a id="menu" href="#topPopover" class="mui-action-menu mui-icon mui-icon-bars mui-pull-right" style="display: none;"></a>
+		</div>
+	</header>
+	 
+	 <div class="mui-content">
+	 	<section>
+	 		<div class="otheruserselfinfo" id='userinfo'>
+		 		<div id ='othersetuserinfo' class='othersetuserselfinfo'>
+				 		 <div class='otheruserselfhead'>
+				 		 <img src='../images/default_head.jpg' alt='head' />
+				 		      <span  class='male sexshow'></span>
+				 			  <!--<span  class='female sexshow' style='display:"+status2+";'></span>-->
+				 		 </div>
+				 		 <div class='othernicknameself'>听说爹可否考虑时间啊鲁昆吉里</div>
+				 		 <div class='otheruserselfpoints'>三翼天使</div>
+				 		 <div class='otheruserselfnote'>说什么，有什么好说的</div>
+			 		 </div>
+		 	</div>
+		 </section>
+	 	<section id='qcontainer'>
+		 
+							 <!--<section  class='othercenterpart'>
+						    		<div class='othercentertitle'>
+						    			<span class='span3'>Ta的九问</span>
+						    			<a id='moreqa'>更多...</a>
+						    		</div>
+						    		<div  class="qanswer">
+						    			 Q:有没有曾经认认真真手写的文字，不为考试，不为装逼，就是想写？
+						    		</div>
+						    		<div  class="qanswer">
+						    			  A: <span id="q1ans">肌肤开始觉得快乐咖啡的时间来看风景看了看了电视剧法律框架</span>
+						    		</div>
+						     </section>-->
+						   		  
+			                <section class='othercenterpart'>
+									    		<div class='othercentertitle'>
+									    			<span class="span0">Ta的心愿</span>
+									    			<a id='moreneed'>更多...</a>
+									    		</div>
+									  <div id="otherneed" >
+						    			 
+						    		      </div>  		
+							</section>
+				
+						     <section class='othercenterpart'>
+						    		<div class='othercentertitle'>
+						    			<span class="span1">Ta帮过的</span>
+						    			<a id='morehelped'>更多...</a>
+						    		</div>
+						    		<div id="otherhelped" >
+						    			  
+						    		</div>
+						    </section>
+						    
+						     <section  class='othercenterpart'>
+						    		<div class='othercentertitle'>
+						    			<span class='span2'>别人眼中的Ta</span>
+						    			<a id='morefromother'>更多...</a>
+						    		</div>
+						    		
+						    		<div id="otherformother">
+						    			  
+						    		</div>
+						    	</section>
+		</section> 
+	 </div>
+</body>
+</html>

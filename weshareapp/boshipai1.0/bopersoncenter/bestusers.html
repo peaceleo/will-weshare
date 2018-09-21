@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	
+	 <script src="../js/mui.min.js"></script>
+    <title>天使排行</title>
+   
+    <link href="../css/mui.min.css" rel="stylesheet"/>
+    	<link rel="stylesheet" href="../css/weshare.css" />
+     <style type="text/css">
+     body{
+     	background: white;
+     }
+   
+     .mui-title{
+     	font-size: 15px;
+     	font-weight: bolder;
+     }
+     table {
+     	border: 2px solid #E4E4E4;
+     	text-align: center;
+     	width: 100%;
+     	font-size: 12px;
+     }
+     tr, th,td{
+     	border: 1px solid #E4E4E4;
+     	padding: 5px;
+     }
+     th{
+     	font-weight: border;
+     }
+     img{
+     	text-align: center;
+     	margin:10px auto;
+     	width: 60px;
+     	display: block;
+     }
+     
+     .setinfo {
+  /*height: 40px;*/
+   background: url(../images/arrow_right.png) no-repeat 95%;
+   background-size: 9px 13px;
+  font-size: 13px;
+  border-bottom: 2px solid #FAF8F8;
+  padding-left: 40px;
+  padding-top: 5px;
+  padding-bottom:5px ;
+  text-align: left;
+  line-height: 40px;
+  float: left;
+ color: #3F88B0;
+}
+.setinfo div{
+	float: left;
+}
+.setlisttitle {
+	
+    font-size: 13px;
+    font-weight: bolder;
+    color: black;
+    padding-left: 30px;
+}
+.setlisttitle1{
+	background: url(../images/name.png) no-repeat 90%;
+	background-position: 0px;
+	background-size:20px ;
+}
+.setlisttitle2{
+	background: url(../images/myneed.png) no-repeat 90%;
+	background-position: 0px;
+	background-size:20px ;
+}
+.setlisttitle3{
+	background: url(../images/myhelped.png) no-repeat 90%;
+	background-position: 0px;
+	background-size:20px ;
+}
+.setlisttitle4{
+	background: url(../images/wifi.png) no-repeat 90%;
+	background-position: 0px;
+	background-size:20px;
+}
+</style>
+<script type="text/javascript">
+	  mui.plusReady(function(){
+
+	  	   mui('.mui-content').on('tap','.setinfo',function(){
+	  	   	 var type=this.getAttribute('data-type');
+//	  	   	 console.log(type);
+	  	   	 mui.openWindow({
+	  	   	 	url:'spbestusers.html',
+	  	   	 	id:'spbestusers',
+	  	   	 	extras:{
+	  	   	 		type:type
+	  	   	 	}
+	  	   	 })
+	  	   }) 
+	  	
+	  })
+</script>
+</head>
+<body> 
+	<header class="mui-bar mui-bar-nav">
+	    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+	    <h1 class="mui-title">天使排行榜</h1>
+	</header>
+	<div class="mui-content">
+		     <div  class='mui-col-xs-12 setinfo'  data-type='rewardrank' >
+	      	      <div class='mui-col-xs-9  setlisttitle setlisttitle1'>天使积分排行</div>
+	      	</div> 
+	      	<div  class='mui-col-xs-12 setinfo'  data-type='pubneedrank'>
+	      	      <div class='mui-col-xs-9  setlisttitle setlisttitle2'>天使发布需求排行</div>
+	      	</div>
+	      	<div  class='mui-col-xs-12 setinfo'  data-type='finneedrank'>
+	      	      <div class='mui-col-xs-9  setlisttitle setlisttitle3 '>天使满足需求排行</div>
+	      	</div>
+	      	<div  class='mui-col-xs-12 setinfo'  data-type='interrank'>
+	      	      <div class='mui-col-xs-9  setlisttitle setlisttitle4'>天使互动排行</div>
+	      	</div>
+	</div>	
+</body>
+</html>

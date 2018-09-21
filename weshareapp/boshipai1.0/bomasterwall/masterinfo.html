@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	
+	 <script src="../js/boshare.js"></script>
+    <title>博士详情</title>
+   
+    <link href="../css/mui.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="../css/boshi.css" />
+     <style type="text/css">
+     	 section{
+     	 	/*border: 1px solid black;*/
+     	 	/*min-height: 150px;*/
+     	 	margin-bottom: 10px;
+     	 }
+		.mui-content{
+			position: absolute;
+			top: 44px;
+			width: 100%;
+			margin: 0 auto;
+			background: #efeff4;;
+		}
+		section.headerback{
+			background: #BE0108;
+			height: 200px;
+		}
+		section.masterwrapper{
+			position: relative;
+			top: -100px;
+		}
+		.masterinfo,.masterskill,.masterwork,.masterschool,.masterpintro{
+			width: 90%;
+			margin-left: 5%;
+			margin-right: 5%;
+			background: #fff;
+			border: none;
+			border-radius: 6px;
+			margin-bottom: 15px;		
+		}
+		.masterinfowarpper{
+			height: 200px;
+			position: relative;
+			top: -60px;
+		}
+		.masterhead{
+			
+			height: 120px;
+			width: 120px;
+			margin: auto;
+			border: 1px solid red;
+			border-radius: 50%;
+			overflow: hidden;
+			box-shadow: 0px 1px 1px 1px #A1A1A1;
+			border:5px solid #fff;
+		}
+		.masterhead img{
+			width: 120px;
+			height: 120px;
+			text-align: center;
+			
+			/*border-radius:50%;*/
+			
+		}
+		.mastername{
+			text-align: center;
+			font-weight: bolder;
+			font-size: 20px;
+			margin-top: 20px;
+		}
+		.masterdegree{
+			text-align: center;
+			padding: 3px;
+			font-size: 13px;
+			color:#A1A1A1;
+			font-weight: bolder;
+		}	
+		.masterlocation{
+			text-align: center;
+			padding: 2px;
+			font-size: 13px;
+			color: #A1A1A1;
+			font-weight: bolder;
+		}
+		.masteraction{
+			width: 60px;
+			margin: auto;
+			padding: 3px 5px;
+			/*border: 1px solid #BE0108;*/
+			background: #BE0108;
+			color: white;
+			text-align: center;
+			border-radius: 15%;
+		}
+		.title{
+			font-weight: bolder;
+			background: url(../images/detail.png) no-repeat 8px;
+			background-size: 15px;
+			padding-top:5px ;
+		}
+		.skillwrapper{
+			margin-top: 10px;
+			margin-left: 20px;
+			padding-bottom: 10px;
+			/*min-height: 180px;*/
+		}
+		.skillblock{
+			background: #BE0108;
+			padding: 5px;
+			border-radius: 5px;
+			color: white;
+			font-weight: bolder;
+			font-size: 14px;
+			margin: 5px;
+			float: left;
+		}
+		.schoolblock{
+			width: 70%;
+			margin-left: 40px;
+			margin-top: 15px;
+			border-bottom: 1px solid #333;
+			padding-bottom: 10px;
+		}
+		.schoolblock:last-child{
+			border: none;
+		}
+		.schoollogo{
+			display: inline-block;
+			width: 25%;
+		}
+		.schoollogo img{
+			width: 100%;
+		}
+		.schoolpinfo{
+			display: inline-block;
+			width: 70%;
+			float: right;
+			padding-top: 10px;
+		}
+		.schoolname{
+			font-weight: bolder;
+			font-size: 16px;
+			padding-bottom: 5px;
+		}
+		.schoolmasterdegree{
+			font-weight: bolder;
+			font-size: 13px;
+			color: #A1A1A1;
+		}
+		.workblock{
+			width: 70%;
+			margin-left: 40px;
+			margin-top:15px ;
+			border-bottom: 1px solid #333;
+			padding-bottom: 15px;
+		}
+		.worklogo{
+			display: inline-block;
+			width: 30%;
+		}
+		.worklogo img{
+			width: 90%;
+			height: 30px;
+			margin-top: 10px;
+		}
+		.workinfo{
+			width: 70%;
+			float: right;
+		}
+		.workblock:last-child{
+			border: none;
+		}
+		.worktitle{
+			font-weight: bolder;
+			font-size: 16px;
+			padding-bottom: 5px;
+		}
+		.workcompany{
+			font-size: 13px;
+			font-weight: bolder;
+			color: #A1A1A1;
+		}
+		.pintrocontent{
+			padding: 9px;
+			text-indent:30px ;
+		}
+     </style>
+</head>
+<body id='body'> 
+		<div class='pubwrapper' id="footer-select" style='display: none;'>
+			  <div class='pubchoose'>
+			     <ul class="mui-table-view">
+						<li class="mui-table-view-cell"><a  id='sendmessage' href=""  class='back5'>短信</a></li>
+						<li class="mui-table-view-cell"><a  id='callphone' href=""  class='back6'>电话</a></li>
+			    </ul>
+			    <ul class="mui-table-view" style='margin-top: 10px;'>
+					<li  id='closeslect' class="mui-table-view-cell"><a><b>取消</b></a></li>
+			    </ul>
+			</div>
+		</div>	
+			<!--界面主体-->
+				<header class="mui-bar mui-bar-nav">
+				    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+				    <h1 class="mui-title"><strong>博士详情</strong></h1>
+				</header>
+				
+					<div class="mui-scroll">
+						<div class="mui-content">
+							<section class="headerback"></section>
+							<section class="masterwrapper">
+								<section class="masterinfo">
+									<div class='masterinfowarpper'>
+										<div class='masterhead'><img  id='masterhead'  alt="" /></div>
+										<div class='mastername' id="mastername"></div>
+										<div class='masterdegree'><span id='masterFirstEdu'></div>
+										<!--<div class='masterlocation'>上海市杨浦区</div>-->
+										<div class='masteraction' id="moreaction">私信</div>
+									</div>	
+								</section>
+								
+								<section class="masterskill">
+									<div class="title">主要技能</div>
+									<div class="skillwrapper mui-clearfix" id='skillwrapper'>
+									</div>
+								</section>
+								<section class="masterschool">
+									<div class="title">教育经历</div>
+									<div class="schoolwarpper mui-clearfix" id='edulistwarpper'>
+										<!--<div class="schoolblock">
+											<div class='schoollogo'><img src="../images/fudanlogo.jpg" alt="" /></div>
+											<div class="schoolpinfo">
+												<div class="schoolname">复旦大学</div>
+												<div class='schoolmasterdegree'><span>法学</span><span>博士</span></div>
+											</div>
+										</div>-->
+										
+									</div>
+								</section>
+								<section class="masterwork">
+									<div class="title">工作经历</div>
+									<div class="workwarpper mui-clearfix" id='worklistwarpper'>
+										<!--<div class="workblock">
+											<div class="worklogo"><img src="../images/logo.jpg" alt="" /></div>
+											<div class="workinfo">
+													<div class="worktitle">营销总监</div>
+													<div class="workcompany">百度上海分公司</div>
+											</div>
+											
+										</div>-->
+										
+									</div>
+									
+								</section>
+								<section class="masterpintro">
+									<div class="title">个人简介</div>
+									
+									<div class="pintrocontent" id='pintrocontent'>
+										<!--<p>复旦大学（Fudan University），简称“复旦”，位于上海市，由中华人民共和国教育部直属，中央直管副部级建制，位列“211工程”、“985工程”，入选“珠峰计划”、“111计划”、“2011计划”、
+											“卓越医生教育培养计划”，为“九校联盟”成员、中国大学校长联谊会成员、东亚研究型大学协会成员、环太平洋大学协会成员、21世纪大学协会成员，是一所综合性研究型的全国重点大学。[1] </p>
+										<p>复旦大学创建于1905年，原名复旦公学，是中国人自主创办的第一所高等院校，创始人为中国近代知名教育家马相伯，首任校董为国父孙中山。校名“复旦”二字选自《尚书大传·虞夏传》名句“日月光华，旦复旦兮”，意在自强不息，寄托当时中国知识
+											分子自主办学、教育强国的希望。1917年复旦公学改名为私立复旦大学；1937年抗战爆发后，学校内迁重庆北碚，并于1941年改为“国立”；1946年迁回上海江湾原址；1952年全国高等学校院系调整后，复旦大学成为以文理科为基础的综合性大学；
+											1959年成为全国重点大学。2000年，原复旦大学与原上海医科大学合并成新的复旦大学。</p>-->
+									</div>
+								</section>
+							</section>
+							
+						</div>
+					</div>
+			</div>
+	</div>
+
+   
+    
+	<script src="../js/mui.min.js"></script>
+	<script src="../js/openwin.js"></script>
+	<script type="text/javascript" charset="utf-8">
+	 mui.init();	
+     mui.plusReady(function(){
+     	server=plus.storage.getItem('server');
+     	username=plus.storage.getItem('username');
+     	console.log(server);
+     	username=plus.storage.getItem('username')?plus.storage.getItem('username'):'18817362926';
+     	console.log(username);
+     	getpersoninfo(username);
+     	active=plus.storage.getItem('active');
+     	var pager=plus.webview.currentWebview();
+     	var mid=pager.mid;
+//  
+     	
+     	mui.ajax(server+'master/getmasterlist.php',{
+     		data:{
+     			action:'singlemaster',
+     			mid:mid
+     		},
+     		type:'post',
+     		success:function(data){
+//   			alert(data);
+     			var masterinfo=eval('['+data+']')[0];
+     			document.getElementById('masterhead').setAttribute('src',server+'uploads/'+masterinfo[0].head);
+     			document.getElementById('mastername').innerText=masterinfo[0].name;
+     			var edulist=eval('['+masterinfo[0].edulist+']')[0];
+     			document.getElementById('masterFirstEdu').innerText=edulist[0].school+'-'+edulist[0].department+'-'+edulist[0].degree;
+     			document.getElementById('sendmessage').setAttribute('href','sms:'+masterinfo[0].telphone);
+			 		document.getElementById('callphone').setAttribute('href','tel:'+masterinfo[0].telphone);
+     			//获取技能
+     			var skilllist=eval('['+masterinfo[0].skill+']')[0];
+     			var s=0;
+     			var skillhtml='';
+     			while(s<skilllist.length){
+     				skillhtml=skillhtml+"<span class='skillblock'>"+skilllist[s]+"</span>";
+     				s++;
+     			}
+     			document.getElementById('skillwrapper').innerHTML=skillhtml;
+     			
+     			//获取教育经历
+     			var edulist=eval('['+masterinfo[0].edulist+']')[0];
+//   			  alert( typeof edulist);
+     			  
+     			for(var i=0;i<edulist.length;i++){
+     				
+//   				var schoollogo='1231';
+     			    mui.ajax(server+'master/getlogo.php',{
+     			    			data:{
+     			    				action:'school',
+     			    				department:edulist[i].school
+     			    			},
+     			    			async:false,
+     			    			type:'post',
+     			    			success:function(data){
+     			    				schoollogo=data;
+     			    			}
+     			    })
+					
+					if(schoollogo==''){
+						schoollogo='default';
+					}
+					console.log(schoollogo);
+     				html="<div class='schoolblock'>"+
+											"<div class='schoollogo'><img src='"+server+"school/"+schoollogo+".jpg' alt='' /></div>"+
+											"<div class='schoolpinfo'>"+
+												"<div class='schoolname'>"+edulist[i].school+"</div>"+
+												"<div class='schoolmasterdegree'><span>"+edulist[i].department+"</span>--<span>"+edulist[i].degree+"</span></div>"+
+											"</div>"+
+						"</div>";
+					document.getElementById('edulistwarpper').insertAdjacentHTML('beforeend',html);	
+     			}
+     			
+     			//获取工作经历
+     			var worklist=eval('['+masterinfo[0].worklist+']')[0];
+     			for(var i=0;i<worklist.length;i++){
+					  mui.ajax(server+'master/getlogo.php',{
+					     			    			data:{
+					     			    				action:'work',
+					     			    				department:worklist[i].company
+					     			    			},
+					     			    			async:false,
+					     			    			type:'post',
+					     			    			success:function(data){
+					     			    				worklogo=data;
+					     			    			}
+					     			    })
+										
+										if(worklogo==''){
+											worklogo='default';
+										}
+										console.log(worklogo);
+     									html="<div class='workblock'>"+
+     										"<div class='worklogo'><img src='"+server+"company/"+worklogo+".jpg' alt='' /></div>"+
+     										"<div class='workinfo'>"+
+											"<div class='worktitle'>"+worklist[i].position+"</div>"+
+											"<div class='workcompany'>"+worklist[i].company+"</div>"+
+											"</div>"+
+										"</div>";
+					document.getElementById('worklistwarpper').insertAdjacentHTML('beforeend',html);	
+     			}
+     			var pintrolist=eval('['+masterinfo[0].pintro+']')[0];
+//   			console.log(pintrolist.length);
+     			for(var i=0;i<pintrolist.length;i++){
+//   				alert(pintrolist[i]);
+     				html="<p>"+pintrolist[i]+"</p>";
+					document.getElementById('pintrocontent').insertAdjacentHTML('beforeend',html);	
+     			}
+     		}
+     	})
+     	
+     		//打开更多操作
+			document.getElementById('moreaction').addEventListener('tap',function(){
+				console.log(active);
+			if(active=='游客'){
+  				mui.openWindow({
+  					url:'../login.html',
+  					id:'login',
+  					createNew:true,
+					show:{
+						aniShow: 'slide-in-right',
+						duration:300
+					}
+  				})
+  				return;
+  			}
+			
+			document.getElementById('footer-select').style.display='block';	
+			})
+			//close the select of footer
+			document.getElementById('closeslect').addEventListener('tap',function(){
+				document.getElementById('footer-select').style.display='none';
+			})
+      
+     });
+      
+      	
+    </script>
+</body>
+</html>

@@ -1,0 +1,146 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+		<meta name="HandheldFriendly" content="true"/>
+		<meta name="MobileOptimized" content="320"/>
+		<title>sethead</title>
+		<script type="text/javascript" src="js/common.js"></script>
+		<script src="js/mui.min.js"></script>
+		<script src="js/jquery-1.11.3.js"></script>
+		<script src="js/jquery.Jcrop.min.js"></script>
+		 <link href="css/mui.min.css" rel="stylesheet"/>
+	    <link rel="stylesheet" type="text/css" href="css/jquery.Jcrop.min.css">
+		<script type="text/javascript">
+		
+		mui.plusReady(function(){
+//			appendByCamera();
+			setTimeout("appendByGallery()",2500);
+			server=plus.storage.getItem('server');
+			var page=plus.webview.currentWebview();
+			username=page.username;
+		})
+
+var files=[];
+
+// 上传文件
+function upload(){
+	var wt=plus.nativeUI.showWaiting();
+	 task=plus.uploader.createUpload(server+'ident.php',
+		{method:"POST"},
+		function(t,status){ //上传完成
+     
+			if(status==200){
+				plus.ui.toast('上传成功');
+                wt.close();
+                mui.openWindow({
+                	url:'login.html',
+                	id:'login',
+                	createNew:true,
+                	show:{
+                		aniShow:'slide-in-left',
+                		duration:200
+                	}
+                })
+			}else{
+				plus.ui.toast('上传失败');
+				wt.close();
+			}
+		}
+	);
+//	x=100;
+	task.addData("username",username);
+	task.addFile(files[0].path,{key:files[0].name});
+	task.start();
+}
+// 拍照添加文件
+function appendByCamera(){
+	plus.camera.getCamera().captureImage(function(p){
+		appendFile(p);
+	});	
+}
+// 添加文件
+function appendByGallery(){
+	plus.gallery.pick(function(p){
+        appendFile(p);
+    });
+}
+//var index=1;
+function appendFile(p){
+	path=plus.io.convertLocalFileSystemURL(p);
+	document.getElementById("imgprew").setAttribute('src',path);
+	files.push({name:"pic",path:p});
+
+}
+
+function resizeimg(obj){
+	if(obj.height>1000){
+		obj.height=1000;
+	}
+}
+		</script>
+		<style type="text/css">
+			.imgcontainer{
+				/*width:100%;*/
+				/*min-height:300px ;*/
+				overflow: hidden;
+				padding-top: 44px;
+				
+			}
+			.imgcontainer img{
+				
+				width: 100%;
+				height: auto;
+				
+			}
+		  .setaction{
+		  	float: right;
+		  	position: relative;
+		  	height: 44px;
+		  	width: 44px;
+		  	background: url(images/cut.png) no-repeat;
+		  	/*border: 1px solid black;*/
+		  	background-size: 25px;
+		  	background-position: center;
+		  }
+		  #imgupload{
+		  	background: url(images/success.png) no-repeat;
+		  	background-position: center;
+		  	background-size: 25px;
+		  }
+		  .tips{
+		  	text-align: center;
+		  	font-size: 13px;
+		  	font-weight: bolder;
+		  	height:20px;
+	
+		  	position: relative; 
+		  	top:44px; 	
+		  }
+		</style>
+		
+	</head>
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<div class='logo' id='logo' style="display: none;"></div>
+		    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+		    <h1 class="mui-title">个人认证</h1>
+		    <!--<div class="setaction" id='imgcut' onclick="imgcut()"style="display: none;"></div>-->
+		    <div class="setaction" id='imgupload' onclick="upload()"></div>
+		</header>
+		
+		
+		<div id="dcontent" class="mui-content">
+			<div class='tips'>
+			一卡通or学生证:姓名、学号、照片一定要清晰可见哦
+			</div>
+			<div id='imgcontainer' class="imgcontainer mui-col-xs-12">
+				<img  id='imgprew' class="imgprew" src="" alt="" onload="resizeimg(this)" />
+			</div>
+			
+		
+		</div>
+	</body>
+	<script type="text/javascript" src="js/immersed.js" ></script>
+</html>

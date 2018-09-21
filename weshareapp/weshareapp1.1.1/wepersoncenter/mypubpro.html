@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title>personcenter</title>
+    <script src="../js/mui.min.js"></script>
+     <script src="../js/openwin.js"></script>
+      <script src="../js/weshare.js"></script>
+    <link href="../css/mui.min.css" rel="stylesheet"/>
+     <link rel="stylesheet" href="../css/weshare.css" />
+      
+    
+    <style type="text/css">
+    			 .mui-bar-tab .mui-tab-item.mui-active{
+     	 	color: #929292;
+     	 }
+     	 body{
+     	 	background: white;
+     	 }
+        .prowarpper{
+        	border:3px solid #e4e4e4;
+        	border-radius: 5px;
+        	width:94%;
+        	margin-right: 3%;
+        	margin-left: 3%;
+        	margin-bottom: 10px;
+        	
+        
+        }
+        .proleft{
+        	width:33.3%;
+        	float: left;
+        	text-align: center;
+        	font-size: 11px;
+        	/*margin-top: 10px;*/
+        	font-weight: bolder;
+        	/*color: #A1A1A1;*/
+        	/*border-bottom: 1px solid #E4E4E4;*/
+        }
+        .proleft table{
+        	margin-left: auto;
+        	margin-right: auto;
+        }
+        .proleft table tr td{
+        	  vertical-align: middle;
+        	  height: 95px;
+        }
+        .proleft img{
+        	 max-width:100%;
+        	 max-height: 100%;
+        }
+        .proright{
+        	width: 66.6%;
+        display: inline-block;
+       
+        
+        }
+        .proname,.proprice,.prodescription,.propubtime{
+        	font-size: 13px;
+        	padding: 5px 0 5px 20px;
+        	border-bottom: 1px solid #E4E4E4;
+        	 border-left: 1px solid #E4E4E4;
+        }
+        .prodescription{
+        	min-height: 70px;
+        }
+        .propubtime{
+        	text-align: right;
+        	padding-right: 20px;
+        	border: none;
+        	color: #3F88B0;
+        }
+        .profooter{
+        	width: 100%;
+        	height: 30px;
+        }
+        .profooter div{
+        	 width: 33.3%;
+        	 float: left;
+        	 border: 1px solid #E4E4E4;
+        	 text-align: center;
+        	 font-weight: bolder;
+        	 padding: 5px;
+        	 font-size: 12px;
+        }
+        .mui-icon{
+        	font-weight: bolder;
+        	font-size: 18px;
+        }
+        
+         #moredata{
+     	 	text-align: center;
+     	 	
+     	 	font-size: 14px;
+     	 	font-weight: bolder;
+     	 	color:#0c9ed4;
+     	 }
+ 
+     	 .loading{
+     	 	background: url(../images/loading4.gif) no-repeat center;
+     	 	background-size:30px ;
+     	 	padding-top: 60px;
+     	 	/*padding-top: 10px;
+     	 	padding-bottom: 10px;*/
+     	 }
+     	 .finish{
+     	 	padding: 30px;
+     	 }
+     	
+     </style>
+     
+</head>
+<body id='body'>
+	<header class="mui-bar mui-bar-nav">
+	     <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+	    <h1 class="mui-title" id='title'><strong>我发布的宝贝</strong></h1>
+	</header>
+	 
+	 <div class="mui-content">	
+		 	<div id="contentwarp">
+		 	        <!--<section class='prowarpper'>
+		 	     	 <div class='proleft'>
+		 	     	 	 <div>11</div>
+		 	     	 		<div>
+		 	     	 			<table>
+		 	     	 				<tr><td><img src="images/book.png" alt="" /></td></tr>
+		 	     	 			</table>
+		 	     	 			
+		 	     	 		</div>
+		 	     	 		<div>邯郸本部</div>
+		 	     	 		<div>还有3个</div>
+		 	     	 </div>
+		 	     	 <div class='proright'>
+		 	     	 		<div class='proname'>宝贝名称(<span>图书资料</span>)</div>
+		 	     	 		<div class='proprice'>1000享豆</div>
+		 	     	 		<div class='prodescription'>dj发达的放豆腐对方</div>
+		 	     	 		<div class='propubtime'>3天前</div>
+		 	     	 </div>
+		 	     	 <div class="profooter">
+		 	     	 	   <div><span class='mui-icon mui-icon-loop'></span>&nbsp;上架</div>
+		 	     	 	   <div><span class='mui-icon mui-icon-compose'></span>&nbsp;修改</div>
+		 	     	 	   <div><span class='mui-icon mui-icon-close'></span>&nbsp;删除</div>
+		 	     	 </div>
+		 	     </section>-->
+               
+            </div>
+            <div id='moredata'></div>
+	 </div>
+	  <script type="text/javascript" charset="utf-8">
+      	mui.init();
+      	mui.plusReady(function(){
+      		 username=plus.storage.getItem('username');
+      		 server=plus.storage.getItem('server');
+//    		 getremindernum(username);
+//    		 getpersoninfo(username);
+      		var reward=plus.storage.getItem('rewardpoints');
+      		page=1;
+      	  //获取我发布的宝贝
+      	  getOwnPro(username,page);
+      	 	//moredata
+		    document.addEventListener('plusscrollbottom',function(){
+								 	 	 page++;
+									 	 var wt=plus.nativeUI.showWaiting();
+									 	 document.getElementById('moredata').innerText='加载中...';
+									 	 document.getElementById('moredata').className='loading';
+									 	 console.log("getOwnPro("+"\'"+username+"\'"+","+page+")");
+									 	 setTimeout("getOwnPro("+"\'"+username+"\'"+","+page+")",600);
+									 	 wt.close();
+									 },false);
+      	 	//ene of moredata
+      	 	//上架or下架
+      	 	mui('#contentwarp').on('tap','.proshang',function(){
+      	 		var pid=this.getAttribute('data-pid');
+      	 		var store=this.getAttribute('data-store');
+      	 		if(store>0){
+      	 			//下架
+      	 			//弹出确定弹窗
+      	 			plus.ui.confirm('您确定要下架该宝贝嘛？',function(e){
+      	 				if(e.index==0){
+      	 					mui.ajax(server+'exchangeaction.php',{
+			      	 			data:{
+			      	 				action:'onsale',
+			      	 				pid:pid
+			      	 			},
+			      	 			type:'post',
+			      	 			success:function(data){
+			      	 				if(data==1){
+			      	 					plus.ui.toast('下架成功');
+			      	 					document.getElementById('contentwarp').innerHTML='';
+			      	 					getOwnPro(username,1);
+			      	 				}else{
+			      	 					plus.ui.toast('下架失败，再试试吧');
+			      	 				}
+			      	 				
+			      	 			}
+			      	 		})
+      	 				}else{
+      	 					return;
+      	 				}
+      	 			},'',['Yes','No'])
+      	 		}else if(store==0){
+      	 			//上架
+      	 			plus.ui.confirm('您确定要上架该宝贝嘛？',function(e){
+      	 				if(e.index==0){
+      	 					mui.ajax(server+'exchangeaction.php',{
+			      	 			data:{
+			      	 				action:'nosale',
+			      	 				pid:pid
+			      	 			},
+			      	 			type:'post',
+			      	 			success:function(data){
+			      	 				if(data==1){
+			      	 					plus.ui.toast('上架成功');
+			      	 					document.getElementById('contentwarp').innerHTML='';
+			      	 					getOwnPro(username,1);
+			      	 				}else{
+			      	 					plus.ui.toast('上架失败，再试试吧');
+			      	 				}
+			      	 				
+			      	 			}
+			      	 		})
+      	 				}else{
+      	 					return;
+      	 				}
+      	 			},'',['Yes','No']);
+      	 		}
+      	 		
+      	 	})
+      	 	//修改
+      	 	mui('#contentwarp').on('tap','.prorecreate',function(){
+      	 		var pid=this.getAttribute('data-pid');
+      	 		mui.openWindow({
+      	 			url:'../weexchange/repubpro.html',
+      	 			id:'repubpro',
+      	 			createNew:true,
+      	 			extras:{
+      	 				pid:pid
+      	 			}
+      	 		})
+      	 	})
+      	 	//删除
+      	 	mui('#contentwarp').on('tap','.delete',function(){
+      	 		var pid=this.getAttribute('data-pid');
+		      	 	plus.ui.confirm('您确定要删除该宝贝嘛？',function(e){
+		      	 				if(e.index==0){
+		      	 					mui.ajax(server+'exchangeaction.php',{
+					      	 			data:{
+					      	 				action:'delete',
+					      	 				pid:pid
+					      	 			},
+					      	 			type:'post',
+					      	 			success:function(data){
+					      	 				if(data==1){
+					      	 					plus.ui.toast('删除成功');
+					      	 					document.getElementById('contentwarp').innerHTML='';
+					      	 					getOwnPro(username,1);
+					      	 				}else{
+					      	 					plus.ui.toast('删除失败，再试试吧');
+					      	 				}
+					      	 				
+					      	 			}
+					      	 		})
+		      	 				}else{
+		      	 					return;
+		      	 				}
+		      	 			},'',['Yes','No']);	
+      	 	})
+      	 	//返回个人中心
+      	 
+      	})
+      	
+      	//getexchangepro
+      	function getOwnPro(username,page){
+      		 mui.ajax(server+'getexchangelist.php',{
+      	  	 data:{
+      	  	 	action:'someonepro',
+      	  	 	user:username,
+      	  	 	page:page
+      	  	 },
+      	  	 type:'post',
+      	  	 success:function(data){
+      	  	 	console.log(data);
+				var procontainer=document.getElementById('contentwarp');
+				var jsondata=eval('['+data+']');
+				var prolist=jsondata[0];
+				if(prolist==''){
+			      	 maxPages=0;
+			      	 html="<div class=\'commentblack\'>亲,您还没有发布宝贝呢</div>";
+      	                             procontainer.innerHTML=html;
+      	                             return;
+			      }else{
+			      	 maxPages=prolist[0].maxpages;
+			      }
+				 if(page>maxPages){
+						 	document.getElementById('moredata').innerText='这就是全部了....';
+						 	document.getElementById('moredata').className='finish';
+						 	return;
+						 }
+				for(var i=0;i<=prolist.length;i++){
+					if(prolist[i].store>0){
+						action="下架";
+					}else{
+						action="上架";
+					}
+					html="<section class='prowarpper'>"+
+		 	     	" <div class='proleft'>"+
+		 	     			"<div>"+prolist[i].pid+"</div>"+
+		 	     	 		"<div><table><tr><td><img src='"+server+"uploads/"+prolist[i].pic+"' /></td></tr></table></div>"+
+		 	     	 		"<div>"+prolist[i].prolocation+"</div>"+
+		 	     	 		"<div>还有"+prolist[i].store+"个</div>"+
+		 	     	 "</div>"+
+		 	     	" <div class='proright'>"+
+		 	     	 		"<div class='proname'><strong>名称：</strong>"+prolist[i].name+"("+prolist[i].type+")</div>"+
+		 	     	 		"<div class='proprice'><strong>价格：</strong>"+prolist[i].price+"享豆</div>"+
+		 	     	 		"<div class='prodescription'><strong>简介：</strong>"+prolist[i].description+"</div>"+
+		 	     	 		"<div class='propubtime'>"+timeFormat(prolist[i].addtime)+"</div>"+
+		 	     	 "</div>"+
+		 	     	" <div class='profooter'>"+
+		 	     	 	   "<div class='proshang'    data-pid='"+prolist[i].pid+"' data-store='"+prolist[i].store+"'><span class='mui-icon mui-icon-loop'></span>&nbsp;&nbsp;"+action+"</div>"+
+		 	     	 	   "<div class='prorecreate' data-pid='"+prolist[i].pid+"'data-store='"+prolist[i].store+"'><span class='mui-icon mui-icon-compose'></span>&nbsp;&nbsp;修改</div>"+
+		 	     	 	   "<div class='delete'      data-pid='"+prolist[i].pid+"'data-store='"+prolist[i].store+"'><span class='mui-icon mui-icon-close'></span>&nbsp;&nbsp;删除</div>"+
+		 	     	 "</div>"+
+		 	     "</section>";
+		 	     procontainer.insertAdjacentHTML('beforeend',html);
+				}
+      	  	 }
+      	  	 
+      	  })
+      	}
+    </script>
+</body>
+</html>

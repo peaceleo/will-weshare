@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title>personcenter</title>
+    <script src="../js/mui.min.js"></script>
+     <script src="../js/openwin.js"></script>
+      <script src="../js/weshare.js"></script>
+    <link href="../css/mui.min.css" rel="stylesheet"/>
+     <link rel="stylesheet" href="../css/weshare.css" />
+      
+    
+    <style type="text/css">
+    			 .mui-bar-tab .mui-tab-item.mui-active{
+     	 	color: #929292;
+     	 }
+     	 body{
+     	 	background: white;
+     	 }
+     #wrapper {
+    		position: relative;
+    		z-index: 1;
+    		height: 35px;
+    		width: 100%;
+    		/*border: 1px solid black;*/
+    		overflow: hidden;
+    		font-weight: bolder;
+    }
+    #scroll{
+    	position: absolute;
+	z-index: 1;
+	-webkit-tap-highlight-color: rgba(0,0,0,0);
+	width: 200%;
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-webkit-text-size-adjust: none;
+	overflow-x: scroll;
+    }
+    #scroll ul{
+    		list-style: none;
+    		padding: 0;
+    		margin: 0;
+    		display: -webkit-box;
+    		
+    }
+    #scroll li{
+    border: 1px solid #E4E4E4;
+    	padding: 0;
+    	margin: 0;
+    width: 17%;
+    	line-height: 35px;
+    	overflow: hidden;
+    	text-align: center;
+    }
+    .singleorder{
+    	border-top: 2px solid #E4E4E4;
+    border-bottom: 3px solid #E4E4E4;
+    	float: left;
+    }
+    .singleorder div{
+    	float: left;
+    	
+    }
+    .proimg img{
+    	height: 90px;
+    	width: 90%;
+    	margin: 5px;
+    	padding: auto;
+    	
+    }
+    .orderinfo{
+    	  	border-left: 1px solid #e4e4e4;
+    }
+    .numandtime{
+    	border-bottom:1px solid #E4E4E4;
+    	font-size:12px;
+    	color: #A1A1A1;
+    	font-weight: bolder;
+    	padding: 3px;
+    }
+    .nameandprice{
+    	border-bottom: 1px solid #e4e4e4;
+    	padding: 10px;
+    	font-weight: bolder;
+    }
+    .orderprice{
+    	font-size: 13px;
+    color: white;
+    font-weight: bolder;
+    background: #66cccc;
+    width: 80px;
+    padding: 3px;
+    border-radius: 3px;
+    text-align: center;
+    }
+    .towhotel{
+    	font-size: 12px;
+    	padding: 3px;
+    	font-weight: bolder;
+    	color: #A1A1A1;
+    }
+        .personneedaction{ 
+    			float: left;
+   			width:50%;
+    			text-align: center;
+    			font-size: 13px;
+    			font-weight: bolder;
+    			color: black;
+    			border-top: 1px solid #E4E4E4;
+    		
+    			padding-top: 5px;
+    			padding-bottom: 8px;
+   		}
+   		.personneedaction:first-child{
+   			border-right: 2px solid #E4E4E4 ;
+   		}
+   		.personneedaction .mui-icon{
+   			font-size: 20px;
+   			font-weight: bolder;
+   		}
+   		 .mui-scroll-wrapper{
+     	 overflow: initial;
+     	 }
+     	 .sexshow{
+     	 	height: 20px;
+     	 	width: 20px;
+     	 	/*border:1px solid black;*/
+     	 	position: absolute;
+     	 	bottom: 0px;
+     	 	left: 60%;
+     	 }
+     	 #male{
+     	 	background: url(images/male.png) no-repeat;
+     	 	background-size:20px;
+     	 }
+     	 #female{
+     	 	background: url(images/female.png) no-repeat;
+     	 	background-size:20px;
+     	 }
+     /*.needcontainer{
+     	width: 94%;
+     	margin-left: 3%;
+     	margin-right:3% ;
+     	/*border:2px solid #E4E4E4;*/
+     /*}*/
+    #title{
+    	font-size: 14px;
+    	font-weight: bolder;
+    }
+    
+     	 	 #moredata{
+     	 	text-align: center;
+     	 	
+     	 	font-size: 14px;
+     	 	font-weight: bolder;
+     	 	color:#0c9ed4;
+     	 }
+ 
+     	 .loading{
+     	 	background: url(images/loading4.gif) no-repeat center;
+     	 	background-size:30px ;
+     	 	padding-top: 60px;
+     	 	/*padding-top: 10px;
+     	 	padding-bottom: 10px;*/
+     	 }
+     	 .finish{
+     	 	padding: 30px;
+     	 }
+     </style>
+     
+</head>
+<body id='body'>
+	<header class="mui-bar mui-bar-nav">
+	    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+	    <h1 class="mui-title" id='title'>Ta的心愿</h1>
+	</header>
+	 
+	 <div class="mui-content">	
+		 	<div id="contentwarp">
+		 	
+               
+          </div>
+          <div  id='moredata'></div>
+	 </div>
+	  <script type="text/javascript" charset="utf-8">
+      	mui.init();
+      	mui.plusReady(function(){
+//    		quitapp();
+//    		 username=plus.storage.getItem('username');
+		  var pager=plus.webview.currentWebview();
+		  var username=pager.username;
+      		 getremindernum(username);
+      		var reward=plus.storage.getItem('rewardpoints');
+      		page=1;
+      		getmyneed(username,page);
+      	
+     //打开查看页面
+       mui('#contentwarp').on('tap','.personneedaction',function(){
+      	var needid=this.getAttribute('data-id');
+      	var towho=this.getAttribute('data-user');
+     		mui.openWindow({
+     			url:'../weneed/checkneedaction.html',
+     			id:'checkneedaction',
+     			createNew:true,
+     			extras:{
+     				needid:needid,
+     				towho:towho
+     			},
+     			show:{
+     				aniShow: 'slide-in-left',
+     				duration:300
+     			}
+     		});
+     	})
+       //moredata
+		    document.addEventListener('plusscrollbottom',function(){
+								 	 	 page++;
+									 	 var wt=plus.nativeUI.showWaiting();
+									 	 document.getElementById('moredata').innerText='加载中...';
+									 	 document.getElementById('moredata').className='loading';
+									 	 console.log("getmyneed("+"\'"+username+"\'"+","+page+")");
+									 	 setTimeout("getmyneed("+"\'"+username+"\'"+","+page+")",600);
+									 	 wt.close();
+									 },false);
+      	 	//ene of moredata
+      	 	
+      	});
+ 
+      	//获取个人需求列表
+      	function getmyneed(username,page){
+      		
+      		  var contentcontainer=document.getElementById("contentwarp");
+				     	 mui.ajax(server+'getneedlist.php',{
+			      			data:{
+			      				action:'somebodyneed',
+			      				page:page,
+			      				username:username
+			      			},
+			      			type:'post',
+			      			success:function(data){ 
+			      				var jsondata=eval("["+data+"]");
+			      				var needlist=jsondata[0];
+//			      				
+			      			 if(needlist==''){
+			      					
+			      					maxPages=0;
+			      					 html="<div class=\'commentblack\'>亲,Ta还没有发布过心愿呢</div>";
+      	                              contentcontainer.innerHTML=html;	
+			      				}else{
+			      					maxPages=needlist[0].maxPages;
+			      				}
+			      	     
+						 if(page>maxPages){
+						 	document.getElementById('moredata').innerText='这就是全部了....';
+						 	document.getElementById('moredata').className='finish';
+						 	return;
+						 }
+				      			
+			      			   
+			      				for(var i=0;i<=needlist.length;i++){
+			      					var publishtime=timeFormat(needlist[i].publishtime);
+			      					var needwarper=document.getElementById('contentwarp');
+			      					if(needlist[i].sex=='男'){
+			      						var status1='block';
+			      						var status2='none';
+			      					}else{
+			      						var status1='none';
+			      						var status2='block';
+			      					}
+			      					if(needlist[i].needpic==''){
+			      						ispic='none';
+			      					}else{
+			      						ispic='block';
+			      					}
+			      					 html="<div class='needcontainer'>"+
+			      					 
+								  	   	    "<div class='needcontainerleft'>"+
+								  	   	     "<div class='headinfo'>"+
+								  	   	       "<img src='"+server+"/uploads/"+needlist[i].head+"'/>"+
+								  	   	       "<span  class='male sexshow' style='display:"+status1+";'></span>"+
+				 							   "<span  class='female sexshow' style='display:"+status2+";'></span>"+
+				 							 "</div>"+   
+								  	   	    "<div class='needid'>"+needlist[i].id+"</div>"+
+								  	   	    "</div>"+
+								  	   	     "<div class='needcontainerright'>"+
+								  	   	    
+								  	   	    "<div class='needlistlabel'>#"+needlist[0].label+"#</div>"+
+								  	   	  	"<div class='perneedaction'>"+needlist[i].status+"</div>"+
+								  	   	    
+								  	   	    "<div class='needcontent'>"+needlist[i].remark+"</div>"+
+								  	   	      "<div class='needpic' style='display:"+ispic+";' ><img src='"+server+"/uploads/"+needlist[i].needpic+"'/></div>"+
+								  	   	    	"<div class='needpay'>"+needlist[i].needpay+"享豆</div>"+
+								  	   	   
+								  	   	    "<div class='needlocation'>"+needlist[i].needlocation+"</div>"+
+								  	   	    "<div class='needlisttime'>"+publishtime+"</div>"+
+								  	   	    "</div>"+
+								  	   		 "<div class='needcontainerfooter'>"+
+								  	   		"<div class='personneedaction' data-id='"+needlist[i].id+"'data-user='"+needlist[i].user+"' ><span class='mui-icon mui-icon-navigate'></span>&nbsp;&nbsp;私信("+needlist[i].msgNum+")</div>"+
+								  	   		"<div class='personneedaction' data-id='"+needlist[i].id+"'data-user='"+needlist[i].user+"'><span class='mui-icon mui-icon-email'></span>&nbsp;&nbsp;评论("+needlist[i].cmtNum+")</div>"+
+								  	    "</div>"+
+								  	   "</div> ";
+								  	 needwarper.insertAdjacentHTML('beforeend',html); 
+								
+			      				}
+			      				}
+						 })
+				     }     	       	 
+      
+       
+     
+     
+      
+    </script>
+</body>
+</html>

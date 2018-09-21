@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+    <title>msglist</title>
+   
+    <link href="css/mui.min.css" rel="stylesheet"/>
+    	<link rel="stylesheet" href="css/weshare.css" />
+     <style type="text/css">
+     body{
+     	background: white;
+     }  
+    
+     	 .tabactive{
+     	 	color: #389EDA;
+     	 }
+     	 .singereminder{
+     	 	margin-top:6px ;
+     	 	border: 2px solid #E4E4E4;
+     	 	/*position: relative;*/
+     	 	/*overflow: hidden;*/
+     	 	overflow:auto;
+     	 	padding: 5px;
+     	 	border-radius: 5px;
+     	 }
+     	 .bywhoheadofRe{
+     	 	display: inline-block;
+     	 	/*min-height: 20px;*/
+     	 }
+     	 .containerright{
+     	 	float: right;
+     	 }
+     	 .bywhoheadofRe img{
+     	 	margin-top: 10px;
+     	 	width: 85%;
+     	 	border-radius: 50%;
+     	 }
+     	 .remindertop{
+     	 	border-bottom: 1px solid #E4E4E4;
+     	 	font-size: 12px;
+     	 	color: #A1A1A1;
+     	 	padding: 3px;
+     	 	padding-top: 5px;
+     	 	font-weight: bold;
+     	 	float: left;
+     	 }
+     	 .remindertop div{
+     	 	display: inline-block;
+     	 	float: left;
+     	 }
+     	 .remindercontent{
+     	 	padding: 5px;
+     	 	font-size: 14px;
+     	 	font-weight: bolder;
+  			clear: both;
+     	 }
+     	.spbadge{
+     		position: absolute;
+     		top:10px;
+     		left: 65%;
+     	}
+     	 .mui-bar-tab .mui-tab-item.mui-active{
+     	 	color: #929292;
+     	 }
+     	 .mui-scroll-wrapper{
+     	 overflow: initial;
+     	 padding-bottom: 44px;
+     	 }
+     </style>
+</head>
+<body id='body'> 
+	<header class="mui-bar mui-bar-nav">
+		<div class='header index-header'>
+			<div class='logo' id='logo'></div>
+			<h1 class='title' id='title'></h1>
+			<a id="menu" class="mui-action-menu mui-icon mui-icon-bars mui-pull-right"></a>
+		</div>
+	</header>	
+
+		
+		
+     <div id="messagewarp" class="mui-content  mui-scroll"> </div>
+     
+     
+     <nav class="mui-bar mui-bar-tab">
+			<a id="indextab" class="mui-tab-item" href="index.html">
+				<span class="mui-icon mui-icon-home-filled"></span>
+				<span class="mui-tab-label">首页</span>
+			</a>
+			<a  id='needpublishtab' class="mui-tab-item" href="needpublish.html">
+				<span class="mui-icon mui-icon-plus-filled"></span>
+				<span class="mui-tab-label">发布</span>
+			</a>
+			<a  id='messagetab'class="mui-tab-item" href="message.html" style="color:#3f88b0;">
+				<span class="mui-icon mui-icon-email-filled"><span class="mui-badge" id='remindnum' style="display: none;"></span></span>
+				<span class="mui-tab-label">消息</span>
+			</a>
+			<a  id='personcentertab' class="mui-tab-item" href="personcenter.html">
+				<span class="mui-icon mui-icon-contact-filled"></span>
+				<span class="mui-tab-label">我的</span>
+			</a>
+		</nav>
+    
+	   <script src="js/mui.min.js"></script>
+	   <script src="js/openwin.js"></script>
+	    <script src="js/weshare.js"></script>
+	    <script type="text/javascript" charset="utf-8">
+
+	    mui.plusReady(function(){
+//	    	  quitapp();
+	    	 plus.nativeUI.closeWaiting();
+	    		server= plus.storage.getItem('server');
+	    		username=plus.storage.getItem('username');
+	    		getreminder(username);
+	    		getremindernum(username);
+	    		 mui('.mui-scroll-wrapper').scroll({
+	        deceleration: 0.0005
+          });
+          document.getElementById('menu').addEventListener('tap',openmore);
+	    })
+	 	
+	 	//获取提示信息列表
+	 	function getreminder(username){
+	 		
+	 		mui.ajax(server+'getreminderlist.php',{
+	 			data:{
+	 				action:'allreminder',
+	 				username:username
+	 			},
+	 			type:'post',
+	 			success:function(data){
+//                 alert(data);
+	 				  var remindercontainer=document.getElementById("messagewarp");
+	 				  var jsondata=eval("["+data+"]");
+	 				  var reminderlist=jsondata[0];
+	 				 if(reminderlist.length==0){
+     	  	  			html="<div class=\'commentblack\'>亲，没有消息提醒哎</div>";
+     	  	  			remindercontainer.insertAdjacentHTML('afterBegin',html);	
+     	  	  		}
+	 				  for(var i=0;i<=reminderlist.length;i++){
+	 				  	publishtime=timeFormat(reminderlist[i].sendtime);
+	 				  	 if(reminderlist[i].bywhosex=='男'){
+			      						var status1='block';
+			      						var status2='none';
+			      					}else{
+			      						var status1='none';
+			      						var status2='block';
+			      					}
+	 				  	html="<div class='singereminder mui-col-xs-12' data-rid='"+reminderlist[i].rid+"' data-needid='"+reminderlist[i].needid+"' data-type='"+reminderlist[i].type+"' data-needbywho='"+reminderlist[i].pubbywho+"'>"+
+     							"<div class='bywhoheadofRe  headinfo mui-col-xs-2'>"+
+     								"<span id='badge' class='mui-badge mui-badge-danger spbadge' data-status='"+reminderlist[i].status+"'>"+reminderlist[i].status+"</span>"+
+     								"<img src='"+server+"uploads/"+reminderlist[i].bywhohead+"'/>"+
+     								 "<span  class='smale sexshowSmall' style='display:"+status1+";'></span>"+
+				 					 "<span  class='sfemale sexshowSmall' style='display:"+status2+";'></span>"+
+     							"</div>"+
+     							"<div class='containerright mui-col-xs-10'>"+
+     							"<div class='remindertop mui-col-xs-12'>"+
+     								"<div class='reminderbywho mui-col-xs-9'>"+reminderlist[i].bywhonickname+"</div>"+
+     								"<div class='remindertime mui-col-xs-3'>"+publishtime+"</div>"+
+     							"</div>"+
+     							"<div class='remindercontent mui-col-xs-12'>"+reminderlist[i].content+"</div>"+
+     							"</div>"
+     							"</div>";
+     							
+     					remindercontainer.insertAdjacentHTML('afterBegin',html);	
+     					var status=document.getElementById('badge').getAttribute('data-status');
+     					if(status==0){
+     						document.getElementById('badge').style.display='block';
+     					}
+     					else{
+     						document.getElementById('badge').style.display='none';
+     					}
+	 				  }
+	 			}
+	 			
+	 		})
+	 	}
+    //点击进入具体信息页面
+    mui('#messagewarp').on('tap','.singereminder',function(){
+    	var reminderid=this.getAttribute('data-rid');
+    	var type=this.getAttribute('data-type');
+    	var needid=this.getAttribute('data-needid');
+    	var needbywho=this.getAttribute('data-needbywho');
+//  	alert(needbywho);
+   mui.ajax(server+'reminderaction.php',{
+   	data:{
+   		rid:reminderid
+   	},
+   	type:'post',
+   	success:function(data){
+   	}
+   })
+// 0:msg  1:comment 2:thank  3:orderlist
+        console.log(username);
+		console.log(needbywho);
+		console.log(username!=needbywho);
+	if(type==0){
+		if(username===needbywho){
+			mui.openWindow({
+			url:'checkneedaction.html',
+			id:'checkneedaction',
+			extras:{
+     				needid:needid,
+     				towho:needbywho,
+     				type:'msg'
+     			},
+     			show:{
+     				aniShow: 'slide-in-left',
+     				duration:300
+     			}
+		})
+		}else{
+			mui.openWindow({
+			url:'needaction.html',
+			id:'needaction',
+			extras:{
+     				needid:needid,
+     				towho:needbywho,
+     				type:'msg'
+     			},
+     			show:{
+     				aniShow: 'slide-in-left',
+     				duration:300
+     			}
+		})
+		}
+		
+	}else if(type==1){
+		if(username===needbywho){
+			mui.openWindow({
+     			url:'checkneedaction.html',
+     			id:'checkcomment',
+     			extras:{
+     				needid:needid,
+     				towho:needbywho,
+     				type:'comment'
+     			},
+     			show:{
+     				aniShow: 'slide-in-left',
+     				duration:200
+     			}
+	          })
+		}else{
+			mui.openWindow({
+			url:'needaction.html',
+			id:'needaction',
+			extras:{
+     				needid:needid,
+     				towho:needbywho,
+     				type:'comment'
+     				
+     			},
+     			show:{
+     				aniShow: 'slide-in-left',
+     				duration:300
+     			}
+		})
+		}
+
+		
+		
+	
+	}
+	else if(type==2){
+		mui.openWindow({
+			url:'mefromothers.html',
+			id:'mefromothers',
+			createNew:true,
+			extras:{
+				type:'fromothers'
+			},
+			show:{
+				anishow:'slide-in-left',
+				duration:300
+			}
+		})
+	}else if(type==3){
+		mui.openWindow({
+			url:'myshareorder.html',
+			id:'myshareorder',
+			createNew:true,
+			show:{
+				anishow:'slide-in-left',
+				duration:300
+			}
+		})
+	}
+	else if(type==4){
+		mui.openWindow({
+			url:'rewardrecord.html',
+			id:'rewardrecord',
+			createNew:true,
+			show:{
+				anishow:'slide-in-left',
+				duration:300
+			}
+		})
+	}
+    })
+    </script>
+</body>
+</html>

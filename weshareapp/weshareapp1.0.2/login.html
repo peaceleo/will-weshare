@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title></title>
+    <script src="js/mui.min.js"></script>
+    <script src="js/weshare.js"></script>
+    <link href="css/mui.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="css/weshare.css" />
+    <script type="text/javascript" charset="utf-8">
+      	mui.init();
+      	document.addEventListener('plusready',function(){
+      		
+      		  quitapp();
+      		  server=plus.storage.setItem('server','http://120.27.34.187:8000/');
+//    		  server=plus.storage.setItem('server','http://192.168.0.102/weshareapp/');
+      			var usernameinput=document.getElementById("username");
+      	        var passwordinput=document.getElementById("password");
+      			var username=plus.storage.getItem('username');
+      			var password=plus.storage.getItem('password');
+      			server=plus.storage.getItem('server');
+      			usernameinput.value=username;
+      			passwordinput.value=password;    			
+      	})
+      	mui.plusReady(function(){
+      		var usernameinput=document.getElementById("username");
+      	    var passwordinput=document.getElementById("password");
+      		var login=document.getElementById("login");
+      		var reg=document.getElementById("reg");
+      		var resetpass=document.getElementById("resetpass");
+       		
+      		login.addEventListener('tap',function(){
+      			 plus.storage.setItem('username',usernameinput.value);
+			     plus.storage.setItem('password',passwordinput.value);
+			    
+                 mui.ajax(server+'login.php',{
+                 	data:{
+                 		username:usernameinput.value,
+                 		password:passwordinput.value
+                 	},
+                 	type:'post',
+                 	success:function(data){
+                 		
+                 		if(data==0){
+                 			plus.ui.toast('您还没有注册呢!');
+                 			return;
+                 		}else if(data==1){
+                 			plus.ui.toast('欢迎回来');
+                 			getpersoninfo(usernameinput.value)
+                 			mui.openWindow({
+                 				url:'index.html',
+                 				id:'index',
+                 				createNew:true,
+                 				show:{
+                 					aniShow:'slide-in-left',
+                 					duration:300
+                 				}
+                 				 
+                 			})
+                 		}
+                 		else if(data==2){
+                 			plus.ui.toast('密码错误');
+                 			return;
+                 		}
+                 	}
+                 });
+      		})
+      		
+      		reg.addEventListener('tap',function(){
+        		
+      			mui.ajax(server+'push.php',{
+      				type:'post',
+      				success:function(data){
+      					console.log('123');
+      				}
+      			})
+      			mui.openWindow({
+      				url:'reg.html',
+      				id:'register',
+      				show:{
+      					aniShow:'slide-in-right',
+      					duration:300
+      				}
+      			})
+      		})
+      		
+      		resetpass.addEventListener('tap',function(){
+      			mui.openWindow({
+      				url:'resetpass.html',
+      				id:'resetpass',
+      				show:{
+      					aniShow:'slide-in-left',
+      					duration:300
+      				}
+      			})
+      		})
+      		
+      		
+      
+      	})
+	     	//获取用户信息重要信息 	 
+	function getpersoninfo(username){
+		
+      			mui.ajax(server+'personaction.php',{
+      			data:{
+      				username:username
+      			},
+      			type:'post',
+      			success:function(data){
+      				var userinfoContent=document.getElementById("userinfo");
+      				var datajson=eval("["+data+"]");
+      				userinfo=datajson[0];
+      			   	newneednum="\'"+userinfo[0].newneednum+"\'";
+      				plus.storage.setItem('rewardpoints',userinfo[0].rewardpoints);
+      				plus.storage.setItem('active',userinfo[0].active);
+			 		plus.storage.setItem('userpic',userinfo[0].head);
+			 		plus.storage.setItem('nickname',userinfo[0].nickname);
+			 		plus.storage.setItem('usernote',userinfo[0].note);
+			 		plus.storage.setItem('school',userinfo[0].school);
+			 		plus.storage.setItem('newneednum',newneednum);
+			 		plus.storage.setItem('rank',userinfo[0].rankname);
+			 		
+
+      			}
+      		})
+      	}
+      
+    </script>
+    <style>
+    
+    	 .mybtnleft{
+    	 	width:25%;
+    	 	float: left;
+    	 	padding: 10px;
+    	 	color: #a1a1a1;
+    	 	border: none;
+    	 	background: none;
+    	 	font-size: 15px;
+    	 }
+    	 .mybtnright{
+    	 	width: 25%;
+    	 	float: right;
+    	 	padding: 10px;
+    	 	color: #a1a1a1;
+    	 	border: none;
+    	 	background: none;
+    	 	font-size: 15px;
+    	 }
+    </style>
+</head>
+<body id='body'>
+	<header class="mui-bar mui-bar-nav">
+		<div class='header index-header'>
+			<div class='logo' id='logo'></div>
+			<h1 class='title' id='title'></h1>
+			<a id="menu" class="mui-action-menu mui-icon mui-icon-bars mui-pull-right"></a>
+		</div>
+	</header>	
+	<div class="mui-content">
+	     <form class="mui-input-group">
+	     		<div class="mui-input-row">
+	     			<label for="">学号</label>
+	     			<input type="text" class="mui-input mui-input-clear" id='username'/>
+	     		</div>
+	     		<div class='mui-input-row'>
+	     			<label for="">密码</label>
+	     			<input type="password" class='mui-input mui-input-clear'id='password' />
+	     		</div>	
+	     </form>
+	     <div> 
+	     	 <button id="resetpass" class='mui-btn-block mybtnleft'>忘记密码</button>
+	     	 <button id='reg' class='mui-btn-block mybtnright'>免费注册</button>
+	     	 <button id="login" class='mui-btn-block mybtncenter'>登录</button>
+	     </div>
+	</div>
+</body>
+</html>

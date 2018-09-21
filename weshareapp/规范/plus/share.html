@@ -1,0 +1,155 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+		<meta name="HandheldFriendly" content="true"/>
+		<meta name="MobileOptimized" content="320"/>
+		<title>Hello H5+</title>
+		<script type="text/javascript" src="../js/common.js"></script>
+		<script type="text/javascript">
+var shares=null,bhref=false;
+var Intent=null,File=null,Uri=null,main=null;
+// H5 plus事件处理
+function plusReady(){
+	updateSerivces();
+	if(plus.os.name=="Android"){
+		Intent = plus.android.importClass("android.content.Intent");
+		File = plus.android.importClass("java.io.File");
+		Uri = plus.android.importClass("android.net.Uri");
+		main = plus.android.runtimeMainActivity();
+	}
+}
+if(window.plus){
+	plusReady();
+}else{
+	document.addEventListener("plusready",plusReady,false);
+}
+/**
+ * 更新分享服务
+ */
+function updateSerivces(){
+	plus.share.getServices( function(s){
+		shares={};
+		for(var i in s){
+			var t=s[i];
+			shares[t.id]=t;
+		}
+	}, function(e){
+		outSet( "获取分享服务列表失败："+e.message );
+	} );
+}
+/**
+   * 分享操作
+   * @param {String} id
+   */
+function shareAction(id,ex) {
+	var s=null;
+	outSet( "分享操作：" );
+	if(!id||!(s=shares[id])){
+		outLine( "无效的分享服务！" );
+		return;
+	}
+	if ( s.authenticated ) {
+		outLine( "---已授权---" );
+		shareMessage(s,ex);
+	} else {
+		outLine( "---未授权---" );
+		s.authorize( function(){
+				shareMessage(s,ex);
+			},function(e){
+			outLine( "认证授权失败："+e.code+" - "+e.message );
+		});
+	}
+}
+/**
+   * 发送分享消息
+   * @param {plus.share.ShareService} s
+   */
+function shareMessage(s,ex){
+	var msg={content:'乐分享WeShare之心愿单,来自校友的求助',extra:{scene:ex}};
+	if(bhref){
+//		msg.href=sharehref.value;
+//		if(sharehrefTitle&&sharehrefTitle.value!=""){
+//			msg.title=sharehrefTitle.value;
+//		}
+//		if(sharehrefDes&&sharehrefDes.value!=""){
+//			msg.content=sharehrefDes.value;
+//		}
+		msg.href="http://fudan.weshare.so:8000/web/index.html";
+		msg.title="乐分享WeShare之心愿单,来自校友的求助";
+		
+		msg.content="乐分享WeShare之心愿单,来自校友的求助。";
+		msg.thumbs=["_www/logo.png"];
+		msg.pictures=["_www/logo.png"];
+	}else{
+		if(pic&&pic.realUrl){
+			msg.pictures=[pic.realUrl];
+		}
+	}
+	outLine(JSON.stringify(msg));
+	s.send( msg, function(){
+		outLine( "分享到\""+s.description+"\"成功！ " );
+	}, function(e){
+		outLine( "分享到\""+s.description+"\"失败: "+e.code+" - "+e.message );
+	} );
+}
+
+// 分析链接
+function shareHref(){
+	bhref=true;
+	var ids=[{id:"weixin",ex:"WXSceneSession"},{id:"weixin",ex:"WXSceneTimeline"},{id:"qq"}],
+	bts=[{title:"发送给微信好友"},{title:"分享到微信朋友圈"},{title:"分享到QQ"}];
+	plus.nativeUI.actionSheet({cancel:"取消",buttons:bts},
+		function(e){
+			var i=e.index;
+			if(i>0){
+				shareAction(ids[i-1].id,ids[i-1].ex);
+			}
+		}
+	);
+}
+		</script>
+		<link rel="stylesheet" href="../css/common.css" type="text/css" charset="utf-8"/>
+		<style type="text/css">
+#sharecontent{
+	width:80%;
+	-webkit-user-select:text;
+	border: 1px solid #6C6C6C;
+	-webkit-border-radius: 2px;
+	border-radius: 2px;
+}
+#pic{
+	width:100px;
+	height:100px;
+	/*border: 1px dashed #CCCCCC;*/
+}
+.sharehref{
+	width:80%;
+	-webkit-user-select:text;
+	border: 1px solid #6C6C6C;
+	-webkit-border-radius: 2px;
+	border-radius: 2px;
+	margin-bottom: .5em;
+}
+		</style>
+	</head>
+	<body>
+		<header id="header">
+			<div class="nvbt iback" onclick="back(true);"></div>
+			<div class="nvtt">Share</div>
+			<div class="nvbt idoc" onclick="openDoc('Share Document','/doc/share.html')"></div>
+		</header>
+		<div id="dcontent" class="dcontent">
+			<div style="padding: 0.5em 1em;"><hr color="#EEE"/></div>
+			
+			<div class="button" onclick="shareHref()">分享链接</div>
+			<br/><br/>
+		
+		</div>
+		<div id="output">
+Share模块管理客户端的社交分享功能，提供调用终端社交软件的分享能力。通过plus.share可获取社交分享管理对象。
+		</div>
+	</body>
+	<script type="text/javascript" src="../js/immersed.js" ></script>
+</html>
